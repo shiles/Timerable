@@ -14,6 +14,7 @@
 		AB38C44421EBA307003C77D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB38C44221EBA307003C77D7 /* LaunchScreen.storyboard */; };
 		AB38C44F21EBA307003C77D7 /* PomodoroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB38C44E21EBA307003C77D7 /* PomodoroTests.swift */; };
 		AB38C45A21EBA307003C77D7 /* PomodoroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB38C45921EBA307003C77D7 /* PomodoroUITests.swift */; };
+		AB5EF90F21ECB2CE0034A276 /* TimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5EF90E21ECB2CE0034A276 /* TimeController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		AB38C45521EBA307003C77D7 /* PomodoroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomodoroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB38C45921EBA307003C77D7 /* PomodoroUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroUITests.swift; sourceTree = "<group>"; };
 		AB38C45B21EBA307003C77D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB5EF90E21ECB2CE0034A276 /* TimeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		AB38C43821EBA306003C77D7 /* Pomodoro */ = {
 			isa = PBXGroup;
 			children = (
+				AB5EF90D21ECB2AA0034A276 /* Timer */,
 				AB38C43921EBA306003C77D7 /* AppDelegate.swift */,
 				AB38C43B21EBA306003C77D7 /* ViewController.swift */,
 				AB38C43D21EBA306003C77D7 /* Main.storyboard */,
@@ -123,6 +126,14 @@
 				AB38C45B21EBA307003C77D7 /* Info.plist */,
 			);
 			path = PomodoroUITests;
+			sourceTree = "<group>";
+		};
+		AB5EF90D21ECB2AA0034A276 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				AB5EF90E21ECB2CE0034A276 /* TimeController.swift */,
+			);
+			path = Timer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +269,7 @@
 			files = (
 				AB38C43C21EBA306003C77D7 /* ViewController.swift in Sources */,
 				AB38C43A21EBA306003C77D7 /* AppDelegate.swift in Sources */,
+				AB5EF90F21ECB2CE0034A276 /* TimeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
