@@ -29,7 +29,8 @@ class ViewController: UIViewController {
     }
     
     func updateTimer(secondsRemaning: Int) {
-        timeTicker.text = String(secondsRemaning)
+        let (m, s) = timerController.secondsToMinutesAndSecounds(seconds: secondsRemaning)
+        timeTicker.text = String(format: "%02d:%02d", m, s)
     }
     
     override func viewDidLoad() {

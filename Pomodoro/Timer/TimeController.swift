@@ -20,7 +20,7 @@ class TimerController: NSObject {
     
     var timer: Timer = Timer()
     var timeTickerDelegate: TimeTickerDelegate!
-    var timeRemaining: Int = 30
+    var timeRemaining: Int = 70
     
     func startTimer() -> Void {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(TimerController.decrementTimer), userInfo: nil, repeats: true)
@@ -44,5 +44,9 @@ class TimerController: NSObject {
             return true
         }
         return false
+    }
+    
+    func secondsToMinutesAndSecounds(seconds: Int) -> (Int, Int) {
+        return ((seconds % 3600) / 60, (seconds % 3600) % 60)
     }
 }
