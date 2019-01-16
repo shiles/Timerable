@@ -13,29 +13,29 @@ class ViewController: UIViewController {
     @IBOutlet weak var timeTicker: UITextField!
     @IBOutlet weak var playPauseButton: UIButton!
     
-    var timerController: TimerController = TimerController()
+    var timeController: TimeController = TimeController()
     var timing = false
     
     @IBAction func playPause(_ sender: Any) {
         if(!timing){
             timing = true
             playPauseButton.setTitle("Pause", for: .normal)
-            timerController.startTimer()
+            timeController.startTimer()
         } else {
             timing = false
             playPauseButton.setTitle("Start", for: .normal)
-            timerController.stopTimer()
+            timeController.stopTimer()
         }
     }
     
     func updateTimer(secondsRemaning: Int) {
-        let (m, s) = timerController.secondsToMinutesAndSecounds(seconds: secondsRemaning)
+        let (m, s) = timeController.secondsToMinutesAndSecounds(seconds: secondsRemaning)
         timeTicker.text = String(format: "%02d:%02d", m, s)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        timerController.timeTickerDelegate = self
+        timeController.timeTickerDelegate = self
     }
 }
 

@@ -12,18 +12,14 @@ protocol TimeTickerDelegate {
     func timerDecrement(secondsRemaning:Int)
 }
 
-class TimerController: NSObject {
-    
-    let work: Int = 2
-    let shortBreak: Int = 1
-    let longBreak: Int = 2
-    
+class TimeController: NSObject {
+ 
     var timer: Timer = Timer()
     var timeTickerDelegate: TimeTickerDelegate!
     var timeRemaining: Int = 70
     
     func startTimer() -> Void {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(TimerController.decrementTimer), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(TimeController.decrementTimer), userInfo: nil, repeats: true)
     }
     
     func stopTimer() -> Void {
