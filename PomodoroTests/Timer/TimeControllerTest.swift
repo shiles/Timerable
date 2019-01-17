@@ -38,4 +38,16 @@ class TimeControllerTest: XCTestCase {
         XCTAssertEqual(m, 1)
         XCTAssertEqual(s, 30)
     }
+    
+    func testBuildTimeArray(){
+        let work: Int = 120
+        let short: Int = 30
+        let long: Int = 60
+        
+        let compair: [TimeChunk] = controller.buildTimeArray(work: work, short: short, long: long, sessions: 2)
+        assert(compair[0].type == TimeTypes.WORK)
+        assert(compair[1].type == TimeTypes.SHORT)
+        assert(compair[2].type == TimeTypes.WORK)
+        assert(compair[3].type == TimeTypes.LONG)
+    }
 }

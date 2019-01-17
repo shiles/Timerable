@@ -17,6 +17,7 @@
 		AB5EF90F21ECB2CE0034A276 /* TimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5EF90E21ECB2CE0034A276 /* TimeController.swift */; };
 		AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */; };
 		AB9661F421EE0C35003BD4E2 /* TimeControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9661F321EE0C35003BD4E2 /* TimeControllerTest.swift */; };
+		ABEBC69921EF579500CFD262 /* TimeChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEBC69821EF579500CFD262 /* TimeChunk.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		AB5EF90E21ECB2CE0034A276 /* TimeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeController.swift; sourceTree = "<group>"; };
 		AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTypes.swift; sourceTree = "<group>"; };
 		AB9661F321EE0C35003BD4E2 /* TimeControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeControllerTest.swift; sourceTree = "<group>"; };
+		ABEBC69821EF579500CFD262 /* TimeChunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeChunk.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			children = (
 				AB5EF90E21ECB2CE0034A276 /* TimeController.swift */,
 				AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */,
+				ABEBC69821EF579500CFD262 /* TimeChunk.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABEBC69921EF579500CFD262 /* TimeChunk.swift in Sources */,
 				AB38C43C21EBA306003C77D7 /* ViewController.swift in Sources */,
 				AB38C43A21EBA306003C77D7 /* AppDelegate.swift in Sources */,
 				AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */,
