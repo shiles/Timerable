@@ -21,16 +21,6 @@ class TimeControllerTest: XCTestCase {
     override func tearDown() {
         controller = nil
     }
-
-    func testIsDoneWithZeroSeconds(){
-        controller.timeRemaining = 0
-        XCTAssertTrue(controller.isDone())
-    }
-    
-    func testIsDoneWithNonZeroSeconds(){
-        controller.timeRemaining = 1
-        XCTAssertFalse(controller.isDone())
-    }
     
     func testSecondsToMinutesAndSeconds() {
         let time: Int = 90

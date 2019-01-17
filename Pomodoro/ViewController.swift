@@ -17,13 +17,14 @@ class ViewController: UIViewController {
     var timing = false
     
     @IBAction func playPause(_ sender: Any) {
-        if(!timing){
+        if !timing {
             timing = true
             playPauseButton.setTitle("Pause", for: .normal)
-            timeController.startTimer()
+            timeController.initSession()
+            
         } else {
             timing = false
-            playPauseButton.setTitle("Start", for: .normal)
+            playPauseButton.setTitle("Continue", for: .normal)
             timeController.stopTimer()
         }
     }

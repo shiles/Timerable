@@ -16,8 +16,7 @@ class TimeController: NSObject {
  
     var timer: Timer = Timer()
     var timeTickerDelegate: TimeTickerDelegate!
-    var timeChunks: [TimeChunk]?
-    var timeRemaining: Int = 70
+    var session: [TimeChunk]?
     
     /**
      Starts the timer.
@@ -34,27 +33,11 @@ class TimeController: NSObject {
     }
     
     /**
-     Runs each time the timer fires, and decrements the timer by one and
-     updates the UI through a delegate.
+     Builds and setsup the study session.
      */
-    @objc func decrementTimer() -> Void {
-        timeRemaining -= 1
-        timeTickerDelegate.timerDecrement(secondsRemaning: timeRemaining)
-        
-        if(isDone()){
-            stopTimer()
-        }
-    }
-    
-    /**
-     Checks to see if the time remaining is 0
-     - Returns: Boolean to indicate if `timeRemaining` is 0
-     */
-    func isDone() -> Bool {
-        if(timeRemaining == 0){
-            return true
-        }
-        return false
+    func initSession(){
+        session = buildTimeArray(work: 10, short: 5, long: 10, sessions: 4)
+        startTimer()
     }
     
     /**
@@ -64,6 +47,43 @@ class TimeController: NSObject {
      */
     func secondsToMinutesAndSecounds(seconds: Int) -> (Int, Int) {
         return ((seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
+
+    /**
+     Runs each time the timer fires, and decrements the timer by one and
+     updates the UI through a delegate.
+     */
+    @objc func decrementTimer() -> Void {
+        session?[0].timeRemaining -= 1
+        timeTickerDelegate.timerDecrement(secondsRemaning: session?[0].timeRemaining ?? 0)
+        
+        //Remove the time chunk if theres not time remaining
+        if isChunkDone() {
+            session?.removeFirst()
+        }
+        
+        if isSessionDone() {
+            stopTimer()
+        }
+    }
+    
+    /**
+     Checks to see if the session is complete
+     - Returns: Boolean to indicate if `timeRemaining` is 0
+     */
+    fileprivate func isSessionDone() -> Bool {
+        if session?.count == 0 {
+            return true
+        }
+        return false
+    }
+    
+    /**
+     Checks to see if the time remaining is 0 in current chunk
+     - Returns: Boolean to indicate if `timeRemaining` is 0
+     */
+    fileprivate func isChunkDone() -> Bool {
+        return session?[0].timeRemaining == 0
     }
     
     /**
@@ -75,15 +95,15 @@ class TimeController: NSObject {
         - sessions: The number of work *sessions* per pomodoro round
      - Returns: A array of TimeChunks.
      */
-    func buildTimeArray(work: Int, short: Int, long: Int, sessions: Int) -> [TimeChunk]{
+    fileprivate func buildTimeArray(work: Int, short: Int, long: Int, sessions: Int) -> [TimeChunk]{
          var timeChunks: [TimeChunk] = Array()
-        //Temporary variables to define how long a work block should be
+        //Builds the number of sessions of work / rest
         for i in 1...sessions {
             let work: TimeChunk = TimeChunk(type: TimeTypes.WORK, timeLength: work, timeRemaining: work
             )
             let wBreak: TimeChunk!
             //Checks weather to add a short break or a long break pased on position
-            if(i != sessions){
+            if i != sessions {
                 wBreak = TimeChunk(type: TimeTypes.SHORT, timeLength: short, timeRemaining: short)
             } else {
                 wBreak = TimeChunk(type: TimeTypes.LONG, timeLength: long, timeRemaining: long)
