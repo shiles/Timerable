@@ -18,6 +18,7 @@
 		AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */; };
 		AB9661F421EE0C35003BD4E2 /* TimeControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9661F321EE0C35003BD4E2 /* TimeControllerTest.swift */; };
 		ABEBC69921EF579500CFD262 /* TimeChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEBC69821EF579500CFD262 /* TimeChunk.swift */; };
+		ABEBC69D21F2009300CFD262 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEBC69C21F2009300CFD262 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTypes.swift; sourceTree = "<group>"; };
 		AB9661F321EE0C35003BD4E2 /* TimeControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeControllerTest.swift; sourceTree = "<group>"; };
 		ABEBC69821EF579500CFD262 /* TimeChunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeChunk.swift; sourceTree = "<group>"; };
+		ABEBC69C21F2009300CFD262 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				AB38C43921EBA306003C77D7 /* AppDelegate.swift */,
 				AB38C43B21EBA306003C77D7 /* ViewController.swift */,
 				AB38C43D21EBA306003C77D7 /* Main.storyboard */,
+				ABEBC69C21F2009300CFD262 /* SettingsViewController.swift */,
 				AB38C44021EBA307003C77D7 /* Assets.xcassets */,
 				AB38C44221EBA307003C77D7 /* LaunchScreen.storyboard */,
 				AB38C44521EBA307003C77D7 /* Info.plist */,
@@ -221,6 +224,11 @@
 				TargetAttributes = {
 					AB38C43521EBA306003C77D7 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					AB38C44921EBA307003C77D7 = {
 						CreatedOnToolsVersion = 10.1;
@@ -289,6 +297,7 @@
 				AB38C43A21EBA306003C77D7 /* AppDelegate.swift in Sources */,
 				AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */,
 				AB5EF90F21ECB2CE0034A276 /* TimeController.swift in Sources */,
+				ABEBC69D21F2009300CFD262 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
