@@ -16,6 +16,12 @@ class ViewController: UIViewController {
     var timeController: TimeController = TimeController()
     var timing = false
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateTimer(secondsRemaning: UserDefaults.standard.integer(forKey: "Work"))
+        timeController.timeTickerDelegate = self
+    }
+    
     @IBAction func playPause(_ sender: Any) {
         if !timing {
             timing = true
@@ -30,13 +36,8 @@ class ViewController: UIViewController {
     }
     
     func updateTimer(secondsRemaning: Int) {
-        let (m, s) = timeController.secondsToMinutesAndSecounds(seconds: secondsRemaning)
+        let (m, s) = Converter.secondsToMinutesAndSecounds(seconds: secondsRemaning)
         timeTicker.text = String(format: "%02d:%02d", m, s)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        timeController.timeTickerDelegate = self
     }
 }
 

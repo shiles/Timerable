@@ -41,15 +41,6 @@ class TimeController: NSObject {
     }
     
     /**
-     Converts from the seconts to minutes and seconds
-     - Parameter seconds: An amount of *seconds* to be converted.
-     - Returns: A touple (minutes, secounds).
-     */
-    func secondsToMinutesAndSecounds(seconds: Int) -> (Int, Int) {
-        return ((seconds % 3600) / 60, (seconds % 3600) % 60)
-    }
-
-    /**
      Runs each time the timer fires, and decrements the timer by one and
      updates the UI through a delegate.
      */

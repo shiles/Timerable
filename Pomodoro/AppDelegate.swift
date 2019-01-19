@@ -13,9 +13,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        //Setting defualt values for user defualts
+        UserDefaults.standard.register(defaults: ["Work" : 1500, "Short" : 300, "Long" : 1800, "AutoRepeat" : true, "sessionLength" : true])
         return true
     }
 

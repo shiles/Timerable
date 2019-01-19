@@ -15,6 +15,7 @@
 		AB38C44F21EBA307003C77D7 /* PomodoroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB38C44E21EBA307003C77D7 /* PomodoroTests.swift */; };
 		AB38C45A21EBA307003C77D7 /* PomodoroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB38C45921EBA307003C77D7 /* PomodoroUITests.swift */; };
 		AB5EF90F21ECB2CE0034A276 /* TimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5EF90E21ECB2CE0034A276 /* TimeController.swift */; };
+		AB8A015421F39F6100D0F6EA /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8A015321F39F6100D0F6EA /* Converter.swift */; };
 		AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */; };
 		AB9661F421EE0C35003BD4E2 /* TimeControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9661F321EE0C35003BD4E2 /* TimeControllerTest.swift */; };
 		ABEBC69921EF579500CFD262 /* TimeChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEBC69821EF579500CFD262 /* TimeChunk.swift */; };
@@ -53,6 +54,7 @@
 		AB38C45921EBA307003C77D7 /* PomodoroUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroUITests.swift; sourceTree = "<group>"; };
 		AB38C45B21EBA307003C77D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB5EF90E21ECB2CE0034A276 /* TimeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeController.swift; sourceTree = "<group>"; };
+		AB8A015321F39F6100D0F6EA /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTypes.swift; sourceTree = "<group>"; };
 		AB9661F321EE0C35003BD4E2 /* TimeControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeControllerTest.swift; sourceTree = "<group>"; };
 		ABEBC69821EF579500CFD262 /* TimeChunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeChunk.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 		AB38C43821EBA306003C77D7 /* Pomodoro */ = {
 			isa = PBXGroup;
 			children = (
+				AB8A015221F39F1400D0F6EA /* Util */,
 				AB5EF90D21ECB2AA0034A276 /* Timer */,
 				AB38C43921EBA306003C77D7 /* AppDelegate.swift */,
 				AB38C43B21EBA306003C77D7 /* ViewController.swift */,
@@ -146,6 +149,14 @@
 				ABEBC69821EF579500CFD262 /* TimeChunk.swift */,
 			);
 			path = Timer;
+			sourceTree = "<group>";
+		};
+		AB8A015221F39F1400D0F6EA /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				AB8A015321F39F6100D0F6EA /* Converter.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		AB9661F221EE0C12003BD4E2 /* Timer */ = {
@@ -295,6 +306,7 @@
 				ABEBC69921EF579500CFD262 /* TimeChunk.swift in Sources */,
 				AB38C43C21EBA306003C77D7 /* ViewController.swift in Sources */,
 				AB38C43A21EBA306003C77D7 /* AppDelegate.swift in Sources */,
+				AB8A015421F39F6100D0F6EA /* Converter.swift in Sources */,
 				AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */,
 				AB5EF90F21ECB2CE0034A276 /* TimeController.swift in Sources */,
 				ABEBC69D21F2009300CFD262 /* SettingsViewController.swift in Sources */,
