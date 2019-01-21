@@ -12,12 +12,11 @@
 		AB38C43F21EBA306003C77D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB38C43D21EBA306003C77D7 /* Main.storyboard */; };
 		AB38C44121EBA307003C77D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB38C44021EBA307003C77D7 /* Assets.xcassets */; };
 		AB38C44421EBA307003C77D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB38C44221EBA307003C77D7 /* LaunchScreen.storyboard */; };
-		AB38C44F21EBA307003C77D7 /* PomodoroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB38C44E21EBA307003C77D7 /* PomodoroTests.swift */; };
 		AB38C45A21EBA307003C77D7 /* PomodoroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB38C45921EBA307003C77D7 /* PomodoroUITests.swift */; };
 		AB5EF90F21ECB2CE0034A276 /* TimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5EF90E21ECB2CE0034A276 /* TimeController.swift */; };
 		AB8A015421F39F6100D0F6EA /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8A015321F39F6100D0F6EA /* Converter.swift */; };
 		AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */; };
-		AB9661F421EE0C35003BD4E2 /* TimeControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9661F321EE0C35003BD4E2 /* TimeControllerTest.swift */; };
+		ABB2A5E521F60552008E4D62 /* ConverterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB2A5E421F60552008E4D62 /* ConverterTest.swift */; };
 		ABEBC69921EF579500CFD262 /* TimeChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEBC69821EF579500CFD262 /* TimeChunk.swift */; };
 		ABEBC69D21F2009300CFD262 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEBC69C21F2009300CFD262 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
@@ -48,7 +47,6 @@
 		AB38C44321EBA307003C77D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB38C44521EBA307003C77D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB38C44A21EBA307003C77D7 /* PomodoroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomodoroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB38C44E21EBA307003C77D7 /* PomodoroTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTests.swift; sourceTree = "<group>"; };
 		AB38C45021EBA307003C77D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB38C45521EBA307003C77D7 /* PomodoroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomodoroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB38C45921EBA307003C77D7 /* PomodoroUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroUITests.swift; sourceTree = "<group>"; };
@@ -56,7 +54,7 @@
 		AB5EF90E21ECB2CE0034A276 /* TimeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeController.swift; sourceTree = "<group>"; };
 		AB8A015321F39F6100D0F6EA /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTypes.swift; sourceTree = "<group>"; };
-		AB9661F321EE0C35003BD4E2 /* TimeControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeControllerTest.swift; sourceTree = "<group>"; };
+		ABB2A5E421F60552008E4D62 /* ConverterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTest.swift; sourceTree = "<group>"; };
 		ABEBC69821EF579500CFD262 /* TimeChunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeChunk.swift; sourceTree = "<group>"; };
 		ABEBC69C21F2009300CFD262 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,8 +123,7 @@
 		AB38C44D21EBA307003C77D7 /* PomodoroTests */ = {
 			isa = PBXGroup;
 			children = (
-				AB9661F221EE0C12003BD4E2 /* Timer */,
-				AB38C44E21EBA307003C77D7 /* PomodoroTests.swift */,
+				ABB2A5E321F60537008E4D62 /* Util */,
 				AB38C45021EBA307003C77D7 /* Info.plist */,
 			);
 			path = PomodoroTests;
@@ -159,12 +156,12 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		AB9661F221EE0C12003BD4E2 /* Timer */ = {
+		ABB2A5E321F60537008E4D62 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				AB9661F321EE0C35003BD4E2 /* TimeControllerTest.swift */,
+				ABB2A5E421F60552008E4D62 /* ConverterTest.swift */,
 			);
-			path = Timer;
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,8 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB9661F421EE0C35003BD4E2 /* TimeControllerTest.swift in Sources */,
-				AB38C44F21EBA307003C77D7 /* PomodoroTests.swift in Sources */,
+				ABB2A5E521F60552008E4D62 /* ConverterTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@
 import Foundation
 
 class Converter {
+    
     /**
      Converts from the seconts to minutes and seconds
      - Parameter seconds: An amount of *seconds* to be converted.
