@@ -14,6 +14,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var workLengthButton: UIButton!
     @IBOutlet weak var shortLengthButton: UIButton!
     @IBOutlet weak var longLengthButton: UIButton!
+    @IBOutlet weak var autoReset: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,9 +22,21 @@ class SettingsViewController: UITableViewController {
         workLengthButton.setTitle(buttonTimeFormatter(seconds: UserDefaults.standard.integer(forKey: "Work")), for: .normal)
         shortLengthButton.setTitle(buttonTimeFormatter(seconds: UserDefaults.standard.integer(forKey: "Short")), for: .normal)
         longLengthButton.setTitle(buttonTimeFormatter(seconds: UserDefaults.standard.integer(forKey: "Long")), for: .normal)
-        
+        autoReset.setOn(UserDefaults.standard.bool(forKey: "AutoReset"), animated: true)
     }
     
+    /**
+     Flips the autoReset user defualt
+     */
+    @IBAction func toggleAutoReset(_ sender: Any) {
+        UserDefaults.standard.set(!UserDefaults.standard.bool(forKey: "AutoReset"), forKey: "AutoReset")
+    }
+    
+    /**
+     Converts the amount of seconds into a string that can be displayed on the buttons.
+     - Parameter seconds: The number of seconds to convert.
+     - Returns: A formatted String `%d minutes` (rounded)
+     */
     private func buttonTimeFormatter(seconds: Int) -> (String){
         return String(format: "%d minutes", Converter.secondsToMinutes(seconds: seconds))
     }

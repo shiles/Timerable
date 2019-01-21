@@ -203,6 +203,9 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="JJY-P6-AKt" secondAttribute="height" multiplier="47:31" id="BQ7-kX-rgk"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <action selector="toggleAutoReset:" destination="FHQ-Kx-nhI" eventType="valueChanged" id="iFg-3b-uEZ"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -289,6 +292,7 @@
                     </tableView>
                     <connections>
                         <outlet property="appVertion" destination="241-4g-l9T" id="TRP-Bq-JCm"/>
+                        <outlet property="autoReset" destination="JJY-P6-AKt" id="OKi-YU-gEP"/>
                         <outlet property="longLengthButton" destination="diP-Tg-wFH" id="tlQ-eB-vPb"/>
                         <outlet property="shortLengthButton" destination="DQ9-9j-pSO" id="8OZ-kd-odo"/>
                         <outlet property="workLengthButton" destination="VtZ-Jp-G88" id="ANT-aS-Irv"/>
