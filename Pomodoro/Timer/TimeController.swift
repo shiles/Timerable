@@ -9,7 +9,7 @@
 import Foundation
 
 protocol TimeTickerDelegate {
-    func timerDecrement(secondsRemaning:Int)
+    func timerDecrement(timeChunk: TimeChunk)
 }
 
 class TimeController: NSObject {
@@ -17,6 +17,11 @@ class TimeController: NSObject {
     var timer: Timer = Timer()
     var timeTickerDelegate: TimeTickerDelegate!
     var session: [TimeChunk]?
+    
+    override init() {
+        super.init()
+        self.session = buildTimeArray(work: 10, short: 5, long: 10, sessions: 4)
+    }
     
     /**
      Starts the timer.
@@ -46,7 +51,7 @@ class TimeController: NSObject {
      */
     @objc func decrementTimer() -> Void {
         session?[0].timeRemaining -= 1
-        timeTickerDelegate.timerDecrement(secondsRemaning: session?[0].timeRemaining ?? 0)
+        timeTickerDelegate.timerDecrement(timeChunk: session![0])
         
         //Remove the time chunk if theres not time remaining
         if isChunkDone() {

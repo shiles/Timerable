@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB348E1A21F638B100A97CEA /* TimeViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB348E1921F638B100A97CEA /* TimeViewer.swift */; };
+		AB348E1C21F686A700A97CEA /* TimeViewerProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB348E1B21F686A700A97CEA /* TimeViewerProgress.swift */; };
 		AB38C43A21EBA306003C77D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB38C43921EBA306003C77D7 /* AppDelegate.swift */; };
 		AB38C43C21EBA306003C77D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB38C43B21EBA306003C77D7 /* ViewController.swift */; };
 		AB38C43F21EBA306003C77D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB38C43D21EBA306003C77D7 /* Main.storyboard */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB348E1921F638B100A97CEA /* TimeViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewer.swift; sourceTree = "<group>"; };
+		AB348E1B21F686A700A97CEA /* TimeViewerProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewerProgress.swift; sourceTree = "<group>"; };
 		AB38C43621EBA306003C77D7 /* Pomodoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pomodoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB38C43921EBA306003C77D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB38C43B21EBA306003C77D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +88,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB348E1621F6389400A97CEA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AB348E1921F638B100A97CEA /* TimeViewer.swift */,
+				AB348E1B21F686A700A97CEA /* TimeViewerProgress.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		AB38C42D21EBA306003C77D7 = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +120,7 @@
 		AB38C43821EBA306003C77D7 /* Pomodoro */ = {
 			isa = PBXGroup;
 			children = (
+				AB348E1621F6389400A97CEA /* Views */,
 				AB8A015221F39F1400D0F6EA /* Util */,
 				AB5EF90D21ECB2AA0034A276 /* Timer */,
 				AB38C43921EBA306003C77D7 /* AppDelegate.swift */,
@@ -301,9 +315,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABEBC69921EF579500CFD262 /* TimeChunk.swift in Sources */,
+				AB348E1C21F686A700A97CEA /* TimeViewerProgress.swift in Sources */,
 				AB38C43C21EBA306003C77D7 /* ViewController.swift in Sources */,
 				AB38C43A21EBA306003C77D7 /* AppDelegate.swift in Sources */,
 				AB8A015421F39F6100D0F6EA /* Converter.swift in Sources */,
+				AB348E1A21F638B100A97CEA /* TimeViewer.swift in Sources */,
 				AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */,
 				AB5EF90F21ECB2CE0034A276 /* TimeController.swift in Sources */,
 				ABEBC69D21F2009300CFD262 /* SettingsViewController.swift in Sources */,

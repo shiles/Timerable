@@ -10,39 +10,39 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var timeTicker: UITextField!
-    @IBOutlet weak var playPauseButton: UIButton!
-    
     var timeController: TimeController = TimeController()
+    var timeViewer: TimeViewer!
     var timing = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateTimer(secondsRemaning: UserDefaults.standard.integer(forKey: "Work"))
         timeController.timeTickerDelegate = self
+        //Adding the time ticker
+        timeViewer = TimeViewer(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        self.view.addSubview(timeViewer)
+        timeViewer.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            timeViewer.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
+            timeViewer.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10),
+            timeViewer.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            timeViewer.bottomAnchor.constraint(equalTo: self.view.centerYAnchor)])
+        
+        //Defualt values to show
+        updateTimer(timeChunk: timeController.session![0])
+        timeController.startTimer()
     }
     
-    @IBAction func playPause(_ sender: Any) {
-        if !timing {
-            timing = true
-            playPauseButton.setTitle("Pause", for: .normal)
-            timeController.initSession()
-            
-        } else {
-            timing = false
-            playPauseButton.setTitle("Continue", for: .normal)
-            timeController.stopTimer()
-        }
-    }
-    
-    func updateTimer(secondsRemaning: Int) {
-        let (m, s) = Converter.secondsToMinutesAndSecounds(seconds: secondsRemaning)
-        timeTicker.text = String(format: "%02d:%02d", m, s)
+    /**
+     Updates the UI when a change occures within the session
+     - Parameter timeChunk: The `TimeChunk` to display to calulate progress and display correct label.
+     */
+    func updateTimer(timeChunk: TimeChunk) {
+        timeViewer.updateTimeViewer(timeChunk: timeChunk)
     }
 }
 
 extension ViewController: TimeTickerDelegate {
-    func timerDecrement(secondsRemaning: Int){
-        updateTimer(secondsRemaning: secondsRemaning)
+    func timerDecrement(timeChunk: TimeChunk){
+        updateTimer(timeChunk: timeChunk)
     }
 }
