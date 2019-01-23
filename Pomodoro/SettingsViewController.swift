@@ -18,11 +18,17 @@ class SettingsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Setting up the data within the buttons
         appVertion.text = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
         workLengthButton.setTitle(buttonTimeFormatter(seconds: UserDefaults.standard.integer(forKey: "Work")), for: .normal)
         shortLengthButton.setTitle(buttonTimeFormatter(seconds: UserDefaults.standard.integer(forKey: "Short")), for: .normal)
         longLengthButton.setTitle(buttonTimeFormatter(seconds: UserDefaults.standard.integer(forKey: "Long")), for: .normal)
         autoReset.setOn(UserDefaults.standard.bool(forKey: "AutoReset"), animated: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.tabBarController?.title = "SETTINGS"
     }
     
     /**

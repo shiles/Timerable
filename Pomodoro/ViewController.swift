@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Setting pu delegates
         timeController.timeTickerDelegate = self
         //Adding the time ticker
         timeViewer = TimeViewer(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
@@ -30,6 +31,11 @@ class ViewController: UIViewController {
         //Defualt values to show
         updateTimer(timeChunk: timeController.session![0])
         timeController.startTimer()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.tabBarController?.title = "TIMER"
     }
     
     /**
