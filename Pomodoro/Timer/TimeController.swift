@@ -10,6 +10,7 @@ import Foundation
 
 protocol TimeTickerDelegate {
     func timerDecrement(timeChunk: TimeChunk)
+    func resetTimerDisplay(timeChunk: TimeChunk)
 }
 
 class TimeController: NSObject {
@@ -58,27 +59,36 @@ class TimeController: NSObject {
             session?.removeFirst()
         }
         
-        if isSessionDone() {
-            stopTimer()
-        }
+        isSessionDone()
     }
     
     /**
-     Checks to see if the session is complete
-     - Returns: Boolean to indicate if `timeRemaining` is 0
+     Skips the current block of time to the next.
      */
-    fileprivate func isSessionDone() -> Bool {
+    func skipChunk() -> Void {
+        session?.removeFirst()
+        isSessionDone()
+        timeTickerDelegate.resetTimerDisplay(timeChunk: session![0])
+    }
+    
+    /**
+     Checks to see if the session is complete and then handles the state
+     */
+    private func isSessionDone() -> Void {
         if session?.count == 0 {
-            return true
+            stopTimer()
+            if UserDefaults.standard.bool(forKey: "AutoReset") == true {
+                session = buildTimeArray(work: 10, short: 5, long: 10, sessions: 4)
+                timeTickerDelegate.resetTimerDisplay(timeChunk: session![0])
+            }
         }
-        return false
     }
     
     /**
      Checks to see if the time remaining is 0 in current chunk
      - Returns: Boolean to indicate if `timeRemaining` is 0
      */
-    fileprivate func isChunkDone() -> Bool {
+    private func isChunkDone() -> Bool {
         return session?[0].timeRemaining == 0
     }
     
@@ -91,7 +101,7 @@ class TimeController: NSObject {
         - sessions: The number of work *sessions* per pomodoro round
      - Returns: A array of TimeChunks.
      */
-    fileprivate func buildTimeArray(work: Int, short: Int, long: Int, sessions: Int) -> [TimeChunk]{
+    private func buildTimeArray(work: Int, short: Int, long: Int, sessions: Int) -> [TimeChunk]{
          var timeChunks: [TimeChunk] = Array()
         //Builds the number of sessions of work / rest
         for i in 1...sessions {

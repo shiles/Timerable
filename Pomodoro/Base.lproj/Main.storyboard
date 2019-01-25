@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NBE-ek-zwH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2Ig-js-1s7">
     <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Timer-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Pomodoro" customModuleProvider="target" sceneMemberID="viewController">
@@ -20,13 +20,12 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Timer" id="TBq-SX-1pt"/>
                     <navigationItem key="navigationItem" id="8os-LT-eLo"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1732" y="-210"/>
+            <point key="canvasLocation" x="2642.0289855072465" y="-210.26785714285714"/>
         </scene>
         <!--Settings-->
         <scene sceneID="icS-BI-5XF">
@@ -244,7 +243,7 @@
                             <outlet property="delegate" destination="FHQ-Kx-nhI" id="Fmo-bD-kP7"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Settings" id="1qz-Bz-40N"/>
+                    <navigationItem key="navigationItem" id="Zvt-ec-4nS"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="appVertion" destination="241-4g-l9T" id="TRP-Bq-JCm"/>
@@ -256,25 +255,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SA8-6i-CRb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1732" y="494"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="29N-SS-0QE">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NBE-ek-zwH" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8ZK-pa-eFT">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="2Ig-js-1s7" kind="relationship" relationship="rootViewController" id="mzP-vC-tWX"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zWn-wB-jJj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+            <point key="canvasLocation" x="2642.0289855072465" y="493.52678571428567"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="AFg-cG-f9a">
@@ -283,17 +264,56 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Ndp-qu-xbs"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="f6H-2a-38j">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="OZU-zQ-Ejs"/>
-                        <segue destination="FHQ-Kx-nhI" kind="relationship" relationship="viewControllers" id="3Nu-Aw-h82"/>
+                        <segue destination="u6f-v0-MrB" kind="relationship" relationship="viewControllers" id="OZU-zQ-Ejs"/>
+                        <segue destination="yac-bh-S4j" kind="relationship" relationship="viewControllers" id="3Nu-Aw-h82"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kh7-r1-TfF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="898.55072463768124" y="137.94642857142856"/>
+        </scene>
+        <!--Timer-->
+        <scene sceneID="mHf-mi-yDp">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="u6f-v0-MrB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Timer" id="TBq-SX-1pt"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="esb-a4-jAt">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ivc-Yc-qpx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8aO-89-JO0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1731.8840579710147" y="-210.26785714285714"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="QRN-bS-juZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yac-bh-S4j" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" id="1qz-Bz-40N"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Sxw-sW-f6s">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="FHQ-Kx-nhI" kind="relationship" relationship="rootViewController" id="SOP-La-W51"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h0D-O9-1gG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1731.8840579710147" y="493.52678571428567"/>
         </scene>
     </scenes>
 </document>

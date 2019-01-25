@@ -16,8 +16,13 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Setting pu delegates
+        //Setting delegates
         timeController.timeTickerDelegate = self
+        
+        //Adding skip button
+        let skipButton = UIBarButtonItem(title: "Skip", style: .plain, target: self, action: #selector(self.skip))
+        self.navigationItem.rightBarButtonItem = skipButton
+        
         //Adding the time ticker
         timeViewer = TimeViewer(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         self.view.addSubview(timeViewer)
@@ -35,20 +40,37 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.tabBarController?.title = "TIMER"
+        self.navigationItem.title = "TIMER"
+    }
+    
+    @objc func skip() -> Void {
+        timeController.skipChunk()
     }
     
     /**
      Updates the UI when a change occures within the session
      - Parameter timeChunk: The `TimeChunk` to display to calulate progress and display correct label.
      */
-    func updateTimer(timeChunk: TimeChunk) {
+    func updateTimer(timeChunk: TimeChunk) -> Void {
         timeViewer.updateTimeViewer(timeChunk: timeChunk)
     }
 }
 
 extension ViewController: TimeTickerDelegate {
+    
+    /**
+    Updates the UI when a change occures within the session
+     - Parameter timeChunk: The `TimeChunk` to display to calulate progress and display correct label.
+     */
     func timerDecrement(timeChunk: TimeChunk){
+        updateTimer(timeChunk: timeChunk)
+    }
+    
+    /**
+     Updates the UI when a change occures within the session
+     - Parameter timeChunk: The `TimeChunk` to display to calulate progress and display correct label.
+     */
+    func resetTimerDisplay(timeChunk: TimeChunk) {
         updateTimer(timeChunk: timeChunk)
     }
 }

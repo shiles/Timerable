@@ -28,7 +28,7 @@ class SettingsViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.tabBarController?.title = "SETTINGS"
+        self.navigationItem.title = "SETTINGS"
     }
     
     /**
