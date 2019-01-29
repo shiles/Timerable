@@ -60,6 +60,9 @@
                                                     <state key="normal" title="VAL">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="setWorkLength:" destination="FHQ-Kx-nhI" eventType="touchUpInside" id="gEj-Ay-LRu"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

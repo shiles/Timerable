@@ -19,8 +19,10 @@
 		AB8A015421F39F6100D0F6EA /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8A015321F39F6100D0F6EA /* Converter.swift */; };
 		AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */; };
 		ABB2A5E521F60552008E4D62 /* ConverterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB2A5E421F60552008E4D62 /* ConverterTest.swift */; };
+		ABE7B58F21FF3180001D625C /* TimeSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */; };
 		ABEBC69921EF579500CFD262 /* TimeChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEBC69821EF579500CFD262 /* TimeChunk.swift */; };
 		ABEBC69D21F2009300CFD262 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEBC69C21F2009300CFD262 /* SettingsViewController.swift */; };
+		ABFFD7AD21FE9A260033199D /* TimeSelectionTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFFD7AC21FE9A260033199D /* TimeSelectionTable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,8 +61,10 @@
 		AB8A015321F39F6100D0F6EA /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTypes.swift; sourceTree = "<group>"; };
 		ABB2A5E421F60552008E4D62 /* ConverterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTest.swift; sourceTree = "<group>"; };
+		ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectCell.swift; sourceTree = "<group>"; };
 		ABEBC69821EF579500CFD262 /* TimeChunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeChunk.swift; sourceTree = "<group>"; };
 		ABEBC69C21F2009300CFD262 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		ABFFD7AC21FE9A260033199D /* TimeSelectionTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectionTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,8 @@
 			children = (
 				AB348E1921F638B100A97CEA /* TimeViewer.swift */,
 				AB348E1B21F686A700A97CEA /* TimeViewerProgress.swift */,
+				ABFFD7AC21FE9A260033199D /* TimeSelectionTable.swift */,
+				ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -320,8 +326,10 @@
 				AB38C43A21EBA306003C77D7 /* AppDelegate.swift in Sources */,
 				AB8A015421F39F6100D0F6EA /* Converter.swift in Sources */,
 				AB348E1A21F638B100A97CEA /* TimeViewer.swift in Sources */,
+				ABFFD7AD21FE9A260033199D /* TimeSelectionTable.swift in Sources */,
 				AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */,
 				AB5EF90F21ECB2CE0034A276 /* TimeController.swift in Sources */,
+				ABE7B58F21FF3180001D625C /* TimeSelectCell.swift in Sources */,
 				ABEBC69D21F2009300CFD262 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

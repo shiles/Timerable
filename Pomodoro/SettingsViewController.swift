@@ -28,7 +28,15 @@ class SettingsViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.navigationItem.title = "SETTINGS"
+        self.navigationItem.title = "Settings"
+    }
+    
+    
+    @IBAction func setWorkLength(_ sender: Any) {
+        let newTable = TimeSelectionTable()
+        newTable.title = "Work Length"        
+        navigationController?.pushViewController(newTable, animated: true)
+    
     }
     
     /**

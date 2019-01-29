@@ -78,6 +78,8 @@ class TimeController: NSObject {
         if session?.count == 0 {
             stopTimer()
             if UserDefaults.standard.bool(forKey: "AutoReset") == true {
+                initSession()
+            } else {
                 session = buildTimeArray(work: 10, short: 5, long: 10, sessions: 4)
                 timeTickerDelegate.resetTimerDisplay(timeChunk: session![0])
             }
