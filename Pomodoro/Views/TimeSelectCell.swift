@@ -13,8 +13,8 @@ class TableSelectCell: UITableViewCell {
     var minutes: Int?
     var message: String?
     
-    var messageView: UITextView = {
-        var textView = UITextView()
+    var messageView: UILabel = {
+        var textView = UILabel()
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
@@ -25,7 +25,7 @@ class TableSelectCell: UITableViewCell {
         self.addSubview(messageView)
         
         NSLayoutConstraint.activate([
-            messageView.leftAnchor.constraint(equalTo: self.leftAnchor),
+            messageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
             messageView.rightAnchor.constraint(equalTo: self.rightAnchor),
             messageView.topAnchor.constraint(equalTo: self.topAnchor),
             messageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)])

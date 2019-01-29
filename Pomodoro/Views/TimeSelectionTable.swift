@@ -15,11 +15,34 @@ struct CellData {
 
 class TimeSelectionTable: UITableViewController {
     
-    var data: [CellData] = [CellData]()
+    var data: [CellData]!
+    
+    init(min: Int, max: Int) {
+        super.init(nibName: nil, bundle: nil)
+        
+        data = generateData(min: min, max: max)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    /**
+    Builds the allowed range of timing data to be displayed by the table
+     - Parameters:
+        - min: The minimum value that will be displayed by the selector
+        - max: the maximum value that will be diokayed by the selector.
+     - Returns: An array of CellData to be displayed.
+     */
+    private func generateData(min: Int, max: Int) -> [CellData] {
+        var array: [CellData] = [CellData]()
+        for i in stride(from: min, through: max, by: 1) {
+            array.append(CellData.init(minutes: i, message: String(format: (i == 1 ? "%d minute" : "%d minutes"), i)))
+        }
+        return array
+    }
     
     override func viewDidLoad() {
-        data = [CellData.init(minutes: 1, message: "1 Minute"), CellData.init(minutes: 2, message: "2 Minutes")]
-        
         self.tableView.register(TableSelectCell.self, forCellReuseIdentifier: "TimeSelect")
     }
     
