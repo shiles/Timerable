@@ -14,9 +14,9 @@ class TableSelectCell: UITableViewCell {
     var message: String?
     
     var messageView: UILabel = {
-        var textView = UILabel()
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        return textView
+        var text = UILabel()
+        text.translatesAutoresizingMaskIntoConstraints = false
+        return text
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -27,8 +27,7 @@ class TableSelectCell: UITableViewCell {
         NSLayoutConstraint.activate([
             messageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
             messageView.rightAnchor.constraint(equalTo: self.rightAnchor),
-            messageView.topAnchor.constraint(equalTo: self.topAnchor),
-            messageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)])
+            messageView.centerYAnchor.constraint(equalTo: self.centerYAnchor)])
     }
     
     override func layoutSubviews() {
