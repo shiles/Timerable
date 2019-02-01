@@ -23,7 +23,6 @@ class TableSelectCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.addSubview(messageView)
-        
         NSLayoutConstraint.activate([
             messageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
             messageView.rightAnchor.constraint(equalTo: self.rightAnchor),

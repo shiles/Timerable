@@ -33,7 +33,7 @@ class SettingsViewController: UITableViewController {
     
     
     @IBAction func setWorkLength(_ sender: Any) {
-        let newTable = TimeSelectionTable(min: 1, max: 60)
+        let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: UserDefaults.standard.integer(forKey: "Work")))
         newTable.title = "Work Length"        
         navigationController?.pushViewController(newTable, animated: true)
     

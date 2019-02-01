@@ -16,11 +16,14 @@ struct CellData {
 class TimeSelectionTable: UITableViewController {
     
     var data: [CellData]!
+    var selected: Int!
     
-    init(min: Int, max: Int) {
+    init(min: Int, max: Int, selected: Int) {
         super.init(nibName: nil, bundle: nil)
         
         data = generateData(min: min, max: max)
+        self.selected = selected - 1
+        self.tableView.allowsMultipleSelection = false
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -44,6 +47,17 @@ class TimeSelectionTable: UITableViewController {
     
     override func viewDidLoad() {
         self.tableView.register(TableSelectCell.self, forCellReuseIdentifier: "TimeSelect")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+         self.tableView.selectRow(at: IndexPath(row: self.selected, section: 0) , animated: false, scrollPosition: UITableView.ScrollPosition.middle)
+    }
+        
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! TableSelectCell
+        cell.setSelected(true, animated: true)
+        self.selected = indexPath.row
+        print(String(format: "Selecting Cell %d", self.selected!))
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
