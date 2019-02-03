@@ -21,7 +21,7 @@ class TimeController: NSObject {
     
     override init() {
         super.init()
-        self.session = buildTimeArray(work: 10, short: 5, long: 10, sessions: 4)
+        self.session = buildTimeArray()
     }
     
     /**
@@ -42,7 +42,7 @@ class TimeController: NSObject {
      Builds and setsup the study session.
      */
     func initSession(){
-        session = buildTimeArray(work: 10, short: 5, long: 10, sessions: 4)
+        session = buildTimeArray()
         startTimer()
     }
     
@@ -80,7 +80,7 @@ class TimeController: NSObject {
             if UserDefaults.standard.bool(forKey: "AutoReset") == true {
                 initSession()
             } else {
-                session = buildTimeArray(work: 10, short: 5, long: 10, sessions: 4)
+                session = buildTimeArray()
                 timeTickerDelegate.resetTimerDisplay(timeChunk: session![0])
             }
         }
@@ -95,30 +95,35 @@ class TimeController: NSObject {
     }
     
     /**
-     Builds the array that will be used to determine one pomeduro session.
-     - Parameters:
-        - work: The length of *work* time
-        - short: The length of *short* break time
-        - long: The length of *long* break time
-        - sessions: The number of work *sessions* per pomodoro round
+     Builds the array that will be used to determine one pomeduro session based on the user settings.
      - Returns: A array of TimeChunks.
      */
-    private func buildTimeArray(work: Int, short: Int, long: Int, sessions: Int) -> [TimeChunk]{
-         var timeChunks: [TimeChunk] = Array()
+    private func buildTimeArray() -> [TimeChunk]{
+//        let work: Int = UserDefaults.standard.getWorkTime()
+//        let short: Int = UserDefaults.standard.getShortTime()
+//        let long: Int = UserDefaults.standard.getLongTime()
+//        let sessions = UserDefaults.standard.getSessionLength()
+        
+        let work: Int = 1500
+        let short: Int = 12
+        let long: Int = 12
+        let sessions = 4
+        
+        var timeChunks: [TimeChunk] = Array()
         //Builds the number of sessions of work / rest
         for i in 1...sessions {
-            let work: TimeChunk = TimeChunk(type: TimeTypes.WORK, timeLength: work, timeRemaining: work
+            let workTime: TimeChunk = TimeChunk(type: TimeTypes.WORK, timeLength: work, timeRemaining: work
             )
-            let wBreak: TimeChunk!
+            let workBreak: TimeChunk!
             //Checks weather to add a short break or a long break pased on position
             if i != sessions {
-                wBreak = TimeChunk(type: TimeTypes.SHORT, timeLength: short, timeRemaining: short)
+                workBreak = TimeChunk(type: TimeTypes.SHORT, timeLength: short, timeRemaining: short)
             } else {
-                wBreak = TimeChunk(type: TimeTypes.LONG, timeLength: long, timeRemaining: long)
+                workBreak = TimeChunk(type: TimeTypes.LONG, timeLength: long, timeRemaining: long)
             }
             
-            timeChunks.append(work)
-            timeChunks.append(wBreak)
+            timeChunks.append(workTime)
+            timeChunks.append(workBreak)
         }
         
         return timeChunks

@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = skipButton
         
         //Adding the time ticker
-        timeViewer = TimeViewer(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        timeViewer = TimeViewer(frame: .zero)
         self.view.addSubview(timeViewer)
         timeViewer.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

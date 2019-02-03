@@ -20,10 +20,10 @@ class SettingsViewController: UITableViewController {
         super.viewDidLoad()
         //Setting up the data within the buttons
         appVertion.text = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
-        workLengthButton.setTitle(buttonTimeFormatter(seconds: UserDefaults.standard.integer(forKey: "Work")), for: .normal)
-        shortLengthButton.setTitle(buttonTimeFormatter(seconds: UserDefaults.standard.integer(forKey: "Short")), for: .normal)
-        longLengthButton.setTitle(buttonTimeFormatter(seconds: UserDefaults.standard.integer(forKey: "Long")), for: .normal)
-        autoReset.setOn(UserDefaults.standard.bool(forKey: "AutoReset"), animated: true)
+        workLengthButton.setTitle(buttonTimeFormatter(seconds: UserDefaults.standard.getWorkTime()), for: .normal)
+        shortLengthButton.setTitle(buttonTimeFormatter(seconds: UserDefaults.standard.getShortTime()), for: .normal)
+        longLengthButton.setTitle(buttonTimeFormatter(seconds: UserDefaults.standard.getLongTime()), for: .normal)
+        autoReset.setOn(UserDefaults.standard.getAutoReset(), animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,7 +33,7 @@ class SettingsViewController: UITableViewController {
     
     
     @IBAction func setWorkLength(_ sender: Any) {
-        let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: UserDefaults.standard.integer(forKey: "Work")))
+        let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: UserDefaults.standard.getWorkTime()))
         newTable.title = "Work Length"        
         navigationController?.pushViewController(newTable, animated: true)
     
@@ -43,7 +43,7 @@ class SettingsViewController: UITableViewController {
      Flips the autoReset user defualt
      */
     @IBAction func toggleAutoReset(_ sender: Any) {
-        UserDefaults.standard.set(!UserDefaults.standard.bool(forKey: "AutoReset"), forKey: "AutoReset")
+        UserDefaults.standard.setAutoReset(value: !UserDefaults.standard.getAutoReset())
     }
     
     /**
