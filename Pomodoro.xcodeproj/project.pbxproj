@@ -94,7 +94,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AB348E1621F6389400A97CEA /* Views */ = {
+		AB348E1621F6389400A97CEA /* ViewItems */ = {
 			isa = PBXGroup;
 			children = (
 				AB348E1921F638B100A97CEA /* TimeViewer.swift */,
@@ -102,7 +102,7 @@
 				ABFFD7AC21FE9A260033199D /* TimeSelectionTable.swift */,
 				ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */,
 			);
-			path = Views;
+			path = ViewItems;
 			sourceTree = "<group>";
 		};
 		AB38C42D21EBA306003C77D7 = {
@@ -128,13 +128,12 @@
 		AB38C43821EBA306003C77D7 /* Pomodoro */ = {
 			isa = PBXGroup;
 			children = (
-				AB348E1621F6389400A97CEA /* Views */,
+				AB8D28612208FE41000C4312 /* View Controllers */,
+				AB348E1621F6389400A97CEA /* ViewItems */,
 				AB8A015221F39F1400D0F6EA /* Util */,
 				AB5EF90D21ECB2AA0034A276 /* Timer */,
 				AB38C43921EBA306003C77D7 /* AppDelegate.swift */,
-				AB38C43B21EBA306003C77D7 /* ViewController.swift */,
 				AB38C43D21EBA306003C77D7 /* Main.storyboard */,
-				ABEBC69C21F2009300CFD262 /* SettingsViewController.swift */,
 				AB38C44021EBA307003C77D7 /* Assets.xcassets */,
 				AB38C44221EBA307003C77D7 /* LaunchScreen.storyboard */,
 				AB38C44521EBA307003C77D7 /* Info.plist */,
@@ -177,6 +176,15 @@
 				AB2F94C52207885E00F9F0F6 /* Defaults.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		AB8D28612208FE41000C4312 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				ABEBC69C21F2009300CFD262 /* SettingsViewController.swift */,
+				AB38C43B21EBA306003C77D7 /* ViewController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		ABB2A5E321F60537008E4D62 /* Util */ = {
