@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class TimerViewController: UIViewController {
 
     var timeController: TimeController = TimeController()
     var timeViewer: TimeViewer!
@@ -18,6 +18,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         //Setting delegates
         timeController.timeTickerDelegate = self
+        
+        //Styling
+        self.view.backgroundColor = .white
         
         //Adding skip button
         let skipButton = UIBarButtonItem(title: "Skip", style: .plain, target: self, action: #selector(self.skip))
@@ -56,7 +59,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: TimeTickerDelegate {
+extension TimerViewController: TimeTickerDelegate {
     
     /**
     Updates the UI when a change occures within the session
