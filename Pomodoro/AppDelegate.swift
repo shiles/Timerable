@@ -15,14 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        //Setting defualt values for user defualts
+        UserDefaults.standard.registerDefaults()
+  
+        //Building intial view
         window = UIWindow(frame: UIScreen.main.bounds)
         let homeController = MainTabbedViewController()
         window!.rootViewController = homeController
         window!.makeKeyAndVisible()
         
-        //Setting defualt values for user defualts
-        UserDefaults.standard.register(defaults: ["Work" : 1500, "Short" : 300, "Long" : 1800, "AutoReset" : true, "sessionLength" : 4])
-        print("Setting defaults")
         return true
     }
 

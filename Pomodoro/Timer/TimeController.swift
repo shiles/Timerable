@@ -99,15 +99,10 @@ class TimeController: NSObject {
      - Returns: A array of TimeChunks.
      */
     private func buildTimeArray() -> [TimeChunk]{
-//        let work: Int = UserDefaults.standard.getWorkTime()
-//        let short: Int = UserDefaults.standard.getShortTime()
-//        let long: Int = UserDefaults.standard.getLongTime()
-//        let sessions = UserDefaults.standard.getSessionLength()
-        
-        let work: Int = 1500
-        let short: Int = 12
-        let long: Int = 12
-        let sessions = 4
+        let work: Int = UserDefaults.standard.getWorkTime()
+        let short: Int = UserDefaults.standard.getShortTime()
+        let long: Int = UserDefaults.standard.getLongTime()
+        let sessions = UserDefaults.standard.getSessionLength()
         
         var timeChunks: [TimeChunk] = Array()
         //Builds the number of sessions of work / rest

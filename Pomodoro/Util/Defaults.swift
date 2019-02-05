@@ -18,6 +18,14 @@ extension UserDefaults {
         case SessionLength
     }
     
+    func registerDefaults() -> Void{
+      register(defaults: [DefaultKeys.Work.rawValue : 1500,
+                          DefaultKeys.Short.rawValue : 300,
+                          DefaultKeys.Long.rawValue : 1800,
+                          DefaultKeys.AutoReset.rawValue: true,
+                          DefaultKeys.SessionLength.rawValue : 4])
+    }
+    
     func setWorkTime(value: Int) -> Void {
         set(value, forKey: DefaultKeys.Work.rawValue)
     }
