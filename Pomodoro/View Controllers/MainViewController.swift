@@ -10,7 +10,6 @@ import UIKit
 
 class MainTabbedViewController: UITabBarController {
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -18,9 +17,12 @@ class MainTabbedViewController: UITabBarController {
         let timerView = TimerViewController()
         let timerViewNavController = UINavigationController(rootViewController: timerView)
         timerViewNavController.tabBarItem.title = "Timer"
-         
         
-        viewControllers = [timerViewNavController]
+        let storboard = UIStoryboard(name: "Settings", bundle: nil)
+        let settingsViewNavController = UINavigationController(rootViewController: storboard.instantiateViewController(withIdentifier: "SettingsVC") as! UITableViewController)
+        settingsViewNavController.tabBarItem.title = "Settings"
+        
+        viewControllers = [timerViewNavController, settingsViewNavController]
     }
  
     

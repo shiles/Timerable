@@ -12,7 +12,7 @@
 		AB348E1C21F686A700A97CEA /* TimeViewerProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB348E1B21F686A700A97CEA /* TimeViewerProgress.swift */; };
 		AB38C43A21EBA306003C77D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB38C43921EBA306003C77D7 /* AppDelegate.swift */; };
 		AB38C43C21EBA306003C77D7 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB38C43B21EBA306003C77D7 /* TimerViewController.swift */; };
-		AB38C43F21EBA306003C77D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB38C43D21EBA306003C77D7 /* Main.storyboard */; };
+		AB38C43F21EBA306003C77D7 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB38C43D21EBA306003C77D7 /* Settings.storyboard */; };
 		AB38C44121EBA307003C77D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB38C44021EBA307003C77D7 /* Assets.xcassets */; };
 		AB38C44421EBA307003C77D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB38C44221EBA307003C77D7 /* LaunchScreen.storyboard */; };
 		AB38C45A21EBA307003C77D7 /* PomodoroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB38C45921EBA307003C77D7 /* PomodoroUITests.swift */; };
@@ -51,7 +51,7 @@
 		AB38C43621EBA306003C77D7 /* Pomodoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pomodoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB38C43921EBA306003C77D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB38C43B21EBA306003C77D7 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
-		AB38C43E21EBA306003C77D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AB38C43E21EBA306003C77D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
 		AB38C44021EBA307003C77D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB38C44321EBA307003C77D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB38C44521EBA307003C77D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -135,7 +135,6 @@
 				AB8A015221F39F1400D0F6EA /* Util */,
 				AB5EF90D21ECB2AA0034A276 /* Timer */,
 				AB38C43921EBA306003C77D7 /* AppDelegate.swift */,
-				AB38C43D21EBA306003C77D7 /* Main.storyboard */,
 				AB38C44021EBA307003C77D7 /* Assets.xcassets */,
 				AB38C44221EBA307003C77D7 /* LaunchScreen.storyboard */,
 				AB38C44521EBA307003C77D7 /* Info.plist */,
@@ -183,11 +182,20 @@
 		AB8D28612208FE41000C4312 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AB8D28662209BB95000C4312 /* Storyboards */,
 				ABEBC69C21F2009300CFD262 /* SettingsViewController.swift */,
 				AB38C43B21EBA306003C77D7 /* TimerViewController.swift */,
 				AB8D28622208FFAF000C4312 /* MainViewController.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		AB8D28662209BB95000C4312 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				AB38C43D21EBA306003C77D7 /* Settings.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		ABB2A5E321F60537008E4D62 /* Util */ = {
@@ -309,7 +317,7 @@
 			files = (
 				AB38C44421EBA307003C77D7 /* LaunchScreen.storyboard in Resources */,
 				AB38C44121EBA307003C77D7 /* Assets.xcassets in Resources */,
-				AB38C43F21EBA306003C77D7 /* Main.storyboard in Resources */,
+				AB38C43F21EBA306003C77D7 /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,12 +390,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AB38C43D21EBA306003C77D7 /* Main.storyboard */ = {
+		AB38C43D21EBA306003C77D7 /* Settings.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				AB38C43E21EBA306003C77D7 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Settings.storyboard;
 			sourceTree = "<group>";
 		};
 		AB38C44221EBA307003C77D7 /* LaunchScreen.storyboard */ = {
