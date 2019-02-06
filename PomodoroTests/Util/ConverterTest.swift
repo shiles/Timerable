@@ -21,4 +21,9 @@ class ConverterTest: XCTestCase {
         let m: Int = Converter.secondsToMinutes(seconds: 60)
          XCTAssertEqual(1, m)
     }
+    
+    func minutesToSecoundsTest(){
+        let m: Int = Converter.secondsToMinutes(seconds: 25)
+        XCTAssertEqual(1500, m)
+    }
 }
