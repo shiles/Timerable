@@ -17,7 +17,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var shortLengthButton: UIButton!
     @IBOutlet weak var longLengthButton: UIButton!
     @IBOutlet weak var autoReset: UISwitch!
-        
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationItem.title = "Settings"
@@ -30,12 +30,27 @@ class SettingsViewController: UITableViewController {
         autoReset.setOn(UserDefaults.standard.getAutoReset(), animated: true)
     }
     
-    
     @IBAction func setWorkLength(_ sender: Any) {
         let saveFn: (Int) -> Void = defualts.setWorkTime(_:)
         
         let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defualts.getWorkTime()), saveToDefaults: saveFn)
         newTable.title = "Work Length"        
+        navigationController?.pushViewController(newTable, animated: true)
+    }
+    
+    @IBAction func setShortLength(_ sender: Any) {
+        let saveFn: (Int) -> Void = defualts.setShortTime(_:)
+        
+        let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defualts.getShortTime()), saveToDefaults: saveFn)
+        newTable.title = "Short Break Length"
+        navigationController?.pushViewController(newTable, animated: true)
+    }
+    
+    @IBAction func setLongLength(_ sender: Any) {
+        let saveFn: (Int) -> Void = defualts.setLongTime(_:)
+        
+        let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defualts.getLongTime()), saveToDefaults: saveFn)
+        newTable.title = "Long Break Length"
         navigationController?.pushViewController(newTable, animated: true)
     }
     
