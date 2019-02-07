@@ -17,21 +17,17 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var shortLengthButton: UIButton!
     @IBOutlet weak var longLengthButton: UIButton!
     @IBOutlet weak var autoReset: UISwitch!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //Setting up the data within the buttons
+        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationItem.title = "Settings"
+        
+        //Getting up-to-date values to display
         appVertion.text = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
-       
         workLengthButton.setTitle(buttonTimeFormatter(seconds: defualts.getWorkTime()), for: .normal)
         shortLengthButton.setTitle(buttonTimeFormatter(seconds: defualts.getShortTime()), for: .normal)
         longLengthButton.setTitle(buttonTimeFormatter(seconds: defualts.getLongTime()), for: .normal)
         autoReset.setOn(UserDefaults.standard.getAutoReset(), animated: true)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        self.navigationItem.title = "Settings"
     }
     
     
