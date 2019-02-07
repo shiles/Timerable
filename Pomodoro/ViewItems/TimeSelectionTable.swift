@@ -17,12 +17,15 @@ class TimeSelectionTable: UITableViewController {
     
     var data: [CellData]!
     var selected: Int!
+    var saveToDefaults: (Int) -> Void 
     
-    init(min: Int, max: Int, selected: Int) {
-        super.init(nibName: nil, bundle: nil)
-        
-        data = generateData(min: min, max: max)
+    init(min: Int, max: Int, selected: Int, saveToDefaults: @escaping (Int) -> Void) {
         self.selected = selected - 1
+        self.saveToDefaults = saveToDefaults
+        
+        super.init(nibName: nil, bundle: nil)
+    
+        data = generateData(min: min, max: max)
         self.tableView.allowsMultipleSelection = false
     }
     
@@ -56,8 +59,8 @@ class TimeSelectionTable: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! TableSelectCell
         cell.setSelected(true, animated: true)
-        self.selected = indexPath.row
-        print(String(format: "Selecting Cell %d", self.selected!))
+        self.selected = indexPath.row + 1
+        self.saveToDefaults(_: Converter.minutesToSeconds(minutes: selected))
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -33,7 +33,7 @@ class Converter {
      - Parameter seconds: An amount of *minutes* to be converted.
      - Returns: A integer
      */
-    static func secondsToMinutes(minutes: Int) -> (Int) {
+    static func minutesToSeconds(minutes: Int) -> (Int) {
         return minutes * 60
     }
 

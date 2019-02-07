@@ -10,6 +10,8 @@ import UIKit
 
 class SettingsViewController: UITableViewController {
 
+    let defualts: UserDefaults = UserDefaults.standard
+
     @IBOutlet weak var appVertion: UILabel!
     @IBOutlet weak var workLengthButton: UIButton!
     @IBOutlet weak var shortLengthButton: UIButton!
@@ -20,9 +22,10 @@ class SettingsViewController: UITableViewController {
         super.viewDidLoad()
         //Setting up the data within the buttons
         appVertion.text = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
-        workLengthButton.setTitle(buttonTimeFormatter(seconds: UserDefaults.standard.getWorkTime()), for: .normal)
-        shortLengthButton.setTitle(buttonTimeFormatter(seconds: UserDefaults.standard.getShortTime()), for: .normal)
-        longLengthButton.setTitle(buttonTimeFormatter(seconds: UserDefaults.standard.getLongTime()), for: .normal)
+       
+        workLengthButton.setTitle(buttonTimeFormatter(seconds: defualts.getWorkTime()), for: .normal)
+        shortLengthButton.setTitle(buttonTimeFormatter(seconds: defualts.getShortTime()), for: .normal)
+        longLengthButton.setTitle(buttonTimeFormatter(seconds: defualts.getLongTime()), for: .normal)
         autoReset.setOn(UserDefaults.standard.getAutoReset(), animated: true)
     }
     
@@ -33,17 +36,18 @@ class SettingsViewController: UITableViewController {
     
     
     @IBAction func setWorkLength(_ sender: Any) {
-        let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: UserDefaults.standard.getWorkTime()))
+        let saveFn: (Int) -> Void = defualts.setWorkTime(_:)
+        
+        let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defualts.getWorkTime()), saveToDefaults: saveFn)
         newTable.title = "Work Length"        
         navigationController?.pushViewController(newTable, animated: true)
-    
     }
     
     /**
      Flips the autoReset user defualt
      */
     @IBAction func toggleAutoReset(_ sender: Any) {
-        UserDefaults.standard.setAutoReset(value: !UserDefaults.standard.getAutoReset())
+        defualts.setAutoReset(_: !defualts.getAutoReset())
     }
     
     /**
@@ -51,7 +55,7 @@ class SettingsViewController: UITableViewController {
      - Parameter seconds: The number of seconds to convert.
      - Returns: A formatted String `%d minutes` (rounded)
      */
-    private func buttonTimeFormatter(seconds: Int) -> (String){
+    private func buttonTimeFormatter(seconds: Int) -> (String) {
         return String(format: "%d minutes", Converter.secondsToMinutes(seconds: seconds))
     }
 }

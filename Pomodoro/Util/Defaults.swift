@@ -26,7 +26,7 @@ extension UserDefaults {
                           DefaultKeys.SessionLength.rawValue : 4])
     }
     
-    func setWorkTime(value: Int) -> Void {
+    func setWorkTime(_ value: Int) -> Void {
         set(value, forKey: DefaultKeys.Work.rawValue)
     }
     
@@ -34,7 +34,7 @@ extension UserDefaults {
         return integer(forKey: DefaultKeys.Work.rawValue)
     }
     
-    func setLongTime(value: Int) -> Void {
+    func setLongTime(_ value: Int) -> Void {
         set(value, forKey: DefaultKeys.Long.rawValue)
     }
     
@@ -42,7 +42,7 @@ extension UserDefaults {
         return integer(forKey: DefaultKeys.Long.rawValue)
     }
     
-    func setShortTime(value: Int) -> Void {
+    func setShortTime(_ value: Int) -> Void {
         set(value, forKey: DefaultKeys.Short.rawValue)
     }
     
@@ -50,7 +50,7 @@ extension UserDefaults {
         return integer(forKey: DefaultKeys.Short.rawValue)
     }
     
-    func setAutoReset(value: Bool) -> Void {
+    func setAutoReset(_ value: Bool) -> Void {
         set(value, forKey: DefaultKeys.AutoReset.rawValue)
     }
     
@@ -58,7 +58,7 @@ extension UserDefaults {
         return bool(forKey: DefaultKeys.AutoReset.rawValue)
     }
     
-    func setSessionLength(value: Int) -> Void {
+    func setSessionLength(_ value: Int) -> Void {
         set(value, forKey: DefaultKeys.SessionLength.rawValue)
     }
     
