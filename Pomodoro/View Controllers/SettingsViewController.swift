@@ -17,6 +17,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var shortLengthButton: UIButton!
     @IBOutlet weak var longLengthButton: UIButton!
     @IBOutlet weak var autoReset: UISwitch!
+    @IBOutlet weak var sessionLengthButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -28,6 +29,7 @@ class SettingsViewController: UITableViewController {
         shortLengthButton.setTitle(buttonTimeFormatter(seconds: defualts.getShortTime()), for: .normal)
         longLengthButton.setTitle(buttonTimeFormatter(seconds: defualts.getLongTime()), for: .normal)
         autoReset.setOn(UserDefaults.standard.getAutoReset(), animated: true)
+        sessionLengthButton.setTitle(buttonSessionFormatter(sessions: defualts.getSessionLength()), for: .normal)
     }
     
     @IBAction func setWorkLength(_ sender: Any) {
@@ -54,6 +56,10 @@ class SettingsViewController: UITableViewController {
         navigationController?.pushViewController(newTable, animated: true)
     }
     
+    @IBAction func setSessionLength(_ sender: Any) {
+    
+    }
+    
     /**
      Flips the autoReset user defualt
      */
@@ -68,6 +74,10 @@ class SettingsViewController: UITableViewController {
      */
     private func buttonTimeFormatter(seconds: Int) -> (String) {
         return String(format: "%d minutes", Converter.secondsToMinutes(seconds: seconds))
+    }
+    
+    private func buttonSessionFormatter(sessions: Int) -> (String) {
+        return String(format: "%d sessions", sessions)
     }
 }
 
