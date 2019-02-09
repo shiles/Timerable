@@ -8,10 +8,11 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController {
-
+class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+   
     let defualts: UserDefaults = UserDefaults.standard
-
+    let pickerSet = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    
     @IBOutlet weak var appVertion: UILabel!
     @IBOutlet weak var workLengthButton: UIButton!
     @IBOutlet weak var shortLengthButton: UIButton!
@@ -57,7 +58,17 @@ class SettingsViewController: UITableViewController {
     }
     
     @IBAction func setSessionLength(_ sender: Any) {
-    
+        let actionSession = UIAlertController(title: "Set Session Length", message: "\n\n\n\n\n\n\n\n", preferredStyle: .actionSheet)
+        
+        let pickerView = UIPickerView(frame: .zero);
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        pickerView.selectRow(defualts.getSessionLength()-1, inComponent: 0, animated: false)
+        actionSession.view.addSubview(pickerView)
+        
+        actionSession.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+        
+        self.present(actionSession, animated: true, completion: nil)
     }
     
     /**
@@ -79,6 +90,26 @@ class SettingsViewController: UITableViewController {
     private func buttonSessionFormatter(sessions: Int) -> (String) {
         return String(format: "%d sessions", sessions)
     }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerSet.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return String(pickerSet[row])
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        defualts.setSessionLength(Int(pickerSet[row])!)
+        sessionLengthButton.setTitle(buttonSessionFormatter(sessions: defualts.getSessionLength()), for: .normal)
+        print(defualts.getSessionLength())
+    }
+    
+    
 }
 
 
