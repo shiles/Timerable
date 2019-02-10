@@ -36,5 +36,13 @@ class Converter {
     static func minutesToSeconds(minutes: Int) -> (Int) {
         return minutes * 60
     }
-
+    
+    /**
+     Converts from the seconds to hours, minutes, seconds
+     - Parameter seconds: An amount of *seconds* to be converted.
+     - Returns: (hours, minutes, seconds)
+     */
+    static func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
 }

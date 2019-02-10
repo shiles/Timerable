@@ -26,4 +26,11 @@ class ConverterTest: XCTestCase {
         let m: Int = Converter.secondsToMinutes(seconds: 25)
         XCTAssertEqual(1500, m)
     }
+    
+    func secondsToHoursMinutesSeconds(){
+        let (h, m, s) = Converter.secondsToHoursMinutesSeconds(seconds: 3600)
+        XCTAssertEqual(1, h)
+        XCTAssertEqual(0, m)
+        XCTAssertEqual(0, s)
+    }
 }
