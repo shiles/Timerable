@@ -25,7 +25,7 @@ class Converter {
      - Returns: A integer
      */
     static func secondsToMinutes(seconds: Int) -> (Int) {
-        return (seconds % 3600) / 60
+        return seconds / 60
     }
     
     /**

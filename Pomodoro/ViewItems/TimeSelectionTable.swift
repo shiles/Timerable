@@ -48,6 +48,27 @@ class TimeSelectionTable: UITableViewController {
         return array
     }
     
+    /**
+    Works out the length of the pomodoro session based on the current set defaults.
+     - Returns: Length of session expressed in a String.
+     */
+    private func calculateSessionLength() -> String {
+        let defualts = UserDefaults.standard
+       
+        var totalSeconds = 0
+
+        for i in 1...defualts.getSessionLength() {
+            totalSeconds += defualts.getWorkTime()
+            if i != defualts.getSessionLength() {
+                totalSeconds += defualts.getShortTime()
+            } else {
+                totalSeconds += defualts.getLongTime()
+            }
+        }
+        
+        return String(Converter.secondsToMinutes(seconds: totalSeconds))
+    }
+    
     override func viewDidLoad() {
         self.tableView.register(TableSelectCell.self, forCellReuseIdentifier: "TimeSelect")
     }
@@ -61,6 +82,7 @@ class TimeSelectionTable: UITableViewController {
         cell.setSelected(true, animated: true)
         self.selected = indexPath.row + 1
         self.saveToDefaults(_: Converter.minutesToSeconds(minutes: selected))
+        print(String(format: "Total session time is %@", calculateSessionLength()))
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
