@@ -82,9 +82,6 @@ class TimeSelectionTable: UITableViewController {
         cell.setSelected(true, animated: true)
         self.selected = indexPath.row + 1
         self.saveToDefaults(_: Converter.minutesToSeconds(minutes: selected))
-        
-        let (h, m ,s) = calculateSessionLength()
-        print ("\(h) Hours, \(m) Minutes and \(s) Seconds")
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -92,6 +89,36 @@ class TimeSelectionTable: UITableViewController {
         cell.message = data[indexPath.row].message
         cell.minutes = data[indexPath.row].minutes
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let (h, m ,s) = calculateSessionLength()
+        
+        let description = UILabel(frame: .zero)
+        description.text = "The total session time is:"
+        description.translatesAutoresizingMaskIntoConstraints = false
+        
+        let timeRemaining = UILabel(frame: .zero)
+        timeRemaining.text = "\(h) Hours, \(m) Minutes and \(s) Seconds"
+        timeRemaining.translatesAutoresizingMaskIntoConstraints = false
+        
+        let stack = UIStackView(arrangedSubviews: [description, timeRemaining])
+        stack.axis = .vertical
+        stack.alignment = .leading
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        
+       
+//        NSLayoutConstraint.activate([
+//            totalSessionTime.topAnchor.constraint(equalTo: headerView.topAnchor),
+//            totalSessionTime.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
+//            totalSessionTime.leftAnchor.constraint(equalTo: headerView.leftAnchor),
+//            totalSessionTime.rightAnchor.constraint(equalTo: headerView.rightAnchor)])
+//
+        return stack
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
