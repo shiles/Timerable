@@ -19,7 +19,7 @@ class TimeSelectionTable: UITableViewController {
     var selected: Int!
     var saveToDefaults: (Int) -> Void 
     
-    init(min: Int, max: Int, selected: Int, saveToDefaults: @escaping (Int) -> Void) {
+    init( min: Int, max: Int, selected: Int, saveToDefaults: @escaping (Int) -> Void) {
         self.selected = selected - 1
         self.saveToDefaults = saveToDefaults
         
@@ -68,6 +68,15 @@ class TimeSelectionTable: UITableViewController {
         
         return Converter.secondsToHoursMinutesSeconds(seconds: totalSeconds)
     }
+
+    /**
+    Gets the current session length and formats the printing.
+     - Returns: Returns the length of the current session in a formatted string.
+     */
+    private func formatSessionLength() -> String {
+        let (h, m, s) = calculateSessionLength()
+        return String(format: "Total Session Time: %01d hours and %01d minutes", h, m, s)
+    }
     
     override func viewDidLoad() {
         self.tableView.register(TableSelectCell.self, forCellReuseIdentifier: "TimeSelect")
@@ -75,6 +84,7 @@ class TimeSelectionTable: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
          self.tableView.selectRow(at: IndexPath(row: self.selected, section: 0) , animated: false, scrollPosition: UITableView.ScrollPosition.middle)
+      
     }
         
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -82,6 +92,9 @@ class TimeSelectionTable: UITableViewController {
         cell.setSelected(true, animated: true)
         self.selected = indexPath.row + 1
         self.saveToDefaults(_: Converter.minutesToSeconds(minutes: selected))
+       
+        let header = self.tableView.headerView(forSection: indexPath.section)
+        header?.textLabel?.text = formatSessionLength()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -91,34 +104,17 @@ class TimeSelectionTable: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let (h, m ,s) = calculateSessionLength()
-        
-        let description = UILabel(frame: .zero)
-        description.text = "The total session time is:"
-        description.translatesAutoresizingMaskIntoConstraints = false
-        
-        let timeRemaining = UILabel(frame: .zero)
-        timeRemaining.text = "\(h) Hours, \(m) Minutes and \(s) Seconds"
-        timeRemaining.translatesAutoresizingMaskIntoConstraints = false
-        
-        let stack = UIStackView(arrangedSubviews: [description, timeRemaining])
-        stack.axis = .vertical
-        stack.alignment = .leading
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        
-       
-//        NSLayoutConstraint.activate([
-//            totalSessionTime.topAnchor.constraint(equalTo: headerView.topAnchor),
-//            totalSessionTime.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
-//            totalSessionTime.leftAnchor.constraint(equalTo: headerView.leftAnchor),
-//            totalSessionTime.rightAnchor.constraint(equalTo: headerView.rightAnchor)])
-//
-        return stack
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return formatSessionLength()
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 44
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.textColor = .white
+        header.tintColor? = .orange
+        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        header.textLabel?.frame = header.frame
+        header.textLabel?.textAlignment = .center
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
