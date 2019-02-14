@@ -31,6 +31,9 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         longLengthButton.setTitle(buttonTimeFormatter(seconds: defualts.getLongTime()), for: .normal)
         autoReset.setOn(UserDefaults.standard.getAutoReset(), animated: true)
         sessionLengthButton.setTitle(buttonSessionFormatter(sessions: defualts.getSessionLength()), for: .normal)
+        
+        //Setting up colours
+        autoReset.onTintColor = .orange
     }
     
     @IBAction func setWorkLength(_ sender: Any) {

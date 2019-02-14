@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let homeController = MainTabbedViewController()
         window!.rootViewController = homeController
         window!.makeKeyAndVisible()
+        window!.tintColor = .orange
         
         return true
     }

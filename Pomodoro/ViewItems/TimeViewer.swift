@@ -38,7 +38,7 @@ class TimeViewer: UIView {
                 colour = .orange
             case .SHORT?:
                 text = "SHORT BREAK"
-                colour = .blue
+                colour = UIColor.red
             case .LONG?:
                 text = "LONG BREAK"
                 colour = .green
@@ -77,16 +77,7 @@ class TimeViewer: UIView {
         prog.translatesAutoresizingMaskIntoConstraints = false
         return prog
     }()
-    
-    lazy var progressBar: UIProgressView = {
-        let bar = UIProgressView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        bar.tintColor = UIColor.lightGray
-        bar.progressTintColor = .orange
-        bar.backgroundColor = .black
-        bar.translatesAutoresizingMaskIntoConstraints = false
-        return bar
-    }()
-    
+        
     lazy var textStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [timeDisplay, sessionStatus])
         stack.axis = .vertical
