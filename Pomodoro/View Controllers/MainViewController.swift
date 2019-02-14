@@ -19,8 +19,12 @@ class MainTabbedViewController: UITabBarController {
         timerViewNavController.tabBarItem.title = "Timer"
         
         let storboard = UIStoryboard(name: "Settings", bundle: nil)
-        let settingsViewNavController = UINavigationController(rootViewController: storboard.instantiateViewController(withIdentifier: "SettingsVC") as! UITableViewController)
+        let settings = storboard.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController
+        let settingsViewNavController = UINavigationController(rootViewController: settings)
         settingsViewNavController.tabBarItem.title = "Settings"
+
+        //Setting Delegates
+        settings.settingsDelegate = timerView.timeController
         
         viewControllers = [timerViewNavController, settingsViewNavController]
     }

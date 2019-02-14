@@ -16,6 +16,7 @@ protocol TimeTickerDelegate {
 class TimeController: NSObject {
  
     var timer: Timer = Timer()
+    let defaults = UserDefaults.standard
     var timeTickerDelegate: TimeTickerDelegate!
     var session: [TimeChunk]?
     
@@ -77,7 +78,7 @@ class TimeController: NSObject {
     private func isSessionDone() -> Void {
         if session?.count == 0 {
             stopTimer()
-            if UserDefaults.standard.bool(forKey: "AutoReset") == true {
+            if defaults.bool(forKey: "AutoReset") == true {
                 initSession()
             } else {
                 session = buildTimeArray()
@@ -99,10 +100,10 @@ class TimeController: NSObject {
      - Returns: A array of TimeChunks.
      */
     private func buildTimeArray() -> [TimeChunk]{
-        let work: Int = UserDefaults.standard.getWorkTime()
-        let short: Int = UserDefaults.standard.getShortTime()
-        let long: Int = UserDefaults.standard.getLongTime()
-        let sessions = UserDefaults.standard.getSessionLength()
+        let work: Int = defaults.getWorkTime()
+        let short: Int = defaults.getShortTime()
+        let long: Int = defaults.getLongTime()
+        let sessions = defaults.getSessionLength()
         
         var timeChunks: [TimeChunk] = Array()
         //Builds the number of sessions of work / rest
@@ -122,5 +123,36 @@ class TimeController: NSObject {
         }
         
         return timeChunks
+    }
+}
+
+extension TimeController: SettingsDelegate {
+    
+    /**
+     Recalculates the timechunks based on the new user defualts.
+     */
+    func recalculateTimeChunks() {
+        session = session?.map {
+            switch($0.type){
+                case .WORK?:
+                    var timeChunk = $0
+                    timeChunk.timeLength = defaults.getWorkTime()
+                    timeChunk.timeRemaining = defaults.getWorkTime()
+                    return timeChunk
+                case .SHORT?:
+                    var timeChunk = $0
+                    timeChunk.timeLength = defaults.getShortTime()
+                    timeChunk.timeRemaining = defaults.getShortTime()
+                    return timeChunk
+                case .LONG?:
+                    var timeChunk = $0
+                    timeChunk.timeLength = defaults.getLongTime()
+                    timeChunk.timeRemaining = defaults.getLongTime()
+                    return timeChunk
+                default:
+                    return $0
+            }
+        }
+        timeTickerDelegate.resetTimerDisplay(timeChunk: session![0])
     }
 }

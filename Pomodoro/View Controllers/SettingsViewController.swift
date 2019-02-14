@@ -8,10 +8,15 @@
 
 import UIKit
 
+protocol SettingsDelegate: AnyObject {
+    func recalculateTimeChunks()
+}
+
 class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
    
     let defualts: UserDefaults = UserDefaults.standard
     let pickerSet = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    var settingsDelegate: SettingsDelegate!
     
     @IBOutlet weak var appVertion: UILabel!
     @IBOutlet weak var workLengthButton: UIButton!
@@ -35,13 +40,14 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         //Setting up colours
         autoReset.onTintColor = .orange
     }
-    
+
     @IBAction func setWorkLength(_ sender: Any) {
         let saveFn: (Int) -> Void = defualts.setWorkTime(_:)
         
         let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defualts.getWorkTime()), saveToDefaults: saveFn)
         newTable.title = "Work Length"        
         navigationController?.pushViewController(newTable, animated: true)
+        settingsDelegate.recalculateTimeChunks()
     }
     
     @IBAction func setShortLength(_ sender: Any) {
@@ -50,6 +56,7 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defualts.getShortTime()), saveToDefaults: saveFn)
         newTable.title = "Short Break Length"
         navigationController?.pushViewController(newTable, animated: true)
+        settingsDelegate.recalculateTimeChunks()
     }
     
     @IBAction func setLongLength(_ sender: Any) {
@@ -58,6 +65,7 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defualts.getLongTime()), saveToDefaults: saveFn)
         newTable.title = "Long Break Length"
         navigationController?.pushViewController(newTable, animated: true)
+        settingsDelegate.recalculateTimeChunks()
     }
     
     @IBAction func setSessionLength(_ sender: Any) {

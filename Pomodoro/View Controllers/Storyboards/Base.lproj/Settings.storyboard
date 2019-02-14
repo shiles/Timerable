@@ -121,10 +121,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Session Settings" id="Jww-UR-fWT">
+                            <tableViewSection headerTitle="Session Settings" footerTitle="Making changes will effect the next pomodoro session." id="Jww-UR-fWT">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="eKu-FC-gEg">
-                                        <rect key="frame" x="0.0" y="271.33333333333337" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="278.66666666666669" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eKu-FC-gEg" id="lKQ-RU-U8I">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
@@ -160,7 +160,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="gZf-cz-rde">
-                                        <rect key="frame" x="0.0" y="315.33333333333337" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="322.66666666666669" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gZf-cz-rde" id="LhK-pr-N1L">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
@@ -200,7 +200,7 @@
                             <tableViewSection headerTitle="App Information" id="8KK-9H-MLN">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Lol-Tu-fde">
-                                        <rect key="frame" x="0.0" y="415.33333333333337" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="434.66666666666669" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Lol-Tu-fde" id="7yl-94-KrJ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
