@@ -16,7 +16,8 @@ class TimerViewController: UIViewController {
         case timing
     }
     
-    var timeController: TimeController = TimeController()
+    let timeController: TimeController = TimeController()
+    let settingsController: SettingsViewController = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController
     var timeViewer: TimeViewer!
     var sessionStatus: SessionStates = .ready
     
@@ -31,6 +32,11 @@ class TimerViewController: UIViewController {
         //Adding skip button
         let skipButton = UIBarButtonItem(title: "Skip", style: .plain, target: self, action: #selector(self.skip))
         self.navigationItem.rightBarButtonItem = skipButton
+        
+        //Adding settings button
+        let settingsButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(self.pushSettings))
+        settingsController.settingsDelegate = timeController
+        self.navigationItem.leftBarButtonItem = settingsButton
         
         //Adding the time ticker
         timeViewer = TimeViewer(frame: .zero)
@@ -71,6 +77,10 @@ class TimerViewController: UIViewController {
      */
     @objc func skip() -> Void {
         timeController.skipChunk()
+    }
+    
+    @objc func pushSettings() -> Void {
+        self.navigationController?.pushViewController(settingsController, animated: true)
     }
     
     /**

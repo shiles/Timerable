@@ -40,6 +40,10 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         //Setting up colours
         autoReset.onTintColor = .orange
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        settingsDelegate.recalculateTimeChunks()
+    }
 
     @IBAction func setWorkLength(_ sender: Any) {
         let saveFn: (Int) -> Void = defualts.setWorkTime(_:)
@@ -47,7 +51,6 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defualts.getWorkTime()), saveToDefaults: saveFn)
         newTable.title = "Work Length"        
         navigationController?.pushViewController(newTable, animated: true)
-        settingsDelegate.recalculateTimeChunks()
     }
     
     @IBAction func setShortLength(_ sender: Any) {
@@ -56,7 +59,6 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defualts.getShortTime()), saveToDefaults: saveFn)
         newTable.title = "Short Break Length"
         navigationController?.pushViewController(newTable, animated: true)
-        settingsDelegate.recalculateTimeChunks()
     }
     
     @IBAction func setLongLength(_ sender: Any) {
@@ -65,7 +67,6 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defualts.getLongTime()), saveToDefaults: saveFn)
         newTable.title = "Long Break Length"
         navigationController?.pushViewController(newTable, animated: true)
-        settingsDelegate.recalculateTimeChunks()
     }
     
     @IBAction func setSessionLength(_ sender: Any) {
@@ -117,10 +118,7 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         defualts.setSessionLength(Int(pickerSet[row])!)
         sessionLengthButton.setTitle(buttonSessionFormatter(sessions: defualts.getSessionLength()), for: .normal)
-        print(defualts.getSessionLength())
-    }
-    
-    
+    } 
 }
 
 
