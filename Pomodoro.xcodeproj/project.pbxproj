@@ -21,6 +21,11 @@
 		AB8A015421F39F6100D0F6EA /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8A015321F39F6100D0F6EA /* Converter.swift */; };
 		AB8D28632208FFAF000C4312 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8D28622208FFAF000C4312 /* MainViewController.swift */; };
 		AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */; };
+		ABA8A8D6221ADA5D00847448 /* Persistance Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA8A8D5221ADA5D00847448 /* Persistance Service.swift */; };
+		ABA8A8EB221AE1EA00847448 /* Session+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA8A8E7221AE1EA00847448 /* Session+CoreDataClass.swift */; };
+		ABA8A8EC221AE1EA00847448 /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA8A8E8221AE1EA00847448 /* Session+CoreDataProperties.swift */; };
+		ABA8A8ED221AE1EA00847448 /* Catagory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA8A8E9221AE1EA00847448 /* Catagory+CoreDataClass.swift */; };
+		ABA8A8EE221AE1EA00847448 /* Catagory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA8A8EA221AE1EA00847448 /* Catagory+CoreDataProperties.swift */; };
 		ABB2A5E521F60552008E4D62 /* ConverterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB2A5E421F60552008E4D62 /* ConverterTest.swift */; };
 		ABE7B58F21FF3180001D625C /* TimeSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */; };
 		ABEBC69921EF579500CFD262 /* TimeChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEBC69821EF579500CFD262 /* TimeChunk.swift */; };
@@ -66,6 +71,11 @@
 		AB8A015321F39F6100D0F6EA /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		AB8D28622208FFAF000C4312 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTypes.swift; sourceTree = "<group>"; };
+		ABA8A8D5221ADA5D00847448 /* Persistance Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Persistance Service.swift"; sourceTree = "<group>"; };
+		ABA8A8E7221AE1EA00847448 /* Session+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataClass.swift"; sourceTree = "<group>"; };
+		ABA8A8E8221AE1EA00847448 /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		ABA8A8E9221AE1EA00847448 /* Catagory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Catagory+CoreDataClass.swift"; sourceTree = "<group>"; };
+		ABA8A8EA221AE1EA00847448 /* Catagory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Catagory+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		ABB2A5E421F60552008E4D62 /* ConverterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTest.swift; sourceTree = "<group>"; };
 		ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectCell.swift; sourceTree = "<group>"; };
 		ABEBC69821EF579500CFD262 /* TimeChunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeChunk.swift; sourceTree = "<group>"; };
@@ -132,6 +142,7 @@
 		AB38C43821EBA306003C77D7 /* Pomodoro */ = {
 			isa = PBXGroup;
 			children = (
+				ABA8A8D4221ADA1D00847448 /* Persistance */,
 				AB8D28612208FE41000C4312 /* View Controllers */,
 				AB348E1621F6389400A97CEA /* ViewItems */,
 				AB8A015221F39F1400D0F6EA /* Util */,
@@ -199,6 +210,18 @@
 				AB38C43D21EBA306003C77D7 /* Settings.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		ABA8A8D4221ADA1D00847448 /* Persistance */ = {
+			isa = PBXGroup;
+			children = (
+				ABA8A8E7221AE1EA00847448 /* Session+CoreDataClass.swift */,
+				ABA8A8E8221AE1EA00847448 /* Session+CoreDataProperties.swift */,
+				ABA8A8E9221AE1EA00847448 /* Catagory+CoreDataClass.swift */,
+				ABA8A8EA221AE1EA00847448 /* Catagory+CoreDataProperties.swift */,
+				ABA8A8D5221ADA5D00847448 /* Persistance Service.swift */,
+			);
+			path = Persistance;
 			sourceTree = "<group>";
 		};
 		ABB2A5E321F60537008E4D62 /* Util */ = {
@@ -349,7 +372,11 @@
 				AB8D28632208FFAF000C4312 /* MainViewController.swift in Sources */,
 				AB348E1C21F686A700A97CEA /* TimeViewerProgress.swift in Sources */,
 				AB38C43C21EBA306003C77D7 /* TimerViewController.swift in Sources */,
+				ABA8A8EC221AE1EA00847448 /* Session+CoreDataProperties.swift in Sources */,
+				ABA8A8D6221ADA5D00847448 /* Persistance Service.swift in Sources */,
 				AB2799BF2219CBD200D092C9 /* pomodoro.xcdatamodeld in Sources */,
+				ABA8A8EE221AE1EA00847448 /* Catagory+CoreDataProperties.swift in Sources */,
+				ABA8A8ED221AE1EA00847448 /* Catagory+CoreDataClass.swift in Sources */,
 				AB38C43A21EBA306003C77D7 /* AppDelegate.swift in Sources */,
 				AB8A015421F39F6100D0F6EA /* Converter.swift in Sources */,
 				AB348E1A21F638B100A97CEA /* TimeViewer.swift in Sources */,
@@ -358,6 +385,7 @@
 				AB5EF90F21ECB2CE0034A276 /* TimeController.swift in Sources */,
 				AB2F94C62207885E00F9F0F6 /* Defaults.swift in Sources */,
 				ABE7B58F21FF3180001D625C /* TimeSelectCell.swift in Sources */,
+				ABA8A8EB221AE1EA00847448 /* Session+CoreDataClass.swift in Sources */,
 				ABEBC69D21F2009300CFD262 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
