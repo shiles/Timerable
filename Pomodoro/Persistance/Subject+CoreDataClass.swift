@@ -1,5 +1,5 @@
 //
-//  Session+CoreDataClass.swift
+//  Subject+CoreDataClass.swift
 //  Pomodoro
 //
 //  Created by Sonnie Hiles on 19/02/2019.
@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(Session)
-public class Session: NSManagedObject {
+@objc(Subject)
+public class Subject: NSManagedObject {
 
 }

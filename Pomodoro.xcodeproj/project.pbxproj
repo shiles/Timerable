@@ -22,14 +22,15 @@
 		AB8D28632208FFAF000C4312 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8D28622208FFAF000C4312 /* MainViewController.swift */; };
 		AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */; };
 		ABA8A8D6221ADA5D00847448 /* Persistance Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA8A8D5221ADA5D00847448 /* Persistance Service.swift */; };
-		ABA8A8EB221AE1EA00847448 /* Session+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA8A8E7221AE1EA00847448 /* Session+CoreDataClass.swift */; };
-		ABA8A8EC221AE1EA00847448 /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA8A8E8221AE1EA00847448 /* Session+CoreDataProperties.swift */; };
-		ABA8A8ED221AE1EA00847448 /* Catagory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA8A8E9221AE1EA00847448 /* Catagory+CoreDataClass.swift */; };
-		ABA8A8EE221AE1EA00847448 /* Catagory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA8A8EA221AE1EA00847448 /* Catagory+CoreDataProperties.swift */; };
 		ABB2A5E521F60552008E4D62 /* ConverterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB2A5E421F60552008E4D62 /* ConverterTest.swift */; };
 		ABE7B58F21FF3180001D625C /* TimeSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */; };
 		ABEBC69921EF579500CFD262 /* TimeChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEBC69821EF579500CFD262 /* TimeChunk.swift */; };
 		ABEBC69D21F2009300CFD262 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEBC69C21F2009300CFD262 /* SettingsViewController.swift */; };
+		ABFA9F56221C2FE700B76FAA /* SubjectManagementTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFA9F55221C2FE700B76FAA /* SubjectManagementTable.swift */; };
+		ABFA9F5B221C31DD00B76FAA /* Session+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFA9F57221C31DD00B76FAA /* Session+CoreDataClass.swift */; };
+		ABFA9F5C221C31DD00B76FAA /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFA9F58221C31DD00B76FAA /* Session+CoreDataProperties.swift */; };
+		ABFA9F5D221C31DD00B76FAA /* Subject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFA9F59221C31DD00B76FAA /* Subject+CoreDataClass.swift */; };
+		ABFA9F5E221C31DD00B76FAA /* Subject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFA9F5A221C31DD00B76FAA /* Subject+CoreDataProperties.swift */; };
 		ABFFD7AD21FE9A260033199D /* TimeSelectionTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFFD7AC21FE9A260033199D /* TimeSelectionTable.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,14 +73,15 @@
 		AB8D28622208FFAF000C4312 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTypes.swift; sourceTree = "<group>"; };
 		ABA8A8D5221ADA5D00847448 /* Persistance Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Persistance Service.swift"; sourceTree = "<group>"; };
-		ABA8A8E7221AE1EA00847448 /* Session+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataClass.swift"; sourceTree = "<group>"; };
-		ABA8A8E8221AE1EA00847448 /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		ABA8A8E9221AE1EA00847448 /* Catagory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Catagory+CoreDataClass.swift"; sourceTree = "<group>"; };
-		ABA8A8EA221AE1EA00847448 /* Catagory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Catagory+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		ABB2A5E421F60552008E4D62 /* ConverterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTest.swift; sourceTree = "<group>"; };
 		ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectCell.swift; sourceTree = "<group>"; };
 		ABEBC69821EF579500CFD262 /* TimeChunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeChunk.swift; sourceTree = "<group>"; };
 		ABEBC69C21F2009300CFD262 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		ABFA9F55221C2FE700B76FAA /* SubjectManagementTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectManagementTable.swift; sourceTree = "<group>"; };
+		ABFA9F57221C31DD00B76FAA /* Session+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataClass.swift"; sourceTree = "<group>"; };
+		ABFA9F58221C31DD00B76FAA /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		ABFA9F59221C31DD00B76FAA /* Subject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subject+CoreDataClass.swift"; sourceTree = "<group>"; };
+		ABFA9F5A221C31DD00B76FAA /* Subject+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		ABFFD7AC21FE9A260033199D /* TimeSelectionTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectionTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +117,7 @@
 				AB348E1B21F686A700A97CEA /* TimeViewerProgress.swift */,
 				ABFFD7AC21FE9A260033199D /* TimeSelectionTable.swift */,
 				ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */,
+				ABFA9F55221C2FE700B76FAA /* SubjectManagementTable.swift */,
 			);
 			path = ViewItems;
 			sourceTree = "<group>";
@@ -215,10 +218,10 @@
 		ABA8A8D4221ADA1D00847448 /* Persistance */ = {
 			isa = PBXGroup;
 			children = (
-				ABA8A8E7221AE1EA00847448 /* Session+CoreDataClass.swift */,
-				ABA8A8E8221AE1EA00847448 /* Session+CoreDataProperties.swift */,
-				ABA8A8E9221AE1EA00847448 /* Catagory+CoreDataClass.swift */,
-				ABA8A8EA221AE1EA00847448 /* Catagory+CoreDataProperties.swift */,
+				ABFA9F57221C31DD00B76FAA /* Session+CoreDataClass.swift */,
+				ABFA9F58221C31DD00B76FAA /* Session+CoreDataProperties.swift */,
+				ABFA9F59221C31DD00B76FAA /* Subject+CoreDataClass.swift */,
+				ABFA9F5A221C31DD00B76FAA /* Subject+CoreDataProperties.swift */,
 				ABA8A8D5221ADA5D00847448 /* Persistance Service.swift */,
 			);
 			path = Persistance;
@@ -368,24 +371,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABFA9F5D221C31DD00B76FAA /* Subject+CoreDataClass.swift in Sources */,
+				ABFA9F5C221C31DD00B76FAA /* Session+CoreDataProperties.swift in Sources */,
 				ABEBC69921EF579500CFD262 /* TimeChunk.swift in Sources */,
 				AB8D28632208FFAF000C4312 /* MainViewController.swift in Sources */,
 				AB348E1C21F686A700A97CEA /* TimeViewerProgress.swift in Sources */,
 				AB38C43C21EBA306003C77D7 /* TimerViewController.swift in Sources */,
-				ABA8A8EC221AE1EA00847448 /* Session+CoreDataProperties.swift in Sources */,
 				ABA8A8D6221ADA5D00847448 /* Persistance Service.swift in Sources */,
 				AB2799BF2219CBD200D092C9 /* pomodoro.xcdatamodeld in Sources */,
-				ABA8A8EE221AE1EA00847448 /* Catagory+CoreDataProperties.swift in Sources */,
-				ABA8A8ED221AE1EA00847448 /* Catagory+CoreDataClass.swift in Sources */,
+				ABFA9F56221C2FE700B76FAA /* SubjectManagementTable.swift in Sources */,
 				AB38C43A21EBA306003C77D7 /* AppDelegate.swift in Sources */,
 				AB8A015421F39F6100D0F6EA /* Converter.swift in Sources */,
 				AB348E1A21F638B100A97CEA /* TimeViewer.swift in Sources */,
 				ABFFD7AD21FE9A260033199D /* TimeSelectionTable.swift in Sources */,
 				AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */,
 				AB5EF90F21ECB2CE0034A276 /* TimeController.swift in Sources */,
+				ABFA9F5B221C31DD00B76FAA /* Session+CoreDataClass.swift in Sources */,
+				ABFA9F5E221C31DD00B76FAA /* Subject+CoreDataProperties.swift in Sources */,
 				AB2F94C62207885E00F9F0F6 /* Defaults.swift in Sources */,
 				ABE7B58F21FF3180001D625C /* TimeSelectCell.swift in Sources */,
-				ABA8A8EB221AE1EA00847448 /* Session+CoreDataClass.swift in Sources */,
 				ABEBC69D21F2009300CFD262 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
