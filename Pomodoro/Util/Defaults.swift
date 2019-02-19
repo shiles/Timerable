@@ -11,11 +11,12 @@ import Foundation
 extension UserDefaults {
     
     enum DefaultKeys: String {
-        case Work
-        case Long
-        case Short
-        case AutoReset
-        case SessionLength
+        case work
+        case long
+        case short
+        case autoReset
+        case sessionLength
+        case subject
     }
     
     /**
@@ -23,11 +24,11 @@ extension UserDefaults {
      been given by a user within the settings.
      */
     func registerDefaults() -> Void{
-      register(defaults: [DefaultKeys.Work.rawValue : 1500,
-                          DefaultKeys.Short.rawValue : 300,
-                          DefaultKeys.Long.rawValue : 1800,
-                          DefaultKeys.AutoReset.rawValue: true,
-                          DefaultKeys.SessionLength.rawValue : 4])
+      register(defaults: [DefaultKeys.work.rawValue : 1500,
+                          DefaultKeys.short.rawValue : 300,
+                          DefaultKeys.long.rawValue : 1800,
+                          DefaultKeys.autoReset.rawValue: true,
+                          DefaultKeys.sessionLength.rawValue : 4])
     }
     
     /**
@@ -35,7 +36,7 @@ extension UserDefaults {
      - Parameter value: The number of seconds to set.
      */
     func setWorkTime(_ value: Int) -> Void {
-        set(value, forKey: DefaultKeys.Work.rawValue)
+        set(value, forKey: DefaultKeys.work.rawValue)
     }
     
     /**
@@ -43,7 +44,7 @@ extension UserDefaults {
      - Returns: The `work time` in seconds
      */
     func getWorkTime() -> Int {
-        return integer(forKey: DefaultKeys.Work.rawValue)
+        return integer(forKey: DefaultKeys.work.rawValue)
     }
     
     /**
@@ -51,7 +52,7 @@ extension UserDefaults {
      - Parameter value: The number of seconds to set.
      */
     func setLongTime(_ value: Int) -> Void {
-        set(value, forKey: DefaultKeys.Long.rawValue)
+        set(value, forKey: DefaultKeys.long.rawValue)
     }
     
     /**
@@ -59,7 +60,7 @@ extension UserDefaults {
      - Returns: The `work time` in seconds
      */
     func getLongTime() -> Int {
-        return integer(forKey: DefaultKeys.Long.rawValue)
+        return integer(forKey: DefaultKeys.long.rawValue)
     }
     
     /**
@@ -67,7 +68,7 @@ extension UserDefaults {
      - Parameter value: The number of seconds to set.
      */
     func setShortTime(_ value: Int) -> Void {
-        set(value, forKey: DefaultKeys.Short.rawValue)
+        set(value, forKey: DefaultKeys.short.rawValue)
     }
     
     /**
@@ -75,7 +76,7 @@ extension UserDefaults {
      - Returns: The `work time` in seconds
      */
     func getShortTime() -> Int {
-        return integer(forKey: DefaultKeys.Short.rawValue)
+        return integer(forKey: DefaultKeys.short.rawValue)
     }
     
     /**
@@ -83,7 +84,7 @@ extension UserDefaults {
      - Parameter value: The boolean of if you want to autoreset or not.
      */
     func setAutoReset(_ value: Bool) -> Void {
-        set(value, forKey: DefaultKeys.AutoReset.rawValue)
+        set(value, forKey: DefaultKeys.autoReset.rawValue)
     }
     
     /**
@@ -91,7 +92,7 @@ extension UserDefaults {
      - Returns: The `autoreset` boolean flag
      */
     func getAutoReset() -> Bool {
-        return bool(forKey: DefaultKeys.AutoReset.rawValue)
+        return bool(forKey: DefaultKeys.autoReset.rawValue)
     }
     
     /**
@@ -99,7 +100,7 @@ extension UserDefaults {
      - Parameter value: The number of sessions.
      */
     func setSessionLength(_ value: Int) -> Void {
-        set(value, forKey: DefaultKeys.SessionLength.rawValue)
+        set(value, forKey: DefaultKeys.sessionLength.rawValue)
     }
     
     /**
@@ -107,6 +108,22 @@ extension UserDefaults {
      - Returns: The number of `sessions`.
      */
     func getSessionLength() -> Int {
-        return integer(forKey: DefaultKeys.SessionLength.rawValue)
+        return integer(forKey: DefaultKeys.sessionLength.rawValue)
+    }
+    
+    /**
+     Sets the subject for the session
+     - Parameter value: the subject
+     */
+    func setSubject(_ value: String) -> Void {
+        set(value, forKey: DefaultKeys.subject.rawValue)
+    }
+    
+    /**
+     Gets the subect for the session.
+     - Returns: The subject for the session
+     */
+    func getSubject() -> String {
+        return string(forKey: DefaultKeys.subject.rawValue)!
     }
 }

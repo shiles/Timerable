@@ -20,6 +20,7 @@ class TimerViewController: UIViewController {
     let settingsController: SettingsViewController = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController
     var timeViewer: TimeViewer!
     var sessionStatus: SessionStates = .ready
+    let catagories = ["English", "Maths"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,6 +90,20 @@ class TimerViewController: UIViewController {
     @objc func startStop() -> Void {
         switch sessionStatus {
         case .ready:
+            let actionSession = UIAlertController(title: "Select Subject for Session", message: "Select the Subject you'd like to work for within this session.", preferredStyle: .actionSheet)
+            
+            catagories.forEach { catagory in
+                actionSession.addAction(UIAlertAction(title: catagory, style: .default, handler: { (a) in
+                    UserDefaults.standard.setSubject(catagory)
+                }))
+            }
+            
+            actionSession.addAction(UIAlertAction(title: "Edit Subjects", style: .default, handler: nil))
+            
+            actionSession.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+            
+            self.present(actionSession, animated: true, completion: nil)
+            
             sessionStatus = .timing
             timeController.startTimer()
             startStopButton.setTitle("PAUSE", for: .normal)
