@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class TimerViewController: UIViewController {
 
@@ -20,8 +21,8 @@ class TimerViewController: UIViewController {
     let settingsController: SettingsViewController = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController
     var timeViewer: TimeViewer!
     var sessionStatus: SessionStates = .ready
-    let catagories = ["English", "Maths"]
-    
+    var subjects: [Subject] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         //Setting delegates
@@ -63,6 +64,15 @@ class TimerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationItem.title = "TIMER"
+        
+        //Getting Data
+        let fetchRequest:  NSFetchRequest<Subject> = Subject.fetchRequest()
+        do {
+            print("reloading data")
+            self.subjects = try PersistanceService.context.fetch(fetchRequest)
+        } catch {
+            fatalError("Subjects fetch request failed")
+        }
     }
     
     /**
@@ -92,9 +102,12 @@ class TimerViewController: UIViewController {
         case .ready:
             let actionSession = UIAlertController(title: "Select Subject for Session", message: "Select the Subject you'd like to work for within this session.", preferredStyle: .actionSheet)
             
-            catagories.forEach { catagory in
-                actionSession.addAction(UIAlertAction(title: catagory, style: .default, handler: { (a) in
-                    UserDefaults.standard.setSubject(catagory)
+            subjects.forEach { subject in
+                actionSession.addAction(UIAlertAction(title: subject.name, style: .default, handler: { (a) in
+                    UserDefaults.standard.setSubject(subject)
+                    self.sessionStatus = .timing
+                    self.timeController.startTimer()
+                    self.startStopButton.setTitle("PAUSE", for: .normal)
                 }))
             }
             
@@ -105,10 +118,6 @@ class TimerViewController: UIViewController {
             actionSession.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
             
             self.present(actionSession, animated: true, completion: nil)
-            
-            sessionStatus = .timing
-            timeController.startTimer()
-            startStopButton.setTitle("PAUSE", for: .normal)
         case .timing:
             sessionStatus = .paused
             timeController.stopTimer()

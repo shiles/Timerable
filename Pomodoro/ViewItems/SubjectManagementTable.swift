@@ -56,6 +56,11 @@ class SubjectManagementTable: UITableViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationItem.title = "Edit Subjects"
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "SubjectCell")
         cell.textLabel?.text = subjects[indexPath.row].name
