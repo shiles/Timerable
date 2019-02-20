@@ -50,8 +50,9 @@ class SubjectManagementTable: UITableViewController {
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
-        alert.addAction(action)
         alert.addAction(cancel)
+        alert.addAction(action)
+    
         present(alert, animated: true, completion: nil)
         
     }
@@ -59,6 +60,19 @@ class SubjectManagementTable: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationItem.title = "Edit Subjects"
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let delete = UIContextualAction(style: .destructive, title: "Delete", handler: { (action, view, completion) in
+            PersistanceService.context.delete(self.subjects[indexPath.row])
+            self.subjects.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            completion(true)
+        })
+        delete.backgroundColor = .red
+    
+        return UISwipeActionsConfiguration(actions: [delete])
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -68,7 +68,6 @@ class TimerViewController: UIViewController {
         //Getting Data
         let fetchRequest:  NSFetchRequest<Subject> = Subject.fetchRequest()
         do {
-            print("reloading data")
             self.subjects = try PersistanceService.context.fetch(fetchRequest)
         } catch {
             fatalError("Subjects fetch request failed")
@@ -100,7 +99,7 @@ class TimerViewController: UIViewController {
     @objc func startStop() -> Void {
         switch sessionStatus {
         case .ready:
-            let actionSession = UIAlertController(title: "Select Subject for Session", message: "Select the Subject you'd like to work for within this session.", preferredStyle: .actionSheet)
+            let actionSession = UIAlertController(title: "Select Subject for Session", message: "Select the subject for the next session.", preferredStyle: .actionSheet)
             
             subjects.forEach { subject in
                 actionSession.addAction(UIAlertAction(title: subject.name, style: .default, handler: { (a) in
@@ -111,7 +110,8 @@ class TimerViewController: UIViewController {
                 }))
             }
             
-            actionSession.addAction(UIAlertAction(title: "Edit Subjects", style: .default, handler: { (a) in
+            let title = subjects.isEmpty ? "Add Subject" : "Edit Subjects"
+            actionSession.addAction(UIAlertAction(title: title, style: .default, handler: { (a) in
                 self.navigationController?.pushViewController(SubjectManagementTable(), animated: true)
             }))
             
