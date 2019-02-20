@@ -25,7 +25,7 @@ class SubjectManagementTable: UITableViewController {
         }
         
         //Adding add button
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addSubject))
         self.navigationItem.rightBarButtonItem = addButton
     }
     
@@ -33,9 +33,32 @@ class SubjectManagementTable: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc func addSubject() {
+        let alert = UIAlertController(title: "Add Subject", message: "Add subject to be selected for study sessions", preferredStyle: .alert)
+        
+        alert.addTextField { textField in
+            textField.placeholder = "Name"
+        }
+        
+        let action = UIAlertAction(title: "Save", style: .default, handler: { (_) in
+            let subject = Subject(context: PersistanceService.context)
+            subject.name = alert.textFields?.first?.text!
+            PersistanceService.saveContext()
+            self.subjects.append(subject)
+            self.tableView.reloadData()
+        })
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(action)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "SubjectCell")
-        cell.textLabel?.text = ""
+        cell.textLabel?.text = subjects[indexPath.row].name
         return cell
     }
     
