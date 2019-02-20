@@ -98,7 +98,9 @@ class TimerViewController: UIViewController {
                 }))
             }
             
-            actionSession.addAction(UIAlertAction(title: "Edit Subjects", style: .default, handler: nil))
+            actionSession.addAction(UIAlertAction(title: "Edit Subjects", style: .default, handler: { (a) in
+                self.navigationController?.pushViewController(SubjectManagementTable(), animated: true)
+            }))
             
             actionSession.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
             
