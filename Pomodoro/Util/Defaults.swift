@@ -112,18 +112,18 @@ extension UserDefaults {
     }
     
     /**
-     Sets the subject for the session
+     Sets the subject name for the session
      - Parameter value: the subject
      */
-    func setSubject(_ value: Subject) -> Void {
+    func setSubject(_ value: String) -> Void {
         set(value, forKey: DefaultKeys.subject.rawValue)
     }
     
     /**
-     Gets the subect for the session.
+     Gets the subects name for the session.
      - Returns: The subject for the session
      */
-    func getSubject() -> Subject {
-        return value(forKey: DefaultKeys.subject.rawValue) as! Subject
+    func getSubjectName() -> String {
+        return string(forKey: DefaultKeys.subject.rawValue)!
     }
 }

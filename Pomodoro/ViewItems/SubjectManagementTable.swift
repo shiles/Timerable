@@ -71,8 +71,31 @@ class SubjectManagementTable: UITableViewController {
             completion(true)
         })
         delete.backgroundColor = .red
-    
-        return UISwipeActionsConfiguration(actions: [delete])
+        
+        let edit = UIContextualAction(style: .destructive, title: "Edit", handler: { (action, view, completion) in
+            let alert = UIAlertController(title: "Add Subject", message: "Add subject to be selected for study sessions", preferredStyle: .alert)
+            
+            alert.addTextField { textField in
+                textField.text = self.subjects[indexPath.row].name
+            }
+            
+            let action = UIAlertAction(title: "Save", style: .default, handler: { (_) in
+                let subject = self.subjects[indexPath.row]
+                subject.name = alert.textFields?.first?.text!
+                PersistanceService.saveContext()
+                self.tableView.reloadData()
+            })
+            
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            alert.addAction(cancel)
+            alert.addAction(action)
+            
+            self.present(alert, animated: true, completion: nil)
+        })
+        edit.backgroundColor = UIColor.lightGray
+        
+        return UISwipeActionsConfiguration(actions: [delete, edit])
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

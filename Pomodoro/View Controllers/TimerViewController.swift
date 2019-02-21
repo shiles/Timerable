@@ -103,7 +103,7 @@ class TimerViewController: UIViewController {
             
             subjects.forEach { subject in
                 actionSession.addAction(UIAlertAction(title: subject.name, style: .default, handler: { (a) in
-                    UserDefaults.standard.setSubject(subject)
+                    UserDefaults.standard.setSubject(subject.name!)
                     self.sessionStatus = .timing
                     self.timeController.startTimer()
                     self.startStopButton.setTitle("PAUSE", for: .normal)
