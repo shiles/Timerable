@@ -22,7 +22,6 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var workLengthButton: UIButton!
     @IBOutlet weak var shortLengthButton: UIButton!
     @IBOutlet weak var longLengthButton: UIButton!
-    @IBOutlet weak var autoReset: UISwitch!
     @IBOutlet weak var sessionLengthButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,11 +33,7 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         workLengthButton.setTitle(buttonTimeFormatter(seconds: defualts.getWorkTime()), for: .normal)
         shortLengthButton.setTitle(buttonTimeFormatter(seconds: defualts.getShortTime()), for: .normal)
         longLengthButton.setTitle(buttonTimeFormatter(seconds: defualts.getLongTime()), for: .normal)
-        autoReset.setOn(UserDefaults.standard.getAutoReset(), animated: true)
         sessionLengthButton.setTitle(buttonSessionFormatter(sessions: defualts.getSessionLength()), for: .normal)
-        
-        //Setting up colours
-        autoReset.onTintColor = .orange
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -81,13 +76,6 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         actionSession.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
         
         self.present(actionSession, animated: true, completion: nil)
-    }
-    
-    /**
-     Flips the autoReset user defualt
-     */
-    @IBAction func toggleAutoReset(_ sender: Any) {
-        defualts.setAutoReset(_: !defualts.getAutoReset())
     }
     
     /**

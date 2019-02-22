@@ -138,7 +138,15 @@ class TimerViewController: UIViewController {
      */
     @objc private func reset() -> Void {
         timeController.resetSession()
+        sessionFinished()
+    }
+    
+    /**
+     Resets the UI when either a session is reset or the session ends
+     */
+    private func sessionFinished() -> Void {
         sessionStatus = .ready
+        startStopButton.setTitle("START", for: .normal)
         UIView.animate(withDuration: 0.10) { () -> Void in
             self.timeControllButtons.arrangedSubviews[1].isHidden = true
         }
@@ -194,5 +202,12 @@ extension TimerViewController: TimeTickerDelegate {
      */
     func resetTimerDisplay(timeChunk: TimeChunk) {
         updateTimer(timeChunk: timeChunk)
+    }
+    
+    /**
+     Resets the UI when either a session is reset or the session ends
+     */
+    func isFinished() {
+        sessionFinished()
     }
 }

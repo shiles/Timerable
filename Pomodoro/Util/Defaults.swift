@@ -14,7 +14,6 @@ extension UserDefaults {
         case work
         case long
         case short
-        case autoReset
         case sessionLength
         case subject
     }
@@ -27,7 +26,6 @@ extension UserDefaults {
       register(defaults: [DefaultKeys.work.rawValue : 1500,
                           DefaultKeys.short.rawValue : 300,
                           DefaultKeys.long.rawValue : 1800,
-                          DefaultKeys.autoReset.rawValue: true,
                           DefaultKeys.sessionLength.rawValue : 4])
     }
     
@@ -77,22 +75,6 @@ extension UserDefaults {
      */
     func getShortTime() -> Int {
         return integer(forKey: DefaultKeys.short.rawValue)
-    }
-    
-    /**
-     Sets the autoreset boolean value
-     - Parameter value: The boolean of if you want to autoreset or not.
-     */
-    func setAutoReset(_ value: Bool) -> Void {
-        set(value, forKey: DefaultKeys.autoReset.rawValue)
-    }
-    
-    /**
-     Gets the autoreset boolean value
-     - Returns: The `autoreset` boolean flag
-     */
-    func getAutoReset() -> Bool {
-        return bool(forKey: DefaultKeys.autoReset.rawValue)
     }
     
     /**

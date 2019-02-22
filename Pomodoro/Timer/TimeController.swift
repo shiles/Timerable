@@ -11,6 +11,7 @@ import Foundation
 protocol TimeTickerDelegate {
     func timerDecrement(timeChunk: TimeChunk)
     func resetTimerDisplay(timeChunk: TimeChunk)
+    func isFinished()
 }
 
 class TimeController: NSObject {
@@ -79,6 +80,7 @@ class TimeController: NSObject {
         stopTimer()
         session = buildTimeArray()
         timeTickerDelegate.resetTimerDisplay(timeChunk: session![0])
+        timeTickerDelegate.isFinished()
     }
     
     /**
@@ -86,13 +88,7 @@ class TimeController: NSObject {
      */
     private func isSessionDone() -> Void {
         if session?.count == 0 {
-            stopTimer()
-            if defaults.bool(forKey: "AutoReset") == true {
-                initSession()
-            } else {
-                session = buildTimeArray()
-                timeTickerDelegate.resetTimerDisplay(timeChunk: session![0])
-            }
+            resetSession()
         }
     }
     
