@@ -51,11 +51,11 @@ class TimerViewController: UIViewController {
             timeViewer.bottomAnchor.constraint(equalTo: self.view.centerYAnchor)])
         
         //Adding start/stop button
-        self.view.addSubview(startStopButton)
+        self.view.addSubview(timeControllButtons)
         NSLayoutConstraint.activate([
-            startStopButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
-            startStopButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10),
-            startStopButton.topAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 10)])
+            timeControllButtons.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
+            timeControllButtons.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10),
+            timeControllButtons.topAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 10)])
         
         //Defualt values to show
         updateTimer(timeChunk: timeController.session![0])
@@ -107,6 +107,10 @@ class TimerViewController: UIViewController {
                     self.sessionStatus = .timing
                     self.timeController.startTimer()
                     self.startStopButton.setTitle("PAUSE", for: .normal)
+                    
+                    UIView.animate(withDuration: 0.10) { () -> Void in
+                        self.timeControllButtons.arrangedSubviews[1].isHidden = false
+                    }
                 }))
             }
             
@@ -129,6 +133,17 @@ class TimerViewController: UIViewController {
         }
     }
     
+    /**
+     Resets the timer if the user wasnts to select another subject or end their current session
+     */
+    @objc private func reset() -> Void {
+        timeController.resetSession()
+        sessionStatus = .ready
+        UIView.animate(withDuration: 0.10) { () -> Void in
+            self.timeControllButtons.arrangedSubviews[1].isHidden = true
+        }
+    }
+    
     lazy var startStopButton: UIButton = {
         let button = UIButton(frame: .zero)
         button.setTitle("START", for: .normal)
@@ -138,6 +153,28 @@ class TimerViewController: UIViewController {
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
+    }()
+    
+    lazy var resetButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.setTitle("RESET", for: .normal)
+        button.addTarget(self, action: #selector(self.reset), for: .touchUpInside)
+        button.backgroundColor = .orange
+        button.layer.cornerRadius = CGFloat(10.0)
+        button.clipsToBounds = true
+        button.isHidden = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    lazy var timeControllButtons: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [startStopButton, resetButton])
+        stack.axis = .horizontal
+        stack.alignment = .fill
+        stack.spacing = 5.0
+        stack.distribution = .fillProportionally
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
     }()
 }
 

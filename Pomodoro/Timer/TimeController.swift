@@ -73,6 +73,15 @@ class TimeController: NSObject {
     }
     
     /**
+     Resets the current session
+     */
+    func resetSession() -> Void {
+        stopTimer()
+        session = buildTimeArray()
+        timeTickerDelegate.resetTimerDisplay(timeChunk: session![0])
+    }
+    
+    /**
      Checks to see if the session is complete and then handles the state
      */
     private func isSessionDone() -> Void {
