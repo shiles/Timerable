@@ -66,12 +66,7 @@ class TimerViewController: UIViewController {
         self.navigationItem.title = "TIMER"
         
         //Getting Data
-        let fetchRequest:  NSFetchRequest<Subject> = Subject.fetchRequest()
-        do {
-            self.subjects = try PersistanceService.context.fetch(fetchRequest)
-        } catch {
-            fatalError("Subjects fetch request failed")
-        }
+        self.subjects = PersistanceService.getSubjects()
     }
     
     /**

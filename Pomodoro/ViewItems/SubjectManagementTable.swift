@@ -16,13 +16,8 @@ class SubjectManagementTable: UITableViewController {
         super.init(nibName: nil, bundle: nil)
         
         //Getting Data
-        let fetchRequest:  NSFetchRequest<Subject> = Subject.fetchRequest()
-        do {
-            self.subjects = try PersistanceService.context.fetch(fetchRequest)
-            self.tableView.reloadData()
-        } catch {
-            fatalError("Subjects fetch request failed")
-        }
+        self.subjects = PersistanceService.getSubjects()
+        self.tableView.reloadData()
         
         //Adding add button
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addSubject))
@@ -45,6 +40,7 @@ class SubjectManagementTable: UITableViewController {
             subject.name = alert.textFields?.first?.text!
             PersistanceService.saveContext()
             self.subjects.append(subject)
+            self.subjects.sort {$0.name! < $1.name!}
             self.tableView.reloadData()
         })
         
@@ -83,6 +79,7 @@ class SubjectManagementTable: UITableViewController {
                 let subject = self.subjects[indexPath.row]
                 subject.name = alert.textFields?.first?.text!
                 PersistanceService.saveContext()
+                self.subjects.sort {$0.name! < $1.name!}
                 self.tableView.reloadData()
             })
             

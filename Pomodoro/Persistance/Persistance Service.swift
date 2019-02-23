@@ -45,7 +45,6 @@ class PersistanceService {
     }()
     
     // MARK: - Core Data Saving support
-    
     static func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
@@ -57,6 +56,19 @@ class PersistanceService {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
+        }
+    }
+    
+    /**
+     Gets a list of all subjects sorted in alphabetical order.
+     - Returns: List of subjects
+     */
+    static func getSubjects() -> [Subject] {
+        do {
+            let subjects: [Subject] = try PersistanceService.context.fetch(Subject.fetchRequest())
+            return subjects.sorted { $0.name! < $1.name! }
+        } catch {
+            fatalError("Subjects fetch request failed")
         }
     }
 }
