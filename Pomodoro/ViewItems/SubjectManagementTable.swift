@@ -36,12 +36,14 @@ class SubjectManagementTable: UITableViewController {
         }
         
         let action = UIAlertAction(title: "Save", style: .default, handler: { (_) in
-            let subject = Subject(context: PersistanceService.context)
-            subject.name = alert.textFields?.first?.text!
-            PersistanceService.saveContext()
-            self.subjects.append(subject)
-            self.subjects.sort {$0.name! < $1.name!}
-            self.tableView.reloadData()
+            if self.subjectIsUnique(name: (alert.textFields?.first?.text!)!, operation: "Add") {
+                let subject = Subject(context: PersistanceService.context)
+                subject.name = alert.textFields?.first?.text!
+                PersistanceService.saveContext()
+                self.subjects.append(subject)
+                self.subjects.sort {$0.name! < $1.name!}
+                self.tableView.reloadData()
+            }
         })
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -69,18 +71,20 @@ class SubjectManagementTable: UITableViewController {
         delete.backgroundColor = .red
         
         let edit = UIContextualAction(style: .destructive, title: "Edit", handler: { (action, view, completion) in
-            let alert = UIAlertController(title: "Add Subject", message: "Add subject to be selected for study sessions", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Rename Subject", message: "Rename selected subject", preferredStyle: .alert)
             
             alert.addTextField { textField in
                 textField.text = self.subjects[indexPath.row].name
             }
             
             let action = UIAlertAction(title: "Save", style: .default, handler: { (_) in
-                let subject = self.subjects[indexPath.row]
-                subject.name = alert.textFields?.first?.text!
-                PersistanceService.saveContext()
-                self.subjects.sort {$0.name! < $1.name!}
-                self.tableView.reloadData()
+                if self.subjectIsUnique(name: (alert.textFields?.first?.text!)!, operation: "Rename") {
+                    let subject = self.subjects[indexPath.row]
+                    subject.name = alert.textFields?.first?.text!
+                    PersistanceService.saveContext()
+                    self.subjects.sort {$0.name! < $1.name!}
+                    self.tableView.reloadData()
+                }
             })
             
             let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -93,6 +97,23 @@ class SubjectManagementTable: UITableViewController {
         edit.backgroundColor = UIColor.lightGray
         
         return UISwipeActionsConfiguration(actions: [delete, edit])
+    }
+    
+    /**
+     A helper function to determine if the subject can be added/modified
+     - Parameters:
+     - name: The name of the subject to check if exists
+     - operation: The operation being conducted to show in the error message if unsuccessful
+     - Returns: if the subject can be added/modified
+     */
+    private func subjectIsUnique(name: String, operation: String) -> Bool {
+        if self.subjects.contains(where: {subject in subject.name == name}) {
+            let alert = UIAlertController(title: "Can't \(operation) Subject", message: "A subject named: \(name) already exists. Subjects must have unique names!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+            return false
+        }
+        return true
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
