@@ -33,6 +33,7 @@ class TimerViewController: UIViewController {
         
         //Adding skip button
         let skipButton = UIBarButtonItem(title: "Skip", style: .plain, target: self, action: #selector(self.skip))
+        skipButton.isEnabled = false
         self.navigationItem.rightBarButtonItem = skipButton
         
         //Adding settings button
@@ -105,6 +106,7 @@ class TimerViewController: UIViewController {
                     
                     UIView.animate(withDuration: 0.10) { () -> Void in
                         self.timeControllButtons.arrangedSubviews[1].isHidden = false
+                        self.navigationItem.rightBarButtonItem?.isEnabled = true
                     }
                 }))
             }
@@ -115,7 +117,6 @@ class TimerViewController: UIViewController {
             }))
             
             actionSession.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
-            
             self.present(actionSession, animated: true, completion: nil)
         case .timing:
             sessionStatus = .paused
@@ -144,6 +145,7 @@ class TimerViewController: UIViewController {
         startStopButton.setTitle("START", for: .normal)
         UIView.animate(withDuration: 0.10) { () -> Void in
             self.timeControllButtons.arrangedSubviews[1].isHidden = true
+            self.navigationItem.rightBarButtonItem?.isEnabled = false 
         }
     }
     
