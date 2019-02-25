@@ -85,6 +85,9 @@ class TimerViewController: UIViewController {
         timeController.skipChunk()
     }
     
+    /**
+     Push into the settings controller.
+     */
     @objc func pushSettings() -> Void {
         self.navigationController?.pushViewController(settingsController, animated: true)
     }
@@ -145,7 +148,7 @@ class TimerViewController: UIViewController {
         startStopButton.setTitle("START", for: .normal)
         UIView.animate(withDuration: 0.10) { () -> Void in
             self.timeControllButtons.arrangedSubviews[1].isHidden = true
-            self.navigationItem.rightBarButtonItem?.isEnabled = false 
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
         }
     }
     
