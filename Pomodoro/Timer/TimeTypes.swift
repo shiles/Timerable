@@ -9,7 +9,7 @@
 import Foundation
 
 enum TimeTypes {
-    case WORK
-    case SHORT
-    case LONG
+    case work
+    case short
+    case long
 }

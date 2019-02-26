@@ -50,7 +50,7 @@ class TimeController: NSObject {
         
         //Remove the time chunk if theres not time remaining
         if isChunkDone() {
-            if session![0].type == .WORK {
+            if session![0].type == .work {
                  saveProgress(secondsComplete: session![0].timeLength)
             }
             session?.removeFirst()
@@ -125,14 +125,14 @@ class TimeController: NSObject {
         var timeChunks: [TimeChunk] = Array()
         //Builds the number of sessions of work / rest
         for i in 1...sessions {
-            let workTime: TimeChunk = TimeChunk(type: TimeTypes.WORK, timeLength: work, timeRemaining: work
+            let workTime: TimeChunk = TimeChunk(type: TimeTypes.work, timeLength: work, timeRemaining: work
             )
             let workBreak: TimeChunk!
             //Checks weather to add a short break or a long break pased on position
             if i != sessions {
-                workBreak = TimeChunk(type: TimeTypes.SHORT, timeLength: short, timeRemaining: short)
+                workBreak = TimeChunk(type: TimeTypes.short, timeLength: short, timeRemaining: short)
             } else {
-                workBreak = TimeChunk(type: TimeTypes.LONG, timeLength: long, timeRemaining: long)
+                workBreak = TimeChunk(type: TimeTypes.long, timeLength: long, timeRemaining: long)
             }
             
             timeChunks.append(workTime)
@@ -151,17 +151,17 @@ extension TimeController: SettingsDelegate {
     func recalculateTimeChunks() {
         session = session?.map {
             switch($0.type){
-                case .WORK?:
+                case .work?:
                     var timeChunk = $0
                     timeChunk.timeLength = defaults.getWorkTime()
                     timeChunk.timeRemaining = defaults.getWorkTime()
                     return timeChunk
-                case .SHORT?:
+                case .short?:
                     var timeChunk = $0
                     timeChunk.timeLength = defaults.getShortTime()
                     timeChunk.timeRemaining = defaults.getShortTime()
                     return timeChunk
-                case .LONG?:
+                case .long?:
                     var timeChunk = $0
                     timeChunk.timeLength = defaults.getLongTime()
                     timeChunk.timeRemaining = defaults.getLongTime()

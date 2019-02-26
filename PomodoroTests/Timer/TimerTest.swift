@@ -88,9 +88,9 @@ class TimerTest: XCTestCase {
         let work: Int = defaults.getWorkTime()
         let short: Int = defaults.getShortTime()
         let long: Int = defaults.getLongTime()
-        let workTime = TimeChunk(type: TimeTypes.WORK, timeLength: work, timeRemaining: work)
-        let workBreakShort = TimeChunk(type: TimeTypes.SHORT, timeLength: short, timeRemaining: short)
-        let workBreakLong = TimeChunk(type: TimeTypes.LONG, timeLength: long, timeRemaining: long)
+        let workTime = TimeChunk(type: TimeTypes.work, timeLength: work, timeRemaining: work)
+        let workBreakShort = TimeChunk(type: TimeTypes.short, timeLength: short, timeRemaining: short)
+        let workBreakLong = TimeChunk(type: TimeTypes.long, timeLength: long, timeRemaining: long)
         
         return [workTime, workBreakShort, workTime, workBreakLong]
     }

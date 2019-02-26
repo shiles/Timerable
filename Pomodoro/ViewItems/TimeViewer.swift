@@ -32,13 +32,13 @@ class TimeViewer: UIView {
         var text: String
         var colour: UIColor
         switch timeChunk.type {
-            case .WORK?:
+            case .work?:
                 text = "WORK"
                 colour = .orange
-            case .SHORT?:
+            case .short?:
                 text = "SHORT BREAK"
                 colour = UIColor.red
-            case .LONG?:
+            case .long?:
                 text = "LONG BREAK"
                 colour = .green
             default:
