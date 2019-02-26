@@ -50,10 +50,8 @@ class TimeController: NSObject {
         
         //Remove the time chunk if theres not time remaining
         if isChunkDone() {
-            if session![0].type == .work {
-                 saveProgress(secondsComplete: session![0].timeLength)
-            }
-            session?.removeFirst()
+            saveProgress(timeChunk: session![0])
+            _ = session?.removeFirst()
         }
         
         isSessionDone()
@@ -63,7 +61,9 @@ class TimeController: NSObject {
      Skips the current block of time to the next.
      */
     func skipChunk() -> Void {
+        saveProgress(timeChunk: session![0])
         _ = session?.removeFirst()
+       
         isSessionDone()
         timeTickerDelegate.resetTimerDisplay(timeChunk: session![0])
     }
@@ -73,6 +73,7 @@ class TimeController: NSObject {
      */
     func resetSession() -> Void {
         stopTimer()
+        saveProgress(timeChunk: session![0])
         session = buildTimeArray()
         timeTickerDelegate.resetTimerDisplay(timeChunk: session![0])
         timeTickerDelegate.isFinished()
@@ -97,19 +98,22 @@ class TimeController: NSObject {
     
     /**
     Saves the progess of a session to the database.
-     - Parameter secondsComplete: The seconds completed within that session
+     - Parameter timeChunk: The timechunk to save
      */
-    private func saveProgress(secondsComplete: Int) {
-        let subject = PersistanceService.getSubject(name: defaults.getSubjectName())
-        
-        let session = Session(context: PersistanceService.context)
-        session.seconds = Int64(secondsComplete)
-        session.date = Date() as NSDate
-        session.subject = subject
-        
-        subject.addToSession(session)
-        
-        PersistanceService.saveContext()
+    private func saveProgress(timeChunk: TimeChunk) {
+        if timeChunk.type == .work {
+            let subject = PersistanceService.getSubject(name: defaults.getSubjectName())
+            let time = isChunkDone() ? timeChunk.timeLength : (timeChunk.timeLength - timeChunk.timeRemaining)
+
+            let session = Session(context: PersistanceService.context)
+            session.seconds = Int64(time!)
+            session.date = Date() as NSDate
+            session.subject = subject
+            
+            subject.addToSession(session)
+            
+            PersistanceService.saveContext()
+        }
     }
     
     /**
