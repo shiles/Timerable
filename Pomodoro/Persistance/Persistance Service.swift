@@ -26,7 +26,6 @@ class PersistanceService {
          */
         let container = NSPersistentContainer(name: "pomodoro")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -68,6 +67,22 @@ class PersistanceService {
         do {
             let subjects: [Subject] = try PersistanceService.context.fetch(Subject.fetchRequest())
             return subjects.sorted { $0.name! < $1.name! }
+        } catch {
+            fatalError("Subjects fetch request failed")
+        }
+    }
+    
+    /**
+     Gets a specific named subject
+     - Parameter name: The name of the subject that is wanted
+     - Returns: A subject with the `name` provided
+     */
+    static func getSubject(name: String) -> Subject {
+        do {
+            let request: NSFetchRequest<Subject> = Subject.fetchRequest()
+            request.predicate = NSPredicate(format: "name == %@", name)
+            
+            return try PersistanceService.context.fetch(request).first!
         } catch {
             fatalError("Subjects fetch request failed")
         }
