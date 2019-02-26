@@ -87,4 +87,13 @@ class PersistanceService {
             fatalError("Subjects fetch request failed")
         }
     }
+    
+    /**
+     Gets a specific subjects sessions
+     - Parameter subject: The sessions subject
+     - Returns: A list of sessions from the `subject` required
+     */
+    static func getSessions(subject: Subject) -> [Session]{
+        return subject.session?.allObjects as! [Session]
+    }
 }
