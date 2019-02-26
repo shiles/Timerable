@@ -30,10 +30,11 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         
         //Getting up-to-date values to display
         appVertion.text = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
-        workLengthButton.setTitle(buttonTimeFormatter(seconds: defualts.getWorkTime()), for: .normal)
-        shortLengthButton.setTitle(buttonTimeFormatter(seconds: defualts.getShortTime()), for: .normal)
-        longLengthButton.setTitle(buttonTimeFormatter(seconds: defualts.getLongTime()), for: .normal)
-        sessionLengthButton.setTitle(buttonSessionFormatter(sessions: defualts.getSessionLength()), for: .normal)
+        workLengthButton.setTitle(Format.timeToStringWords(seconds: defualts.getWorkTime()), for: .normal)
+        shortLengthButton.setTitle(Format.timeToStringWords(seconds: defualts.getShortTime()), for: .normal)
+        shortLengthButton.setTitle(Format.timeToStringWords(seconds: defualts.getShortTime()), for: .normal)
+        longLengthButton.setTitle(Format.timeToStringWords(seconds: defualts.getLongTime()), for: .normal)
+        sessionLengthButton.setTitle(String(format: "%d sessions", defualts.getSessionLength()), for: .normal)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -78,19 +79,6 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         self.present(actionSession, animated: true, completion: nil)
     }
     
-    /**
-     Converts the amount of seconds into a string that can be displayed on the buttons.
-     - Parameter seconds: The number of seconds to convert.
-     - Returns: A formatted String `%d minutes` (rounded)
-     */
-    private func buttonTimeFormatter(seconds: Int) -> (String) {
-        return String(format: "%d minutes", Converter.secondsToMinutes(seconds: seconds))
-    }
-    
-    private func buttonSessionFormatter(sessions: Int) -> (String) {
-        return String(format: "%d sessions", sessions)
-    }
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -105,9 +93,6 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         defualts.setSessionLength(Int(pickerSet[row])!)
-        sessionLengthButton.setTitle(buttonSessionFormatter(sessions: defualts.getSessionLength()), for: .normal)
+        sessionLengthButton.setTitle(String(format: "%d sessions", defualts.getSessionLength()), for: .normal)
     } 
 }
-
-
-

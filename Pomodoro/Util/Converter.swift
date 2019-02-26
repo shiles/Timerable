@@ -11,15 +11,6 @@ import Foundation
 class Converter {
     
     /**
-     Converts from the seconts to minutes and seconds
-     - Parameter seconds: An amount of *seconds* to be converted.
-     - Returns: A touple (Minute, Seconds)
-     */
-    static func secondsToMinutesAndSecounds(seconds: Int) -> (Int, Int) {
-       return ((seconds % 3600) / 60, (seconds % 3600) % 60)
-    }
-    
-    /**
      Converts from the seconts to minutes
      - Parameter seconds: An amount of *seconds* to be converted.
      - Returns: A integer
@@ -35,14 +26,5 @@ class Converter {
      */
     static func minutesToSeconds(minutes: Int) -> (Int) {
         return minutes * 60
-    }
-    
-    /**
-     Converts from the seconds to hours, minutes, seconds
-     - Parameter seconds: An amount of *seconds* to be converted.
-     - Returns: (hours, minutes, seconds)
-     */
-    static func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
-        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
 }

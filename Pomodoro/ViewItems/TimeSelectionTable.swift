@@ -50,11 +50,10 @@ class TimeSelectionTable: UITableViewController {
     
     /**
     Works out the length of the pomodoro session based on the current set defaults.
-     - Returns: Returns the length of the current session in (hours, minutes, seconds)
+     - Returns: Returns the length of the current session in `seconds`
      */
-    private func calculateSessionLength() -> (Int, Int, Int) {
+    private func calculateSessionLength() -> Int {
         let defualts = UserDefaults.standard
-       
         var totalSeconds = 0
 
         for i in 1...defualts.getSessionLength() {
@@ -66,16 +65,7 @@ class TimeSelectionTable: UITableViewController {
             }
         }
         
-        return Converter.secondsToHoursMinutesSeconds(seconds: totalSeconds)
-    }
-
-    /**
-    Gets the current session length and formats the printing.
-     - Returns: Returns the length of the current session in a formatted string.
-     */
-    private func formatSessionLength() -> String {
-        let (h, m, s) = calculateSessionLength()
-        return String(format: "Total Session Time: %01d hours and %01d minutes", h, m, s)
+        return totalSeconds
     }
     
     override func viewDidLoad() {
@@ -94,7 +84,7 @@ class TimeSelectionTable: UITableViewController {
         self.saveToDefaults(_: Converter.minutesToSeconds(minutes: selected))
        
         let header = self.tableView.headerView(forSection: indexPath.section)
-        header?.textLabel?.text = formatSessionLength()
+        header?.textLabel?.text = Format.timeToStringWords(seconds: calculateSessionLength())
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -105,7 +95,7 @@ class TimeSelectionTable: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return formatSessionLength()
+        return Format.timeToStringWords(seconds: calculateSessionLength())
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

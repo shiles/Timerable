@@ -72,7 +72,7 @@ extension StatsViewController: UITableViewDataSource {
         
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "StatCell")
         cell.textLabel?.text = subject.name
-        cell.detailTextLabel?.text = String(self.getOverallSessionTime(subject: subject))
+        cell.detailTextLabel?.text = Format.timeToStringWords(seconds: getOverallSessionTime(subject: subject))
         return cell
     }
     

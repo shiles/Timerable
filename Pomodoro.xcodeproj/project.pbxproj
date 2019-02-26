@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB2103602225EE9500D4101F /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB21035F2225EE9500D4101F /* Format.swift */; };
+		AB2103622225EFEF00D4101F /* FormatTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2103612225EFEF00D4101F /* FormatTest.swift */; };
 		AB2799BF2219CBD200D092C9 /* pomodoro.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB2799BD2219CBD200D092C9 /* pomodoro.xcdatamodeld */; };
 		AB2F94C62207885E00F9F0F6 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2F94C52207885E00F9F0F6 /* Defaults.swift */; };
 		AB348E1A21F638B100A97CEA /* TimeViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB348E1921F638B100A97CEA /* TimeViewer.swift */; };
@@ -55,6 +57,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB21035F2225EE9500D4101F /* Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Format.swift; sourceTree = "<group>"; };
+		AB2103612225EFEF00D4101F /* FormatTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatTest.swift; sourceTree = "<group>"; };
 		AB2799BE2219CBD200D092C9 /* pomodoro.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = pomodoro.xcdatamodel; sourceTree = "<group>"; };
 		AB2F94C52207885E00F9F0F6 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		AB348E1921F638B100A97CEA /* TimeViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewer.swift; sourceTree = "<group>"; };
@@ -199,6 +203,7 @@
 			children = (
 				AB8A015321F39F6100D0F6EA /* Converter.swift */,
 				AB2F94C52207885E00F9F0F6 /* Defaults.swift */,
+				AB21035F2225EE9500D4101F /* Format.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -240,6 +245,7 @@
 			children = (
 				ABB2A5E421F60552008E4D62 /* ConverterTest.swift */,
 				ABD3C38C2224B18600D7F902 /* DefaultsTest.swift */,
+				AB2103612225EFEF00D4101F /* FormatTest.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -388,6 +394,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB2103602225EE9500D4101F /* Format.swift in Sources */,
 				AB4005A02224EDE1004EABD7 /* Subject+CoreDataProperties.swift in Sources */,
 				ABEBC69921EF579500CFD262 /* TimeChunk.swift in Sources */,
 				AB8D28632208FFAF000C4312 /* MainViewController.swift in Sources */,
@@ -416,6 +423,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB2103622225EFEF00D4101F /* FormatTest.swift in Sources */,
 				ABB2A5E521F60552008E4D62 /* ConverterTest.swift in Sources */,
 				ABD3C3902224B67300D7F902 /* TimerTest.swift in Sources */,
 				ABD3C38D2224B18600D7F902 /* DefaultsTest.swift in Sources */,

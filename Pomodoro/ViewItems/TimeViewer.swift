@@ -27,9 +27,8 @@ class TimeViewer: UIView {
      - Parameter timeChunk: The `TimeChunk` to display to calulate progress and display correct label.
      */
     func updateTimeViewer(timeChunk: TimeChunk) {
-        let (m, s) = Converter.secondsToMinutesAndSecounds(seconds: timeChunk.timeRemaining)
-        timeDisplay.text = String(format: "%02d:%02d", m, s)
-      
+        timeDisplay.text = Format.timeToString(seconds: timeChunk.timeRemaining)
+        
         var text: String
         var colour: UIColor
         switch timeChunk.type {
