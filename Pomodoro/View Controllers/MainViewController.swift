@@ -18,7 +18,7 @@ class MainTabbedViewController: UITabBarController {
         let timerViewNavController = UINavigationController(rootViewController: timerView)
         timerViewNavController.tabBarItem.title = "Timer"
         
-        let statView = UIViewController()
+        let statView = StatsViewController()
         let statViewNavController = UINavigationController(rootViewController: statView)
         statViewNavController.tabBarItem.title = "Stats"
 

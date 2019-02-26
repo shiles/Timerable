@@ -27,6 +27,7 @@
 		AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */; };
 		ABA8A8D6221ADA5D00847448 /* Persistance Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA8A8D5221ADA5D00847448 /* Persistance Service.swift */; };
 		ABB2A5E521F60552008E4D62 /* ConverterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB2A5E421F60552008E4D62 /* ConverterTest.swift */; };
+		ABB9C6572225C221007CAE6B /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB9C6562225C221007CAE6B /* StatsViewController.swift */; };
 		ABD3C38D2224B18600D7F902 /* DefaultsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3C38C2224B18600D7F902 /* DefaultsTest.swift */; };
 		ABD3C3902224B67300D7F902 /* TimerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3C38F2224B67300D7F902 /* TimerTest.swift */; };
 		ABE7B58F21FF3180001D625C /* TimeSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */; };
@@ -80,6 +81,7 @@
 		AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTypes.swift; sourceTree = "<group>"; };
 		ABA8A8D5221ADA5D00847448 /* Persistance Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Persistance Service.swift"; sourceTree = "<group>"; };
 		ABB2A5E421F60552008E4D62 /* ConverterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTest.swift; sourceTree = "<group>"; };
+		ABB9C6562225C221007CAE6B /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		ABD3C38C2224B18600D7F902 /* DefaultsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsTest.swift; sourceTree = "<group>"; };
 		ABD3C38F2224B67300D7F902 /* TimerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTest.swift; sourceTree = "<group>"; };
 		ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectCell.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				ABEBC69C21F2009300CFD262 /* SettingsViewController.swift */,
 				AB38C43B21EBA306003C77D7 /* TimerViewController.swift */,
 				AB8D28622208FFAF000C4312 /* MainViewController.swift */,
+				ABB9C6562225C221007CAE6B /* StatsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				ABEBC69921EF579500CFD262 /* TimeChunk.swift in Sources */,
 				AB8D28632208FFAF000C4312 /* MainViewController.swift in Sources */,
 				AB348E1C21F686A700A97CEA /* TimeViewerProgress.swift in Sources */,
+				ABB9C6572225C221007CAE6B /* StatsViewController.swift in Sources */,
 				AB38C43C21EBA306003C77D7 /* TimerViewController.swift in Sources */,
 				ABA8A8D6221ADA5D00847448 /* Persistance Service.swift in Sources */,
 				AB2799BF2219CBD200D092C9 /* pomodoro.xcdatamodeld in Sources */,
