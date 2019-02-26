@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TimeChunk {
+struct TimeChunk: Equatable {
     var type: TimeTypes!
     var timeLength: Int!
     var timeRemaining: Int!

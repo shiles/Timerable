@@ -41,14 +41,6 @@ class TimeController: NSObject {
     }
     
     /**
-     Builds and setsup the study session.
-     */
-    func initSession(){
-        session = buildTimeArray()
-        startTimer()
-    }
-    
-    /**
      Runs each time the timer fires, and decrements the timer by one and
      updates the UI through a delegate.
      */
@@ -68,7 +60,7 @@ class TimeController: NSObject {
      Skips the current block of time to the next.
      */
     func skipChunk() -> Void {
-        session?.removeFirst()
+        _ = session?.removeFirst()
         isSessionDone()
         timeTickerDelegate.resetTimerDisplay(timeChunk: session![0])
     }
@@ -154,7 +146,7 @@ extension TimeController: SettingsDelegate {
                     timeChunk.timeLength = defaults.getLongTime()
                     timeChunk.timeRemaining = defaults.getLongTime()
                     return timeChunk
-                default:
+                case .none:
                     return $0
             }
         }
