@@ -7,16 +7,13 @@
     </entity>
     <entity name="Subject" representedClassName="Subject" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="subject" inverseEntity="Session" syncable="YES"/>
+        <relationship name="session" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Session" inverseName="subject" inverseEntity="Session" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint/>
-            <uniquenessConstraint>
-                <constraint value="name"/>
-            </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
     <elements>
         <element name="Session" positionX="-8005.9765625" positionY="1442.2109375" width="128" height="88"/>
-        <element name="Subject" positionX="-7812.52734375" positionY="1442.3046875" width="128" height="75"/>
+        <element name="Subject" positionX="-7651.83203125" positionY="1456.92578125" width="128" height="73"/>
     </elements>
 </model>

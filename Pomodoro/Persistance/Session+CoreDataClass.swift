@@ -2,7 +2,7 @@
 //  Session+CoreDataClass.swift
 //  Pomodoro
 //
-//  Created by Sonnie Hiles on 19/02/2019.
+//  Created by Sonnie Hiles on 25/02/2019.
 //  Copyright © 2019 Sonnie Hiles. All rights reserved.
 //
 //
