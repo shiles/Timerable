@@ -45,6 +45,11 @@ class StatsViewController: UIViewController {
         return Int(sessions.reduce(0) { $0 + $1.seconds })
     }
     
+    private func getTotalSessionTime() -> Int {
+        let sessions: [Session] = PersistanceService.getAllSessions()
+        return Int(sessions.reduce(0) { $0 + $1.seconds })
+    }
+    
     lazy var statStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [tableView])
         stack.axis = .horizontal
@@ -57,11 +62,12 @@ class StatsViewController: UIViewController {
     lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero)
         table.dataSource = self
+        table.delegate = self
         return table
     }()
 }
 
-extension StatsViewController: UITableViewDataSource {
+extension StatsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return subjects.count
@@ -74,6 +80,19 @@ extension StatsViewController: UITableViewDataSource {
         cell.textLabel?.text = subject.name
         cell.detailTextLabel?.text = Format.timeToStringWords(seconds: getOverallSessionTime(subject: subject))
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return String(format: "Total: %@", Format.timeToStringWords(seconds: getTotalSessionTime()))
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.textColor = .white
+        header.tintColor? = .orange
+        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        header.textLabel?.frame = header.frame
+        header.textLabel?.textAlignment = .center
     }
     
 }

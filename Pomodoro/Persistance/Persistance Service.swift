@@ -93,7 +93,21 @@ class PersistanceService {
      - Parameter subject: The sessions subject
      - Returns: A list of sessions from the `subject` required
      */
-    static func getSessions(subject: Subject) -> [Session]{
+    static func getSessions(subject: Subject) -> [Session] {
         return subject.session?.allObjects as! [Session]
+    }
+    
+    /**
+     Gets a list of all subjects.
+     - Returns: A list of all `sessions`
+     */
+    static func getAllSessions() -> [Session] {
+        var sessions: [Session] = []
+
+        PersistanceService.getSubjects().forEach {
+            sessions.append(contentsOf: $0.session?.allObjects as! [Session])
+        }
+        
+        return sessions
     }
 }
