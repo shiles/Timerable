@@ -7,69 +7,66 @@
 //
 
 import Foundation
+import UIKit
 import CoreData
 
 class PersistanceService {
     
-    private init() {}
+    let persistentContainer: NSPersistentContainer!
     
-    static var context: NSManagedObjectContext {
-        return persistentContainer.viewContext
-    }
-    
-    static var persistentContainer: NSPersistentContainer = {
-        /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-         */
-        let container = NSPersistentContainer(name: "pomodoro")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
+    lazy var context: NSManagedObjectContext = {
+        return self.persistentContainer.viewContext
     }()
     
-    // MARK: - Core Data Saving support
-    static func saveContext () {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
+    //MARK: Init with dependency
+    init(container: NSPersistentContainer) {
+        self.persistentContainer = container
+    }
+    
+    convenience init() {
+        //Use the default container for production environment
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            fatalError("Can not get shared app delegate")
         }
+        self.init(container: appDelegate.persistentContainer)
+    }
+    
+    /**
+     Saves a new specific named subject
+     - Parameter name: The name of the subject to save
+     - Returns: A subject with the `name` provided
+     */
+    func saveSubject(name: String) -> Subject? {
+        guard let subject = NSEntityDescription.insertNewObject(forEntityName: "Subject", into: context) as? Subject else { return nil }
+        subject.name = name
+        return subject
+    }
+    
+    /**
+     Gets a specific named subject
+     - Parameters:
+        - name: The name of the subject that is wanted
+        - subject: The subject the session will be under
+     - Returns: A subject with the `name` provided
+     */
+    func saveSession(seconds: Int, subject: Subject) -> Session? {
+        guard let session = NSEntityDescription.insertNewObject(forEntityName: "Session", into: context) as? Session else { return nil}
+        session.seconds = Int64(seconds)
+        session.date = Date() as NSDate
+        session.subject = subject
+        
+        subject.addToSession(session)
+        return session
     }
     
     /**
      Gets a list of all subjects sorted in alphabetical order.
      - Returns: List of subjects
      */
-    static func getSubjects() -> [Subject] {
-        do {
-            let subjects: [Subject] = try PersistanceService.context.fetch(Subject.fetchRequest())
-            return subjects.sorted { $0.name! < $1.name! }
-        } catch {
-            fatalError("Subjects fetch request failed")
-        }
+    func fetchAllSubjects() -> [Subject] {
+        let request: NSFetchRequest<Subject> = Subject.fetchRequest()
+        let results = try? persistentContainer.viewContext.fetch(request).sorted { $0.name! < $1.name! }
+        return results ?? [Subject]()
     }
     
     /**
@@ -77,15 +74,11 @@ class PersistanceService {
      - Parameter name: The name of the subject that is wanted
      - Returns: A subject with the `name` provided
      */
-    static func getSubject(name: String) -> Subject {
-        do {
-            let request: NSFetchRequest<Subject> = Subject.fetchRequest()
-            request.predicate = NSPredicate(format: "name == %@", name)
-            
-            return try PersistanceService.context.fetch(request).first!
-        } catch {
-            fatalError("Subjects fetch request failed")
-        }
+    func fetchSubject(name: String) -> Subject? {
+        let request: NSFetchRequest<Subject> = Subject.fetchRequest()
+        request.predicate = NSPredicate(format: "name == %@", name)
+        let results = try? persistentContainer.viewContext.fetch(request).first
+        return results ?? nil
     }
     
     /**
@@ -93,7 +86,7 @@ class PersistanceService {
      - Parameter subject: The sessions subject
      - Returns: A list of sessions from the `subject` required
      */
-    static func getSessions(subject: Subject) -> [Session] {
+    func fetchSessions(subject: Subject) -> [Session] {
         return subject.session?.allObjects as! [Session]
     }
     
@@ -101,13 +94,35 @@ class PersistanceService {
      Gets a list of all subjects.
      - Returns: A list of all `sessions`
      */
-    static func getAllSessions() -> [Session] {
+    func fetchAllSessions() -> [Session] {
         var sessions: [Session] = []
-
-        PersistanceService.getSubjects().forEach {
+        
+        self.fetchAllSubjects().forEach {
             sessions.append(contentsOf: $0.session?.allObjects as! [Session])
         }
-        
+    
         return sessions
+    }
+    
+    /**
+     Removes the object with the given id.
+     - Parameter objectID: The object's `object id`
+     */
+    func remove(objectID: NSManagedObjectID ) {
+        let obj = context.object(with: objectID)
+        context.delete(obj)
+    }
+    
+    /**
+    Save the changes if there are any to the CoreData DB
+     */
+    func save() {
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                print("Save error \(error)")
+            }
+        }
     }
 }

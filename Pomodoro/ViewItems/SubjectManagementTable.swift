@@ -11,12 +11,13 @@ import CoreData
 
 class SubjectManagementTable: UITableViewController {
     var subjects: [Subject]!
+    let persistanceService: PersistanceService = PersistanceService()
     
     init() {
         super.init(nibName: nil, bundle: nil)
         
         //Getting Data
-        self.subjects = PersistanceService.getSubjects()
+        self.subjects = persistanceService.fetchAllSubjects()
         self.tableView.reloadData()
         
         //Adding add button
@@ -37,9 +38,7 @@ class SubjectManagementTable: UITableViewController {
         
         let action = UIAlertAction(title: "Save", style: .default, handler: { (_) in
             if self.subjectIsUnique(name: (alert.textFields?.first?.text!)!, operation: "Add") {
-                let subject = Subject(context: PersistanceService.context)
-                subject.name = alert.textFields?.first?.text!
-                PersistanceService.saveContext()
+                guard let subject = self.persistanceService.saveSubject(name: (alert.textFields?.first?.text!)!) else { return }
                 self.subjects.append(subject)
                 self.subjects.sort {$0.name! < $1.name!}
                 self.tableView.reloadData()
@@ -63,7 +62,7 @@ class SubjectManagementTable: UITableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let delete = UIContextualAction(style: .destructive, title: "Delete", handler: { (action, view, completion) in
-            PersistanceService.context.delete(self.subjects[indexPath.row])
+            self.persistanceService.remove(objectID: self.subjects[indexPath.row].objectID)
             self.subjects.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             completion(true)
@@ -81,7 +80,7 @@ class SubjectManagementTable: UITableViewController {
                 if self.subjectIsUnique(name: (alert.textFields?.first?.text!)!, operation: "Rename") {
                     let subject = self.subjects[indexPath.row]
                     subject.name = alert.textFields?.first?.text!
-                    PersistanceService.saveContext()
+                    self.persistanceService.save()
                     self.subjects.sort {$0.name! < $1.name!}
                     self.tableView.reloadData()
                 }

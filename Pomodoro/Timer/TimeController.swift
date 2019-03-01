@@ -20,6 +20,7 @@ class TimeController: NSObject {
     var timer: Timer = Timer()
     let defaults = UserDefaults.standard
     var timeTickerDelegate: TimeTickerDelegate!
+    let persistanceService: PersistanceService = PersistanceService()
     var session: [TimeChunk]?
     
     override init() {
@@ -104,17 +105,9 @@ class TimeController: NSObject {
      */
     private func saveProgress(timeChunk: TimeChunk) {
         if timeChunk.type == .work {
-            let subject = PersistanceService.getSubject(name: defaults.getSubjectName())
+            guard let subject = persistanceService.fetchSubject(name: defaults.getSubjectName()) else { return }
             let time = isChunkDone() ? timeChunk.timeLength : (timeChunk.timeLength - timeChunk.timeRemaining)
-
-            let session = Session(context: PersistanceService.context)
-            session.seconds = Int64(time!)
-            session.date = Date() as NSDate
-            session.subject = subject
-            
-            subject.addToSession(session)
-            
-            PersistanceService.saveContext()
+            _ = persistanceService.saveSession(seconds: time!, subject: subject)
         }
     }
     
@@ -131,8 +124,7 @@ class TimeController: NSObject {
         var timeChunks: [TimeChunk] = Array()
         //Builds the number of sessions of work / rest
         for i in 1...sessions {
-            let workTime: TimeChunk = TimeChunk(type: TimeTypes.work, timeLength: work, timeRemaining: work
-            )
+            let workTime: TimeChunk = TimeChunk(type: TimeTypes.work, timeLength: work, timeRemaining: work)
             let workBreak: TimeChunk!
             //Checks weather to add a short break or a long break pased on position
             if i != sessions {

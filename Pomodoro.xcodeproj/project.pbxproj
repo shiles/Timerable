@@ -25,6 +25,9 @@
 		AB4005A22224EDE1004EABD7 /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40059E2224EDE1004EABD7 /* Session+CoreDataProperties.swift */; };
 		AB5EF90F21ECB2CE0034A276 /* TimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5EF90E21ECB2CE0034A276 /* TimeController.swift */; };
 		AB883BA922292CCE00D0DA09 /* AudioNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB883BA822292CCE00D0DA09 /* AudioNotificationController.swift */; };
+		AB883BAC22296BBB00D0DA09 /* PersistanceServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB883BAB22296BBB00D0DA09 /* PersistanceServiceTest.swift */; };
+		AB883BAF22296D1600D0DA09 /* pomodoroTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB883BAD22296D1600D0DA09 /* pomodoroTest.xcdatamodeld */; };
+		AB883BB022296D1600D0DA09 /* pomodoroTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB883BAD22296D1600D0DA09 /* pomodoroTest.xcdatamodeld */; };
 		AB8A015421F39F6100D0F6EA /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8A015321F39F6100D0F6EA /* Converter.swift */; };
 		AB8D28632208FFAF000C4312 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8D28622208FFAF000C4312 /* MainViewController.swift */; };
 		AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */; };
@@ -82,6 +85,8 @@
 		AB40059E2224EDE1004EABD7 /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AB5EF90E21ECB2CE0034A276 /* TimeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeController.swift; sourceTree = "<group>"; };
 		AB883BA822292CCE00D0DA09 /* AudioNotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioNotificationController.swift; sourceTree = "<group>"; };
+		AB883BAB22296BBB00D0DA09 /* PersistanceServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceServiceTest.swift; sourceTree = "<group>"; };
+		AB883BAE22296D1600D0DA09 /* pomodoroTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = pomodoroTest.xcdatamodel; sourceTree = "<group>"; };
 		AB8A015321F39F6100D0F6EA /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		AB8D28622208FFAF000C4312 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTypes.swift; sourceTree = "<group>"; };
@@ -164,6 +169,7 @@
 				AB8A015221F39F1400D0F6EA /* Util */,
 				AB5EF90D21ECB2AA0034A276 /* Timer */,
 				AB38C43921EBA306003C77D7 /* AppDelegate.swift */,
+				AB883BAD22296D1600D0DA09 /* pomodoroTest.xcdatamodeld */,
 				AB2799BD2219CBD200D092C9 /* pomodoro.xcdatamodeld */,
 				AB38C44021EBA307003C77D7 /* Assets.xcassets */,
 				AB38C44221EBA307003C77D7 /* LaunchScreen.storyboard */,
@@ -175,6 +181,7 @@
 		AB38C44D21EBA307003C77D7 /* PomodoroTests */ = {
 			isa = PBXGroup;
 			children = (
+				AB883BAA22296ABD00D0DA09 /* Persistance */,
 				ABD3C38E2224B65F00D7F902 /* Timer */,
 				ABB2A5E321F60537008E4D62 /* Util */,
 				AB38C45021EBA307003C77D7 /* Info.plist */,
@@ -207,6 +214,14 @@
 				AB883BA822292CCE00D0DA09 /* AudioNotificationController.swift */,
 			);
 			path = Notification;
+			sourceTree = "<group>";
+		};
+		AB883BAA22296ABD00D0DA09 /* Persistance */ = {
+			isa = PBXGroup;
+			children = (
+				AB883BAB22296BBB00D0DA09 /* PersistanceServiceTest.swift */,
+			);
+			path = Persistance;
 			sourceTree = "<group>";
 		};
 		AB8A015221F39F1400D0F6EA /* Util */ = {
@@ -413,6 +428,7 @@
 				ABB9C6572225C221007CAE6B /* StatsViewController.swift in Sources */,
 				AB38C43C21EBA306003C77D7 /* TimerViewController.swift in Sources */,
 				ABA8A8D6221ADA5D00847448 /* Persistance Service.swift in Sources */,
+				AB883BAF22296D1600D0DA09 /* pomodoroTest.xcdatamodeld in Sources */,
 				AB2799BF2219CBD200D092C9 /* pomodoro.xcdatamodeld in Sources */,
 				ABFA9F56221C2FE700B76FAA /* SubjectManagementTable.swift in Sources */,
 				AB4005A22224EDE1004EABD7 /* Session+CoreDataProperties.swift in Sources */,
@@ -437,8 +453,10 @@
 			files = (
 				AB2103622225EFEF00D4101F /* FormatTest.swift in Sources */,
 				ABB2A5E521F60552008E4D62 /* ConverterTest.swift in Sources */,
+				AB883BB022296D1600D0DA09 /* pomodoroTest.xcdatamodeld in Sources */,
 				ABD3C3902224B67300D7F902 /* TimerTest.swift in Sources */,
 				ABD3C38D2224B18600D7F902 /* DefaultsTest.swift in Sources */,
+				AB883BAC22296BBB00D0DA09 /* PersistanceServiceTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -764,6 +782,16 @@
 			);
 			currentVersion = AB2799BE2219CBD200D092C9 /* pomodoro.xcdatamodel */;
 			path = pomodoro.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		AB883BAD22296D1600D0DA09 /* pomodoroTest.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AB883BAE22296D1600D0DA09 /* pomodoroTest.xcdatamodel */,
+			);
+			currentVersion = AB883BAE22296D1600D0DA09 /* pomodoroTest.xcdatamodel */;
+			path = pomodoroTest.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

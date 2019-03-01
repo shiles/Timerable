@@ -11,6 +11,7 @@ import UIKit
 class StatsViewController: UIViewController {
     
     var subjects: [Subject]!
+    let persistanceService: PersistanceService = PersistanceService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,7 @@ class StatsViewController: UIViewController {
             statStack.topAnchor.constraint(equalTo: self.view.topAnchor),
             statStack.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)])
         
-        self.subjects = PersistanceService.getSubjects()
+        self.subjects = persistanceService.fetchAllSubjects()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,7 +32,7 @@ class StatsViewController: UIViewController {
         self.navigationItem.title = "STATS"
         
         //Adding data
-        self.subjects = PersistanceService.getSubjects()
+        self.subjects = persistanceService.fetchAllSubjects()
         self.tableView.reloadData()
     }
     
@@ -41,12 +42,12 @@ class StatsViewController: UIViewController {
      - Returns: Sum of time time spend in `subject`
      */
     private func getOverallSessionTime(subject: Subject) -> Int {
-        let sessions: [Session] = PersistanceService.getSessions(subject: subject)
+        let sessions: [Session] = persistanceService.fetchSessions(subject: subject)
         return Int(sessions.reduce(0) { $0 + $1.seconds })
     }
     
     private func getTotalSessionTime() -> Int {
-        let sessions: [Session] = PersistanceService.getAllSessions()
+        let sessions: [Session] = persistanceService.fetchAllSessions()
         return Int(sessions.reduce(0) { $0 + $1.seconds })
     }
     

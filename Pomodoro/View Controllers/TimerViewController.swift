@@ -18,6 +18,7 @@ class TimerViewController: UIViewController {
     }
     
     let timeController: TimeController = TimeController()
+    let persistanceService: PersistanceService = PersistanceService()
     let audioNotificationController: AudioNotificationController = AudioNotificationController()
     let settingsController: SettingsViewController = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController
     var timeViewer: TimeViewer!
@@ -68,7 +69,7 @@ class TimerViewController: UIViewController {
         self.navigationItem.title = "TIMER"
         
         //Getting Data
-        self.subjects = PersistanceService.getSubjects()
+        self.subjects = persistanceService.fetchAllSubjects()
     }
     
     /**

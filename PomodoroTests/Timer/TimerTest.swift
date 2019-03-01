@@ -108,4 +108,8 @@ class MockTimeTickerDeligate: TimeTickerDelegate {
     func isFinished() {
         //Intentially left empty for mocking
     }
+    
+    func chunkIsDone() {
+        //Intentiall left empty for mocking
+    }
 }
