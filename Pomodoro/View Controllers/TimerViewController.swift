@@ -18,6 +18,7 @@ class TimerViewController: UIViewController {
     }
     
     let timeController: TimeController = TimeController()
+    let audioNotificationController: AudioNotificationController = AudioNotificationController()
     let settingsController: SettingsViewController = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController
     var timeViewer: TimeViewer!
     var sessionStatus: SessionStates = .ready
@@ -209,5 +210,9 @@ extension TimerViewController: TimeTickerDelegate {
      */
     func isFinished() {
         sessionFinished()
+    }
+    
+    func chunkIsDone() {
+        audioNotificationController.playNotificationSound()
     }
 }

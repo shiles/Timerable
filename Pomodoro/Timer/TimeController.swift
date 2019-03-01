@@ -12,6 +12,7 @@ protocol TimeTickerDelegate {
     func timerDecrement(timeChunk: TimeChunk)
     func resetTimerDisplay(timeChunk: TimeChunk)
     func isFinished()
+    func chunkIsDone()
 }
 
 class TimeController: NSObject {
@@ -52,6 +53,7 @@ class TimeController: NSObject {
         if isChunkDone() {
             saveProgress(timeChunk: session![0])
             _ = session?.removeFirst()
+            timeTickerDelegate.chunkIsDone()
         }
         
         isSessionDone()
