@@ -34,7 +34,6 @@
 		ABA8A8D6221ADA5D00847448 /* Persistance Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA8A8D5221ADA5D00847448 /* Persistance Service.swift */; };
 		ABB2A5E521F60552008E4D62 /* ConverterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB2A5E421F60552008E4D62 /* ConverterTest.swift */; };
 		ABB9C6572225C221007CAE6B /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB9C6562225C221007CAE6B /* StatsViewController.swift */; };
-		ABD3C38D2224B18600D7F902 /* DefaultsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3C38C2224B18600D7F902 /* DefaultsTest.swift */; };
 		ABD3C3902224B67300D7F902 /* TimerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3C38F2224B67300D7F902 /* TimerTest.swift */; };
 		ABE7B58F21FF3180001D625C /* TimeSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */; };
 		ABEBC69921EF579500CFD262 /* TimeChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEBC69821EF579500CFD262 /* TimeChunk.swift */; };
@@ -93,7 +92,6 @@
 		ABA8A8D5221ADA5D00847448 /* Persistance Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Persistance Service.swift"; sourceTree = "<group>"; };
 		ABB2A5E421F60552008E4D62 /* ConverterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTest.swift; sourceTree = "<group>"; };
 		ABB9C6562225C221007CAE6B /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
-		ABD3C38C2224B18600D7F902 /* DefaultsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsTest.swift; sourceTree = "<group>"; };
 		ABD3C38F2224B67300D7F902 /* TimerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTest.swift; sourceTree = "<group>"; };
 		ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectCell.swift; sourceTree = "<group>"; };
 		ABEBC69821EF579500CFD262 /* TimeChunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeChunk.swift; sourceTree = "<group>"; };
@@ -270,7 +268,6 @@
 			isa = PBXGroup;
 			children = (
 				ABB2A5E421F60552008E4D62 /* ConverterTest.swift */,
-				ABD3C38C2224B18600D7F902 /* DefaultsTest.swift */,
 				AB2103612225EFEF00D4101F /* FormatTest.swift */,
 			);
 			path = Util;
@@ -455,7 +452,6 @@
 				ABB2A5E521F60552008E4D62 /* ConverterTest.swift in Sources */,
 				AB883BB022296D1600D0DA09 /* pomodoroTest.xcdatamodeld in Sources */,
 				ABD3C3902224B67300D7F902 /* TimerTest.swift in Sources */,
-				ABD3C38D2224B18600D7F902 /* DefaultsTest.swift in Sources */,
 				AB883BAC22296BBB00D0DA09 /* PersistanceServiceTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
