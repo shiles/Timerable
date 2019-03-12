@@ -30,6 +30,8 @@
 		AB883BB022296D1600D0DA09 /* pomodoroTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB883BAD22296D1600D0DA09 /* pomodoroTest.xcdatamodeld */; };
 		AB8A015421F39F6100D0F6EA /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8A015321F39F6100D0F6EA /* Converter.swift */; };
 		AB8D28632208FFAF000C4312 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8D28622208FFAF000C4312 /* MainViewController.swift */; };
+		AB8E203522362B550068B16A /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8E203422362B550068B16A /* NotificationService.swift */; };
+		AB8E203822362DD00068B16A /* NotificationControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8E203722362DD00068B16A /* NotificationControllerTest.swift */; };
 		AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */; };
 		ABA8A8D6221ADA5D00847448 /* Persistance Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA8A8D5221ADA5D00847448 /* Persistance Service.swift */; };
 		ABB2A5E521F60552008E4D62 /* ConverterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB2A5E421F60552008E4D62 /* ConverterTest.swift */; };
@@ -88,6 +90,8 @@
 		AB883BAE22296D1600D0DA09 /* pomodoroTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = pomodoroTest.xcdatamodel; sourceTree = "<group>"; };
 		AB8A015321F39F6100D0F6EA /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		AB8D28622208FFAF000C4312 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		AB8E203422362B550068B16A /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		AB8E203722362DD00068B16A /* NotificationControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationControllerTest.swift; sourceTree = "<group>"; };
 		AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTypes.swift; sourceTree = "<group>"; };
 		ABA8A8D5221ADA5D00847448 /* Persistance Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Persistance Service.swift"; sourceTree = "<group>"; };
 		ABB2A5E421F60552008E4D62 /* ConverterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTest.swift; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 		AB38C44D21EBA307003C77D7 /* PomodoroTests */ = {
 			isa = PBXGroup;
 			children = (
+				AB8E203622362DAF0068B16A /* Notification */,
 				AB883BAA22296ABD00D0DA09 /* Persistance */,
 				ABD3C38E2224B65F00D7F902 /* Timer */,
 				ABB2A5E321F60537008E4D62 /* Util */,
@@ -210,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				AB883BA822292CCE00D0DA09 /* AudioNotificationController.swift */,
+				AB8E203422362B550068B16A /* NotificationService.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -250,6 +256,15 @@
 				AB38C43D21EBA306003C77D7 /* Settings.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		AB8E203622362DAF0068B16A /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				AB8E203722362DD00068B16A /* NotificationControllerTest.swift */,
+			);
+			name = Notification;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		ABA8A8D4221ADA1D00847448 /* Persistance */ = {
@@ -417,6 +432,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB8E203522362B550068B16A /* NotificationService.swift in Sources */,
 				AB2103602225EE9500D4101F /* Format.swift in Sources */,
 				AB4005A02224EDE1004EABD7 /* Subject+CoreDataProperties.swift in Sources */,
 				ABEBC69921EF579500CFD262 /* TimeChunk.swift in Sources */,
@@ -448,6 +464,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB8E203822362DD00068B16A /* NotificationControllerTest.swift in Sources */,
 				AB2103622225EFEF00D4101F /* FormatTest.swift in Sources */,
 				ABB2A5E521F60552008E4D62 /* ConverterTest.swift in Sources */,
 				AB883BB022296D1600D0DA09 /* pomodoroTest.xcdatamodeld in Sources */,

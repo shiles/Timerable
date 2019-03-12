@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,6 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window!.rootViewController = homeController
         window!.makeKeyAndVisible()
         window!.tintColor = .orange
+        
+        //Register to allow notifications
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound, .badge]){ (granted, error) in
+            print("Notifications Granted")
+        }
         
         return true
     }

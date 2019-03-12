@@ -21,6 +21,7 @@ class TimeController: NSObject {
     let defaults = UserDefaults.standard
     var timeTickerDelegate: TimeTickerDelegate!
     let persistanceService: PersistanceService = PersistanceService()
+    let notificationService = NotificationService()
     var session: [TimeChunk]?
     
     override init() {
@@ -33,6 +34,7 @@ class TimeController: NSObject {
      */
     func startTimer() -> Void {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(TimeController.decrementTimer), userInfo: nil, repeats: true)
+        notificationService.scheduleNotifications(timeChunks: session ?? [])
     }
     
     /**
