@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import UserNotifications
 @testable import Pomodoro
 
 class NotificationControllerTest: XCTestCase {
@@ -16,6 +17,16 @@ class NotificationControllerTest: XCTestCase {
     func testScheduleNotifications() {
         notificationController.scheduleNotifications(timeChunks: buildDefualtSession())
         XCTAssertTrue((UIApplication.shared.scheduledLocalNotifications?.count)! > 0)
+    }
+    
+    func testRescheduleNotifications() {
+        notificationController.rescheduleNotifications(timeChunks: buildDefualtSession())
+        XCTAssertTrue((UIApplication.shared.scheduledLocalNotifications?.count)! > 0)
+    }
+    
+    func testRemoveNotifications() {
+        notificationController.removeNotifications()
+        XCTAssertTrue((UIApplication.shared.scheduledLocalNotifications?.count)! == 0)
     }
     
     private func buildDefualtSession() -> [TimeChunk] {

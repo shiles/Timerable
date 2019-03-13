@@ -16,7 +16,6 @@ class NotificationService {
      - Parameter value: The session to set the array for.
      */
     func scheduleNotifications(timeChunks: [TimeChunk]) -> Void {
-        print("Scheduling Notifications")
         var notificationTime = Date()
         for chunk in timeChunks {
             
@@ -50,5 +49,23 @@ class NotificationService {
             //Get time that next time chunk starts
             notificationTime += TimeInterval(exactly: chunk.timeLength)!
         }
+    }
+    
+    /**
+     Re-Schedules the nofications by removing all the current ones and recalculating
+     - Parameter value: The session to set the array for.
+     */
+    func rescheduleNotifications(timeChunks: [TimeChunk]) -> Void {
+        self.removeNotifications()
+        self.scheduleNotifications(timeChunks: timeChunks)
+    }
+    
+    /**
+     Removes all the scheduled nofications where all the timechunks change state.
+     */
+    func removeNotifications() -> Void {
+        let center = UNUserNotificationCenter.current()
+        center.removeAllDeliveredNotifications()
+        center.removeAllPendingNotificationRequests()
     }
 }

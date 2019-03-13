@@ -42,6 +42,7 @@ class TimeController: NSObject {
      */
     func stopTimer() -> Void {
         timer.invalidate()
+        notificationService.removeNotifications()
     }
     
     /**
@@ -68,7 +69,7 @@ class TimeController: NSObject {
     func skipChunk() -> Void {
         saveProgress(timeChunk: session![0])
         _ = session?.removeFirst()
-       
+        notificationService.rescheduleNotifications(timeChunks: session ?? [])
         isSessionDone()
         timeTickerDelegate.resetTimerDisplay(timeChunk: session![0])
     }
@@ -80,6 +81,7 @@ class TimeController: NSObject {
         stopTimer()
         saveProgress(timeChunk: session![0])
         session = buildTimeArray()
+        notificationService.removeNotifications()
         timeTickerDelegate.resetTimerDisplay(timeChunk: session![0])
         timeTickerDelegate.isFinished()
     }
