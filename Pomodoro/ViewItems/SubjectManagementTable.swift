@@ -10,10 +10,12 @@ import UIKit
 import CoreData
 
 class SubjectManagementTable: UITableViewController {
-    var subjects: [Subject]!
-    let persistanceService: PersistanceService = PersistanceService()
     
-    init() {
+    let persistanceService: PersistanceService!
+    var subjects: [Subject]!
+    
+    init(persistanceService: PersistanceService) {
+        self.persistanceService = persistanceService
         super.init(nibName: nil, bundle: nil)
         
         //Getting Data
@@ -27,6 +29,11 @@ class SubjectManagementTable: UITableViewController {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationItem.title = "Edit Subjects"
     }
     
     @objc func addSubject() {
@@ -54,11 +61,7 @@ class SubjectManagementTable: UITableViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        self.navigationItem.title = "Edit Subjects"
-    }
-    
+
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let delete = UIContextualAction(style: .destructive, title: "Delete", handler: { (action, view, completion) in

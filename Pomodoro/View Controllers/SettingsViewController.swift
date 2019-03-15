@@ -14,7 +14,7 @@ protocol SettingsDelegate: AnyObject {
 
 class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
    
-    let defualts: UserDefaults = UserDefaults.standard
+    let defaults = Defaults()
     let pickerSet = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
     var settingsDelegate: SettingsDelegate!
     
@@ -30,11 +30,11 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         
         //Getting up-to-date values to display
         appVertion.text = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
-        workLengthButton.setTitle(Format.timeToStringWords(seconds: defualts.getWorkTime()), for: .normal)
-        shortLengthButton.setTitle(Format.timeToStringWords(seconds: defualts.getShortTime()), for: .normal)
-        shortLengthButton.setTitle(Format.timeToStringWords(seconds: defualts.getShortTime()), for: .normal)
-        longLengthButton.setTitle(Format.timeToStringWords(seconds: defualts.getLongTime()), for: .normal)
-        sessionLengthButton.setTitle(String(format: "%d sessions", defualts.getSessionLength()), for: .normal)
+        workLengthButton.setTitle(Format.timeToStringWords(seconds: defaults.getWorkTime()), for: .normal)
+        shortLengthButton.setTitle(Format.timeToStringWords(seconds: defaults.getShortTime()), for: .normal)
+        shortLengthButton.setTitle(Format.timeToStringWords(seconds: defaults.getShortTime()), for: .normal)
+        longLengthButton.setTitle(Format.timeToStringWords(seconds: defaults.getLongTime()), for: .normal)
+        sessionLengthButton.setTitle(String(format: "%d sessions", defaults.getNumberOfSessions()), for: .normal)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -42,25 +42,25 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
     }
 
     @IBAction func setWorkLength(_ sender: Any) {
-        let saveFn: (Int) -> Void = defualts.setWorkTime(_:)
+        let saveFn: (Int) -> Void = defaults.setWorkTime(_:)
         
-        let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defualts.getWorkTime()), saveToDefaults: saveFn)
+        let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defaults.getWorkTime()), saveToDefaults: saveFn)
         newTable.title = "Work Length"        
         navigationController?.pushViewController(newTable, animated: true)
     }
     
     @IBAction func setShortLength(_ sender: Any) {
-        let saveFn: (Int) -> Void = defualts.setShortTime(_:)
+        let saveFn: (Int) -> Void = defaults.setShortTime(_:)
         
-        let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defualts.getShortTime()), saveToDefaults: saveFn)
+        let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defaults.getShortTime()), saveToDefaults: saveFn)
         newTable.title = "Short Break Length"
         navigationController?.pushViewController(newTable, animated: true)
     }
     
     @IBAction func setLongLength(_ sender: Any) {
-        let saveFn: (Int) -> Void = defualts.setLongTime(_:)
+        let saveFn: (Int) -> Void = defaults.setLongTime(_:)
         
-        let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defualts.getLongTime()), saveToDefaults: saveFn)
+        let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defaults.getLongTime()), saveToDefaults: saveFn)
         newTable.title = "Long Break Length"
         navigationController?.pushViewController(newTable, animated: true)
     }
@@ -71,7 +71,7 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         let pickerView = UIPickerView(frame: .zero);
         pickerView.dataSource = self
         pickerView.delegate = self
-        pickerView.selectRow(defualts.getSessionLength()-1, inComponent: 0, animated: false)
+        pickerView.selectRow(defaults.getNumberOfSessions()-1, inComponent: 0, animated: false)
         actionSession.view.addSubview(pickerView)
         
         actionSession.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
@@ -92,7 +92,7 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        defualts.setSessionLength(Int(pickerSet[row])!)
-        sessionLengthButton.setTitle(String(format: "%d sessions", defualts.getSessionLength()), for: .normal)
+        defaults.setNumberOfSessions(Int(pickerSet[row])!)
+        sessionLengthButton.setTitle(String(format: "%d sessions", defaults.getNumberOfSessions()), for: .normal)
     } 
 }

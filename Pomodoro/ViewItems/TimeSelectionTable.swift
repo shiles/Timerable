@@ -53,15 +53,15 @@ class TimeSelectionTable: UITableViewController {
      - Returns: Returns the length of the current session in `seconds`
      */
     private func calculateSessionLength() -> Int {
-        let defualts = UserDefaults.standard
+        let defaults =  Defaults()
         var totalSeconds = 0
 
-        for i in 1...defualts.getSessionLength() {
-            totalSeconds += defualts.getWorkTime()
-            if i != defualts.getSessionLength() {
-                totalSeconds += defualts.getShortTime()
+        for i in 1...defaults.getNumberOfSessions() {
+            totalSeconds += defaults.getWorkTime()
+            if i != defaults.getNumberOfSessions() {
+                totalSeconds += defaults.getShortTime()
             } else {
-                totalSeconds += defualts.getLongTime()
+                totalSeconds += defaults.getLongTime()
             }
         }
         

@@ -9,24 +9,16 @@
 import XCTest
 @testable import Pomodoro
 
-class TimerTest: XCTestCase {
+class TimerServiceTest: XCTestCase {
 
-    var timeController: TimeController!
-    var defaults = UserDefaults.standard
+    var timeController: TimerService!
+    let defaults = MockDefualts()
     
     override func setUp() {
-        defaults.setSessionLength(2)
-        timeController = TimeController()
+        timeController = TimerService(persistanceService: MockPersistanceService(), notificationService: NotificationService(), defaults: MockDefualts())
         timeController.timeTickerDelegate = MockTimeTickerDeligate()
     }
-
-    override func tearDown() {
-        defaults.setSessionLength(4)
-        defaults.setWorkTime(1500)
-        defaults.setShortTime(300)
-        defaults.setLongTime(1800)
-    }
-
+    
     func testBuildTimeArray() {
         let session = self.buildDefualtSession()
         let generatedSession: [TimeChunk] = timeController.session!
@@ -74,9 +66,6 @@ class TimerTest: XCTestCase {
     
     func testRecalculateTimeChunk() {
         timeController.resetSession()
-        defaults.setWorkTime(10)
-        defaults.setShortTime(10)
-        defaults.setLongTime(10)
         
         let session = self.buildDefualtSession()
         timeController.recalculateTimeChunks()
@@ -85,31 +74,52 @@ class TimerTest: XCTestCase {
     }
     
     private func buildDefualtSession() -> [TimeChunk] {
-        let work: Int = defaults.getWorkTime()
-        let short: Int = defaults.getShortTime()
-        let long: Int = defaults.getLongTime()
-        let workTime = TimeChunk(type: TimeTypes.work, timeLength: work, timeRemaining: work)
-        let workBreakShort = TimeChunk(type: TimeTypes.short, timeLength: short, timeRemaining: short)
-        let workBreakLong = TimeChunk(type: TimeTypes.long, timeLength: long, timeRemaining: long)
+        let work = TimeChunk(type: TimeTypes.work, initialTime: defaults.getWorkTime())
+        let shortBreak = TimeChunk(type: TimeTypes.short, initialTime: defaults.getShortTime())
+        let longBreak = TimeChunk(type: TimeTypes.long, initialTime: defaults.getLongTime())
         
-        return [workTime, workBreakShort, workTime, workBreakLong]
+        return [work, shortBreak, work, longBreak]
     }
 }
 
 class MockTimeTickerDeligate: TimeTickerDelegate {
-    func timerDecrement(timeChunk: TimeChunk) {
-        //Intentially left empty for mocking
+    func timerDecrement(timeChunk: TimeChunk) {}
+    
+    func resetTimerDisplay(timeChunk: TimeChunk) {}
+    
+    func isFinished() {}
+    
+    func chunkCompleted() {}
+}
+
+class MockPersistanceService: PersistanceService {
+    override func fetchSubject(name: String) -> Subject? {
+        let subject = Subject(context: context)
+        subject.name = "English"
+        return subject
     }
     
-    func resetTimerDisplay(timeChunk: TimeChunk) {
-        //Intentially left empty for mocking
-    }
-    
-    func isFinished() {
-        //Intentially left empty for mocking
-    }
-    
-    func chunkIsDone() {
-        //Intentiall left empty for mocking
+    override func saveSession(seconds: Int, subject: Subject) -> Session? {
+        return Session()
     }
 }
+
+class MockDefualts: Defaults {
+    override func getWorkTime() -> Int {
+        return 1500
+    }
+    
+    override func getShortTime() -> Int {
+        return 360
+    }
+    
+    override func getLongTime() -> Int {
+        return 1800
+    }
+    
+    override func getNumberOfSessions() -> Int {
+        return 2
+    }
+}
+
+

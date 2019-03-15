@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB084304223C1BA600AA749D /* pomodoro.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB2799BD2219CBD200D092C9 /* pomodoro.xcdatamodeld */; };
 		AB2103602225EE9500D4101F /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB21035F2225EE9500D4101F /* Format.swift */; };
 		AB2103622225EFEF00D4101F /* FormatTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2103612225EFEF00D4101F /* FormatTest.swift */; };
 		AB2799BF2219CBD200D092C9 /* pomodoro.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB2799BD2219CBD200D092C9 /* pomodoro.xcdatamodeld */; };
@@ -23,20 +24,17 @@
 		AB4005A02224EDE1004EABD7 /* Subject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40059C2224EDE1004EABD7 /* Subject+CoreDataProperties.swift */; };
 		AB4005A12224EDE1004EABD7 /* Session+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40059D2224EDE1004EABD7 /* Session+CoreDataClass.swift */; };
 		AB4005A22224EDE1004EABD7 /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40059E2224EDE1004EABD7 /* Session+CoreDataProperties.swift */; };
-		AB5EF90F21ECB2CE0034A276 /* TimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5EF90E21ECB2CE0034A276 /* TimeController.swift */; };
-		AB883BA922292CCE00D0DA09 /* AudioNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB883BA822292CCE00D0DA09 /* AudioNotificationController.swift */; };
+		AB5EF90F21ECB2CE0034A276 /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5EF90E21ECB2CE0034A276 /* TimerService.swift */; };
+		AB883BA922292CCE00D0DA09 /* AudioNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB883BA822292CCE00D0DA09 /* AudioNotificationService.swift */; };
 		AB883BAC22296BBB00D0DA09 /* PersistanceServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB883BAB22296BBB00D0DA09 /* PersistanceServiceTest.swift */; };
-		AB883BAF22296D1600D0DA09 /* pomodoroTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB883BAD22296D1600D0DA09 /* pomodoroTest.xcdatamodeld */; };
-		AB883BB022296D1600D0DA09 /* pomodoroTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB883BAD22296D1600D0DA09 /* pomodoroTest.xcdatamodeld */; };
 		AB8A015421F39F6100D0F6EA /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8A015321F39F6100D0F6EA /* Converter.swift */; };
 		AB8D28632208FFAF000C4312 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8D28622208FFAF000C4312 /* MainViewController.swift */; };
 		AB8E203522362B550068B16A /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8E203422362B550068B16A /* NotificationService.swift */; };
-		AB8E203822362DD00068B16A /* NotificationControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8E203722362DD00068B16A /* NotificationControllerTest.swift */; };
 		AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */; };
 		ABA8A8D6221ADA5D00847448 /* Persistance Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA8A8D5221ADA5D00847448 /* Persistance Service.swift */; };
 		ABB2A5E521F60552008E4D62 /* ConverterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB2A5E421F60552008E4D62 /* ConverterTest.swift */; };
 		ABB9C6572225C221007CAE6B /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB9C6562225C221007CAE6B /* StatsViewController.swift */; };
-		ABD3C3902224B67300D7F902 /* TimerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3C38F2224B67300D7F902 /* TimerTest.swift */; };
+		ABD3C3902224B67300D7F902 /* TimerServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3C38F2224B67300D7F902 /* TimerServiceTest.swift */; };
 		ABE7B58F21FF3180001D625C /* TimeSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */; };
 		ABEBC69921EF579500CFD262 /* TimeChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEBC69821EF579500CFD262 /* TimeChunk.swift */; };
 		ABEBC69D21F2009300CFD262 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEBC69C21F2009300CFD262 /* SettingsViewController.swift */; };
@@ -84,19 +82,17 @@
 		AB40059C2224EDE1004EABD7 /* Subject+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AB40059D2224EDE1004EABD7 /* Session+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataClass.swift"; sourceTree = "<group>"; };
 		AB40059E2224EDE1004EABD7 /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		AB5EF90E21ECB2CE0034A276 /* TimeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeController.swift; sourceTree = "<group>"; };
-		AB883BA822292CCE00D0DA09 /* AudioNotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioNotificationController.swift; sourceTree = "<group>"; };
+		AB5EF90E21ECB2CE0034A276 /* TimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerService.swift; sourceTree = "<group>"; };
+		AB883BA822292CCE00D0DA09 /* AudioNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioNotificationService.swift; sourceTree = "<group>"; };
 		AB883BAB22296BBB00D0DA09 /* PersistanceServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceServiceTest.swift; sourceTree = "<group>"; };
-		AB883BAE22296D1600D0DA09 /* pomodoroTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = pomodoroTest.xcdatamodel; sourceTree = "<group>"; };
 		AB8A015321F39F6100D0F6EA /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		AB8D28622208FFAF000C4312 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		AB8E203422362B550068B16A /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
-		AB8E203722362DD00068B16A /* NotificationControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationControllerTest.swift; sourceTree = "<group>"; };
 		AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTypes.swift; sourceTree = "<group>"; };
 		ABA8A8D5221ADA5D00847448 /* Persistance Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Persistance Service.swift"; sourceTree = "<group>"; };
 		ABB2A5E421F60552008E4D62 /* ConverterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTest.swift; sourceTree = "<group>"; };
 		ABB9C6562225C221007CAE6B /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
-		ABD3C38F2224B67300D7F902 /* TimerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTest.swift; sourceTree = "<group>"; };
+		ABD3C38F2224B67300D7F902 /* TimerServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimerServiceTest.swift; path = ../TimerServiceTest.swift/TimerServiceTest.swift; sourceTree = "<group>"; };
 		ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectCell.swift; sourceTree = "<group>"; };
 		ABEBC69821EF579500CFD262 /* TimeChunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeChunk.swift; sourceTree = "<group>"; };
 		ABEBC69C21F2009300CFD262 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -171,7 +167,6 @@
 				AB8A015221F39F1400D0F6EA /* Util */,
 				AB5EF90D21ECB2AA0034A276 /* Timer */,
 				AB38C43921EBA306003C77D7 /* AppDelegate.swift */,
-				AB883BAD22296D1600D0DA09 /* pomodoroTest.xcdatamodeld */,
 				AB2799BD2219CBD200D092C9 /* pomodoro.xcdatamodeld */,
 				AB38C44021EBA307003C77D7 /* Assets.xcassets */,
 				AB38C44221EBA307003C77D7 /* LaunchScreen.storyboard */,
@@ -183,7 +178,6 @@
 		AB38C44D21EBA307003C77D7 /* PomodoroTests */ = {
 			isa = PBXGroup;
 			children = (
-				AB8E203622362DAF0068B16A /* Notification */,
 				AB883BAA22296ABD00D0DA09 /* Persistance */,
 				ABD3C38E2224B65F00D7F902 /* Timer */,
 				ABB2A5E321F60537008E4D62 /* Util */,
@@ -204,7 +198,7 @@
 		AB5EF90D21ECB2AA0034A276 /* Timer */ = {
 			isa = PBXGroup;
 			children = (
-				AB5EF90E21ECB2CE0034A276 /* TimeController.swift */,
+				AB5EF90E21ECB2CE0034A276 /* TimerService.swift */,
 				AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */,
 				ABEBC69821EF579500CFD262 /* TimeChunk.swift */,
 			);
@@ -214,7 +208,7 @@
 		AB883BA722292C5A00D0DA09 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
-				AB883BA822292CCE00D0DA09 /* AudioNotificationController.swift */,
+				AB883BA822292CCE00D0DA09 /* AudioNotificationService.swift */,
 				AB8E203422362B550068B16A /* NotificationService.swift */,
 			);
 			path = Notification;
@@ -258,15 +252,6 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		AB8E203622362DAF0068B16A /* Notification */ = {
-			isa = PBXGroup;
-			children = (
-				AB8E203722362DD00068B16A /* NotificationControllerTest.swift */,
-			);
-			name = Notification;
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		ABA8A8D4221ADA1D00847448 /* Persistance */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,7 +276,7 @@
 		ABD3C38E2224B65F00D7F902 /* Timer */ = {
 			isa = PBXGroup;
 			children = (
-				ABD3C38F2224B67300D7F902 /* TimerTest.swift */,
+				ABD3C38F2224B67300D7F902 /* TimerServiceTest.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -441,7 +426,6 @@
 				ABB9C6572225C221007CAE6B /* StatsViewController.swift in Sources */,
 				AB38C43C21EBA306003C77D7 /* TimerViewController.swift in Sources */,
 				ABA8A8D6221ADA5D00847448 /* Persistance Service.swift in Sources */,
-				AB883BAF22296D1600D0DA09 /* pomodoroTest.xcdatamodeld in Sources */,
 				AB2799BF2219CBD200D092C9 /* pomodoro.xcdatamodeld in Sources */,
 				ABFA9F56221C2FE700B76FAA /* SubjectManagementTable.swift in Sources */,
 				AB4005A22224EDE1004EABD7 /* Session+CoreDataProperties.swift in Sources */,
@@ -452,8 +436,8 @@
 				AB348E1A21F638B100A97CEA /* TimeViewer.swift in Sources */,
 				ABFFD7AD21FE9A260033199D /* TimeSelectionTable.swift in Sources */,
 				AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */,
-				AB5EF90F21ECB2CE0034A276 /* TimeController.swift in Sources */,
-				AB883BA922292CCE00D0DA09 /* AudioNotificationController.swift in Sources */,
+				AB5EF90F21ECB2CE0034A276 /* TimerService.swift in Sources */,
+				AB883BA922292CCE00D0DA09 /* AudioNotificationService.swift in Sources */,
 				AB2F94C62207885E00F9F0F6 /* Defaults.swift in Sources */,
 				ABE7B58F21FF3180001D625C /* TimeSelectCell.swift in Sources */,
 				ABEBC69D21F2009300CFD262 /* SettingsViewController.swift in Sources */,
@@ -464,11 +448,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB8E203822362DD00068B16A /* NotificationControllerTest.swift in Sources */,
 				AB2103622225EFEF00D4101F /* FormatTest.swift in Sources */,
 				ABB2A5E521F60552008E4D62 /* ConverterTest.swift in Sources */,
-				AB883BB022296D1600D0DA09 /* pomodoroTest.xcdatamodeld in Sources */,
-				ABD3C3902224B67300D7F902 /* TimerTest.swift in Sources */,
+				AB084304223C1BA600AA749D /* pomodoro.xcdatamodeld in Sources */,
+				ABD3C3902224B67300D7F902 /* TimerServiceTest.swift in Sources */,
 				AB883BAC22296BBB00D0DA09 /* PersistanceServiceTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -795,16 +778,6 @@
 			);
 			currentVersion = AB2799BE2219CBD200D092C9 /* pomodoro.xcdatamodel */;
 			path = pomodoro.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		AB883BAD22296D1600D0DA09 /* pomodoroTest.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				AB883BAE22296D1600D0DA09 /* pomodoroTest.xcdatamodel */,
-			);
-			currentVersion = AB883BAE22296D1600D0DA09 /* pomodoroTest.xcdatamodel */;
-			path = pomodoroTest.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

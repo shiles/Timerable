@@ -16,19 +16,31 @@ class TimerViewController: UIViewController {
         case paused
         case timing
     }
-    
-    let timeController: TimeController = TimeController()
-    let persistanceService: PersistanceService = PersistanceService()
-    let audioNotificationController: AudioNotificationController = AudioNotificationController()
-    let settingsController: SettingsViewController = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController
+
+    let persistanceService: PersistanceService!
+    let audioNotificationController: AudioNotificationService!
+    let settingsController: SettingsViewController!
+    let timeController: TimerService!
     var timeViewer: TimeViewer!
     var sessionStatus: SessionStates = .ready
     var subjects: [Subject] = []
 
+    init(persistanceService: PersistanceService, audioNotificationController: AudioNotificationService, settingsController: SettingsViewController) {
+        self.persistanceService = persistanceService
+        self.audioNotificationController = audioNotificationController
+        self.settingsController = settingsController
+        self.timeController = TimerService(persistanceService: persistanceService, notificationService: NotificationService(), defaults: Defaults())
+        
+        super.init(nibName: nil, bundle: nil)
+        timeController.timeTickerDelegate = self
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Setting delegates
-        timeController.timeTickerDelegate = self
         
         //Styling
         self.view.backgroundColor = .white
@@ -104,7 +116,7 @@ class TimerViewController: UIViewController {
             
             subjects.forEach { subject in
                 actionSession.addAction(UIAlertAction(title: subject.name, style: .default, handler: { (a) in
-                    UserDefaults.standard.setSubject(subject.name!)
+                    Defaults().setSubject(subject.name!)
                     self.sessionStatus = .timing
                     self.timeController.startTimer()
                     self.startStopButton.setTitle("PAUSE", for: .normal)
@@ -118,7 +130,7 @@ class TimerViewController: UIViewController {
             
             let title = subjects.isEmpty ? "Add Subject" : "Edit Subjects"
             actionSession.addAction(UIAlertAction(title: title, style: .default, handler: { (a) in
-                self.navigationController?.pushViewController(SubjectManagementTable(), animated: true)
+                self.navigationController?.pushViewController(SubjectManagementTable(persistanceService: self.persistanceService), animated: true)
             }))
             
             actionSession.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
@@ -213,7 +225,10 @@ extension TimerViewController: TimeTickerDelegate {
         sessionFinished()
     }
     
-    func chunkIsDone() {
+    /**
+     Handles when a chunk is completed by the notification sound
+     */
+    func chunkCompleted() {
         audioNotificationController.playNotificationSound()
     }
 }

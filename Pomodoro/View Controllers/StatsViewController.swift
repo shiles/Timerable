@@ -11,8 +11,20 @@ import UIKit
 class StatsViewController: UIViewController {
     
     var subjects: [Subject]!
-    let persistanceService: PersistanceService = PersistanceService()
-
+    let persistanceService: PersistanceService!
+    let settingsController: SettingsViewController!
+    
+    init(persistanceService: PersistanceService, settingsController: SettingsViewController) {
+        self.persistanceService = persistanceService
+        self.settingsController = settingsController
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,6 +58,10 @@ class StatsViewController: UIViewController {
         return Int(sessions.reduce(0) { $0 + $1.seconds })
     }
     
+    /**
+     Gets the total session time for all the subjects.
+     - Returns: Sum of time time spend studying
+     */
     private func getTotalSessionTime() -> Int {
         let sessions: [Session] = persistanceService.fetchAllSessions()
         return Int(sessions.reduce(0) { $0 + $1.seconds })

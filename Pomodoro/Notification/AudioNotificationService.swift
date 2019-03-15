@@ -9,7 +9,7 @@
 import Foundation
 import AVFoundation
 
-class AudioNotificationController {
+class AudioNotificationService {
     
     private let dingSound = 1104
     

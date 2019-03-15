@@ -84,7 +84,6 @@ class PersistanceServiceTest: XCTestCase {
         func saveSubject( name: String) -> Subject? {
             let obj = NSEntityDescription.insertNewObject(forEntityName: "Subject", into: mockPersistantContainer.viewContext)
             obj.setValue(name, forKey: "name")
-            
             return obj as? Subject
         }
         
@@ -101,7 +100,6 @@ class PersistanceServiceTest: XCTestCase {
     }
     
     func flushData() {
-        
         let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: "Subject")
         let objs = try! mockPersistantContainer.viewContext.fetch(fetchRequest)
         for case let obj as NSManagedObject in objs {
@@ -111,10 +109,10 @@ class PersistanceServiceTest: XCTestCase {
     }
     
     lazy var mockPersistantContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "pomodoroTest", managedObjectModel: self.managedObjectModel)
+        let container = NSPersistentContainer(name: "pomodoro", managedObjectModel: self.managedObjectModel)
         let description = NSPersistentStoreDescription()
         description.type = NSInMemoryStoreType
-        description.shouldAddStoreAsynchronously = false // Make it simpler in test env
+        description.shouldAddStoreAsynchronously = false
         
         container.persistentStoreDescriptions = [description]
         container.loadPersistentStores { (description, error) in

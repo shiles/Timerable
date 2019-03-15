@@ -10,15 +10,18 @@ import UIKit
 
 class MainTabbedViewController: UITabBarController {
     
+    let persistanceService = PersistanceService()
+    let audioNotifications = AudioNotificationService()
+    let settingsController = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Setting up view
-        let timerView = TimerViewController()
+        let timerView = TimerViewController(persistanceService: persistanceService, audioNotificationController: audioNotifications, settingsController: settingsController)
         let timerViewNavController = UINavigationController(rootViewController: timerView)
         timerViewNavController.tabBarItem.title = "Timer"
         
-        let statView = StatsViewController()
+        let statView = StatsViewController(persistanceService: persistanceService, settingsController: settingsController)
         let statViewNavController = UINavigationController(rootViewController: statView)
         statViewNavController.tabBarItem.title = "Stats"
 

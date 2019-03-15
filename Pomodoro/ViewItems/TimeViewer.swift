@@ -22,6 +22,26 @@ class TimeViewer: UIView {
         setupView()
     }
     
+    private func setupView() {
+        //Add view below to show progress
+        self.addSubview(timeViewerProgress)
+        NSLayoutConstraint.activate([
+            timeViewerProgress.topAnchor.constraint(equalTo: self.topAnchor),
+            timeViewerProgress.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            timeViewerProgress.leftAnchor.constraint(equalTo: self.leftAnchor),
+            timeViewerProgress.rightAnchor.constraint(equalTo: self.rightAnchor)])
+        
+        //Add the text stack and center it within the UIView
+        self.addSubview(textStack)
+        NSLayoutConstraint.activate([
+            textStack.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            textStack.centerYAnchor.constraint(equalTo: self.centerYAnchor)])
+        
+        //Add Rounded Corners to UIView
+        self.layer.cornerRadius = CGFloat(20.0)
+        self.clipsToBounds = true
+    }
+    
     /**
      Updates the Time viewer with the relevant state of the session.
      - Parameter timeChunk: The `TimeChunk` to display to calulate progress and display correct label.
@@ -49,26 +69,6 @@ class TimeViewer: UIView {
         sessionStatus.text = text
         let progress: Float =  Float(timeChunk.timeLength - timeChunk.timeRemaining) / Float(timeChunk.timeLength)
         self.timeViewerProgress.updatePercentage(percentage: CGFloat(progress), colour: colour)
-    }
-    
-    private func setupView() {
-        //Add view below to show progress
-        self.addSubview(timeViewerProgress)
-        NSLayoutConstraint.activate([
-            timeViewerProgress.topAnchor.constraint(equalTo: self.topAnchor),
-            timeViewerProgress.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            timeViewerProgress.leftAnchor.constraint(equalTo: self.leftAnchor),
-            timeViewerProgress.rightAnchor.constraint(equalTo: self.rightAnchor)])
-        
-        //Add the text stack and center it within the UIView
-        self.addSubview(textStack)
-        NSLayoutConstraint.activate([
-            textStack.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            textStack.centerYAnchor.constraint(equalTo: self.centerYAnchor)])
-        
-        //Add Rounded Corners to UIView
-        self.layer.cornerRadius = CGFloat(20.0)
-        self.clipsToBounds = true
     }
     
     lazy var timeViewerProgress: TimeViewerProgress = {

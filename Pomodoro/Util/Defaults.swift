@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension UserDefaults {
+class Defaults: UserDefaults {
     
     enum DefaultKeys: String {
         case work
@@ -18,12 +18,14 @@ extension UserDefaults {
         case subject
     }
     
+    let defaults = UserDefaults.standard
+    
     /**
      Sets up the default values to be used when no defined values
      been given by a user within the settings.
      */
     func registerDefaults() -> Void{
-      register(defaults: [DefaultKeys.work.rawValue : 1500,
+      defaults.register(defaults: [DefaultKeys.work.rawValue : 1500,
                           DefaultKeys.short.rawValue : 300,
                           DefaultKeys.long.rawValue : 1800,
                           DefaultKeys.sessionLength.rawValue : 4])
@@ -34,7 +36,7 @@ extension UserDefaults {
      - Parameter value: The number of seconds to set.
      */
     func setWorkTime(_ value: Int) -> Void {
-        set(value, forKey: DefaultKeys.work.rawValue)
+        defaults.set(value, forKey: DefaultKeys.work.rawValue)
     }
     
     /**
@@ -42,7 +44,7 @@ extension UserDefaults {
      - Returns: The `work time` in seconds
      */
     func getWorkTime() -> Int {
-        return integer(forKey: DefaultKeys.work.rawValue)
+        return defaults.integer(forKey: DefaultKeys.work.rawValue)
     }
     
     /**
@@ -50,7 +52,7 @@ extension UserDefaults {
      - Parameter value: The number of seconds to set.
      */
     func setLongTime(_ value: Int) -> Void {
-        set(value, forKey: DefaultKeys.long.rawValue)
+        defaults.set(value, forKey: DefaultKeys.long.rawValue)
     }
     
     /**
@@ -58,7 +60,7 @@ extension UserDefaults {
      - Returns: The `work time` in seconds
      */
     func getLongTime() -> Int {
-        return integer(forKey: DefaultKeys.long.rawValue)
+        return defaults.integer(forKey: DefaultKeys.long.rawValue)
     }
     
     /**
@@ -66,7 +68,7 @@ extension UserDefaults {
      - Parameter value: The number of seconds to set.
      */
     func setShortTime(_ value: Int) -> Void {
-        set(value, forKey: DefaultKeys.short.rawValue)
+        defaults.set(value, forKey: DefaultKeys.short.rawValue)
     }
     
     /**
@@ -74,23 +76,23 @@ extension UserDefaults {
      - Returns: The `work time` in seconds
      */
     func getShortTime() -> Int {
-        return integer(forKey: DefaultKeys.short.rawValue)
+        return defaults.integer(forKey: DefaultKeys.short.rawValue)
     }
     
     /**
      Sets the session length in number of work chunks.
      - Parameter value: The number of sessions.
      */
-    func setSessionLength(_ value: Int) -> Void {
-        set(value, forKey: DefaultKeys.sessionLength.rawValue)
+    func setNumberOfSessions(_ value: Int) -> Void {
+        defaults.set(value, forKey: DefaultKeys.sessionLength.rawValue)
     }
     
     /**
      Gets the session length in the number of work chunks
      - Returns: The number of `sessions`.
      */
-    func getSessionLength() -> Int {
-        return integer(forKey: DefaultKeys.sessionLength.rawValue)
+    func getNumberOfSessions() -> Int {
+        return defaults.integer(forKey: DefaultKeys.sessionLength.rawValue)
     }
     
     /**
@@ -98,7 +100,7 @@ extension UserDefaults {
      - Parameter value: the subject
      */
     func setSubject(_ value: String) -> Void {
-        set(value, forKey: DefaultKeys.subject.rawValue)
+        defaults.set(value, forKey: DefaultKeys.subject.rawValue)
     }
     
     /**
@@ -106,6 +108,6 @@ extension UserDefaults {
      - Returns: The subject for the session
      */
     func getSubjectName() -> String {
-        return string(forKey: DefaultKeys.subject.rawValue)!
+        return defaults.string(forKey: DefaultKeys.subject.rawValue)!
     }
 }

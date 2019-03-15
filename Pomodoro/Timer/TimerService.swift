@@ -1,5 +1,5 @@
 //
-//  TimerController.swift
+//  TimerService.swift
 //  Pomodoro
 //
 //  Created by Sonnie Hiles on 14/01/2019.
@@ -12,20 +12,22 @@ protocol TimeTickerDelegate {
     func timerDecrement(timeChunk: TimeChunk)
     func resetTimerDisplay(timeChunk: TimeChunk)
     func isFinished()
-    func chunkIsDone()
+    func chunkCompleted()
 }
 
-class TimeController: NSObject {
+class TimerService {
  
     var timer: Timer = Timer()
-    let defaults = UserDefaults.standard
+    private let defaults: Defaults!
     var timeTickerDelegate: TimeTickerDelegate!
-    let persistanceService: PersistanceService = PersistanceService()
-    let notificationService = NotificationService()
-    var session: [TimeChunk]?
+    private let persistanceService: PersistanceService!
+    private let notificationService: NotificationService!
+    var session: [TimeChunk]!
     
-    override init() {
-        super.init()
+    init(persistanceService: PersistanceService, notificationService: NotificationService, defaults: Defaults) {
+        self.persistanceService = persistanceService
+        self.notificationService = notificationService
+        self.defaults = defaults
         self.session = buildTimeArray()
     }
     
@@ -33,7 +35,7 @@ class TimeController: NSObject {
      Starts the timer.
      */
     func startTimer() -> Void {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(TimeController.decrementTimer), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(TimerService.decrementTimer), userInfo: nil, repeats: true)
         notificationService.scheduleNotifications(timeChunks: session ?? [])
     }
     
@@ -53,11 +55,10 @@ class TimeController: NSObject {
         session?[0].timeRemaining -= 1
         timeTickerDelegate.timerDecrement(timeChunk: session![0])
         
-        //Remove the time chunk if theres not time remaining
         if isChunkDone() {
             saveProgress(timeChunk: session![0])
             _ = session?.removeFirst()
-            timeTickerDelegate.chunkIsDone()
+            timeTickerDelegate.chunkCompleted()
         }
         
         isSessionDone()
@@ -81,7 +82,6 @@ class TimeController: NSObject {
         stopTimer()
         saveProgress(timeChunk: session![0])
         session = buildTimeArray()
-        notificationService.removeNotifications()
         timeTickerDelegate.resetTimerDisplay(timeChunk: session![0])
         timeTickerDelegate.isFinished()
     }
@@ -90,7 +90,7 @@ class TimeController: NSObject {
      Checks to see if the session is complete and then handles the state
      */
     private func isSessionDone() -> Void {
-        if session?.count == 0 {
+        if session?.isEmpty ?? true {
             resetSession()
         }
     }
@@ -120,56 +120,44 @@ class TimeController: NSObject {
      - Returns: A array of TimeChunks.
      */
     private func buildTimeArray() -> [TimeChunk]{
-        let work: Int = defaults.getWorkTime()
-        let short: Int = defaults.getShortTime()
-        let long: Int = defaults.getLongTime()
-        let sessions = defaults.getSessionLength()
-        
+        let work = TimeChunk(type: TimeTypes.work, initialTime: defaults.getWorkTime())
+        let short = TimeChunk(type: TimeTypes.short, initialTime: defaults.getShortTime())
+        let long = TimeChunk(type: TimeTypes.long, initialTime: defaults.getLongTime())
+        let numberOfSessions = defaults.getNumberOfSessions()
         var timeChunks: [TimeChunk] = Array()
-        //Builds the number of sessions of work / rest
-        for i in 1...sessions {
-            let workTime: TimeChunk = TimeChunk(type: TimeTypes.work, timeLength: work, timeRemaining: work)
-            let workBreak: TimeChunk!
-            //Checks weather to add a short break or a long break pased on position
-            if i != sessions {
-                workBreak = TimeChunk(type: TimeTypes.short, timeLength: short, timeRemaining: short)
-            } else {
-                workBreak = TimeChunk(type: TimeTypes.long, timeLength: long, timeRemaining: long)
-            }
-            
-            timeChunks.append(workTime)
-            timeChunks.append(workBreak)
+
+        for session in 1...numberOfSessions {
+            timeChunks.append(work)
+            timeChunks.append(session == numberOfSessions ? long : short)
         }
         
         return timeChunks
     }
 }
 
-extension TimeController: SettingsDelegate {
+extension TimerService: SettingsDelegate {
     
     /**
      Recalculates the timechunks based on the new user defualts.
      */
     func recalculateTimeChunks() {
         session = session?.map {
-            switch($0.type){
-                case .work?:
-                    var timeChunk = $0
+            switch($0.type!){
+                case .work:
+                    var timeChunk = $0 as TimeChunk
                     timeChunk.timeLength = defaults.getWorkTime()
                     timeChunk.timeRemaining = defaults.getWorkTime()
                     return timeChunk
-                case .short?:
-                    var timeChunk = $0
+                case .short:
+                    var timeChunk = $0 as TimeChunk
                     timeChunk.timeLength = defaults.getShortTime()
                     timeChunk.timeRemaining = defaults.getShortTime()
                     return timeChunk
-                case .long?:
-                    var timeChunk = $0
+                case .long:
+                    var timeChunk = $0  as TimeChunk
                     timeChunk.timeLength = defaults.getLongTime()
                     timeChunk.timeRemaining = defaults.getLongTime()
                     return timeChunk
-                case .none:
-                    return $0
             }
         }
         timeTickerDelegate.resetTimerDisplay(timeChunk: session![0])
