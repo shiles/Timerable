@@ -17,7 +17,7 @@ protocol TimeTickerDelegate {
 
 class TimerService {
  
-    var timer: Timer = Timer()
+    private(set) var timer: Timer = Timer()
     private let defaults: Defaults!
     var timeTickerDelegate: TimeTickerDelegate!
     private let persistanceService: PersistanceService!
@@ -53,11 +53,14 @@ class TimerService {
      */
     @objc func decrementTimer() -> Void {
         session?[0].timeRemaining -= 1
-        timeTickerDelegate.timerDecrement(timeChunk: session![0])
+        timeTickerDelegate.timerDecrement(timeChunk: session.first!)
+        
+        if defaults.getBackgroundedTime() != nil {
+            fastForward(date: defaults.getBackgroundedTime()!)
+        }
         
         if isChunkDone() {
-            saveProgress(timeChunk: session![0])
-            _ = session?.removeFirst()
+            saveProgress(timeChunk: session!.removeFirst())
             timeTickerDelegate.chunkCompleted()
         }
         
@@ -68,11 +71,10 @@ class TimerService {
      Skips the current block of time to the next.
      */
     func skipChunk() -> Void {
-        saveProgress(timeChunk: session![0])
-        _ = session?.removeFirst()
+        saveProgress(timeChunk: session!.removeFirst())
         notificationService.rescheduleNotifications(timeChunks: session ?? [])
         isSessionDone()
-        timeTickerDelegate.resetTimerDisplay(timeChunk: session![0])
+        timeTickerDelegate.resetTimerDisplay(timeChunk: session.first!)
     }
     
     /**
@@ -82,8 +84,62 @@ class TimerService {
         stopTimer()
         saveProgress(timeChunk: session![0])
         session = buildTimeArray()
-        timeTickerDelegate.resetTimerDisplay(timeChunk: session![0])
+        timeTickerDelegate.resetTimerDisplay(timeChunk: session.first!)
         timeTickerDelegate.isFinished()
+    }
+    
+    /**
+     Simulates the time elapsed since the date provided and now so that the app can support being
+     backgrounded and brought back into the forground.
+     - Parameter backgrounded: The date that the app was backgrounded.
+     */
+    func fastForward(date: Date) -> Void {
+        guard timer.isValid else { return }
+    
+        var timeElapsed = abs(Int(date.timeIntervalSinceNow))
+        
+        if timeElapsed >= session.reduce(0) { $0 + $1.timeRemaining } {
+            //Save the whole remaining session, stop the time and reset the session.
+            session.forEach {saveProgress(timeChunk: $0)}
+            stopTimer()
+            session = buildTimeArray()
+            timeTickerDelegate.isFinished()
+        } else {
+            //caluclate where we are and save what we remove
+            repeat {
+                let chunk = session.first!
+            
+                if session.first!.timeRemaining < timeElapsed {
+                    saveProgress(timeChunk: session.removeFirst())
+                } else {
+                    session[0].timeRemaining! -= timeElapsed
+                }
+                
+                timeElapsed -= chunk.timeRemaining
+            } while timeElapsed > 0
+        }
+        
+        timeTickerDelegate.resetTimerDisplay(timeChunk: session.first!)
+        defaults.removeBackgroundedTime()
+    }
+    
+    /**
+     Builds the array that will be used to determine one pomeduro session based on the user settings.
+     - Returns: A array of TimeChunks.
+     */
+    private func buildTimeArray() -> [TimeChunk]{
+        let work = TimeChunk(type: TimeTypes.work, initialTime: defaults.getWorkTime())
+        let short = TimeChunk(type: TimeTypes.short, initialTime: defaults.getShortTime())
+        let long = TimeChunk(type: TimeTypes.long, initialTime: defaults.getLongTime())
+        let numberOfSessions = defaults.getNumberOfSessions()
+        var timeChunks: [TimeChunk] = Array()
+        
+        for session in 1...numberOfSessions {
+            timeChunks.append(work)
+            timeChunks.append(session == numberOfSessions ? long : short)
+        }
+        
+        return timeChunks
     }
     
     /**
@@ -100,7 +156,7 @@ class TimerService {
      - Returns: Boolean to indicate if `timeRemaining` is 0
      */
     private func isChunkDone() -> Bool {
-        return session?[0].timeRemaining == 0
+        return session.first!.timeRemaining == 0
     }
     
     /**
@@ -113,25 +169,6 @@ class TimerService {
             let time = isChunkDone() ? timeChunk.timeLength : (timeChunk.timeLength - timeChunk.timeRemaining)
             _ = persistanceService.saveSession(seconds: time!, subject: subject)
         }
-    }
-    
-    /**
-     Builds the array that will be used to determine one pomeduro session based on the user settings.
-     - Returns: A array of TimeChunks.
-     */
-    private func buildTimeArray() -> [TimeChunk]{
-        let work = TimeChunk(type: TimeTypes.work, initialTime: defaults.getWorkTime())
-        let short = TimeChunk(type: TimeTypes.short, initialTime: defaults.getShortTime())
-        let long = TimeChunk(type: TimeTypes.long, initialTime: defaults.getLongTime())
-        let numberOfSessions = defaults.getNumberOfSessions()
-        var timeChunks: [TimeChunk] = Array()
-
-        for session in 1...numberOfSessions {
-            timeChunks.append(work)
-            timeChunks.append(session == numberOfSessions ? long : short)
-        }
-        
-        return timeChunks
     }
 }
 
@@ -160,6 +197,6 @@ extension TimerService: SettingsDelegate {
                     return timeChunk
             }
         }
-        timeTickerDelegate.resetTimerDisplay(timeChunk: session![0])
+        timeTickerDelegate.resetTimerDisplay(timeChunk: session.first!)
     }
 }

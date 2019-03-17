@@ -20,7 +20,7 @@ class TimerViewController: UIViewController {
     let persistanceService: PersistanceService!
     let audioNotificationController: AudioNotificationService!
     let settingsController: SettingsViewController!
-    let timeController: TimerService!
+    let timerService: TimerService!
     var timeViewer: TimeViewer!
     var sessionStatus: SessionStates = .ready
     var subjects: [Subject] = []
@@ -29,10 +29,10 @@ class TimerViewController: UIViewController {
         self.persistanceService = persistanceService
         self.audioNotificationController = audioNotificationController
         self.settingsController = settingsController
-        self.timeController = TimerService(persistanceService: persistanceService, notificationService: NotificationService(), defaults: Defaults())
+        self.timerService = TimerService(persistanceService: persistanceService, notificationService: NotificationService(), defaults: Defaults())
         
         super.init(nibName: nil, bundle: nil)
-        timeController.timeTickerDelegate = self
+        timerService.timeTickerDelegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -52,7 +52,7 @@ class TimerViewController: UIViewController {
         
         //Adding settings button
         let settingsButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(self.pushSettings))
-        settingsController.settingsDelegate = timeController
+        settingsController.settingsDelegate = timerService
         self.navigationItem.leftBarButtonItem = settingsButton
         
         //Adding the time ticker
@@ -73,7 +73,7 @@ class TimerViewController: UIViewController {
             timeControllButtons.topAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 10)])
         
         //Defualt values to show
-        updateTimer(timeChunk: timeController.session![0])
+        updateTimer(timeChunk: timerService.session![0])
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,7 +96,7 @@ class TimerViewController: UIViewController {
      Skips the current time chunk and starts the next one
      */
     @objc func skip() -> Void {
-        timeController.skipChunk()
+        timerService.skipChunk()
     }
     
     /**
@@ -118,7 +118,7 @@ class TimerViewController: UIViewController {
                 actionSession.addAction(UIAlertAction(title: subject.name, style: .default, handler: { (a) in
                     Defaults().setSubject(subject.name!)
                     self.sessionStatus = .timing
-                    self.timeController.startTimer()
+                    self.timerService.startTimer()
                     self.startStopButton.setTitle("PAUSE", for: .normal)
                     
                     UIView.animate(withDuration: 0.10) { () -> Void in
@@ -137,11 +137,11 @@ class TimerViewController: UIViewController {
             self.present(actionSession, animated: true, completion: nil)
         case .timing:
             sessionStatus = .paused
-            timeController.stopTimer()
+            timerService.stopTimer()
             startStopButton.setTitle("RESUME", for: .normal)
         case .paused:
             sessionStatus = .timing
-            timeController.startTimer()
+            timerService.startTimer()
             startStopButton.setTitle("PAUSE", for: .normal)
         }
     }
@@ -150,7 +150,7 @@ class TimerViewController: UIViewController {
      Resets the timer if the user wasnts to select another subject or end their current session
      */
     @objc private func reset() -> Void {
-        timeController.resetSession()
+        timerService.resetSession()
         sessionFinished()
     }
     

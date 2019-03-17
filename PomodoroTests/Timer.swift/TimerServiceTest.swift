@@ -72,7 +72,7 @@ class TimerServiceTest: XCTestCase {
         
         XCTAssertEqual(timeController.session, session, "Recalculated worktime doesn't match")
     }
-    
+
     private func buildDefualtSession() -> [TimeChunk] {
         let work = TimeChunk(type: TimeTypes.work, initialTime: defaults.getWorkTime())
         let shortBreak = TimeChunk(type: TimeTypes.short, initialTime: defaults.getShortTime())

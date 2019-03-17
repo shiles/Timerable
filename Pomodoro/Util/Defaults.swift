@@ -16,6 +16,7 @@ class Defaults: UserDefaults {
         case short
         case sessionLength
         case subject
+        case backgroundedTime
     }
     
     let defaults = UserDefaults.standard
@@ -97,7 +98,7 @@ class Defaults: UserDefaults {
     
     /**
      Sets the subject name for the session
-     - Parameter value: the subject
+     - Parameter value: The subject
      */
     func setSubject(_ value: String) -> Void {
         defaults.set(value, forKey: DefaultKeys.subject.rawValue)
@@ -109,5 +110,28 @@ class Defaults: UserDefaults {
      */
     func getSubjectName() -> String {
         return defaults.string(forKey: DefaultKeys.subject.rawValue)!
+    }
+    
+    /**
+     Sets the time the app was backgrounded.
+     - Parameter backgroundedTime: The date the app was backgrounded
+     */
+    func setBackgroundedTime(_ backgroundedTime: Date) {
+        defaults.set(backgroundedTime, forKey: DefaultKeys.backgroundedTime.rawValue)
+    }
+    
+    /**
+     Gets the time the app was backgrounded.
+     - Returns: The date that the app was backgrounded
+     */
+    func getBackgroundedTime() -> Date? {
+        return defaults.object(forKey: DefaultKeys.backgroundedTime.rawValue) as? Date
+    }
+    
+    /**
+     Remove the backgrounded time.
+     */
+    func removeBackgroundedTime() -> Void {
+        defaults.removeObject(forKey: DefaultKeys.backgroundedTime.rawValue)
     }
 }

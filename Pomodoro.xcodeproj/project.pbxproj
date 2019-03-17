@@ -92,7 +92,7 @@
 		ABA8A8D5221ADA5D00847448 /* Persistance Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Persistance Service.swift"; sourceTree = "<group>"; };
 		ABB2A5E421F60552008E4D62 /* ConverterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTest.swift; sourceTree = "<group>"; };
 		ABB9C6562225C221007CAE6B /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
-		ABD3C38F2224B67300D7F902 /* TimerServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimerServiceTest.swift; path = ../TimerServiceTest.swift/TimerServiceTest.swift; sourceTree = "<group>"; };
+		ABD3C38F2224B67300D7F902 /* TimerServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerServiceTest.swift; sourceTree = "<group>"; };
 		ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectCell.swift; sourceTree = "<group>"; };
 		ABEBC69821EF579500CFD262 /* TimeChunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeChunk.swift; sourceTree = "<group>"; };
 		ABEBC69C21F2009300CFD262 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -278,7 +278,8 @@
 			children = (
 				ABD3C38F2224B67300D7F902 /* TimerServiceTest.swift */,
 			);
-			path = Timer;
+			name = Timer;
+			path = Timer.swift;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
