@@ -12,11 +12,13 @@ class StatsViewController: UIViewController {
     
     var subjects: [Subject]!
     let persistanceService: PersistanceService!
+    let statsService: StatsService!
     let settingsController: SettingsViewController!
     
-    init(persistanceService: PersistanceService, settingsController: SettingsViewController) {
+    init(persistanceService: PersistanceService, statsService: StatsService, settingsController: SettingsViewController) {
         self.persistanceService = persistanceService
         self.settingsController = settingsController
+        self.statsService = statsService
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -48,25 +50,6 @@ class StatsViewController: UIViewController {
         self.tableView.reloadData()
     }
     
-    /**
-    Gets all the sessions from a subject and sums the time spent on that subject
-     - Parameter subject: The `subject` you want to know the overall time for
-     - Returns: Sum of time time spend in `subject`
-     */
-    private func getOverallSessionTime(subject: Subject) -> Int {
-        let sessions: [Session] = persistanceService.fetchSessions(subject: subject)
-        return Int(sessions.reduce(0) { $0 + $1.seconds })
-    }
-    
-    /**
-     Gets the total session time for all the subjects.
-     - Returns: Sum of time time spend studying
-     */
-    private func getTotalSessionTime() -> Int {
-        let sessions: [Session] = persistanceService.fetchAllSessions()
-        return Int(sessions.reduce(0) { $0 + $1.seconds })
-    }
-    
     lazy var statStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [tableView])
         stack.axis = .horizontal
@@ -95,12 +78,12 @@ extension StatsViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "StatCell")
         cell.textLabel?.text = subject.name
-        cell.detailTextLabel?.text = Format.timeToStringWords(seconds: getOverallSessionTime(subject: subject))
+        cell.detailTextLabel?.text = Format.timeToStringWords(seconds: statsService.getOverallSessionTime(subject: subject))
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return String(format: "Total: %@", Format.timeToStringWords(seconds: getTotalSessionTime()))
+        return String(format: "Total: %@", Format.timeToStringWords(seconds: statsService.getTotalSessionTime()))
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

@@ -12,10 +12,10 @@ import XCTest
 class TimerServiceTest: XCTestCase {
 
     var timeController: TimerService!
-    let defaults = MockDefualts()
+    let defaults = MockTimerDefualts()
     
     override func setUp() {
-        timeController = TimerService(persistanceService: MockPersistanceService(), notificationService: NotificationService(), defaults: MockDefualts())
+        timeController = TimerService(persistanceService: MockTimerPersistanceService(), notificationService: NotificationService(), defaults: MockTimerDefualts())
         timeController.timeTickerDelegate = MockTimeTickerDeligate()
     }
     
@@ -92,7 +92,7 @@ class MockTimeTickerDeligate: TimeTickerDelegate {
     func chunkCompleted() {}
 }
 
-class MockPersistanceService: PersistanceService {
+class MockTimerPersistanceService: PersistanceService {
     override func fetchSubject(name: String) -> Subject? {
         let subject = Subject(context: context)
         subject.name = "English"
@@ -104,7 +104,7 @@ class MockPersistanceService: PersistanceService {
     }
 }
 
-class MockDefualts: Defaults {
+class MockTimerDefualts: Defaults {
     override func getWorkTime() -> Int {
         return 1500
     }
