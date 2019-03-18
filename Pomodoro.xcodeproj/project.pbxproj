@@ -161,11 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				AB8D28612208FE41000C4312 /* View Controllers */,
-				AB348E1621F6389400A97CEA /* ViewItems */,
-				ABA8A8D4221ADA1D00847448 /* Persistance */,
-				AB883BA722292C5A00D0DA09 /* Notification */,
+				ABBD94FC223F64D500C48C08 /* Service */,
 				AB8A015221F39F1400D0F6EA /* Util */,
-				AB5EF90D21ECB2AA0034A276 /* Timer */,
 				AB38C43921EBA306003C77D7 /* AppDelegate.swift */,
 				AB2799BD2219CBD200D092C9 /* pomodoro.xcdatamodeld */,
 				AB38C44021EBA307003C77D7 /* Assets.xcassets */,
@@ -195,23 +192,23 @@
 			path = PomodoroUITests;
 			sourceTree = "<group>";
 		};
-		AB5EF90D21ECB2AA0034A276 /* Timer */ = {
+		AB5EF90D21ECB2AA0034A276 /* Timer Service */ = {
 			isa = PBXGroup;
 			children = (
 				AB5EF90E21ECB2CE0034A276 /* TimerService.swift */,
 				AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */,
 				ABEBC69821EF579500CFD262 /* TimeChunk.swift */,
 			);
-			path = Timer;
+			path = "Timer Service";
 			sourceTree = "<group>";
 		};
-		AB883BA722292C5A00D0DA09 /* Notification */ = {
+		AB883BA722292C5A00D0DA09 /* Notification Service */ = {
 			isa = PBXGroup;
 			children = (
 				AB883BA822292CCE00D0DA09 /* AudioNotificationService.swift */,
 				AB8E203422362B550068B16A /* NotificationService.swift */,
 			);
-			path = Notification;
+			path = "Notification Service";
 			sourceTree = "<group>";
 		};
 		AB883BAA22296ABD00D0DA09 /* Persistance */ = {
@@ -235,6 +232,7 @@
 		AB8D28612208FE41000C4312 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AB348E1621F6389400A97CEA /* ViewItems */,
 				AB8D28662209BB95000C4312 /* Storyboards */,
 				ABEBC69C21F2009300CFD262 /* SettingsViewController.swift */,
 				AB38C43B21EBA306003C77D7 /* TimerViewController.swift */,
@@ -252,7 +250,7 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		ABA8A8D4221ADA1D00847448 /* Persistance */ = {
+		ABA8A8D4221ADA1D00847448 /* Persistance Service */ = {
 			isa = PBXGroup;
 			children = (
 				AB40059B2224EDE1004EABD7 /* Subject+CoreDataClass.swift */,
@@ -261,7 +259,7 @@
 				AB40059E2224EDE1004EABD7 /* Session+CoreDataProperties.swift */,
 				ABA8A8D5221ADA5D00847448 /* Persistance Service.swift */,
 			);
-			path = Persistance;
+			path = "Persistance Service";
 			sourceTree = "<group>";
 		};
 		ABB2A5E321F60537008E4D62 /* Util */ = {
@@ -271,6 +269,16 @@
 				AB2103612225EFEF00D4101F /* FormatTest.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		ABBD94FC223F64D500C48C08 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				AB5EF90D21ECB2AA0034A276 /* Timer Service */,
+				AB883BA722292C5A00D0DA09 /* Notification Service */,
+				ABA8A8D4221ADA1D00847448 /* Persistance Service */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		ABD3C38E2224B65F00D7F902 /* Timer */ = {
