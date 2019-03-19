@@ -62,6 +62,17 @@ class PersistanceServiceTest: XCTestCase {
         XCTAssertEqual(results.count, 1)
     }
     
+    func testFetchSessionsDateRange() {
+        let subject = service.saveSubject(name: "CS")
+        _ = service.saveSession(seconds: 60, subject: subject!)
+        
+        let startDate = Calendar.current.startOfDay(for: Date())
+        let endDate = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: startDate)!
+        
+        let results = service.fetchSessionsDateRange(start: startDate, end: endDate)
+        XCTAssertEqual(results.count, 1)
+    }
+    
     func testRemove() {
         _ = service.saveSubject(name: "Security")
         let subjects = service.fetchAllSubjects()

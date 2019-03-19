@@ -38,6 +38,8 @@ class StatsViewController: UIViewController {
             statStack.topAnchor.constraint(equalTo: self.view.topAnchor),
             statStack.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)])
         
+        _ = statsService.getLastWeeksSessionTimes()
+        
         self.subjects = persistanceService.fetchAllSubjects()
     }
     

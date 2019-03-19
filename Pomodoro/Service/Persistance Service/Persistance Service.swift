@@ -105,6 +105,20 @@ class PersistanceService {
     }
     
     /**
+     Gets a specific subjects sessions between a daterange
+     - Parameters:
+            start: The start date
+            end: The enddate
+     - Returns: A list of sessions within the date range
+     */
+    func fetchSessionsDateRange(start: Date, end: Date) -> [Session] {
+        let request: NSFetchRequest<Session> = Session.fetchRequest()
+        request.predicate = NSPredicate(format: "(date >= %@) AND (date <= %@)", argumentArray: [start, end])
+        let results = try? persistentContainer.viewContext.fetch(request)
+        return results ?? []
+    }
+    
+    /**
      Removes the object with the given id.
      - Parameter objectID: The object's `object id`
      */
