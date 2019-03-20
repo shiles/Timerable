@@ -43,8 +43,6 @@ class StatsServiceTest: XCTestCase {
         }
         return lastWeek
     }
-    
-
 }
 
 class MockStatsPersistanceService: PersistanceService {

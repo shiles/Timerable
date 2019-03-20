@@ -36,4 +36,15 @@ class Format {
         return formatter.string(from: time!) ?? ""
     }
     
+    /**
+     Formats a date into the corresponding weekday
+     - Parameter date: The date to be formatted
+     - Returns: The weekday as a string
+     */
+    static func dateToWeekDay(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE"
+        return formatter.string(from: date)
+    }
+    
 }

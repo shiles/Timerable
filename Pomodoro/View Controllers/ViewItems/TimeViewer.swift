@@ -51,19 +51,16 @@ class TimeViewer: UIView {
         
         var text: String
         var colour: UIColor
-        switch timeChunk.type {
-            case .work?:
+        switch timeChunk.type! {
+            case .work:
                 text = "WORK"
                 colour = .orange
-            case .short?:
+            case .short:
                 text = "SHORT BREAK"
-                colour = UIColor.red
-            case .long?:
+                colour = .yellow
+            case .long:
                 text = "LONG BREAK"
-                colour = .green
-            default:
-                text = "WORK"
-                colour = .orange
+                colour = .yellow
         }
         
         sessionStatus.text = text

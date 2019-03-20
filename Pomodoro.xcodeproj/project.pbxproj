@@ -24,6 +24,7 @@
 		AB4005A02224EDE1004EABD7 /* Subject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40059C2224EDE1004EABD7 /* Subject+CoreDataProperties.swift */; };
 		AB4005A12224EDE1004EABD7 /* Session+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40059D2224EDE1004EABD7 /* Session+CoreDataClass.swift */; };
 		AB4005A22224EDE1004EABD7 /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40059E2224EDE1004EABD7 /* Session+CoreDataProperties.swift */; };
+		AB57D1A222420C4B000AC6EE /* StatBarGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB57D1A122420C4B000AC6EE /* StatBarGraph.swift */; };
 		AB5EF90F21ECB2CE0034A276 /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5EF90E21ECB2CE0034A276 /* TimerService.swift */; };
 		AB883BA922292CCE00D0DA09 /* AudioNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB883BA822292CCE00D0DA09 /* AudioNotificationService.swift */; };
 		AB883BAC22296BBB00D0DA09 /* PersistanceServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB883BAB22296BBB00D0DA09 /* PersistanceServiceTest.swift */; };
@@ -84,6 +85,7 @@
 		AB40059C2224EDE1004EABD7 /* Subject+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AB40059D2224EDE1004EABD7 /* Session+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataClass.swift"; sourceTree = "<group>"; };
 		AB40059E2224EDE1004EABD7 /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AB57D1A122420C4B000AC6EE /* StatBarGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatBarGraph.swift; sourceTree = "<group>"; };
 		AB5EF90E21ECB2CE0034A276 /* TimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerService.swift; sourceTree = "<group>"; };
 		AB883BA822292CCE00D0DA09 /* AudioNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioNotificationService.swift; sourceTree = "<group>"; };
 		AB883BAB22296BBB00D0DA09 /* PersistanceServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceServiceTest.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				ABFFD7AC21FE9A260033199D /* TimeSelectionTable.swift */,
 				ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */,
 				ABFA9F55221C2FE700B76FAA /* SubjectManagementTable.swift */,
+				AB57D1A122420C4B000AC6EE /* StatBarGraph.swift */,
 			);
 			path = ViewItems;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				AB2103602225EE9500D4101F /* Format.swift in Sources */,
 				AB4005A02224EDE1004EABD7 /* Subject+CoreDataProperties.swift in Sources */,
 				ABEBC69921EF579500CFD262 /* TimeChunk.swift in Sources */,
+				AB57D1A222420C4B000AC6EE /* StatBarGraph.swift in Sources */,
 				AB8D28632208FFAF000C4312 /* MainViewController.swift in Sources */,
 				ABBD94FF223F658000C48C08 /* StatsService.swift in Sources */,
 				AB348E1C21F686A700A97CEA /* TimeViewerProgress.swift in Sources */,

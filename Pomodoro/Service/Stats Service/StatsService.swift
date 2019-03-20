@@ -71,6 +71,6 @@ class StatsService {
             lastWeek.append(Calendar.current.date(byAdding: .day, value: -i, to: now)!)
         }
         
-        return lastWeek.reversed()
+        return lastWeek
     }
 }

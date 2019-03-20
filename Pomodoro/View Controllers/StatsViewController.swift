@@ -50,11 +50,12 @@ class StatsViewController: UIViewController {
         //Adding data
         self.subjects = persistanceService.fetchAllSubjects()
         self.tableView.reloadData()
+        self.weekView.refreshData()
     }
     
     lazy var statStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [tableView])
-        stack.axis = .horizontal
+        let stack = UIStackView(arrangedSubviews: [weekView, tableView])
+        stack.axis = .vertical
         stack.alignment = .fill
         stack.distribution = .fillProportionally
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -66,6 +67,11 @@ class StatsViewController: UIViewController {
         table.dataSource = self
         table.delegate = self
         return table
+    }()
+    
+    lazy var weekView: StatBarGraph = {
+        let week = StatBarGraph(statService: statsService)
+        return week
     }()
 }
 
