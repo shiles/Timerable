@@ -11,6 +11,7 @@ import XCTest
 
 class FormatTest: XCTestCase {
 
+    
     func testWithLengthInHoursAndMinutesWords() {
         let expected = "1 hour, 1 minute"
         XCTAssertEqual(expected, Format.timeToStringWords(seconds: 3660))
@@ -29,5 +30,14 @@ class FormatTest: XCTestCase {
     func testWithLengthInSeconds(){
         let expected = "59"
         XCTAssertEqual(expected, Format.timeToString(seconds: 59))
+    }
+    
+    func testDateToWeekDay() {
+        let expected = "Wednesday"
+        var components = DateComponents()
+        components.day = 20
+        components.month = 3
+        components.year = 2019
+        XCTAssertEqual(expected, Format.dateToWeekDay(date: Calendar.current.date(from: components)!))
     }
 }

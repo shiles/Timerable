@@ -35,12 +35,11 @@ class StatsViewController: UIViewController {
         NSLayoutConstraint.activate([
             statStack.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             statStack.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-            statStack.topAnchor.constraint(equalTo: self.view.topAnchor),
-            statStack.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)])
+            statStack.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            statStack.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)])
         
         _ = statsService.getLastWeeksSessionTimes()
-        
-        self.subjects = persistanceService.fetchAllSubjects()
+        self.subjects = persistanceService.fetchAllSubjects()        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,7 +49,7 @@ class StatsViewController: UIViewController {
         //Adding data
         self.subjects = persistanceService.fetchAllSubjects()
         self.tableView.reloadData()
-        self.weekView.refreshData()
+        self.weekView.reloadData()
     }
     
     lazy var statStack: UIStackView = {
@@ -71,6 +70,7 @@ class StatsViewController: UIViewController {
     
     lazy var weekView: StatBarGraph = {
         let week = StatBarGraph(statService: statsService)
+        week.backgroundColor = .white
         return week
     }()
 }

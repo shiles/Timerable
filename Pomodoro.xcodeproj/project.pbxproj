@@ -26,6 +26,7 @@
 		AB4005A22224EDE1004EABD7 /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40059E2224EDE1004EABD7 /* Session+CoreDataProperties.swift */; };
 		AB57D1A222420C4B000AC6EE /* StatBarGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB57D1A122420C4B000AC6EE /* StatBarGraph.swift */; };
 		AB5EF90F21ECB2CE0034A276 /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5EF90E21ECB2CE0034A276 /* TimerService.swift */; };
+		AB85A8AD224360BA003EC063 /* StatBarGraphCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB85A8AC224360BA003EC063 /* StatBarGraphCell.swift */; };
 		AB883BA922292CCE00D0DA09 /* AudioNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB883BA822292CCE00D0DA09 /* AudioNotificationService.swift */; };
 		AB883BAC22296BBB00D0DA09 /* PersistanceServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB883BAB22296BBB00D0DA09 /* PersistanceServiceTest.swift */; };
 		AB8A015421F39F6100D0F6EA /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8A015321F39F6100D0F6EA /* Converter.swift */; };
@@ -87,6 +88,7 @@
 		AB40059E2224EDE1004EABD7 /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AB57D1A122420C4B000AC6EE /* StatBarGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatBarGraph.swift; sourceTree = "<group>"; };
 		AB5EF90E21ECB2CE0034A276 /* TimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerService.swift; sourceTree = "<group>"; };
+		AB85A8AC224360BA003EC063 /* StatBarGraphCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatBarGraphCell.swift; sourceTree = "<group>"; };
 		AB883BA822292CCE00D0DA09 /* AudioNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioNotificationService.swift; sourceTree = "<group>"; };
 		AB883BAB22296BBB00D0DA09 /* PersistanceServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceServiceTest.swift; sourceTree = "<group>"; };
 		AB8A015321F39F6100D0F6EA /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */,
 				ABFA9F55221C2FE700B76FAA /* SubjectManagementTable.swift */,
 				AB57D1A122420C4B000AC6EE /* StatBarGraph.swift */,
+				AB85A8AC224360BA003EC063 /* StatBarGraphCell.swift */,
 			);
 			path = ViewItems;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 				ABFA9F56221C2FE700B76FAA /* SubjectManagementTable.swift in Sources */,
 				AB4005A22224EDE1004EABD7 /* Session+CoreDataProperties.swift in Sources */,
 				AB4005A12224EDE1004EABD7 /* Session+CoreDataClass.swift in Sources */,
+				AB85A8AD224360BA003EC063 /* StatBarGraphCell.swift in Sources */,
 				AB38C43A21EBA306003C77D7 /* AppDelegate.swift in Sources */,
 				AB8A015421F39F6100D0F6EA /* Converter.swift in Sources */,
 				AB40059F2224EDE1004EABD7 /* Subject+CoreDataClass.swift in Sources */,
