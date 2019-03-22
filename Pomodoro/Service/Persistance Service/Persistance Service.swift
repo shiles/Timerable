@@ -39,6 +39,7 @@ class PersistanceService {
     func saveSubject(name: String) -> Subject? {
         guard let subject = NSEntityDescription.insertNewObject(forEntityName: "Subject", into: context) as? Subject else { return nil }
         subject.name = name
+        self.save()
         return subject
     }
     
@@ -56,6 +57,7 @@ class PersistanceService {
         session.subject = subject
         
         subject.addToSession(session)
+        self.save()
         return session
     }
     
@@ -125,6 +127,7 @@ class PersistanceService {
     func remove(objectID: NSManagedObjectID ) {
         let obj = context.object(with: objectID)
         context.delete(obj)
+        self.save()
     }
     
     /**
