@@ -33,7 +33,7 @@ class FormatTest: XCTestCase {
     }
     
     func testDateToWeekDay() {
-        let expected = "Wednesday"
+        let expected = "WED"
         var components = DateComponents()
         components.day = 20
         components.month = 3

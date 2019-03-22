@@ -37,14 +37,14 @@ class Format {
     }
     
     /**
-     Formats a date into the corresponding weekday
+     Formats a date into the corresponding weekday in a three letter format, uppercased.
      - Parameter date: The date to be formatted
-     - Returns: The weekday as a string
+     - Returns: The weekday as a string, like `MON`.
      */
     static func dateToWeekDay(date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE"
-        return formatter.string(from: date)
+        formatter.dateFormat = "E"
+        return formatter.string(from: date).uppercased()
     }
     
 }
