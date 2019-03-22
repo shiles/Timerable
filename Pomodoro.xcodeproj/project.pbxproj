@@ -12,6 +12,7 @@
 		AB2103622225EFEF00D4101F /* FormatTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2103612225EFEF00D4101F /* FormatTest.swift */; };
 		AB2799BF2219CBD200D092C9 /* pomodoro.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB2799BD2219CBD200D092C9 /* pomodoro.xcdatamodeld */; };
 		AB2A81152244A0BA00480726 /* DailyStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2A81142244A0BA00480726 /* DailyStat.swift */; };
+		AB2A81172244B52000480726 /* DailyStatTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2A81162244B52000480726 /* DailyStatTest.swift */; };
 		AB2F94C62207885E00F9F0F6 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2F94C52207885E00F9F0F6 /* Defaults.swift */; };
 		AB348E1A21F638B100A97CEA /* TimeViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB348E1921F638B100A97CEA /* TimeViewer.swift */; };
 		AB348E1C21F686A700A97CEA /* TimeViewerProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB348E1B21F686A700A97CEA /* TimeViewerProgress.swift */; };
@@ -69,6 +70,7 @@
 		AB2103612225EFEF00D4101F /* FormatTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatTest.swift; sourceTree = "<group>"; };
 		AB2799BE2219CBD200D092C9 /* pomodoro.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = pomodoro.xcdatamodel; sourceTree = "<group>"; };
 		AB2A81142244A0BA00480726 /* DailyStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStat.swift; sourceTree = "<group>"; };
+		AB2A81162244B52000480726 /* DailyStatTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStatTest.swift; sourceTree = "<group>"; };
 		AB2F94C52207885E00F9F0F6 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		AB348E1921F638B100A97CEA /* TimeViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewer.swift; sourceTree = "<group>"; };
 		AB348E1B21F686A700A97CEA /* TimeViewerProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewerProgress.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				ABBD9502223F679300C48C08 /* StatsServiceTest.swift */,
+				AB2A81162244B52000480726 /* DailyStatTest.swift */,
 			);
 			path = "Stats Service";
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				ABD3C3902224B67300D7F902 /* TimerServiceTest.swift in Sources */,
 				AB883BAC22296BBB00D0DA09 /* PersistanceServiceTest.swift in Sources */,
 				ABBD9503223F679300C48C08 /* StatsServiceTest.swift in Sources */,
+				AB2A81172244B52000480726 /* DailyStatTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -56,7 +56,7 @@ class StatsService {
             summedData.append(DailyStat(date: endDate, seconds: Int(sessions.reduce(0) { $0 + $1.seconds })))
         }
 
-        return summedData
+        return summedData.reversed()
     }
     
     /**

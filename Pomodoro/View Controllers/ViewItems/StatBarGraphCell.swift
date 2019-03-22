@@ -38,7 +38,7 @@ class StatBarGraphCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private let label: UILabel = {
+    let label: UILabel = {
         var label = UILabel(frame: .zero)
         label.text = "MON"
         label.textColor = .black
@@ -47,7 +47,7 @@ class StatBarGraphCell: UICollectionViewCell {
         return label
     }()
     
-    private let bar: UIView = {
+    let bar: UIView = {
         var bar = UIView(frame: .zero)
         bar.backgroundColor = .orange
         bar.translatesAutoresizingMaskIntoConstraints = false

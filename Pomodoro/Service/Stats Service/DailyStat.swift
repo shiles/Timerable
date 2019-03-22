@@ -8,7 +8,8 @@
 
 import Foundation
 
-class DailyStat: Equatable {
+class DailyStat: Equatable, Comparable {
+    
     let date:Date!
     let seconds: Int!
     
@@ -19,5 +20,9 @@ class DailyStat: Equatable {
 
     static func == (lhs: DailyStat, rhs: DailyStat) -> Bool {
         return lhs.date == rhs.date && lhs.seconds == rhs.seconds
+    }
+    
+    static func < (lhs: DailyStat, rhs: DailyStat) -> Bool {
+        return lhs.seconds < rhs.seconds
     }
 }
