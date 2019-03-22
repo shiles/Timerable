@@ -29,18 +29,19 @@ class StatsServiceTest: XCTestCase {
     }
     
     func testLastWeeksSessionTimes() {
-        let results: [(Date, Int)]  = statsService.getLastWeeksSessionTimes()
-        let expected: [(Date, Int)] = buildLastWeeksValues()
+        let results: [DailyStat] = statsService.getLastWeeksSessionTimes()
+        let expected: [DailyStat] = buildLastWeeksValues()
         
-        XCTAssertEqual(expected.first?.1, results.first?.1)
+        XCTAssertEqual(expected.first?.seconds, results.first?.seconds)
     }
     
-    private func buildLastWeeksValues() -> [(Date, Int)] {
+    private func buildLastWeeksValues() -> [DailyStat] {
         let now = Date()
-        var lastWeek: [(Date, Int)] = [(now,120)]
+        var lastWeek: [DailyStat] = [DailyStat(date: now, seconds: 120)]
         for i in 1...6 {
-            lastWeek.append((Calendar.current.date(byAdding: .day, value: -i, to: now)!, 0))
+            lastWeek.append(DailyStat(date: Calendar.current.date(byAdding: .day, value: -i, to: now)!, seconds: 0))
         }
+        
         return lastWeek
     }
 }

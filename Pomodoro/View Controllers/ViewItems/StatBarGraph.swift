@@ -10,8 +10,7 @@ import UIKit
 
 public class StatBarGraph: UICollectionView {
 
-    var data: [(Date, Int)] = [(Date(), 1000), (Date(), 150), (Date(), 573),
-                               (Date(), 346), (Date(), 850), (Date(), 234), (Date(), 900)]
+    var data: [DailyStat] = [DailyStat(date: Date(), seconds: 1341), DailyStat(date: Date(), seconds: 123), DailyStat(date: Date(), seconds: 467), DailyStat(date: Date(), seconds: 534), DailyStat(date: Date(), seconds: 876), DailyStat(date: Date(), seconds: 1234)]
     var statService: StatsService!
     
     init(statService: StatsService){

@@ -44,16 +44,16 @@ class StatsService {
      Gets the session time for each day in the last week from a date
      - Returns: Sum of time time spend studying
      */
-    func getLastWeeksSessionTimes() -> [(Date, Int)] {
+    func getLastWeeksSessionTimes() -> [DailyStat] {
         let lastWeek = self.getDatesForLastWeek()
    
-        var summedData: [(Date, Int)] = Array()
+        var summedData: [DailyStat] = Array()
         for date in lastWeek {
             let startDate = Calendar.current.startOfDay(for: date)
             let endDate = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: startDate)!
             let sessions = persistanceService.fetchSessionsDateRange(start: startDate, end: endDate)
             
-            summedData.append((endDate, Int(sessions.reduce(0) { $0 + $1.seconds })))
+            summedData.append(DailyStat(date: endDate, seconds: Int(sessions.reduce(0) { $0 + $1.seconds })))
         }
 
         return summedData

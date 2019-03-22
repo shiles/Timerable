@@ -38,7 +38,6 @@ class StatsViewController: UIViewController {
             statStack.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             statStack.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)])
         
-        _ = statsService.getLastWeeksSessionTimes()
         self.subjects = persistanceService.fetchAllSubjects()        
     }
     
