@@ -64,7 +64,12 @@ class TimerService {
             timeTickerDelegate.chunkCompleted()
         }
         
-        isSessionDone()
+        if isSessionDone() {
+            stopTimer()
+            session = buildTimeArray()
+            timeTickerDelegate.resetTimerDisplay(timeChunk: session.first!)
+            timeTickerDelegate.isFinished()
+        }
     }
     
     /**
@@ -73,7 +78,11 @@ class TimerService {
     func skipChunk() -> Void {
         saveProgress(timeChunk: session!.removeFirst())
         notificationService.rescheduleNotifications(timeChunks: session ?? [])
-        isSessionDone()
+        if isSessionDone(){
+            stopTimer()
+            session = buildTimeArray()
+            timeTickerDelegate.isFinished()
+        }
         timeTickerDelegate.resetTimerDisplay(timeChunk: session.first!)
     }
     
@@ -82,7 +91,7 @@ class TimerService {
      */
     func resetSession() -> Void {
         stopTimer()
-        saveProgress(timeChunk: session![0])
+        saveProgress(timeChunk: session.first!)
         session = buildTimeArray()
         timeTickerDelegate.resetTimerDisplay(timeChunk: session.first!)
         timeTickerDelegate.isFinished()
@@ -144,11 +153,10 @@ class TimerService {
     
     /**
      Checks to see if the session is complete and then handles the state
+     - Returns: Boolean to indicate if `sessions` is done
      */
-    private func isSessionDone() -> Void {
-        if session?.isEmpty ?? true {
-            resetSession()
-        }
+    private func isSessionDone() -> Bool {
+        return session?.isEmpty ?? true
     }
     
     /**
