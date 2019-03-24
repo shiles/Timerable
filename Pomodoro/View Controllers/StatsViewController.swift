@@ -21,6 +21,7 @@ class StatsViewController: UIViewController {
         self.statsService = statsService
         
         super.init(nibName: nil, bundle: nil)
+        self.view.backgroundColor = .white
     }
     
     required init?(coder aDecoder: NSCoder) {

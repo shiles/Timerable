@@ -10,21 +10,11 @@ import UIKit
 
 class StatBarGraphCell: UICollectionViewCell {
     
-    var barHeightConstraint: NSLayoutConstraint?
+    private var barHeightConstraint: NSLayoutConstraint?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        super.backgroundColor = .lightGray
-        //Add bar
-        addSubview(bar)
-        
-        barHeightConstraint = bar.heightAnchor.constraint(equalToConstant: 200)
-        barHeightConstraint?.isActive = true
-        
-        NSLayoutConstraint.activate([
-            bar.bottomAnchor.constraint(equalTo: bottomAnchor),
-            bar.leftAnchor.constraint(equalTo: leftAnchor),
-            bar.rightAnchor.constraint(equalTo: rightAnchor)])
+        super.backgroundColor = .white
         
         //Add label to bottom of bar
         addSubview(label)
@@ -32,6 +22,26 @@ class StatBarGraphCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             label.centerXAnchor.constraint(equalTo: centerXAnchor),
             label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15)])
+        
+        //Add bar
+        addSubview(bar)
+        barHeightConstraint = bar.heightAnchor.constraint(equalToConstant: 200)
+        barHeightConstraint?.isActive = true
+        NSLayoutConstraint.activate([
+            bar.bottomAnchor.constraint(equalTo: label.topAnchor, constant:-10),
+            bar.leftAnchor.constraint(equalTo: leftAnchor),
+            bar.rightAnchor.constraint(equalTo: rightAnchor)])
+    }
+    
+    /**
+     Finds the height that the bar should be.
+     - Parameters:
+     - dailyStat: The `maximum time` within the array.
+     - seconds: The `seconds` for this bar.
+     */
+    func setBarHeight(maxTime: Int, seconds: Int) -> Void {
+        let percentFill = CGFloat(seconds)/CGFloat(maxTime)
+        self.barHeightConstraint?.constant = (self.frame.height-50 - label.frame.height) * percentFill
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,7 +50,6 @@ class StatBarGraphCell: UICollectionViewCell {
     
     let label: UILabel = {
         var label = UILabel(frame: .zero)
-        label.text = "MON"
         label.textColor = .black
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false

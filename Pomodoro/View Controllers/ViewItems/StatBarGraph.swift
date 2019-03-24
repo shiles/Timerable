@@ -34,19 +34,6 @@ public class StatBarGraph: UICollectionView {
         data = statService.getLastWeeksSessionTimes()
         super.reloadData()
     }
-    
-    
-    
-    /**
-     Finds the height that the bar should be.
-     - Parameter dailyStat: The `stat` you want to know the height for
-     - Returns: The proprotionally correct height for the bar
-     */
-    private func calculateBarHeight(dailyStat: DailyStat) -> CGFloat {
-        guard let maxTime = data.max()?.seconds, maxTime > 0 else { return 0 }
-        let percentFill = CGFloat(dailyStat.seconds!)/CGFloat(maxTime)
-        return self.frame.height * percentFill
-    }
 }
 
 extension StatBarGraph: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -57,7 +44,10 @@ extension StatBarGraph: UICollectionViewDataSource, UICollectionViewDelegateFlow
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellId", for: indexPath) as! StatBarGraphCell
         cell.label.text = Format.dateToWeekDay(date: data[indexPath.row].date)
-        cell.barHeightConstraint?.constant = calculateBarHeight(dailyStat: data[indexPath.row])
+
+        guard let maxTime:Int = data.max()?.seconds, maxTime > 0 else { return cell }
+        cell.setBarHeight(maxTime: maxTime, seconds: data[indexPath.row].seconds)
+        
         return cell
     }
     
