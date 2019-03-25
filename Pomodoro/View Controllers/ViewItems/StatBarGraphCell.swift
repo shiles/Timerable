@@ -33,6 +33,10 @@ class StatBarGraphCell: UICollectionViewCell {
             bar.rightAnchor.constraint(equalTo: rightAnchor)])
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     /**
      Finds the height that the bar should be.
      - Parameters:
@@ -44,14 +48,16 @@ class StatBarGraphCell: UICollectionViewCell {
         self.barHeightConstraint?.constant = (self.frame.height-50 - label.frame.height) * percentFill
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override var isHighlighted: Bool {
+        didSet {
+            backgroundColor = isHighlighted ? .lightGray : .white
+        }
     }
-    
+
     let label: UILabel = {
         var label = UILabel(frame: .zero)
         label.textColor = .black
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

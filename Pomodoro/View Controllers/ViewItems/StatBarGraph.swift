@@ -10,6 +10,9 @@ import UIKit
 
 public class StatBarGraph: UICollectionView {
 
+    let cellReuseId = "CellId"
+    let headerReuseId = "HeaderId"
+    let headerHeight: CGFloat = 25
     var data: [DailyStat]!
     var statService: StatsService!
     
@@ -20,10 +23,12 @@ public class StatBarGraph: UICollectionView {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         self.dataSource = self
         self.delegate = self
-        self.register(StatBarGraphCell.self, forCellWithReuseIdentifier: "CellId")
+        self.register(StatBarGraphCell.self, forCellWithReuseIdentifier: cellReuseId)
+        self.register(StatBarGraphHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerReuseId)
         
         //Setting up the collection view
         self.isScrollEnabled = false
+        self.allowsSelection = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,7 +47,7 @@ extension StatBarGraph: UICollectionViewDataSource, UICollectionViewDelegateFlow
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellId", for: indexPath) as! StatBarGraphCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseId, for: indexPath) as! StatBarGraphCell
         cell.label.text = Format.dateToWeekDay(date: data[indexPath.row].date)
 
         guard let maxTime:Int = data.max()?.seconds, maxTime > 0 else { return cell }
@@ -52,6 +57,16 @@ extension StatBarGraph: UICollectionViewDataSource, UICollectionViewDelegateFlow
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.frame.width/CGFloat(data.count+2), height: self.frame.height)
+        return CGSize(width: self.frame.width/CGFloat(data.count+2), height: self.frame.height - headerHeight)
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseId, for: indexPath) as! StatBarGraphHeaderCell
+        header.label.text = "Monday: 30 minutes"
+        return header
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: frame.size.width, height: headerHeight)
     }
 }
