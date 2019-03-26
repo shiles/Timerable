@@ -41,10 +41,21 @@ class Format {
      - Parameter date: The date to be formatted
      - Returns: The weekday as a string, like `MON`.
      */
-    static func dateToWeekDay(date: Date) -> String {
+    static func dateToShortWeekDay(date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "E"
         return formatter.string(from: date).uppercased()
+    }
+    
+    /**
+     Formats a date into the corresponding weekday in a full format.
+     - Parameter date: The date to be formatted
+     - Returns: The weekday as a string, like `MON`.
+     */
+    static func dateToWeekDay(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE"
+        return formatter.string(from: date)
     }
     
 }

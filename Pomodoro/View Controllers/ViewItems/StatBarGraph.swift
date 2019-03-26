@@ -14,17 +14,20 @@ public class StatBarGraph: UICollectionView {
     let headerReuseId = "HeaderId"
     let headerHeight: CGFloat = 25
     var data: [DailyStat]!
+    var headerText: String?
     var statService: StatsService!
     
     init(statService: StatsService){
         self.statService = statService
         data = statService.getLastWeeksSessionTimes()
-    
+        
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         self.dataSource = self
         self.delegate = self
         self.register(StatBarGraphCell.self, forCellWithReuseIdentifier: cellReuseId)
         self.register(StatBarGraphHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerReuseId)
+        
+        self.headerText = buildGraphHeader(stat: data.last!)
         
         //Setting up the collection view
         self.isScrollEnabled = false
@@ -39,6 +42,10 @@ public class StatBarGraph: UICollectionView {
         data = statService.getLastWeeksSessionTimes()
         super.reloadData()
     }
+    
+    func buildGraphHeader(stat: DailyStat) -> String {
+        return String.init(format: "%@: %@", Format.dateToWeekDay(date: stat.date), Format.timeToStringWords(seconds: stat.seconds))
+    }
 }
 
 extension StatBarGraph: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -48,8 +55,8 @@ extension StatBarGraph: UICollectionViewDataSource, UICollectionViewDelegateFlow
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseId, for: indexPath) as! StatBarGraphCell
-        cell.label.text = Format.dateToWeekDay(date: data[indexPath.row].date)
-
+        cell.label.text = Format.dateToShortWeekDay(date: data[indexPath.row].date)
+        
         guard let maxTime:Int = data.max()?.seconds, maxTime > 0 else { return cell }
         cell.setBarHeight(maxTime: maxTime, seconds: data[indexPath.row].seconds)
         
@@ -62,11 +69,16 @@ extension StatBarGraph: UICollectionViewDataSource, UICollectionViewDelegateFlow
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseId, for: indexPath) as! StatBarGraphHeaderCell
-        header.label.text = "Monday: 30 minutes"
+        header.label.text = self.headerText!
         return header
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: frame.size.width, height: headerHeight)
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.headerText = buildGraphHeader(stat: data[indexPath.row])
+        self.reloadData()
     }
 }

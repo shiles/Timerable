@@ -142,14 +142,12 @@
 		AB348E1621F6389400A97CEA /* ViewItems */ = {
 			isa = PBXGroup;
 			children = (
+				AB9FE0252249F1FB00142194 /* Cells */,
 				AB348E1921F638B100A97CEA /* TimeViewer.swift */,
 				AB348E1B21F686A700A97CEA /* TimeViewerProgress.swift */,
 				ABFFD7AC21FE9A260033199D /* TimeSelectionTable.swift */,
-				ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */,
 				ABFA9F55221C2FE700B76FAA /* SubjectManagementTable.swift */,
 				AB57D1A122420C4B000AC6EE /* StatBarGraph.swift */,
-				AB85A8AC224360BA003EC063 /* StatBarGraphCell.swift */,
-				AB8C51EA2248A4C000B7CDA4 /* StatBarGraphHeaderCell.swift */,
 			);
 			path = ViewItems;
 			sourceTree = "<group>";
@@ -264,6 +262,16 @@
 				AB38C43D21EBA306003C77D7 /* Settings.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		AB9FE0252249F1FB00142194 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */,
+				AB85A8AC224360BA003EC063 /* StatBarGraphCell.swift */,
+				AB8C51EA2248A4C000B7CDA4 /* StatBarGraphHeaderCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		ABA8A8D4221ADA1D00847448 /* Persistance Service */ = {
