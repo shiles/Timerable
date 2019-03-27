@@ -25,7 +25,7 @@ class StatBarGraphCell: UICollectionViewCell {
         
         //Add bar
         addSubview(bar)
-        barHeightConstraint = bar.heightAnchor.constraint(equalToConstant: 200)
+        barHeightConstraint = bar.heightAnchor.constraint(equalToConstant: 0)
         barHeightConstraint?.isActive = true
         NSLayoutConstraint.activate([
             bar.bottomAnchor.constraint(equalTo: label.topAnchor, constant:-10),
@@ -45,12 +45,12 @@ class StatBarGraphCell: UICollectionViewCell {
      */
     func setBarHeight(maxTime: Int, seconds: Int) -> Void {
         let percentFill = CGFloat(seconds)/CGFloat(maxTime)
-        self.barHeightConstraint?.constant = (self.frame.height-50 - label.frame.height) * percentFill
+        self.barHeightConstraint?.constant = (self.frame.height - 50) * percentFill
     }
     
     override var isHighlighted: Bool {
         didSet {
-            backgroundColor = isHighlighted ? .lightGray : .white
+            backgroundColor = isHighlighted ? UIColor.lightGray.withAlphaComponent(0.35) : .white
         }
     }
 
