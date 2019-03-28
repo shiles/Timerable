@@ -18,11 +18,11 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
     let pickerSet = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
     var settingsDelegate: SettingsDelegate!
     
+    @IBOutlet weak var workLengthLabel: UILabel!
+    @IBOutlet weak var shortLengthLabel: UILabel!
+    @IBOutlet weak var longLengthLabel: UILabel!
     @IBOutlet weak var appVertion: UILabel!
-    @IBOutlet weak var workLengthButton: UIButton!
-    @IBOutlet weak var shortLengthButton: UIButton!
-    @IBOutlet weak var longLengthButton: UIButton!
-    @IBOutlet weak var sessionLengthButton: UIButton!
+    @IBOutlet weak var sessionLengthLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -30,18 +30,21 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         
         //Getting up-to-date values to display
         appVertion.text = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
-        workLengthButton.setTitle(Format.timeToStringWords(seconds: defaults.getWorkTime()), for: .normal)
-        shortLengthButton.setTitle(Format.timeToStringWords(seconds: defaults.getShortTime()), for: .normal)
-        shortLengthButton.setTitle(Format.timeToStringWords(seconds: defaults.getShortTime()), for: .normal)
-        longLengthButton.setTitle(Format.timeToStringWords(seconds: defaults.getLongTime()), for: .normal)
-        sessionLengthButton.setTitle(String(format: "%d sessions", defaults.getNumberOfSessions()), for: .normal)
+        setLabelsToDefualtsValues()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         settingsDelegate.recalculateTimeChunks()
     }
+    
+    private func setLabelsToDefualtsValues() {
+        workLengthLabel.text = Format.timeToStringWords(seconds: defaults.getWorkTime())
+        shortLengthLabel.text = Format.timeToStringWords(seconds: defaults.getShortTime())
+        longLengthLabel.text = Format.timeToStringWords(seconds: defaults.getLongTime())
+        sessionLengthLabel.text = String(format: "%d sessions", defaults.getNumberOfSessions())
+    }
 
-    @IBAction func setWorkLength(_ sender: Any) {
+    private func setWorkLength() {
         let saveFn: (Int) -> Void = defaults.setWorkTime(_:)
         
         let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defaults.getWorkTime()), saveToDefaults: saveFn)
@@ -49,7 +52,7 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         navigationController?.pushViewController(newTable, animated: true)
     }
     
-    @IBAction func setShortLength(_ sender: Any) {
+    private func setShortLength() {
         let saveFn: (Int) -> Void = defaults.setShortTime(_:)
         
         let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defaults.getShortTime()), saveToDefaults: saveFn)
@@ -57,7 +60,7 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         navigationController?.pushViewController(newTable, animated: true)
     }
     
-    @IBAction func setLongLength(_ sender: Any) {
+    private func setLongLength() {
         let saveFn: (Int) -> Void = defaults.setLongTime(_:)
         
         let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defaults.getLongTime()), saveToDefaults: saveFn)
@@ -65,7 +68,7 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         navigationController?.pushViewController(newTable, animated: true)
     }
     
-    @IBAction func setSessionLength(_ sender: Any) {
+    private func setSessionLength() {
         let actionSession = UIAlertController(title: "Set Session Length", message: "\n\n\n\n\n\n\n\n", preferredStyle: .actionSheet)
         
         let pickerView = UIPickerView(frame: .zero);
@@ -77,6 +80,17 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         actionSession.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
         
         self.present(actionSession, animated: true, completion: nil)
+    }
+    
+    private func resetSessionsToDefual() {
+         let warning = UIAlertController(title: "Reset Session Settings To Defualts", message: "Are you sure you want to reset the sessions settings back to the defualts?", preferredStyle: .alert)
+        
+        warning.addAction(UIAlertAction(title: "Reset", style: .destructive, handler: { _ in
+            self.defaults.resetToDefaults()
+            self.setLabelsToDefualtsValues()
+        }))
+        warning.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+        self.present(warning, animated: true, completion: nil)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -93,6 +107,25 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         defaults.setNumberOfSessions(Int(pickerSet[row])!)
-        sessionLengthButton.setTitle(String(format: "%d sessions", defaults.getNumberOfSessions()), for: .normal)
-    } 
+        sessionLengthLabel.text = String(format: "%d sessions", defaults.getNumberOfSessions())
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch (indexPath.section, indexPath.row) {
+        case (0, 0) :
+            self.setWorkLength()
+        case (0, 1):
+            self.setShortLength()
+        case (0, 2):
+            self.setLongLength()
+        case (1, 0):
+            self.setSessionLength()
+        case (2, 0):
+            self.resetSessionsToDefual()
+        case (2, 1):
+            print("Reset to defualts")
+        default:
+            fatalError()
+        }
+    }
 }

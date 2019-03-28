@@ -25,11 +25,21 @@ class Defaults: UserDefaults {
      Sets up the default values to be used when no defined values
      been given by a user within the settings.
      */
-    func registerDefaults() -> Void{
+    func registerDefaults() -> Void {
       defaults.register(defaults: [DefaultKeys.work.rawValue : 1500,
                           DefaultKeys.short.rawValue : 300,
                           DefaultKeys.long.rawValue : 1800,
                           DefaultKeys.sessionLength.rawValue : 4])
+    }
+    
+    /**
+     Reset the values to the defualts
+     */
+    func resetToDefaults() -> Void {
+        setWorkTime(1500)
+        setShortTime(300)
+        setLongTime(1800)
+        setNumberOfSessions(4)
     }
     
     /**
