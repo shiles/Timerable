@@ -121,6 +121,13 @@ class PersistanceService {
     }
     
     /**
+     Removes all the sessions saved
+     */
+    func removeAllSessions() -> Void {
+        fetchAllSessions().forEach { self.remove(objectID: $0.objectID) }
+    }
+    
+    /**
      Removes the object with the given id.
      - Parameter objectID: The object's `object id`
      */

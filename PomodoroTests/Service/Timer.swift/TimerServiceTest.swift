@@ -63,15 +63,6 @@ class TimerServiceTest: XCTestCase {
         
         XCTAssertEqual(sessionDroppedHead, timeController.session, "Session wasn't dropped after chunk is done")
     }
-    
-    func testRecalculateTimeChunk() {
-        timeController.resetSession()
-        
-        let session = self.buildDefualtSession()
-        timeController.recalculateTimeChunks()
-        
-        XCTAssertEqual(timeController.session, session, "Recalculated worktime doesn't match")
-    }
 
     private func buildDefualtSession() -> [TimeChunk] {
         let work = TimeChunk(type: TimeTypes.work, initialTime: defaults.getWorkTime())

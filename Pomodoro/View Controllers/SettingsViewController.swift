@@ -8,15 +8,10 @@
 
 import UIKit
 
-protocol SettingsDelegate: AnyObject {
-    func recalculateTimeChunks()
-}
-
 class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
    
     let defaults = Defaults()
     let pickerSet = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-    var settingsDelegate: SettingsDelegate!
     
     @IBOutlet weak var workLengthLabel: UILabel!
     @IBOutlet weak var shortLengthLabel: UILabel!
@@ -31,10 +26,6 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         //Getting up-to-date values to display
         appVertion.text = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
         setLabelsToDefualtsValues()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        settingsDelegate.recalculateTimeChunks()
     }
     
     private func setLabelsToDefualtsValues() {
@@ -82,12 +73,22 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         self.present(actionSession, animated: true, completion: nil)
     }
     
-    private func resetSessionsToDefual() {
+    private func resetSessionsToDefaults() {
          let warning = UIAlertController(title: "Reset Session Settings To Defualts", message: "Are you sure you want to reset the sessions settings back to the defualts?", preferredStyle: .alert)
         
         warning.addAction(UIAlertAction(title: "Reset", style: .destructive, handler: { _ in
             self.defaults.resetToDefaults()
             self.setLabelsToDefualtsValues()
+        }))
+        warning.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+        self.present(warning, animated: true, completion: nil)
+    }
+    
+    private func resetStatistics() {
+        let warning = UIAlertController(title: "Reset Statistics", message: "Are you sure you want to delete all of the current statistics?", preferredStyle: .alert)
+        
+        warning.addAction(UIAlertAction(title: "Reset", style: .destructive, handler: { _ in
+            PersistanceService().removeAllSessions()
         }))
         warning.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
         self.present(warning, animated: true, completion: nil)
@@ -118,14 +119,16 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
             self.setShortLength()
         case (0, 2):
             self.setLongLength()
-        case (1, 0):
+        case (0, 3):
             self.setSessionLength()
-        case (2, 0):
-            self.resetSessionsToDefual()
-        case (2, 1):
-            print("Reset to defualts")
+        case (1, 0):
+            self.resetSessionsToDefaults()
+        case (1, 1):
+            self.resetStatistics()
         default:
             fatalError()
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

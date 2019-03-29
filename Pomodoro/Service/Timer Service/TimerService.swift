@@ -179,32 +179,3 @@ class TimerService {
         }
     }
 }
-
-extension TimerService: SettingsDelegate {
-    
-    /**
-     Recalculates the timechunks based on the new user defualts.
-     */
-    func recalculateTimeChunks() {
-        session = session?.map {
-            switch($0.type!){
-                case .work:
-                    var timeChunk = $0 as TimeChunk
-                    timeChunk.timeLength = defaults.getWorkTime()
-                    timeChunk.timeRemaining = defaults.getWorkTime()
-                    return timeChunk
-                case .short:
-                    var timeChunk = $0 as TimeChunk
-                    timeChunk.timeLength = defaults.getShortTime()
-                    timeChunk.timeRemaining = defaults.getShortTime()
-                    return timeChunk
-                case .long:
-                    var timeChunk = $0  as TimeChunk
-                    timeChunk.timeLength = defaults.getLongTime()
-                    timeChunk.timeRemaining = defaults.getLongTime()
-                    return timeChunk
-            }
-        }
-        timeTickerDelegate.resetTimerDisplay(timeChunk: session.first!)
-    }
-}

@@ -56,6 +56,7 @@ extension StatBarGraph: UICollectionViewDataSource, UICollectionViewDelegateFlow
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseId, for: indexPath) as! StatBarGraphCell
         cell.label.text = Format.dateToShortWeekDay(date: data[indexPath.row].date)
+        cell.resetBarHeight()
         
         guard let maxTime:Int = data.max()?.seconds, maxTime > 0 else { return cell }
         cell.setBarHeight(maxTime: maxTime, seconds: data[indexPath.row].seconds)

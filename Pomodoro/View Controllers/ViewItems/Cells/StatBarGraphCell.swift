@@ -48,6 +48,13 @@ class StatBarGraphCell: UICollectionViewCell {
         self.barHeightConstraint?.constant = (self.frame.height - 50) * percentFill
     }
     
+    /**
+     Resets the bar height to 0
+     */
+    func resetBarHeight() -> Void {
+        self.barHeightConstraint?.constant = 0
+    }
+    
     override var isHighlighted: Bool {
         didSet {
             backgroundColor = isHighlighted ? UIColor.lightGray.withAlphaComponent(0.35) : .white

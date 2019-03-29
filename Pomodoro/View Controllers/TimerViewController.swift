@@ -52,7 +52,6 @@ class TimerViewController: UIViewController {
         
         //Adding settings button
         let settingsButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(self.pushSettings))
-        settingsController.settingsDelegate = timerService
         self.navigationItem.leftBarButtonItem = settingsButton
         
         //Adding the time ticker
