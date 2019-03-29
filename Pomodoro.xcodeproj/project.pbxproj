@@ -411,6 +411,7 @@
 				TargetAttributes = {
 					AB38C43521EBA306003C77D7 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -419,10 +420,12 @@
 					};
 					AB38C44921EBA307003C77D7 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = AB38C43521EBA306003C77D7;
 					};
 					AB38C45421EBA307003C77D7 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = AB38C43521EBA306003C77D7;
 					};
 				};
@@ -697,7 +700,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = sonniehiles.Pomodoro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -715,7 +718,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = sonniehiles.Pomodoro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -734,7 +737,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = sonniehiles.PomodoroTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pomodoro.app/Pomodoro";
 			};
@@ -754,7 +757,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = sonniehiles.PomodoroTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pomodoro.app/Pomodoro";
 			};
@@ -773,7 +776,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = sonniehiles.PomodoroUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Pomodoro;
 			};
@@ -792,7 +795,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = sonniehiles.PomodoroUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Pomodoro;
 			};

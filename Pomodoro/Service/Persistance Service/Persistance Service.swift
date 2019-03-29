@@ -79,7 +79,7 @@ class PersistanceService {
     func fetchSubject(name: String) -> Subject? {
         let request: NSFetchRequest<Subject> = Subject.fetchRequest()
         request.predicate = NSPredicate(format: "name == %@", name)
-        let results = try? persistentContainer.viewContext.fetch(request).first
+        let results = ((try? persistentContainer.viewContext.fetch(request).first) as Subject??)
         return results ?? nil
     }
     
