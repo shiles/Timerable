@@ -85,6 +85,14 @@ class PersistanceServiceTest: XCTestCase {
         
     }
     
+    func testRemoveAllSessions() {
+        let subject = service.saveSubject(name: "CS")
+        _ = service.saveSession(seconds: 60, subject: subject!)
+
+        service.removeAllSessions()
+        XCTAssertEqual(service.fetchAllSessions().count, 0)
+    }
+    
     func numberOfItemsInPersistentStore() -> Int {
         let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Subject")
         let results = try! mockPersistantContainer.viewContext.fetch(request)
@@ -107,7 +115,6 @@ class PersistanceServiceTest: XCTestCase {
         }  catch {
             print("create fakes error \(error)")
         }
-        
     }
     
     func flushData() {
