@@ -53,7 +53,7 @@ class PersistanceService {
     func saveSession(seconds: Int, subject: Subject) -> Session? {
         guard let session = NSEntityDescription.insertNewObject(forEntityName: "Session", into: context) as? Session else { return nil}
         session.seconds = Int64(seconds)
-        session.date = Date() as NSDate
+        session.date = Date()
         session.subject = subject
         
         subject.addToSession(session)
@@ -135,6 +135,34 @@ class PersistanceService {
         let obj = context.object(with: objectID)
         context.delete(obj)
         self.save()
+    }
+    
+    /**
+     Fetch the daily goal for today, and if one doesn't exist generate it
+     - Returns: Todays daily goal.
+     */
+    func fetchDailyGoal() -> DailyGoal {
+        print("Fetching Daily Goal")
+        let request: NSFetchRequest<DailyGoal> = DailyGoal.fetchRequest()
+        
+        let start = Calendar.current.startOfDay(for: Date())
+        let end = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: start)
+        request.predicate = NSPredicate(format: "(date >= %@) AND (date <= %@)", argumentArray: [start, end!])
+        
+        guard let goal = try? persistentContainer.viewContext.fetch(request).first else { return createDailyGoal()! }
+        return goal
+    }
+    
+    /**
+     Creates a daily goal for today
+     - Returns: Todays daily goal.
+     */
+    func createDailyGoal() -> DailyGoal? {
+        print("Not found - Creating Daily Goal")
+        guard let goal = NSEntityDescription.insertNewObject(forEntityName: "DailyGoal", into: context) as? DailyGoal else { return nil }
+        goal.date = Date()
+        self.save()
+        return goal
     }
     
     /**
