@@ -51,7 +51,7 @@ class MockStatsPersistanceService: PersistanceService {
     override func fetchSessions(subject: Subject) -> [Session] {
         let session = Session(context: context)
         session.seconds = Int64(exactly: 60.0)!
-        session.date = NSDate()
+        session.date = Date()
         session.subject = subject
         return [session, session]
     }
@@ -59,14 +59,14 @@ class MockStatsPersistanceService: PersistanceService {
     override func fetchAllSessions() -> [Session] {
         let session = Session(context: context)
         session.seconds = Int64(exactly: 60.0)!
-        session.date = NSDate()
+        session.date = Date()
         return [session, session]
     }
     
     override func fetchSessionsDateRange(start: Date, end: Date) -> [Session] {
         let session = Session(context: context)
         session.seconds = Int64(exactly: 60.0)!
-        session.date = NSDate()
+        session.date = Date()
         return [session, session]
     }
 }

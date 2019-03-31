@@ -84,12 +84,13 @@ class MockTimeTickerDeligate: TimeTickerDelegate {
 }
 
 class MockTimerPersistanceService: PersistanceService {
+    
     override func fetchSubject(name: String) -> Subject? {
         let subject = Subject(context: context)
         subject.name = "English"
         return subject
     }
-    
+
     override func saveSession(seconds: Int, subject: Subject) -> Session? {
         return Session()
     }

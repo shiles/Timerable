@@ -93,6 +93,12 @@ class PersistanceServiceTest: XCTestCase {
         XCTAssertEqual(service.fetchAllSessions().count, 0)
     }
     
+    func testFetchAndCreateDailyGoal() {
+        let goal = service.fetchDailyGoal()
+        
+        XCTAssertEqual(goal.sessionsCompleted, 0)
+    }
+    
     func numberOfItemsInPersistentStore() -> Int {
         let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Subject")
         let results = try! mockPersistantContainer.viewContext.fetch(request)
@@ -104,6 +110,12 @@ class PersistanceServiceTest: XCTestCase {
             let obj = NSEntityDescription.insertNewObject(forEntityName: "Subject", into: mockPersistantContainer.viewContext)
             obj.setValue(name, forKey: "name")
             return obj as? Subject
+        }
+        
+        func fetchDailyGoal() -> DailyGoal? {
+            let obj = NSEntityDescription.insertNewObject(forEntityName: "DailyGoal", into: mockPersistantContainer.viewContext)
+            obj.setValue(Date(), forKey: "date")
+            return obj as? DailyGoal
         }
         
         _ = saveSubject(name: "English")

@@ -33,6 +33,8 @@ class TimerViewController: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
         timerService.timeTickerDelegate = self
+        
+        print(persistanceService.fetchDailyGoal())
     }
     
     required init?(coder aDecoder: NSCoder) {
