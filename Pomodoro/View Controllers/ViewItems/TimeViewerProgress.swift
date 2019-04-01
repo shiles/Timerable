@@ -22,7 +22,7 @@ class TimeViewerProgress: UIView {
     //initWithCode to init view from xib or storyboard
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.backgroundColor = UIColor.lightGray
+        self.backgroundColor = UIColor.lightGray.withAlphaComponent(0.35)
     }
     /**
      Update the time viewer progress and fill the amount with a colour.

@@ -87,7 +87,7 @@ class TimeViewer: UIView {
         let time = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         time.textColor = .white
         time.textAlignment = .center
-        time.font = UIFont(name: "HelveticaNeue-Light", size: 100)
+        time.font = UIFont(name: "HelveticaNeue", size: 100)
         time.text = "25:00"
         time.translatesAutoresizingMaskIntoConstraints = false
         return time
