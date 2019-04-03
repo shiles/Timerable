@@ -15,6 +15,7 @@ class Defaults: UserDefaults {
         case long
         case short
         case sessionLength
+        case dailyGoal
         case subject
         case backgroundedTime
     }
@@ -29,7 +30,8 @@ class Defaults: UserDefaults {
       defaults.register(defaults: [DefaultKeys.work.rawValue : 1500,
                           DefaultKeys.short.rawValue : 300,
                           DefaultKeys.long.rawValue : 1800,
-                          DefaultKeys.sessionLength.rawValue : 4])
+                          DefaultKeys.sessionLength.rawValue : 4,
+                          DefaultKeys.dailyGoal.rawValue : 12])
     }
     
     /**
@@ -104,6 +106,22 @@ class Defaults: UserDefaults {
      */
     func getNumberOfSessions() -> Int {
         return defaults.integer(forKey: DefaultKeys.sessionLength.rawValue)
+    }
+    
+    /**
+     Sets the amount of sessions for a daily goal
+     - Parameter value: The number of sessions.
+     */
+    func setDailyGoal(_ value: Int) -> Void {
+        defaults.set(value, forKey: DefaultKeys.dailyGoal.rawValue)
+    }
+    
+    /**
+     Gets the number of goals for daily goals
+     - Returns: The daily goal amount of work sessions.
+     */
+    func getDailyGoal() -> Int {
+        return defaults.integer(forKey: DefaultKeys.dailyGoal.rawValue)
     }
     
     /**
