@@ -8,16 +8,16 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class SettingsViewController: UITableViewController {
    
     let defaults = Defaults()
-    let pickerSet = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
     
     @IBOutlet weak var workLengthLabel: UILabel!
     @IBOutlet weak var shortLengthLabel: UILabel!
     @IBOutlet weak var longLengthLabel: UILabel!
     @IBOutlet weak var appVertion: UILabel!
     @IBOutlet weak var sessionLengthLabel: UILabel!
+    @IBOutlet weak var dailyGoalLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -32,7 +32,8 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         workLengthLabel.text = Format.timeToStringWords(seconds: defaults.getWorkTime())
         shortLengthLabel.text = Format.timeToStringWords(seconds: defaults.getShortTime())
         longLengthLabel.text = Format.timeToStringWords(seconds: defaults.getLongTime())
-        sessionLengthLabel.text = String(format: "%d sessions", defaults.getNumberOfSessions())
+        sessionLengthLabel.text = String(format: "%d work sessions", defaults.getNumberOfSessions())
+        dailyGoalLabel.text = String(format: "%d work sessions", defaults.getDailyGoal())
     }
 
     private func setWorkLength() {
@@ -60,17 +61,19 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
     }
     
     private func setSessionLength() {
-        let actionSession = UIAlertController(title: "Set Session Length", message: "\n\n\n\n\n\n\n\n", preferredStyle: .actionSheet)
+        let saveFn: (Int) -> Void = defaults.setNumberOfSessions(_:)
         
-        let pickerView = UIPickerView(frame: .zero);
-        pickerView.dataSource = self
-        pickerView.delegate = self
-        pickerView.selectRow(defaults.getNumberOfSessions()-1, inComponent: 0, animated: false)
-        actionSession.view.addSubview(pickerView)
+        let newTable = SessionSelectionTable(min: 1, max: 10, selected: defaults.getNumberOfSessions(), calculationType: .session, saveToDefaults: saveFn)
+        newTable.title = "Length of Session"
+        navigationController?.pushViewController(newTable, animated: true)
+    }
+    
+    private func setDailyGoals() {
+        let saveFn: (Int) -> Void = defaults.setDailyGoal(_:)
         
-        actionSession.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
-        
-        self.present(actionSession, animated: true, completion: nil)
+        let newTable = SessionSelectionTable(min: 1, max: 30, selected: defaults.getDailyGoal(), calculationType: .daily, saveToDefaults: saveFn)
+        newTable.title = "Daily Work Sessions Goal"
+        navigationController?.pushViewController(newTable, animated: true)
     }
     
     private func resetSessionsToDefaults() {
@@ -97,20 +100,7 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerSet.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(pickerSet[row])
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        defaults.setNumberOfSessions(Int(pickerSet[row])!)
-        sessionLengthLabel.text = String(format: "%d sessions", defaults.getNumberOfSessions())
-    }
-    
+        
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
         case (0, 0) :
@@ -122,8 +112,10 @@ class SettingsViewController: UITableViewController, UIPickerViewDelegate, UIPic
         case (0, 3):
             self.setSessionLength()
         case (1, 0):
+            self.setDailyGoals()
+        case (2, 0):
             self.resetSessionsToDefaults()
-        case (1, 1):
+        case (2, 1):
             self.resetStatistics()
         default:
             fatalError()

@@ -33,8 +33,6 @@ class TimerViewController: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
         timerService.timeTickerDelegate = self
-        
-        print(persistanceService.fetchDailyGoal())
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -194,6 +192,7 @@ class TimerViewController: UIViewController {
     var daily: SessionStatus {
         let session = SessionStatus(frame: .zero)
         session.title.text = "DAILY GOAL"
+        session.setProgress(currentSession: 0, totalSessions: 4)
         session.translatesAutoresizingMaskIntoConstraints = false
         return session
     }
@@ -201,6 +200,7 @@ class TimerViewController: UIViewController {
     var session: SessionStatus {
         let session = SessionStatus(frame: .zero)
         session.title.text = "CURRENT GOAL"
+        session.setProgress(currentSession: Int(self.persistanceService.fetchDailyGoal().sessionsCompleted), totalSessions: 10)
         session.translatesAutoresizingMaskIntoConstraints = false
         return session
     }

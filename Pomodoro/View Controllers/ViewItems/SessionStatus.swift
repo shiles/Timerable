@@ -45,6 +45,11 @@ class SessionStatus: UIView {
         self.clipsToBounds = true
     }
     
+    func setProgress(currentSession: Int, totalSessions: Int) -> Void {
+        progress.progress =  Float(currentSession)/Float(totalSessions)
+        progressText.text = String.init(format: "%d/%d", currentSession, totalSessions)
+    }
+    
     lazy var title: UILabel = {
         let title = UILabel(frame: .zero)
         title.text = "TITLE"
@@ -56,7 +61,6 @@ class SessionStatus: UIView {
     
     lazy var progressText: UILabel = {
         let title = UILabel(frame: .zero)
-        title.text = "?/?"
         title.textColor = .white
         title.textAlignment = .center
         title.font = UIFont(name: "HelveticaNeue", size: 30)
