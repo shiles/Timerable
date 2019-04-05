@@ -42,6 +42,7 @@ class Defaults: UserDefaults {
         setShortTime(300)
         setLongTime(1800)
         setNumberOfSessions(4)
+        setDailyGoal(12)
     }
     
     /**
