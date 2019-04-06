@@ -38,8 +38,6 @@ class StatsViewController: UIViewController {
             statStack.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             statStack.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             statStack.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)])
-        
-        self.subjects = persistanceService.fetchAllSubjects()        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,9 +45,18 @@ class StatsViewController: UIViewController {
         self.navigationItem.title = "STATS"
         
         //Adding data
-        self.subjects = persistanceService.fetchAllSubjects()
+        self.subjects = fetchSubjectsSortedByTime()
         self.tableView.reloadData()
         self.weekView.reloadData()
+    }
+    
+    /**
+     Sorts the subject by time so that the highest time will be at the top, if there are no times a
+     alphabetical sort is returned.
+     - returns: Array of subjects sorted by overall session time
+     */
+    private func fetchSubjectsSortedByTime() -> [Subject] {
+        return persistanceService.fetchAllSubjects().sorted { statsService.getOverallSessionTime(subject: $0) > statsService.getOverallSessionTime(subject: $1) }
     }
     
     lazy var statStack: UIStackView = {
