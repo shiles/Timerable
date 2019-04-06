@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Session Times" footerTitle="Changes will effect the next session, reset session for immediate change." id="VOR-x7-AKk">
+                            <tableViewSection headerTitle="Session Times" footerTitle="Changes will effect the next session if session is in progress. Reset for immediate change." id="VOR-x7-AKk">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="IwC-SZ-tjg">
                                         <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="44"/>

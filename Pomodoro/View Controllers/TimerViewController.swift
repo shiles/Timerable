@@ -39,6 +39,7 @@ class TimerViewController: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
         timerService.timeTickerDelegate = self
+        settingsController.settingsDelegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -235,7 +236,16 @@ class TimerViewController: UIViewController {
     }()
 }
 
-extension TimerViewController: TimeTickerDelegate {
+extension TimerViewController: TimeTickerDelegate, SettingsDelegate {
+    
+    /**
+     Updates the session settings if the session isn't already running
+     */
+    func recalculateTimeChunks() {
+        if sessionStatus == .ready {
+            timerService.setNewSessionSettings()
+        }
+    }
     
     /**
     Updates the UI when a change occures within the session

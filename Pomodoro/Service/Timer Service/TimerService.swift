@@ -99,6 +99,15 @@ class TimerService {
     }
     
     /**
+     Called when settings changed but a session isn't in progress.
+     */
+    func setNewSessionSettings() -> Void {
+        session = buildTimeArray()
+        timeTickerDelegate.resetTimerDisplay(timeChunk: session.first!)
+        timeTickerDelegate.isFinished()
+    }
+    
+    /**
      Simulates the time elapsed since the date provided and now so that the app can support being
      backgrounded and brought back into the forground.
      - Parameter backgrounded: The date that the app was backgrounded.
