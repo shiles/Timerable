@@ -142,7 +142,6 @@ class PersistanceService {
      - Returns: Todays daily goal.
      */
     func fetchDailyGoal() -> DailyGoal {
-        print("Fetching Daily Goal")
         let request: NSFetchRequest<DailyGoal> = DailyGoal.fetchRequest()
         
         let start = Calendar.current.startOfDay(for: Date())
@@ -158,7 +157,6 @@ class PersistanceService {
      - Returns: Todays daily goal.
      */
     func createDailyGoal() -> DailyGoal? {
-        print("Not found - Creating Daily Goal")
         guard let goal = NSEntityDescription.insertNewObject(forEntityName: "DailyGoal", into: context) as? DailyGoal else { return nil }
         goal.date = Date()
         self.save()

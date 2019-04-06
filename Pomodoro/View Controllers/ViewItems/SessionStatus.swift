@@ -10,19 +10,20 @@ import Foundation
 import UIKit
 
 class SessionStatus: UIView {
+    
     //initWithFrame to init view from code
-    override init(frame: CGRect) {
+    init(title: String, frame: CGRect) {
         super.init(frame: frame)
-        setupView()
+        setupView(title: title)
     }
     
     //initWithCode to init view from xib or storyboard
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setupView()
+        setupView(title: "")
     }
     
-    private func setupView() {
+    private func setupView(title: String) {
         self.addSubview(progress)
         NSLayoutConstraint.activate([
             progress.topAnchor.constraint(equalTo: self.topAnchor),
@@ -30,10 +31,11 @@ class SessionStatus: UIView {
             progress.leftAnchor.constraint(equalTo: self.leftAnchor),
             progress.rightAnchor.constraint(equalTo: self.rightAnchor)])
         
-        self.addSubview(title)
+        self.addSubview(titleLabel)
+        titleLabel.text = title
         NSLayoutConstraint.activate([
-            title.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            title.topAnchor.constraint(equalTo: self.topAnchor, constant: 10)])
+            titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10)])
         
         self.addSubview(progressText)
         NSLayoutConstraint.activate([
@@ -45,14 +47,13 @@ class SessionStatus: UIView {
         self.clipsToBounds = true
     }
     
-    func setProgress(currentSession: Int, totalSessions: Int) -> Void {
-        progress.progress =  Float(currentSession)/Float(totalSessions)
-        progressText.text = String.init(format: "%d/%d", currentSession, totalSessions)
+    func updateValues(currentSession: Int, totalSessions: Int) -> Void {
+        self.progress.setProgress(Float(currentSession)/Float(totalSessions), animated: true)
+        self.progressText.text = String.init(format: "%d/%d", currentSession, totalSessions)
     }
     
-    lazy var title: UILabel = {
+    lazy var titleLabel: UILabel = {
         let title = UILabel(frame: .zero)
-        title.text = "TITLE"
         title.textColor = .white
         title.textAlignment = .center
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -72,7 +73,6 @@ class SessionStatus: UIView {
         let progress = UIProgressView(frame: .zero)
         progress.progressTintColor = .orange
         progress.backgroundColor = UIColor.lightGray.withAlphaComponent(0.35)
-        progress.setProgress(0.5, animated: true)
         progress.translatesAutoresizingMaskIntoConstraints = false
         return progress
     }()

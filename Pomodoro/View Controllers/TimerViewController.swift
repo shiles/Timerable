@@ -21,7 +21,10 @@ class TimerViewController: UIViewController {
     let audioNotificationController: AudioNotificationService!
     let settingsController: SettingsViewController!
     let timerService: TimerService!
+    let defaults = Defaults()
     var timeViewer: TimeViewer!
+    var session: SessionStatus!
+    var daily: SessionStatus!
     var sessionStatus: SessionStates = .ready
     var subjects: [Subject] = []
 
@@ -30,6 +33,9 @@ class TimerViewController: UIViewController {
         self.audioNotificationController = audioNotificationController
         self.settingsController = settingsController
         self.timerService = TimerService(persistanceService: persistanceService, notificationService: NotificationService(), defaults: Defaults())
+        
+        self.session = SessionStatus(title: "SESSION", frame: .zero)
+        self.daily = SessionStatus(title: "GOAL", frame: .zero)
         
         super.init(nibName: nil, bundle: nil)
         timerService.timeTickerDelegate = self
@@ -74,6 +80,7 @@ class TimerViewController: UIViewController {
         
         //Defualt values to show
         updateTimer(timeChunk: timerService.session![0])
+        updateGoals()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -166,6 +173,14 @@ class TimerViewController: UIViewController {
         }
     }
     
+    private func updateGoals() -> Void {
+        daily.updateValues(currentSession: Int(persistanceService.fetchDailyGoal().sessionsCompleted), totalSessions: defaults.getDailyGoal())
+        
+        let sessionMax = defaults.getNumberOfSessions()
+        let sessionCurrent = sessionMax - self.timerService.session.filter { $0.type == .work }.count
+        session.updateValues(currentSession: sessionCurrent, totalSessions: sessionMax)
+    }
+    
     lazy var startStopButton: UIButton = {
         let button = UIButton(frame: .zero)
         button.setTitle("START", for: .normal)
@@ -188,28 +203,12 @@ class TimerViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
-    var daily: SessionStatus {
-        let session = SessionStatus(frame: .zero)
-        session.title.text = "DAILY GOAL"
-        session.setProgress(currentSession: 0, totalSessions: 4)
-        session.translatesAutoresizingMaskIntoConstraints = false
-        return session
-    }
-    
-    var session: SessionStatus {
-        let session = SessionStatus(frame: .zero)
-        session.title.text = "CURRENT GOAL"
-        session.setProgress(currentSession: Int(self.persistanceService.fetchDailyGoal().sessionsCompleted), totalSessions: 10)
-        session.translatesAutoresizingMaskIntoConstraints = false
-        return session
-    }
-
+ 
     lazy var timeControllButtons: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [startStopButton, resetButton])
         stack.axis = .horizontal
         stack.alignment = .fill
-        stack.spacing = 5.0
+        stack.spacing = 10.0
         stack.distribution = .fillEqually
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
@@ -219,7 +218,7 @@ class TimerViewController: UIViewController {
         let stack = UIStackView(arrangedSubviews: [session, daily])
         stack.axis = .horizontal
         stack.alignment = .fill
-        stack.spacing = 5.0
+        stack.spacing = 10.0
         stack.distribution = .fillProportionally
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
@@ -252,6 +251,7 @@ extension TimerViewController: TimeTickerDelegate {
      */
     func resetTimerDisplay(timeChunk: TimeChunk) {
         updateTimer(timeChunk: timeChunk)
+        updateGoals()
     }
     
     /**
@@ -259,6 +259,7 @@ extension TimerViewController: TimeTickerDelegate {
      */
     func isFinished() {
         sessionFinished()
+        updateGoals()
     }
     
     /**
@@ -266,5 +267,6 @@ extension TimerViewController: TimeTickerDelegate {
      */
     func chunkCompleted() {
         audioNotificationController.playNotificationSound()
+        updateGoals()
     }
 }

@@ -60,6 +60,7 @@ class TimerService {
         }
         
         if isChunkDone() {
+            addToGoal(timeChunk: session!.first!)
             saveProgress(timeChunk: session!.removeFirst())
             timeTickerDelegate.chunkCompleted()
         }
@@ -110,6 +111,7 @@ class TimerService {
         if timeElapsed >= session.reduce(0) { $0 + $1.timeRemaining } {
             //Save the whole remaining session, stop the time and reset the session.
             session.forEach {saveProgress(timeChunk: $0)}
+            session.forEach {addToGoal(timeChunk: $0)}
             stopTimer()
             session = buildTimeArray()
             timeTickerDelegate.isFinished()
@@ -176,6 +178,18 @@ class TimerService {
             guard let subject = persistanceService.fetchSubject(name: defaults.getSubjectName()) else { return }
             let time = isChunkDone() ? timeChunk.timeLength : (timeChunk.timeLength - timeChunk.timeRemaining)
             _ = persistanceService.saveSession(seconds: time!, subject: subject)
+        }
+    }
+    
+    /**
+     Saves the progess of a session to the database.
+     - Parameter timeChunk: The timechunk to save
+     */
+    private func addToGoal(timeChunk: TimeChunk) {
+        if timeChunk.type == .work {
+            let goal = persistanceService.fetchDailyGoal()
+            goal.sessionsCompleted += 1
+            persistanceService.save()
         }
     }
 }
