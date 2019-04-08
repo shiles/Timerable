@@ -52,6 +52,10 @@ class SessionStatus: UIView {
         self.progressText.text = String.init(format: "%d/%d", currentSession, totalSessions)
     }
     
+    override open var intrinsicContentSize: CGSize {
+        return CGSize(width: 100, height: 100)
+    }
+    
     lazy var titleLabel: UILabel = {
         let title = UILabel(frame: .zero)
         title.textColor = .white

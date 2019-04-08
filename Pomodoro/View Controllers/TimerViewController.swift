@@ -71,14 +71,21 @@ class TimerViewController: UIViewController {
             timeViewer.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10),
             timeViewer.bottomAnchor.constraint(equalTo: self.view.centerYAnchor)])
         
-        //Adding start/stop button
-        self.view.addSubview(bottomHalfStack)
+        //Adding start/stop button and status 
+        self.view.addSubview(timeControllButtons)
         NSLayoutConstraint.activate([
-            bottomHalfStack.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
-            bottomHalfStack.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10),
-            bottomHalfStack.topAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 10),
-            bottomHalfStack.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -10)])
-        
+            timeControllButtons.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
+            timeControllButtons.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10),
+            timeControllButtons.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            timeControllButtons.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -10)])
+
+        self.view.addSubview(sessionInfo)
+        NSLayoutConstraint.activate([
+            sessionInfo.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
+            sessionInfo.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10),
+            sessionInfo.topAnchor.constraint(equalTo: timeViewer.bottomAnchor, constant: 10),
+            sessionInfo.bottomAnchor.constraint(equalTo: timeControllButtons.topAnchor, constant: -10)])
+
         //Defualt values to show
         updateTimer(timeChunk: timerService.session![0])
         updateGoals()
@@ -220,16 +227,6 @@ class TimerViewController: UIViewController {
         stack.axis = .horizontal
         stack.alignment = .fill
         stack.spacing = 10.0
-        stack.distribution = .fillProportionally
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
-    
-    lazy var bottomHalfStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [sessionInfo, timeControllButtons])
-        stack.axis = .vertical
-        stack.alignment = .fill
-        stack.spacing = 5.0
         stack.distribution = .fillEqually
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
