@@ -8,14 +8,9 @@
 
 import UIKit
 
-protocol SettingsDelegate: AnyObject {
-    func recalculateTimeChunks()
-}
-
 class SettingsViewController: UITableViewController {
    
     let defaults = Defaults()
-    var settingsDelegate: SettingsDelegate?
     
     @IBOutlet weak var workLengthLabel: UILabel!
     @IBOutlet weak var shortLengthLabel: UILabel!
@@ -31,11 +26,6 @@ class SettingsViewController: UITableViewController {
         //Getting up-to-date values to display
         appVertion.text = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
         setLabelsToDefualtsValues()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        settingsDelegate?.recalculateTimeChunks()
     }
     
     private func setLabelsToDefualtsValues() {

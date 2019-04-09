@@ -22,22 +22,24 @@ class StatsViewController: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
         self.view.backgroundColor = .white
+        self.setupView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        //Adding stackview
+    func setupView() {
         self.view.addSubview(statStack)
         NSLayoutConstraint.activate([
             statStack.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             statStack.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             statStack.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             statStack.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)])
+        
+        //Adding settings button
+        let settingsButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(self.pushSettings))
+        self.navigationItem.leftBarButtonItem = settingsButton
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,6 +60,14 @@ class StatsViewController: UIViewController {
     private func fetchSubjectsSortedByTime() -> [Subject] {
         return persistanceService.fetchAllSubjects().sorted { statsService.getOverallSessionTime(subject: $0) > statsService.getOverallSessionTime(subject: $1) }
     }
+    
+    /**
+     Push into the settings controller.
+     */
+    @objc func pushSettings() -> Void {
+        self.navigationController?.pushViewController(settingsController, animated: true)
+    }
+    
     
     lazy var statStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [weekView, tableView])
