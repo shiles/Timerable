@@ -39,7 +39,7 @@ class TimerViewController: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
         timerService.timeTickerDelegate = self
-        settingsController.settingsDelegate = self
+        self.setupView()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,7 +49,20 @@ class TimerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Styling
+         self.navigationItem.title = "TIMER"
+
+        //Defualt values to show
+        updateTimer(timeChunk: timerService.session![0])
+        self.subjects = persistanceService.fetchAllSubjects()
+        updateGoals()
+        
+        //Update session to newest setting
+        if sessionStatus == .ready {
+            timerService.setNewSessionSettings()
+        }
+    }
+    
+    func setupView() {
         self.view.backgroundColor = .white
         
         //Adding skip button
@@ -71,32 +84,20 @@ class TimerViewController: UIViewController {
             timeViewer.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10),
             timeViewer.bottomAnchor.constraint(equalTo: self.view.centerYAnchor)])
         
-        //Adding start/stop button and status 
+        //Adding start/stop button and status
         self.view.addSubview(timeControllButtons)
         NSLayoutConstraint.activate([
             timeControllButtons.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
             timeControllButtons.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10),
             timeControllButtons.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
             timeControllButtons.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -10)])
-
+        
         self.view.addSubview(sessionInfo)
         NSLayoutConstraint.activate([
             sessionInfo.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10),
             sessionInfo.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10),
             sessionInfo.topAnchor.constraint(equalTo: timeViewer.bottomAnchor, constant: 10),
             sessionInfo.bottomAnchor.constraint(equalTo: timeControllButtons.topAnchor, constant: -10)])
-
-        //Defualt values to show
-        updateTimer(timeChunk: timerService.session![0])
-        updateGoals()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        self.navigationItem.title = "TIMER"
-        
-        //Getting Data
-        self.subjects = persistanceService.fetchAllSubjects()
     }
     
     /**
@@ -104,7 +105,7 @@ class TimerViewController: UIViewController {
      - Parameter timeChunk: The `TimeChunk` to display to calulate progress and display correct label.
      */
     func updateTimer(timeChunk: TimeChunk) -> Void {
-        timeViewer.updateTimeViewer(timeChunk: timeChunk)
+        timeViewer?.updateTimeViewer(timeChunk: timeChunk)
     }
     
     /**
@@ -233,16 +234,7 @@ class TimerViewController: UIViewController {
     }()
 }
 
-extension TimerViewController: TimeTickerDelegate, SettingsDelegate {
-    
-    /**
-     Updates the session settings if the session isn't already running
-     */
-    func recalculateTimeChunks() {
-        if sessionStatus == .ready {
-            timerService.setNewSessionSettings()
-        }
-    }
+extension TimerViewController: TimeTickerDelegate {
     
     /**
     Updates the UI when a change occures within the session
