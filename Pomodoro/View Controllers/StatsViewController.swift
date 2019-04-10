@@ -37,6 +37,9 @@ class StatsViewController: UIViewController {
             statStack.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             statStack.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)])
         
+        //Register cells
+        self.tableView.register(TimeDisplayCell.self, forCellReuseIdentifier: "TimeDisplay")
+        
         //Adding settings button
         let settingsButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(self.pushSettings))
         self.navigationItem.leftBarButtonItem = settingsButton
@@ -68,7 +71,6 @@ class StatsViewController: UIViewController {
         self.navigationController?.pushViewController(settingsController, animated: true)
     }
     
-    
     lazy var statStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [weekView, tableView])
         stack.axis = .vertical
@@ -82,6 +84,7 @@ class StatsViewController: UIViewController {
         let table = UITableView(frame: .zero)
         table.dataSource = self
         table.delegate = self
+        table.allowsSelection = false
         return table
     }()
     
@@ -101,9 +104,9 @@ extension StatsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let subject = subjects[indexPath.row]
         
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "StatCell")
-        cell.textLabel?.text = subject.name
-        cell.detailTextLabel?.text = Format.timeToStringWords(seconds: statsService.getOverallSessionTime(subject: subject))
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "TimeDisplay") as! TimeDisplayCell
+        cell.primaryText.text = subject.name
+        cell.secondaryText.text = Format.timeToStringWords(seconds: statsService.getOverallSessionTime(subject: subject))
         return cell
     }
     

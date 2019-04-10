@@ -23,6 +23,7 @@
 		AB38C45A21EBA307003C77D7 /* PomodoroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB38C45921EBA307003C77D7 /* PomodoroUITests.swift */; };
 		AB57D1A222420C4B000AC6EE /* StatBarGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB57D1A122420C4B000AC6EE /* StatBarGraph.swift */; };
 		AB5EF90F21ECB2CE0034A276 /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5EF90E21ECB2CE0034A276 /* TimerService.swift */; };
+		AB7C65F5225DAC1000D63E7F /* TimeDisplayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7C65F4225DAC1000D63E7F /* TimeDisplayCell.swift */; };
 		AB7EBA432250BBA3007F3817 /* pomodoro.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB2799BD2219CBD200D092C9 /* pomodoro.xcdatamodeld */; };
 		AB85A8AD224360BA003EC063 /* StatBarGraphCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB85A8AC224360BA003EC063 /* StatBarGraphCell.swift */; };
 		AB883BA922292CCE00D0DA09 /* AudioNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB883BA822292CCE00D0DA09 /* AudioNotificationService.swift */; };
@@ -88,6 +89,7 @@
 		AB38C45B21EBA307003C77D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB57D1A122420C4B000AC6EE /* StatBarGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatBarGraph.swift; sourceTree = "<group>"; };
 		AB5EF90E21ECB2CE0034A276 /* TimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerService.swift; sourceTree = "<group>"; };
+		AB7C65F4225DAC1000D63E7F /* TimeDisplayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplayCell.swift; sourceTree = "<group>"; };
 		AB85A8AC224360BA003EC063 /* StatBarGraphCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatBarGraphCell.swift; sourceTree = "<group>"; };
 		AB883BA822292CCE00D0DA09 /* AudioNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioNotificationService.swift; sourceTree = "<group>"; };
 		AB883BAB22296BBB00D0DA09 /* PersistanceServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceServiceTest.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */,
 				AB85A8AC224360BA003EC063 /* StatBarGraphCell.swift */,
 				AB8C51EA2248A4C000B7CDA4 /* StatBarGraphHeaderCell.swift */,
+				AB7C65F4225DAC1000D63E7F /* TimeDisplayCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				ABFFD7AD21FE9A260033199D /* TimeSelectionTable.swift in Sources */,
 				AB2A81152244A0BA00480726 /* DailyStat.swift in Sources */,
 				AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */,
+				AB7C65F5225DAC1000D63E7F /* TimeDisplayCell.swift in Sources */,
 				AB8F202022547C7500BC8831 /* SessionSelectionTable.swift in Sources */,
 				AB5EF90F21ECB2CE0034A276 /* TimerService.swift in Sources */,
 				AB883BA922292CCE00D0DA09 /* AudioNotificationService.swift in Sources */,
