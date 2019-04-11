@@ -25,20 +25,20 @@ class TimeDisplayCell: UITableViewCell {
         self.backgroundColor = .white
         
         self.addSubview(primaryText)
-        NSLayoutConstraint.activate([
-            primaryText.centerYAnchor.constraint(equalTo: centerYAnchor),
-            primaryText.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20)])
-        
         self.addSubview(secondaryText)
         NSLayoutConstraint.activate([
+            primaryText.centerYAnchor.constraint(equalTo: centerYAnchor),
+            primaryText.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
             secondaryText.centerYAnchor.constraint(equalTo: centerYAnchor),
-            secondaryText.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20)])
+            secondaryText.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20),
+            primaryText.trailingAnchor.constraint(lessThanOrEqualTo: secondaryText.leadingAnchor, constant: -15)])
     }
     
     let primaryText: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.textAlignment = .left
+        label.lineBreakMode = .byTruncatingTail
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
