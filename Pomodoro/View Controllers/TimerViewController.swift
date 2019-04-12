@@ -130,6 +130,7 @@ class TimerViewController: UIViewController {
         case .ready:
             let actionSession = UIAlertController(title: "Select Subject for Session", message: "Select the subject for the next session.", preferredStyle: .actionSheet)
             
+            self.subjects = persistanceService.fetchAllSubjects()
             subjects.forEach { subject in
                 actionSession.addAction(UIAlertAction(title: subject.name, style: .default, handler: { (a) in
                     Defaults().setSubject(subject.name!)
@@ -137,7 +138,7 @@ class TimerViewController: UIViewController {
                     self.timerService.startTimer()
                     self.startStopButton.setTitle("PAUSE", for: .normal)
                     
-                    UIView.animate(withDuration: 0.10) { () -> Void in
+                    UIView.animate(withDuration: 0.20) { () -> Void in
                         self.timeControllButtons.arrangedSubviews[1].isHidden = false
                         self.navigationItem.rightBarButtonItem?.isEnabled = true
                     }
@@ -176,7 +177,7 @@ class TimerViewController: UIViewController {
     private func sessionFinished() -> Void {
         sessionStatus = .ready
         startStopButton.setTitle("START", for: .normal)
-        UIView.animate(withDuration: 0.10) { () -> Void in
+        UIView.animate(withDuration: 0.20) { () -> Void in
             self.timeControllButtons.arrangedSubviews[1].isHidden = true
             self.navigationItem.rightBarButtonItem?.isEnabled = false
         }

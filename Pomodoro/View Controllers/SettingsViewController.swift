@@ -26,6 +26,8 @@ class SettingsViewController: UITableViewController {
         //Getting up-to-date values to display
         appVertion.text = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
         setLabelsToDefualtsValues()
+        //Setting table height to remove defualt warningS
+        self.tableView.rowHeight = 44;
     }
     
     private func setLabelsToDefualtsValues() {
