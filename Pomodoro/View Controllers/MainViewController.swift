@@ -20,10 +20,12 @@ class MainTabbedViewController: UITabBarController {
         let timerView = TimerViewController(persistanceService: persistanceService, audioNotificationController: audioNotifications, settingsController: settingsController)
         let timerViewNavController = UINavigationController(rootViewController: timerView)
         timerViewNavController.tabBarItem.title = "Timer"
+        timerViewNavController.tabBarItem.image = UIImage(named: "timer")
         
         let statView = StatsViewController(persistanceService: persistanceService, statsService: StatsService(persistanceService: persistanceService), settingsController: settingsController)
         let statViewNavController = UINavigationController(rootViewController: statView)
         statViewNavController.tabBarItem.title = "Stats"
+        statViewNavController.tabBarItem.image = UIImage(named: "bargraph")
 
         viewControllers = [timerViewNavController, statViewNavController]
     }
