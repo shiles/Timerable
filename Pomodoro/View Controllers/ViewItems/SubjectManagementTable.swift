@@ -9,13 +9,19 @@
 import UIKit
 import CoreData
 
+protocol SubjectManagementDelegate {
+    func reOpenActionSheet()
+}
+
 class SubjectManagementTable: UITableViewController {
     
     let persistanceService: PersistanceService!
+    let subjectManagementDelegate: SubjectManagementDelegate!
     var subjects: [Subject]!
     
-    init(persistanceService: PersistanceService) {
+    init(persistanceService: PersistanceService, delegate: SubjectManagementDelegate) {
         self.persistanceService = persistanceService
+        self.subjectManagementDelegate = delegate
         super.init(nibName: nil, bundle: nil)
         
         //Getting Data
@@ -34,6 +40,11 @@ class SubjectManagementTable: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationItem.title = "Edit Subjects"
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        subjectManagementDelegate.reOpenActionSheet()
     }
     
     @objc func addSubject() {
@@ -61,7 +72,6 @@ class SubjectManagementTable: UITableViewController {
         
     }
     
-
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let delete = UIContextualAction(style: .destructive, title: "Delete", handler: { (action, view, completion) in

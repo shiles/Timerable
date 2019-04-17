@@ -46,24 +46,23 @@ class TimerViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-         self.navigationItem.title = "TIMER"
-
-        //Defualt values to show
-        updateTimer(timeChunk: timerService.session![0])
-        self.subjects = persistanceService.fetchAllSubjects()
-        updateGoals()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         //Update session to newest setting
         if sessionStatus == .ready {
             timerService.setNewSessionSettings()
         }
+        
+        //Defualt values to show
+        updateTimer(timeChunk: timerService.session![0])
+        self.subjects = persistanceService.fetchAllSubjects()
+        updateGoals()
     }
     
     func setupView() {
         self.view.backgroundColor = .white
+        self.navigationItem.title = "TIMER"
         
         //Adding skip button
         let skipButton = UIBarButtonItem(title: "Skip", style: .plain, target: self, action: #selector(self.skip))
@@ -147,7 +146,7 @@ class TimerViewController: UIViewController {
             
             let title = subjects.isEmpty ? "Add Subject" : "Edit Subjects"
             actionSession.addAction(UIAlertAction(title: title, style: .default, handler: { (a) in
-                self.navigationController?.pushViewController(SubjectManagementTable(persistanceService: self.persistanceService), animated: true)
+                self.navigationController?.pushViewController(SubjectManagementTable(persistanceService: self.persistanceService, delegate: self), animated: true)
             }))
             
             actionSession.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
@@ -235,8 +234,8 @@ class TimerViewController: UIViewController {
     }()
 }
 
-extension TimerViewController: TimeTickerDelegate {
-    
+extension TimerViewController: TimeTickerDelegate, SubjectManagementDelegate {
+   
     /**
     Updates the UI when a change occures within the session
      - Parameter timeChunk: The `TimeChunk` to display to calulate progress and display correct label.
@@ -268,5 +267,9 @@ extension TimerViewController: TimeTickerDelegate {
     func chunkCompleted() {
         audioNotificationController.playNotificationSound()
         updateGoals()
+    }
+    
+    func reOpenActionSheet() {
+        startStop()
     }
 }
