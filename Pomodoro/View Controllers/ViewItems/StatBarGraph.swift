@@ -43,6 +43,11 @@ public class StatBarGraph: UICollectionView {
         super.reloadData()
     }
     
+    /**
+     Builds the formatted graph header text from parameters
+     - Parameter stat: The `DailyStat` thats been selected
+     - Returns: A fomatted string `weekday: time`
+     */
     func buildGraphHeader(stat: DailyStat) -> String {
         return String.init(format: "%@: %@", Format.dateToWeekDay(date: stat.date), Format.timeToStringWords(seconds: stat.seconds))
     }

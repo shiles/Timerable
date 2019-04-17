@@ -47,13 +47,15 @@ class SessionStatus: UIView {
         self.clipsToBounds = true
     }
     
+    /**
+     Updates the value within the session status pane
+     - Parameters:
+     currentSession: The current number of sessions completed
+     totalSessions: The current total sessions that the session has
+     */
     func updateValues(currentSession: Int, totalSessions: Int) -> Void {
         self.progress.setProgress(Float(currentSession)/Float(totalSessions), animated: true)
         self.progressText.text = String.init(format: "%d/%d", currentSession, totalSessions)
-    }
-    
-    override open var intrinsicContentSize: CGSize {
-        return CGSize(width: 100, height: 100)
     }
     
     lazy var titleLabel: UILabel = {

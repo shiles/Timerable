@@ -60,7 +60,10 @@ class TimerViewController: UIViewController {
         updateGoals()
     }
     
-    func setupView() {
+    /**
+     Initially sets up the view
+     */
+    func setupView() -> Void {
         self.view.backgroundColor = .white
         self.navigationItem.title = "TIMER"
         
@@ -182,6 +185,9 @@ class TimerViewController: UIViewController {
         }
     }
     
+    /**
+     Provides and updates the values in the session and goal goals panes
+     */
     private func updateGoals() -> Void {
         daily.updateValues(currentSession: Int(persistanceService.fetchDailyGoal().sessionsCompleted), totalSessions: defaults.getDailyGoal())
         
@@ -269,6 +275,10 @@ extension TimerViewController: TimeTickerDelegate, SubjectManagementDelegate {
         updateGoals()
     }
     
+    /**
+     Reopens the action sheet when the subject management table returns so that the user can continue
+     to browse and open
+     */
     func reOpenActionSheet() {
         startStop()
     }

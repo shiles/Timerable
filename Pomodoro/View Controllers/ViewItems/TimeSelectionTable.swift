@@ -42,7 +42,7 @@ class TimeSelectionTable: UITableViewController {
      */
     private func generateData(min: Int, max: Int) -> [CellData] {
         var array: [CellData] = [CellData]()
-        for i in stride(from: min, through: max, by: 1) {
+        for i in min...max {
             array.append(CellData.init(minutes: i, message: String(format: (i == 1 ? "%d minute" : "%d minutes"), i)))
         }
         return array

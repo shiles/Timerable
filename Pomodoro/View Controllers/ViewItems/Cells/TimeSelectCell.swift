@@ -12,12 +12,7 @@ class TableSelectCell: UITableViewCell {
     
     var minutes: Int?
     var message: String?
-    
-    var messageView: UILabel = {
-        var text = UILabel()
-        text.translatesAutoresizingMaskIntoConstraints = false
-        return text
-    }()
+
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -41,5 +36,10 @@ class TableSelectCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    var messageView: UILabel = {
+        var text = UILabel()
+        text.translatesAutoresizingMaskIntoConstraints = false
+        return text
+    }()
     
 }

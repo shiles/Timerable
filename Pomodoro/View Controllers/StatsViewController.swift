@@ -29,7 +29,12 @@ class StatsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupView() {
+    /**
+     Initially sets up the view
+     */
+    func setupView() -> Void {
+        self.navigationItem.title = "STATS"
+        
         self.view.addSubview(statStack)
         NSLayoutConstraint.activate([
             statStack.leftAnchor.constraint(equalTo: self.view.leftAnchor),
@@ -47,9 +52,8 @@ class StatsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.navigationItem.title = "STATS"
         
-        //Adding data
+        //Update the data
         self.subjects = fetchSubjectsSortedByTime()
         self.tableView.reloadData()
         self.weekView.reloadData()

@@ -24,6 +24,7 @@ class TimeViewerProgress: UIView {
         super.init(coder: aDecoder)
         self.backgroundColor = UIColor.lightGray.withAlphaComponent(0.35)
     }
+    
     /**
      Update the time viewer progress and fill the amount with a colour.
      - Parameters:
