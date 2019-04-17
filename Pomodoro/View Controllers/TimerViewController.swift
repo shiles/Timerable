@@ -201,8 +201,7 @@ class TimerViewController: UIViewController {
         button.setTitle("START", for: .normal)
         button.addTarget(self, action: #selector(self.startStop), for: .touchUpInside)
         button.backgroundColor = .orange
-        button.layer.cornerRadius = CGFloat(10.0)
-        button.clipsToBounds = true
+        button.setRoundedCorners(radius: 10.0)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -212,8 +211,7 @@ class TimerViewController: UIViewController {
         button.setTitle("RESET", for: .normal)
         button.addTarget(self, action: #selector(self.reset), for: .touchUpInside)
         button.backgroundColor = .orange
-        button.layer.cornerRadius = CGFloat(10.0)
-        button.clipsToBounds = true
+        button.setRoundedCorners(radius: 10.0)
         button.isHidden = true
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

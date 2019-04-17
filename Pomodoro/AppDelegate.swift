@@ -95,8 +95,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-    
-    func showAlert(title: String, reason: String) {
+    /**
+     Shows an alert to warn the users of an error in saving context
+     - parameters:
+     - title: title for teh error
+     - reason: reason for the error
+     */
+    func showAlert(title: String, reason: String) -> Void {
         let error = UIAlertController(title: title, message: reason, preferredStyle: .alert)
         error.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
         main?.present(error, animated: true, completion: nil)

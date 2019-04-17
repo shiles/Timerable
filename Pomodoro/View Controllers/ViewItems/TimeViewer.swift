@@ -37,9 +37,7 @@ class TimeViewer: UIView {
             textStack.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             textStack.centerYAnchor.constraint(equalTo: self.centerYAnchor)])
         
-        //Add Rounded Corners to UIView
-        self.layer.cornerRadius = CGFloat(20.0)
-        self.clipsToBounds = true
+        self.setRoundedCorners(radius: 20.0)
     }
     
     /**

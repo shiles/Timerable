@@ -42,9 +42,7 @@ class SessionStatus: UIView {
             progressText.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             progressText.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 10)])
         
-        //Add Rounded Corners to UIView
-        self.layer.cornerRadius = CGFloat(20.0)
-        self.clipsToBounds = true
+        self.setRoundedCorners(radius: 20.0)
     }
     
     /**

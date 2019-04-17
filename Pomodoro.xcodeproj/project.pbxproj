@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB0151302266E66300138132 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB01512F2266E66200138132 /* Extentions.swift */; };
 		AB0856202251D1E800A81D9A /* SessionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB08561F2251D1E800A81D9A /* SessionStatus.swift */; };
 		AB2103602225EE9500D4101F /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB21035F2225EE9500D4101F /* Format.swift */; };
 		AB2103622225EFEF00D4101F /* FormatTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2103612225EFEF00D4101F /* FormatTest.swift */; };
@@ -66,6 +67,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB01512F2266E66200138132 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		AB08561F2251D1E800A81D9A /* SessionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStatus.swift; sourceTree = "<group>"; };
 		AB21035F2225EE9500D4101F /* Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Format.swift; sourceTree = "<group>"; };
 		AB2103612225EFEF00D4101F /* FormatTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatTest.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				ABBD94FC223F64D500C48C08 /* Service */,
 				AB8A015221F39F1400D0F6EA /* Util */,
 				AB38C43921EBA306003C77D7 /* AppDelegate.swift */,
+				AB01512F2266E66200138132 /* Extentions.swift */,
 				AB2799BD2219CBD200D092C9 /* pomodoro.xcdatamodeld */,
 				AB38C44021EBA307003C77D7 /* Assets.xcassets */,
 				AB38C44221EBA307003C77D7 /* LaunchScreen.storyboard */,
@@ -488,6 +491,7 @@
 				AB57D1A222420C4B000AC6EE /* StatBarGraph.swift in Sources */,
 				AB8D28632208FFAF000C4312 /* MainViewController.swift in Sources */,
 				ABBD94FF223F658000C48C08 /* StatsService.swift in Sources */,
+				AB0151302266E66300138132 /* Extentions.swift in Sources */,
 				AB348E1C21F686A700A97CEA /* TimeViewerProgress.swift in Sources */,
 				ABB9C6572225C221007CAE6B /* StatsViewController.swift in Sources */,
 				AB38C43C21EBA306003C77D7 /* TimerViewController.swift in Sources */,
