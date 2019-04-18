@@ -8,6 +8,12 @@
 
 import Foundation
 
+enum SessionState: Double {
+    case ready
+    case paused
+    case timing
+}
+
 class Defaults: UserDefaults {
     
     enum DefaultKeys: String {
@@ -18,6 +24,7 @@ class Defaults: UserDefaults {
         case dailyGoal
         case subject
         case backgroundedTime
+        case sessionStatus
     }
     
     let defaults = UserDefaults.standard
@@ -31,7 +38,8 @@ class Defaults: UserDefaults {
                           DefaultKeys.short.rawValue : 300,
                           DefaultKeys.long.rawValue : 1800,
                           DefaultKeys.sessionLength.rawValue : 4,
-                          DefaultKeys.dailyGoal.rawValue : 12])
+                          DefaultKeys.dailyGoal.rawValue : 12,
+                          DefaultKeys.sessionStatus.rawValue : SessionState.ready.rawValue])
     }
     
     /**
@@ -162,5 +170,21 @@ class Defaults: UserDefaults {
      */
     func removeBackgroundedTime() -> Void {
         defaults.removeObject(forKey: DefaultKeys.backgroundedTime.rawValue)
+    }
+    
+    /**
+     Sets the timer state
+     - Parameter value: The SessionState
+     */
+    func setTimerStatus(_ value: SessionState) -> Void {
+        defaults.set(value.rawValue, forKey: DefaultKeys.sessionStatus.rawValue)
+    }
+    
+    /**
+     Gets the state of the timer
+     - Returns: The state of the timer
+     */
+    func getTimerStatus() -> SessionState {
+        return SessionState(rawValue: defaults.double(forKey: DefaultKeys.sessionStatus.rawValue))!
     }
 }

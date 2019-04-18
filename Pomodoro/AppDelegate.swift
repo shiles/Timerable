@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Setting defualt values for user defualts
         defaults.registerDefaults()
         defaults.removeBackgroundedTime()
+        defaults.setTimerStatus(.ready)
   
         //Building intial view
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -47,7 +48,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        defaults.setBackgroundedTime(Date())
+        if defaults.getTimerStatus() == .timing {
+            defaults.setBackgroundedTime(Date())
+        }
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -61,6 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         NotificationService().removeNotifications()
+        defaults.setTimerStatus(.ready)
         saveContext()
     }
     

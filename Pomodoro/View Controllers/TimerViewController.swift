@@ -11,12 +11,6 @@ import CoreData
 
 class TimerViewController: UIViewController {
 
-    enum SessionStates {
-        case ready
-        case paused
-        case timing
-    }
-
     let persistanceService: PersistanceService!
     let audioNotificationController: AudioNotificationService!
     let settingsController: SettingsViewController!
@@ -25,7 +19,6 @@ class TimerViewController: UIViewController {
     var timeViewer: TimeViewer!
     var session: SessionStatus!
     var daily: SessionStatus!
-    var sessionStatus: SessionStates = .ready
     var subjects: [Subject] = []
 
     init(persistanceService: PersistanceService, audioNotificationController: AudioNotificationService, settingsController: SettingsViewController) {
@@ -50,7 +43,7 @@ class TimerViewController: UIViewController {
         super.viewWillAppear(animated)
         
         //Update session to newest setting
-        if sessionStatus == .ready {
+        if defaults.getTimerStatus() == .ready {
             timerService.setNewSessionSettings()
         }
         
@@ -128,7 +121,7 @@ class TimerViewController: UIViewController {
      Starts and stops the timer if the user needs an unexpected break
      */
     @objc func startStop() -> Void {
-        switch sessionStatus {
+        switch defaults.getTimerStatus() {
         case .ready:
             let actionSession = UIAlertController(title: "Select Subject for Session", message: "Select the subject for the next session.", preferredStyle: .actionSheet)
             
@@ -136,7 +129,7 @@ class TimerViewController: UIViewController {
             subjects.forEach { subject in
                 actionSession.addAction(UIAlertAction(title: subject.name, style: .default, handler: { (a) in
                     Defaults().setSubject(subject.name!)
-                    self.sessionStatus = .timing
+                    self.defaults.setTimerStatus(.timing)
                     self.timerService.startTimer()
                     self.startStopButton.setTitle("PAUSE", for: .normal)
                     
@@ -155,11 +148,11 @@ class TimerViewController: UIViewController {
             actionSession.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
             self.present(actionSession, animated: true, completion: nil)
         case .timing:
-            sessionStatus = .paused
+            defaults.setTimerStatus(.paused)
             timerService.stopTimer()
             startStopButton.setTitle("RESUME", for: .normal)
         case .paused:
-            sessionStatus = .timing
+            defaults.setTimerStatus(.timing)
             timerService.startTimer()
             startStopButton.setTitle("PAUSE", for: .normal)
         }
@@ -177,7 +170,7 @@ class TimerViewController: UIViewController {
      Resets the UI when either a session is reset or the session ends
      */
     private func sessionFinished() -> Void {
-        sessionStatus = .ready
+        defaults.setTimerStatus(.ready)
         startStopButton.setTitle("START", for: .normal)
         UIView.animate(withDuration: 0.20) { () -> Void in
             self.timeControllButtons.arrangedSubviews[1].isHidden = true
