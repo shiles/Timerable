@@ -129,7 +129,8 @@ class TimerService {
             repeat {
                 let chunk = session.first!
             
-                if session.first!.timeRemaining < timeElapsed {
+                if chunk.timeRemaining < timeElapsed {
+                    addToGoal(timeChunk: chunk)
                     saveProgress(timeChunk: session.removeFirst())
                 } else {
                     session[0].timeRemaining! -= timeElapsed
