@@ -15,7 +15,7 @@ class TimerServiceTest: XCTestCase {
     let defaults = MockTimerDefualts()
     
     override func setUp() {
-        timeController = TimerService(persistanceService: MockTimerPersistanceService(), notificationService: NotificationService(), defaults: MockTimerDefualts())
+        timeController = TimerService(persistanceService: MockTimerPersistanceService(), defaults: MockTimerDefualts())
         timeController.timeTickerDelegate = MockTimeTickerDeligate()
     }
     

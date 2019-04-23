@@ -21,8 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Setting defualt values for user defualts
         defaults.registerDefaults()
-        defaults.removeBackgroundedTime()
-        defaults.setTimerStatus(.ready)
+        self.resetState()
   
         //Building intial view
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -43,14 +42,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        if defaults.getTimerStatus() == .timing {
+            defaults.setBackgroundedTime(Date())
+        }
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        if defaults.getTimerStatus() == .timing {
-            defaults.setBackgroundedTime(Date())
-        }
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -59,13 +57,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        main?.timerService.fastForward(date: defaults.getBackgroundedTime())
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
+        //Fast forward then reset the session to save current progress
+        main?.timerService.fastForward(date: defaults.getBackgroundedTime())
+        main?.timerService.resetSession()
+        saveContext()
+        
+        self.resetState()
+    }
+    
+    /**
+     Resets the state of the app
+     */
+    func resetState() -> Void {
         NotificationService().removeNotifications()
         defaults.setTimerStatus(.ready)
-        saveContext()
+        defaults.removeBackgroundedTime()
+    }
+    
+    /**
+     Shows an alert to warn the users of an error in saving context
+     - parameters:
+     - title: title for teh error
+     - reason: reason for the error
+     */
+    func showAlert(title: String, reason: String) -> Void {
+        let error = UIAlertController(title: title, message: reason, preferredStyle: .alert)
+        error.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+        main?.present(error, animated: true, completion: nil)
     }
     
     var persistentContainer: NSPersistentContainer = {
@@ -98,16 +122,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 showAlert(title: "Error saving data", reason: nserror.userInfo.description)
             }
         }
-    }
-    /**
-     Shows an alert to warn the users of an error in saving context
-     - parameters:
-     - title: title for teh error
-     - reason: reason for the error
-     */
-    func showAlert(title: String, reason: String) -> Void {
-        let error = UIAlertController(title: title, message: reason, preferredStyle: .alert)
-        error.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
-        main?.present(error, animated: true, completion: nil)
     }
 }

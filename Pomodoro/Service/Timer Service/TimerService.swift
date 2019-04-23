@@ -21,12 +21,11 @@ class TimerService {
     private let defaults: Defaults!
     var timeTickerDelegate: TimeTickerDelegate!
     private let persistanceService: PersistanceService!
-    private let notificationService: NotificationService!
+    private let notificationService = NotificationService()
     var session: [TimeChunk]!
     
-    init(persistanceService: PersistanceService, notificationService: NotificationService, defaults: Defaults) {
+    init(persistanceService: PersistanceService, defaults: Defaults) {
         self.persistanceService = persistanceService
-        self.notificationService = notificationService
         self.defaults = defaults
         self.session = buildTimeArray()
     }
@@ -54,10 +53,6 @@ class TimerService {
     @objc func decrementTimer() -> Void {
         session?[0].timeRemaining -= 1
         timeTickerDelegate.timerDecrement(timeChunk: session.first!)
-        
-        if defaults.getBackgroundedTime() != nil {
-            fastForward(date: defaults.getBackgroundedTime()!)
-        }
         
         if isChunkDone() {
             addToGoal(timeChunk: session!.first!)
@@ -112,16 +107,18 @@ class TimerService {
      backgrounded and brought back into the forground.
      - Parameter backgrounded: The date that the app was backgrounded.
      */
-    func fastForward(date: Date) -> Void {
+    func fastForward(date: Date?) -> Void {
         guard timer.isValid else { return }
+        guard date != nil else { return }
     
-        var timeElapsed = abs(Int(date.timeIntervalSinceNow))
+        var timeElapsed = abs(Int(date!.timeIntervalSinceNow))
         
         if timeElapsed >= session.reduce(0) { $0 + $1.timeRemaining } {
             //Save the whole remaining session, stop the time and reset the session.
             session.forEach {saveProgress(timeChunk: $0)}
             session.forEach {addToGoal(timeChunk: $0)}
             stopTimer()
+            defaults.setTimerStatus(.ready)
             session = buildTimeArray()
             timeTickerDelegate.isFinished()
         } else {

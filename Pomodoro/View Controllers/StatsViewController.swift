@@ -15,9 +15,9 @@ class StatsViewController: UIViewController {
     let statsService: StatsService!
     let settingsController: SettingsViewController!
     
-    init(persistanceService: PersistanceService, statsService: StatsService, settingsController: SettingsViewController) {
+    init(persistanceService: PersistanceService, statsService: StatsService) {
         self.persistanceService = persistanceService
-        self.settingsController = settingsController
+        self.settingsController = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "SettingsVC") as? SettingsViewController
         self.statsService = statsService
         
         super.init(nibName: nil, bundle: nil)

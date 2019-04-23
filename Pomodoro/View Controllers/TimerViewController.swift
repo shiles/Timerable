@@ -21,12 +21,11 @@ class TimerViewController: UIViewController {
     var daily: SessionStatus!
     var subjects: [Subject] = []
 
-    init(persistanceService: PersistanceService, audioNotificationController: AudioNotificationService, settingsController: SettingsViewController) {
+    init(persistanceService: PersistanceService, audioNotificationController: AudioNotificationService, timerService: TimerService) {
         self.persistanceService = persistanceService
         self.audioNotificationController = audioNotificationController
-        self.settingsController = settingsController
-        self.timerService = TimerService(persistanceService: persistanceService, notificationService: NotificationService(), defaults: Defaults())
-        
+        self.settingsController = (UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController)
+        self.timerService = timerService
         self.session = SessionStatus(title: "SESSION", frame: .zero)
         self.daily = SessionStatus(title: "GOAL", frame: .zero)
         
@@ -49,7 +48,6 @@ class TimerViewController: UIViewController {
         
         //Defualt values to show
         updateTimer(timeChunk: timerService.session![0])
-        self.subjects = persistanceService.fetchAllSubjects()
         updateGoals()
     }
     
