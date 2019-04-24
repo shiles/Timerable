@@ -12,6 +12,15 @@ import Foundation
 
 class InterfaceController: WKInterfaceController {
 
+    @IBOutlet weak var timerDisplay: WKInterfaceTimer!
+    @IBOutlet weak var sessionTypeDisplay: WKInterfaceLabel!
+    @IBOutlet weak var playPauseButton: WKInterfaceButton!
+    
+    override init() {
+        super.init()
+        //Can access objects
+    }
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
