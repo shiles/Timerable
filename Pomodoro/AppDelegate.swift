@@ -9,13 +9,15 @@
 import UIKit
 import CoreData
 import UserNotifications
+import WatchConnectivity
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 
     var window: UIWindow?
     let defaults = Defaults()
     var main: MainTabbedViewController?
+    var session: WCSession?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -34,6 +36,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .sound, .badge]){ (granted, error) in
             print("Notifications Granted")
+        }
+        
+        //Set up watch connectivity
+        if WCSession.isSupported() {
+            session = WCSession.default
+            session!.delegate = self
+            session!.activate()
         }
         
         return true
@@ -69,6 +78,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         saveContext()
         
         self.resetState()
+    }
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        
     }
     
     /**
