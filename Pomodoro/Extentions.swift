@@ -19,5 +19,19 @@ extension UIView {
         self.layer.cornerRadius = CGFloat(radius)
         self.clipsToBounds = true
     }
+ 
+    /**
+     Solution so solve the known bug that causes double hide in stack view
+     */
+    var isHiddenInStackView: Bool {
+        get {
+            return isHidden
+        }
+        set {
+            if isHidden != newValue {
+                isHidden = newValue
+            }
+        }
+    }
     
 }

@@ -132,7 +132,7 @@ class TimerViewController: UIViewController {
                     self.startStopButton.setTitle("PAUSE", for: .normal)
                     
                     UIView.animate(withDuration: 0.20) { () -> Void in
-                        self.timeControllButtons.arrangedSubviews[1].isHidden = false
+                        self.timeControllButtons.arrangedSubviews[1].isHiddenInStackView = false
                         self.navigationItem.rightBarButtonItem?.isEnabled = true
                     }
                 }))
@@ -171,7 +171,7 @@ class TimerViewController: UIViewController {
         defaults.setTimerStatus(.ready)
         startStopButton.setTitle("START", for: .normal)
         UIView.animate(withDuration: 0.20) { () -> Void in
-            self.timeControllButtons.arrangedSubviews[1].isHidden = true
+            self.timeControllButtons.arrangedSubviews[1].isHiddenInStackView = true
             self.navigationItem.rightBarButtonItem?.isEnabled = false
         }
     }
