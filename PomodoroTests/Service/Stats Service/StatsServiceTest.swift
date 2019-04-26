@@ -38,8 +38,8 @@ class StatsServiceTest: XCTestCase {
     private func buildLastWeeksValues() -> [DailyStat] {
         let now = Date()
         var lastWeek: [DailyStat] = [DailyStat(date: now, seconds: 120)]
-        for i in 1...6 {
-            lastWeek.append(DailyStat(date: Calendar.current.date(byAdding: .day, value: -i, to: now)!, seconds: 0))
+        for daysBack in 1...6 {
+            lastWeek.append(DailyStat(date: Calendar.current.date(byAdding: .day, value: -daysBack, to: now)!, seconds: 0))
         }
         
         return lastWeek

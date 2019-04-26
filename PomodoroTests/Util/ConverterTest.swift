@@ -11,13 +11,13 @@ import XCTest
 
 class ConverterTest: XCTestCase {
     
-    func testSecondsToMinutes(){
-        let m: Int = Converter.secondsToMinutes(seconds: 60)
-         XCTAssertEqual(1, m)
+    func testSecondsToMinutes() {
+        let mins: Int = Converter.secondsToMinutes(seconds: 60)
+        XCTAssertEqual(1, mins)
     }
     
-    func testMinutesToSecounds(){
-        let m: Int = Converter.minutesToSeconds(minutes: 25)
-        XCTAssertEqual(1500, m)
+    func testMinutesToSecounds() {
+        let mins: Int = Converter.minutesToSeconds(minutes: 25)
+        XCTAssertEqual(1500, mins)
     }
 }

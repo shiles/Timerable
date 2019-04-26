@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Register to allow notifications
         let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.alert, .sound, .badge]){ (granted, error) in
+        center.requestAuthorization(options: [.alert, .sound, .badge]) { (_, _) in
             print("Notifications Granted")
         }
         
@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /**
      Resets the state of the app
      */
-    func resetState() -> Void {
+    func resetState() {
         NotificationService().removeNotifications()
         defaults.setTimerStatus(.ready)
         defaults.removeBackgroundedTime()
@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      - title: title for teh error
      - reason: reason for the error
      */
-    func showAlert(title: String, reason: String) -> Void {
+    func showAlert(title: String, reason: String) {
         let error = UIAlertController(title: title, message: reason, preferredStyle: .alert)
         error.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
         main?.present(error, animated: true, completion: nil)
@@ -95,9 +95,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var persistentContainer: NSPersistentContainer = {
 
         let container = NSPersistentContainer(name: "pomodoro")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {
-                let errorAlert = UIAlertController(title:"Error opening storage, can't open", message: error.userInfo.description, preferredStyle: .alert)
+                let errorAlert = UIAlertController(title: "Error opening storage, can't open", message: error.userInfo.description, preferredStyle: .alert)
                 errorAlert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
                 
                 let window = UIWindow(frame: UIScreen.main.bounds)

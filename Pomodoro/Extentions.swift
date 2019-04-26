@@ -15,7 +15,7 @@ extension UIView {
      Rounds the corner of the uiview that calls the function
      - Parameter radius: Radius of the rounded corner
      */
-    func setRoundedCorners(radius: CGFloat) -> Void {
+    func setRoundedCorners(radius: CGFloat) {
         self.layer.cornerRadius = CGFloat(radius)
         self.clipsToBounds = true
     }

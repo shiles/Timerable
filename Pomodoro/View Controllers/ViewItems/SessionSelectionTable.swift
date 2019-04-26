@@ -46,8 +46,8 @@ class SessionSelectionTable: UITableViewController {
      */
     private func generateData(min: Int, max: Int) -> [CellData] {
         var array: [CellData] = [CellData]()
-        for i in min...max {
-            array.append(CellData.init(minutes: i, message: String(format: (i == 1 ? "%d Work Session" : "%d Work Sessions"), i)))
+        for number in min...max {
+            array.append(CellData.init(minutes: number, message: String(format: (number == 1 ? "%d Work Session" : "%d Work Sessions"), number)))
         }
         return array
     }
@@ -59,9 +59,9 @@ class SessionSelectionTable: UITableViewController {
     private func calculateSessionLength(numberOfSessions: Int) -> Int {
         var totalSeconds = 0
         
-        for i in 1...numberOfSessions {
+        for session in 1...numberOfSessions {
             totalSeconds += defaults.getWorkTime()
-            if i != defaults.getNumberOfSessions() {
+            if session != defaults.getNumberOfSessions() {
                 totalSeconds += defaults.getShortTime()
             } else {
                 totalSeconds += defaults.getLongTime()
@@ -89,11 +89,11 @@ class SessionSelectionTable: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tableView.selectRow(at: IndexPath(row: self.selected, section: 0) , animated: false, scrollPosition: UITableView.ScrollPosition.middle)
+        self.tableView.selectRow(at: IndexPath(row: self.selected, section: 0), animated: false, scrollPosition: UITableView.ScrollPosition.middle)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! TableSelectCell
+        guard let cell = tableView.cellForRow(at: indexPath) as? TableSelectCell else { return }
         cell.setSelected(true, animated: true)
         self.saveToDefaults(_: indexPath.row + 1)
         
@@ -102,7 +102,10 @@ class SessionSelectionTable: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "TimeSelect") as! TableSelectCell
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "TimeSelect") as? TableSelectCell else {
+            assertionFailure("Dequeue didn't return a TableSelectCell")
+            return TableSelectCell(frame: .zero)
+        }
         cell.message = data[indexPath.row].message
         cell.minutes = data[indexPath.row].minutes
         return cell

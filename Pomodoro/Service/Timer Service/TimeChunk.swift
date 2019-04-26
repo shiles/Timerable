@@ -13,7 +13,7 @@ struct TimeChunk: Equatable {
     var timeLength: Int!
     var timeRemaining: Int!
     
-    init(type: TimeTypes, initialTime: Int){
+    init(type: TimeTypes, initialTime: Int) {
         self.type = type
         self.timeLength = initialTime
         self.timeRemaining = initialTime

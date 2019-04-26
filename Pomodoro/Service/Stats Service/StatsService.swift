@@ -67,8 +67,8 @@ class StatsService {
         let now = Date()
         var lastWeek: [Date] = [now]
         
-        for i in 1...6 {
-            lastWeek.append(Calendar.current.date(byAdding: .day, value: -i, to: now)!)
+        for days in 1...6 {
+            lastWeek.append(Calendar.current.date(byAdding: .day, value: -days, to: now)!)
         }
         
         return lastWeek

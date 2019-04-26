@@ -18,7 +18,7 @@ class PersistanceService {
         return self.persistentContainer.viewContext
     }()
     
-    //MARK: Init with dependency
+    // MARK: Init with dependency
     init(container: NSPersistentContainer) {
         self.persistentContainer = container
     }
@@ -89,7 +89,11 @@ class PersistanceService {
      - Returns: A list of sessions from the `subject` required
      */
     func fetchSessions(subject: Subject) -> [Session] {
-        return subject.session?.allObjects as! [Session]
+        guard let sessions = subject.session?.allObjects as? [Session] else {
+            assertionFailure("FetchSessions didn't return a [Session]")
+            return []
+        }
+        return sessions
     }
     
     /**
@@ -100,7 +104,8 @@ class PersistanceService {
         var sessions: [Session] = []
         
         self.fetchAllSubjects().forEach {
-            sessions.append(contentsOf: $0.session?.allObjects as! [Session])
+            guard let session = $0.session?.allObjects as? [Session] else {return}
+            sessions.append(contentsOf: session)
         }
     
         return sessions
@@ -123,7 +128,7 @@ class PersistanceService {
     /**
      Removes all the sessions saved
      */
-    func removeAllSessions() -> Void {
+    func removeAllSessions() {
         fetchAllSessions().forEach { self.remove(objectID: $0.objectID) }
     }
     

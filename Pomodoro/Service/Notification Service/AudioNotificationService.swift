@@ -16,7 +16,7 @@ class AudioNotificationService {
     /**
      Plays the notification ping notification sound
      */
-    func playNotificationSound() -> Void {
+    func playNotificationSound() {
          AudioServicesPlayAlertSound(SystemSoundID(dingSound))
     }
 }

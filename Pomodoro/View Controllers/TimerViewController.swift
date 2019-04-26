@@ -24,7 +24,7 @@ class TimerViewController: UIViewController {
     init(persistanceService: PersistanceService, audioNotificationController: AudioNotificationService, timerService: TimerService) {
         self.persistanceService = persistanceService
         self.audioNotificationController = audioNotificationController
-        self.settingsController = (UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController)
+        self.settingsController = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "SettingsVC") as? SettingsViewController
         self.timerService = timerService
         self.session = SessionStatus(title: "SESSION", frame: .zero)
         self.daily = SessionStatus(title: "GOAL", frame: .zero)
@@ -54,7 +54,7 @@ class TimerViewController: UIViewController {
     /**
      Initially sets up the view
      */
-    func setupView() -> Void {
+    func setupView() {
         self.view.backgroundColor = .white
         self.navigationItem.title = "TIMER"
         
@@ -97,35 +97,35 @@ class TimerViewController: UIViewController {
      Updates the UI when a change occures within the session
      - Parameter timeChunk: The `TimeChunk` to display to calulate progress and display correct label.
      */
-    func updateTimer(timeChunk: TimeChunk) -> Void {
+    func updateTimer(timeChunk: TimeChunk) {
         timeViewer?.updateTimeViewer(timeChunk: timeChunk)
     }
     
     /**
      Skips the current time chunk and starts the next one
      */
-    @objc func skip() -> Void {
+    @objc func skip() {
         timerService.skipChunk()
     }
     
     /**
      Push into the settings controller.
      */
-    @objc func pushSettings() -> Void {
+    @objc func pushSettings() {
         self.navigationController?.pushViewController(settingsController, animated: true)
     }
     
     /**
      Starts and stops the timer if the user needs an unexpected break
      */
-    @objc func startStop() -> Void {
+    @objc func startStop() {
         switch defaults.getTimerStatus() {
         case .ready:
             let actionSession = UIAlertController(title: "Select Subject for Session", message: "Select the subject for the next session.", preferredStyle: .actionSheet)
             
             self.subjects = persistanceService.fetchAllSubjects()
             subjects.forEach { subject in
-                actionSession.addAction(UIAlertAction(title: subject.name, style: .default, handler: { (a) in
+                actionSession.addAction(UIAlertAction(title: subject.name, style: .default, handler: { (_) in
                     Defaults().setSubject(subject.name!)
                     self.defaults.setTimerStatus(.timing)
                     self.timerService.startTimer()
@@ -139,7 +139,7 @@ class TimerViewController: UIViewController {
             }
             
             let title = subjects.isEmpty ? "Add Subject" : "Edit Subjects"
-            actionSession.addAction(UIAlertAction(title: title, style: .default, handler: { (a) in
+            actionSession.addAction(UIAlertAction(title: title, style: .default, handler: { (_) in
                 self.navigationController?.pushViewController(SubjectManagementTable(persistanceService: self.persistanceService, delegate: self), animated: true)
             }))
             
@@ -159,7 +159,7 @@ class TimerViewController: UIViewController {
     /**
      Resets the timer if the user wasnts to select another subject or end their current session
      */
-    @objc private func reset() -> Void {
+    @objc private func reset() {
         timerService.resetSession()
         sessionFinished()
     }
@@ -167,7 +167,7 @@ class TimerViewController: UIViewController {
     /**
      Resets the UI when either a session is reset or the session ends
      */
-    private func sessionFinished() -> Void {
+    private func sessionFinished() {
         defaults.setTimerStatus(.ready)
         startStopButton.setTitle("START", for: .normal)
         UIView.animate(withDuration: 0.20) { () -> Void in
@@ -179,7 +179,7 @@ class TimerViewController: UIViewController {
     /**
      Provides and updates the values in the session and goal goals panes
      */
-    private func updateGoals() -> Void {
+    private func updateGoals() {
         daily.updateValues(currentSession: Int(persistanceService.fetchDailyGoal().sessionsCompleted), totalSessions: defaults.getDailyGoal())
         
         let sessionMax = defaults.getNumberOfSessions()
@@ -235,7 +235,7 @@ extension TimerViewController: TimeTickerDelegate, SubjectManagementDelegate {
     Updates the UI when a change occures within the session
      - Parameter timeChunk: The `TimeChunk` to display to calulate progress and display correct label.
      */
-    func timerDecrement(timeChunk: TimeChunk){
+    func timerDecrement(timeChunk: TimeChunk) {
         updateTimer(timeChunk: timeChunk)
     }
     

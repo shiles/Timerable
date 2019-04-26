@@ -350,6 +350,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB38C45E21EBA307003C77D7 /* Build configuration list for PBXNativeTarget "Pomodoro" */;
 			buildPhases = (
+				AB4F97B02272E0F900ABA57F /* ShellScript */,
 				AB38C43221EBA306003C77D7 /* Sources */,
 				AB38C43321EBA306003C77D7 /* Frameworks */,
 				AB38C43421EBA306003C77D7 /* Resources */,
@@ -477,6 +478,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AB4F97B02272E0F900ABA57F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AB38C43221EBA306003C77D7 /* Sources */ = {
@@ -701,7 +722,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = sonniehiles.Pomodoro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -719,7 +740,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = sonniehiles.Pomodoro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

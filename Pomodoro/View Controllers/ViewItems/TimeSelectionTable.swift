@@ -19,7 +19,7 @@ class TimeSelectionTable: UITableViewController {
     var selected: Int!
     var saveToDefaults: (Int) -> Void 
     
-    init( min: Int, max: Int, selected: Int, saveToDefaults: @escaping (Int) -> Void) {
+    init(min: Int, max: Int, selected: Int, saveToDefaults: @escaping (Int) -> Void) {
         self.selected = selected - 1
         self.saveToDefaults = saveToDefaults
         
@@ -42,8 +42,8 @@ class TimeSelectionTable: UITableViewController {
      */
     private func generateData(min: Int, max: Int) -> [CellData] {
         var array: [CellData] = [CellData]()
-        for i in min...max {
-            array.append(CellData.init(minutes: i, message: String(format: (i == 1 ? "%d minute" : "%d minutes"), i)))
+        for mins in min...max {
+            array.append(CellData.init(minutes: mins, message: String(format: (mins == 1 ? "%d minute" : "%d minutes"), mins)))
         }
         return array
     }
@@ -56,9 +56,9 @@ class TimeSelectionTable: UITableViewController {
         let defaults =  Defaults()
         var totalSeconds = 0
 
-        for i in 1...defaults.getNumberOfSessions() {
+        for session in 1...defaults.getNumberOfSessions() {
             totalSeconds += defaults.getWorkTime()
-            if i != defaults.getNumberOfSessions() {
+            if session != defaults.getNumberOfSessions() {
                 totalSeconds += defaults.getShortTime()
             } else {
                 totalSeconds += defaults.getLongTime()
@@ -70,15 +70,18 @@ class TimeSelectionTable: UITableViewController {
     
     override func viewDidLoad() {
         self.tableView.register(TableSelectCell.self, forCellReuseIdentifier: "TimeSelect")
+        self.tableView.selectRow(at: IndexPath(row: self.selected, section: 0), animated: false, scrollPosition: UITableView.ScrollPosition.middle)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-         self.tableView.selectRow(at: IndexPath(row: self.selected, section: 0) , animated: false, scrollPosition: UITableView.ScrollPosition.middle)
-      
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.reloadData()
     }
         
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! TableSelectCell
+        guard let cell = tableView.cellForRow(at: indexPath) as? TableSelectCell else {
+            assertionFailure("CellForRowAt didn't return a TableSelectCell")
+            return
+        }
         cell.setSelected(true, animated: true)
         self.selected = indexPath.row + 1
         self.saveToDefaults(_: Converter.minutesToSeconds(minutes: selected))
@@ -88,7 +91,10 @@ class TimeSelectionTable: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "TimeSelect") as! TableSelectCell
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "TimeSelect") as? TableSelectCell else {
+            assertionFailure("Dequeue didn't return a TableSelectCell")
+            return TableSelectCell(frame: .zero)
+        }
         cell.message = data[indexPath.row].message
         cell.minutes = data[indexPath.row].minutes
         return cell

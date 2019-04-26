@@ -32,7 +32,7 @@ class StatsViewController: UIViewController {
     /**
      Initially sets up the view
      */
-    func setupView() -> Void {
+    func setupView() {
         self.navigationItem.title = "STATS"
         
         self.view.addSubview(statStack)
@@ -71,7 +71,7 @@ class StatsViewController: UIViewController {
     /**
      Push into the settings controller.
      */
-    @objc func pushSettings() -> Void {
+    @objc func pushSettings() {
         self.navigationController?.pushViewController(settingsController, animated: true)
     }
     
@@ -108,7 +108,10 @@ extension StatsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let subject = subjects[indexPath.row]
         
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "TimeDisplay") as! TimeDisplayCell
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "TimeDisplay") as? TimeDisplayCell else {
+            assertionFailure("Dequeue didn't return a TableSelectCell")
+            return TimeDisplayCell()
+        }
         cell.primaryText.text = subject.name
         cell.secondaryText.text = Format.timeToStringWords(seconds: statsService.getOverallSessionTime(subject: subject))
         return cell

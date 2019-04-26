@@ -27,13 +27,13 @@ class SettingsViewController: UITableViewController {
         appVertion.text = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
         setLabelsToValues()
         //Setting table height to remove defualt warningS
-        self.tableView.rowHeight = 44;
+        self.tableView.rowHeight = 44
     }
     
     /**
      Sets the labels to the values so that the table will represent the correct current values
      */
-    private func setLabelsToValues() -> Void {
+    private func setLabelsToValues() {
         workLengthLabel.text = Format.timeToStringWords(seconds: defaults.getWorkTime())
         shortLengthLabel.text = Format.timeToStringWords(seconds: defaults.getShortTime())
         longLengthLabel.text = Format.timeToStringWords(seconds: defaults.getLongTime())
@@ -44,7 +44,7 @@ class SettingsViewController: UITableViewController {
     /**
      Sets work lenght to the value you select in the table
      */
-    private func setWorkLength() -> Void {
+    private func setWorkLength() {
         let saveFn: (Int) -> Void = defaults.setWorkTime(_:)
         
         let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defaults.getWorkTime()), saveToDefaults: saveFn)
@@ -55,7 +55,7 @@ class SettingsViewController: UITableViewController {
     /**
      Sets short break lenght to the value you select in the table
      */
-    private func setShortLength() -> Void {
+    private func setShortLength() {
         let saveFn: (Int) -> Void = defaults.setShortTime(_:)
         
         let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defaults.getShortTime()), saveToDefaults: saveFn)
@@ -66,7 +66,7 @@ class SettingsViewController: UITableViewController {
     /**
      Sets long break lenght to the value you select in the table
      */
-    private func setLongLength() -> Void {
+    private func setLongLength() {
         let saveFn: (Int) -> Void = defaults.setLongTime(_:)
         
         let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defaults.getLongTime()), saveToDefaults: saveFn)
@@ -77,7 +77,7 @@ class SettingsViewController: UITableViewController {
     /**
      Sets the session length to the value you select in the table
      */
-    private func setSessionLength() -> Void {
+    private func setSessionLength() {
         let saveFn: (Int) -> Void = defaults.setNumberOfSessions(_:)
         
         let newTable = SessionSelectionTable(min: 1, max: 10, selected: defaults.getNumberOfSessions(), calculationType: .session, saveToDefaults: saveFn)
@@ -88,7 +88,7 @@ class SettingsViewController: UITableViewController {
     /**
      Sets the daily goal to the value you select in the table
      */
-    private func setDailyGoals() -> Void {
+    private func setDailyGoals() {
         let saveFn: (Int) -> Void = defaults.setDailyGoal(_:)
         
         let newTable = SessionSelectionTable(min: 1, max: 30, selected: defaults.getDailyGoal(), calculationType: .daily, saveToDefaults: saveFn)
@@ -99,7 +99,7 @@ class SettingsViewController: UITableViewController {
     /**
      Resets the session information back to what I deem are the results
      */
-    private func resetSessionsToDefaults() -> Void {
+    private func resetSessionsToDefaults() {
          let warning = UIAlertController(title: "Reset Session Settings To Defualts", message: "Are you sure you want to reset the sessions settings back to the defualts?", preferredStyle: .alert)
         
         warning.addAction(UIAlertAction(title: "Reset", style: .destructive, handler: { _ in
@@ -113,7 +113,7 @@ class SettingsViewController: UITableViewController {
     /**
      Resets the statistics and removes all session data
      */
-    private func resetStatistics() -> Void {
+    private func resetStatistics() {
         let warning = UIAlertController(title: "Reset Statistics", message: "Are you sure you want to delete all of the current statistics?", preferredStyle: .alert)
         
         warning.addAction(UIAlertAction(title: "Reset", style: .destructive, handler: { _ in

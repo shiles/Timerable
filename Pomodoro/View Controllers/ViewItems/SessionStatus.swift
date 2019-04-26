@@ -51,7 +51,7 @@ class SessionStatus: UIView {
      currentSession: The current number of sessions completed
      totalSessions: The current total sessions that the session has
      */
-    func updateValues(currentSession: Int, totalSessions: Int) -> Void {
+    func updateValues(currentSession: Int, totalSessions: Int) {
         self.progress.setProgress(Float(currentSession)/Float(totalSessions), animated: true)
         self.progressText.text = String.init(format: "%d/%d", currentSession, totalSessions)
     }

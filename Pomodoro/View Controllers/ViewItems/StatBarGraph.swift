@@ -17,7 +17,7 @@ public class StatBarGraph: UICollectionView {
     var headerText: String?
     var statService: StatsService!
     
-    init(statService: StatsService){
+    init(statService: StatsService) {
         self.statService = statService
         data = statService.getLastWeeksSessionTimes()
         
@@ -59,11 +59,14 @@ extension StatBarGraph: UICollectionViewDataSource, UICollectionViewDelegateFlow
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseId, for: indexPath) as! StatBarGraphCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseId, for: indexPath) as? StatBarGraphCell else {
+            assertionFailure("Dequeue didn't return a StatBarGraphCell")
+            return StatBarGraphCell(frame: .zero)
+        }
         cell.label.text = Format.dateToShortWeekDay(date: data[indexPath.row].date)
         cell.resetBarHeight()
         
-        guard let maxTime:Int = data.max()?.seconds, maxTime > 0 else { return cell }
+        guard let maxTime: Int = data.max()?.seconds, maxTime > 0 else { return cell }
         cell.setBarHeight(maxTime: maxTime, seconds: data[indexPath.row].seconds)
         
         return cell
@@ -74,7 +77,10 @@ extension StatBarGraph: UICollectionViewDataSource, UICollectionViewDelegateFlow
     }
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseId, for: indexPath) as! StatBarGraphHeaderCell
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseId, for: indexPath) as? StatBarGraphHeaderCell else {
+             assertionFailure("DequeueSupplementaryView didn't return a StatBarGraphHeaderCell")
+            return StatBarGraphHeaderCell(frame: .zero)
+        }
         header.label.text = self.headerText!
         return header
     }

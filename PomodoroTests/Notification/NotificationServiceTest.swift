@@ -37,4 +37,3 @@ class NotificationServiceTest: XCTestCase {
         return [work, shortBreak, work, longBreak]
     }
 }
-

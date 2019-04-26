@@ -30,7 +30,7 @@ class StatBarGraphCell: UICollectionViewCell {
         barHeightConstraint = bar.heightAnchor.constraint(equalToConstant: 0)
         barHeightConstraint?.isActive = true
         NSLayoutConstraint.activate([
-            bar.bottomAnchor.constraint(equalTo: label.topAnchor, constant:-20),
+            bar.bottomAnchor.constraint(equalTo: label.topAnchor, constant: -20),
             bar.leftAnchor.constraint(equalTo: leftAnchor),
             bar.rightAnchor.constraint(equalTo: rightAnchor)])
     }
@@ -45,7 +45,7 @@ class StatBarGraphCell: UICollectionViewCell {
      - dailyStat: The `maximum time` within the array.
      - seconds: The `seconds` for this bar.
      */
-    func setBarHeight(maxTime: Int, seconds: Int) -> Void {
+    func setBarHeight(maxTime: Int, seconds: Int) {
         let percentFill = CGFloat(seconds)/CGFloat(maxTime)
         self.barHeightConstraint?.constant = (self.frame.height - 50) * percentFill
     }
@@ -53,7 +53,7 @@ class StatBarGraphCell: UICollectionViewCell {
     /**
      Resets the bar height to 0
      */
-    func resetBarHeight() -> Void {
+    func resetBarHeight() {
         self.barHeightConstraint?.constant = 0
     }
     

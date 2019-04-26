@@ -9,14 +9,14 @@
 import UIKit
 import CoreData
 
-protocol SubjectManagementDelegate {
+protocol SubjectManagementDelegate: AnyObject {
     func reOpenActionSheet()
 }
 
 class SubjectManagementTable: UITableViewController {
     
     let persistanceService: PersistanceService!
-    let subjectManagementDelegate: SubjectManagementDelegate!
+    weak var subjectManagementDelegate: SubjectManagementDelegate?
     var subjects: [Subject]!
     
     init(persistanceService: PersistanceService, delegate: SubjectManagementDelegate) {
@@ -44,7 +44,7 @@ class SubjectManagementTable: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        subjectManagementDelegate.reOpenActionSheet()
+        subjectManagementDelegate?.reOpenActionSheet()
     }
     
     @objc func addSubject() {
@@ -74,7 +74,7 @@ class SubjectManagementTable: UITableViewController {
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let delete = UIContextualAction(style: .destructive, title: "Delete", handler: { (action, view, completion) in
+        let delete = UIContextualAction(style: .destructive, title: "Delete", handler: { (_, _, completion) in
             self.persistanceService.remove(objectID: self.subjects[indexPath.row].objectID)
             self.subjects.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -82,7 +82,7 @@ class SubjectManagementTable: UITableViewController {
         })
         delete.backgroundColor = .red
         
-        let edit = UIContextualAction(style: .destructive, title: "Edit", handler: { (action, view, completion) in
+        let edit = UIContextualAction(style: .destructive, title: "Edit", handler: { (_, _, completion) in
             let alert = UIAlertController(title: "Rename Subject", message: "Rename selected subject", preferredStyle: .alert)
             
             alert.addTextField { textField in

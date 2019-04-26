@@ -10,10 +10,10 @@ import Foundation
 
 class DailyStat: Equatable, Comparable {
     
-    let date:Date!
+    let date: Date!
     let seconds: Int!
     
-    init(date :Date, seconds :Int){
+    init(date: Date, seconds: Int) {
         self.date = date
         self.seconds = seconds
     }

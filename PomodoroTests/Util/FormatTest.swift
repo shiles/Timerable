@@ -11,7 +11,6 @@ import XCTest
 
 class FormatTest: XCTestCase {
 
-    
     func testWithLengthInHoursAndMinutesWords() {
         let expected = "1 hour, 1 minute"
         XCTAssertEqual(expected, Format.timeToStringWords(seconds: 3660))
@@ -22,12 +21,12 @@ class FormatTest: XCTestCase {
         XCTAssertEqual(expected, Format.timeToStringWords(seconds: 608100))
     }
     
-    func testWithLengthInMinutes(){
+    func testWithLengthInMinutes() {
         let expected = "2:05"
         XCTAssertEqual(expected, Format.timeToString(seconds: 125))
     }
     
-    func testWithLengthInSeconds(){
+    func testWithLengthInSeconds() {
         let expected = "59"
         XCTAssertEqual(expected, Format.timeToString(seconds: 59))
     }

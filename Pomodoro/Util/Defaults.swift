@@ -33,19 +33,19 @@ class Defaults: UserDefaults {
      Sets up the default values to be used when no defined values
      been given by a user within the settings.
      */
-    func registerDefaults() -> Void {
-      defaults.register(defaults: [DefaultKeys.work.rawValue : 1500,
-                          DefaultKeys.short.rawValue : 300,
-                          DefaultKeys.long.rawValue : 1800,
-                          DefaultKeys.sessionLength.rawValue : 4,
-                          DefaultKeys.dailyGoal.rawValue : 12,
-                          DefaultKeys.sessionStatus.rawValue : SessionState.ready.rawValue])
+    func registerDefaults() {
+      defaults.register(defaults: [DefaultKeys.work.rawValue: 1500,
+                          DefaultKeys.short.rawValue: 300,
+                          DefaultKeys.long.rawValue: 1800,
+                          DefaultKeys.sessionLength.rawValue: 4,
+                          DefaultKeys.dailyGoal.rawValue: 12,
+                          DefaultKeys.sessionStatus.rawValue: SessionState.ready.rawValue])
     }
     
     /**
      Reset the values to the defualts
      */
-    func resetToDefaults() -> Void {
+    func resetToDefaults() {
         setWorkTime(1500)
         setShortTime(300)
         setLongTime(1800)
@@ -57,7 +57,7 @@ class Defaults: UserDefaults {
      Sets the work time value in seconds.
      - Parameter value: The number of seconds to set.
      */
-    func setWorkTime(_ value: Int) -> Void {
+    func setWorkTime(_ value: Int) {
         defaults.set(value, forKey: DefaultKeys.work.rawValue)
     }
     
@@ -73,7 +73,7 @@ class Defaults: UserDefaults {
      Sets the long break time value in seconds.
      - Parameter value: The number of seconds to set.
      */
-    func setLongTime(_ value: Int) -> Void {
+    func setLongTime(_ value: Int) {
         defaults.set(value, forKey: DefaultKeys.long.rawValue)
     }
     
@@ -89,7 +89,7 @@ class Defaults: UserDefaults {
      Sets the short break time value in seconds.
      - Parameter value: The number of seconds to set.
      */
-    func setShortTime(_ value: Int) -> Void {
+    func setShortTime(_ value: Int) {
         defaults.set(value, forKey: DefaultKeys.short.rawValue)
     }
     
@@ -105,7 +105,7 @@ class Defaults: UserDefaults {
      Sets the session length in number of work chunks.
      - Parameter value: The number of sessions.
      */
-    func setNumberOfSessions(_ value: Int) -> Void {
+    func setNumberOfSessions(_ value: Int) {
         defaults.set(value, forKey: DefaultKeys.sessionLength.rawValue)
     }
     
@@ -121,7 +121,7 @@ class Defaults: UserDefaults {
      Sets the amount of sessions for a daily goal
      - Parameter value: The number of sessions.
      */
-    func setDailyGoal(_ value: Int) -> Void {
+    func setDailyGoal(_ value: Int) {
         defaults.set(value, forKey: DefaultKeys.dailyGoal.rawValue)
     }
     
@@ -137,7 +137,7 @@ class Defaults: UserDefaults {
      Sets the subject name for the session
      - Parameter value: The subject
      */
-    func setSubject(_ value: String) -> Void {
+    func setSubject(_ value: String) {
         defaults.set(value, forKey: DefaultKeys.subject.rawValue)
     }
     
@@ -168,7 +168,7 @@ class Defaults: UserDefaults {
     /**
      Remove the backgrounded time.
      */
-    func removeBackgroundedTime() -> Void {
+    func removeBackgroundedTime() {
         defaults.removeObject(forKey: DefaultKeys.backgroundedTime.rawValue)
     }
     
@@ -176,7 +176,7 @@ class Defaults: UserDefaults {
      Sets the timer state
      - Parameter value: The SessionState
      */
-    func setTimerStatus(_ value: SessionState) -> Void {
+    func setTimerStatus(_ value: SessionState) {
         defaults.set(value.rawValue, forKey: DefaultKeys.sessionStatus.rawValue)
     }
     

@@ -101,8 +101,8 @@ class PersistanceServiceTest: XCTestCase {
     
     func numberOfItemsInPersistentStore() -> Int {
         let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Subject")
-        let results = try! mockPersistantContainer.viewContext.fetch(request)
-        return results.count
+        let results = try? mockPersistantContainer.viewContext.fetch(request)
+        return results?.count ?? 0
     }
     
     func initStubs() {
@@ -124,18 +124,18 @@ class PersistanceServiceTest: XCTestCase {
         
         do {
             try mockPersistantContainer.viewContext.save()
-        }  catch {
+        } catch {
             print("create fakes error \(error)")
         }
     }
     
     func flushData() {
-        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: "Subject")
-        let objs = try! mockPersistantContainer.viewContext.fetch(fetchRequest)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Subject")
+        guard let objs = try? mockPersistantContainer.viewContext.fetch(fetchRequest) else { return }
         for case let obj as NSManagedObject in objs {
             mockPersistantContainer.viewContext.delete(obj)
         }
-        try! mockPersistantContainer.viewContext.save()
+        try? mockPersistantContainer.viewContext.save()
     }
     
     lazy var mockPersistantContainer: NSPersistentContainer = {

@@ -24,7 +24,7 @@ class TimeDisplayCell: UITableViewCell {
     /**
      Initially sets up the view
      */
-    private func setUpCell() -> Void {
+    private func setUpCell() {
         self.backgroundColor = .white
         
         self.addSubview(primaryText)
