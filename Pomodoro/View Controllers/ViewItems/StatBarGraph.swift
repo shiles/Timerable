@@ -73,7 +73,7 @@ extension StatBarGraph: UICollectionViewDataSource, UICollectionViewDelegateFlow
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.frame.width/CGFloat(data.count+2), height: self.frame.height - headerHeight)
+        return CGSize(width: self.frame.width/CGFloat(data.count), height: self.frame.height - headerHeight)
     }
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

@@ -31,8 +31,8 @@ class StatBarGraphCell: UICollectionViewCell {
         barHeightConstraint?.isActive = true
         NSLayoutConstraint.activate([
             bar.bottomAnchor.constraint(equalTo: label.topAnchor, constant: -20),
-            bar.leftAnchor.constraint(equalTo: leftAnchor),
-            bar.rightAnchor.constraint(equalTo: rightAnchor)])
+            bar.leftAnchor.constraint(equalTo: leftAnchor, constant: 5),
+            bar.rightAnchor.constraint(equalTo: rightAnchor, constant: -5)])
     }
     
     required init?(coder aDecoder: NSCoder) {
