@@ -21,7 +21,11 @@ public class StatBarGraph: UICollectionView {
         self.statService = statService
         data = statService.getLastWeeksSessionTimes()
         
-        super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        let flow = UICollectionViewFlowLayout()
+        flow.minimumInteritemSpacing = 0
+        flow.minimumLineSpacing = 0
+        
+        super.init(frame: .zero, collectionViewLayout: flow)
         self.dataSource = self
         self.delegate = self
         self.register(StatBarGraphCell.self, forCellWithReuseIdentifier: cellReuseId)
