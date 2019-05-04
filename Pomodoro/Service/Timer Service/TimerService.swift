@@ -115,8 +115,8 @@ class TimerService {
         
         if timeElapsed >= session.reduce(0) { $0 + $1.timeRemaining } {
             //Save the whole remaining session, stop the time and reset the session.
-            session.forEach {saveProgress(timeChunk: $0)}
-            session.forEach {addToGoal(timeChunk: $0)}
+            session.forEach { saveProgress(timeChunk: fastForwardChunk(timeChunk: $0)) }
+            session.forEach { addToGoal(timeChunk: $0) }
             stopTimer()
             defaults.setTimerStatus(.ready)
             session = buildTimeArray()
@@ -128,7 +128,7 @@ class TimerService {
             
                 if chunk.timeRemaining < timeElapsed {
                     addToGoal(timeChunk: chunk)
-                    saveProgress(timeChunk: session.removeFirst())
+                    saveProgress(timeChunk: fastForwardChunk(timeChunk: session.removeFirst()))
                 } else {
                     session[0].timeRemaining! -= timeElapsed
                 }
@@ -198,5 +198,16 @@ class TimerService {
             goal.sessionsCompleted += 1
             persistanceService.save()
         }
+    }
+    
+    /**
+     Completes the time block so the remainingTime is zero so that saving will behave properly
+     - Parameter timeChunk: The timechunk to save
+     - Returns: completed time chunk
+     */
+    private func fastForwardChunk(timeChunk: TimeChunk) -> TimeChunk {
+        var copy = timeChunk
+        copy.timeRemaining = 0
+        return copy
     }
 }
