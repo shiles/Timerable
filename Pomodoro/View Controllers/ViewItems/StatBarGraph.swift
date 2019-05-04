@@ -12,7 +12,7 @@ public class StatBarGraph: UICollectionView {
 
     let cellReuseId = "CellId"
     let headerReuseId = "HeaderId"
-    let headerHeight: CGFloat = 25
+    let headerHeight: CGFloat = 45
     var data: [DailyStat]!
     var headerText: String?
     var statService: StatsService!
@@ -44,6 +44,7 @@ public class StatBarGraph: UICollectionView {
     
     public override func reloadData() {
         data = statService.getLastWeeksSessionTimes()
+        self.headerText = buildGraphHeader(stat: data.last!)
         super.reloadData()
     }
     
@@ -85,7 +86,8 @@ extension StatBarGraph: UICollectionViewDataSource, UICollectionViewDelegateFlow
              assertionFailure("DequeueSupplementaryView didn't return a StatBarGraphHeaderCell")
             return StatBarGraphHeaderCell(frame: .zero)
         }
-        header.label.text = self.headerText!
+        header.primaryText.text = "Last 7 Days:"
+        header.secondaryText.text = self.headerText!
         return header
     }
     

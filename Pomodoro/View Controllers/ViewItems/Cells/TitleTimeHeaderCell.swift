@@ -1,18 +1,18 @@
 //
-//  StatBarGraphHeaderCell.swift
+//  TitleTimeHeaderCell.swift
 //  Pomodoro
 //
-//  Created by Sonnie Hiles on 25/03/2019.
+//  Created by Sonnie Hiles on 03/05/2019.
 //  Copyright © 2019 Sonnie Hiles. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class StatBarGraphHeaderCell: UICollectionViewCell {
+class TitleTimeHeaderCell: UITableViewHeaderFooterView {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         self.setupView()
     }
     
@@ -22,8 +22,7 @@ class StatBarGraphHeaderCell: UICollectionViewCell {
         self.setupView()
     }
     
-    private func setupView() {
-        self.backgroundColor = .orange
+    private func setupView() {        
         self.addSubview(titleStack)
         NSLayoutConstraint.activate([
             titleStack.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -58,5 +57,4 @@ class StatBarGraphHeaderCell: UICollectionViewCell {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-    
 }

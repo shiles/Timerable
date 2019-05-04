@@ -21,7 +21,7 @@ class StatBarGraphCell: UICollectionViewCell {
         label.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         NSLayoutConstraint.activate([
             label.centerXAnchor.constraint(equalTo: centerXAnchor),
-            label.leftAnchor.constraint(equalTo: leftAnchor),
+            label.leftAnchor.constraint(equalTo: leftAnchor, constant: 5),
             label.rightAnchor.constraint(equalTo: rightAnchor),
             label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)])
         

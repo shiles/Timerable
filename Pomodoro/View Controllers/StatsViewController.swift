@@ -89,6 +89,7 @@ class StatsViewController: UIViewController {
         table.dataSource = self
         table.delegate = self
         table.allowsSelection = false
+        table.register(TitleTimeHeaderCell.self, forHeaderFooterViewReuseIdentifier: "CustomHeader")
         return table
     }()
     
@@ -117,17 +118,23 @@ extension StatsViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return String(format: "Total: %@", Format.timeToStringWords(seconds: statsService.getTotalSessionTime()))
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 45
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let headerView = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader" ) as? TitleTimeHeaderCell else {
+            assertionFailure("viewForHeaderInSection didn't return a Title Header")
+            return UIView()
+        }
+        headerView.primaryText.text = "Total Study Time:"
+        headerView.secondaryText.text = String(format: "%@", Format.timeToStringWords(seconds: statsService.getTotalSessionTime()))
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.textLabel?.textColor = .white
-        header.tintColor? = .orange
-        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        header.textLabel?.frame = header.frame
-        header.textLabel?.textAlignment = .center
+        header.backgroundView?.backgroundColor = .orange
     }
     
 }
