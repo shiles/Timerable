@@ -56,6 +56,7 @@ class StatsViewController: UIViewController {
         //Update the data
         self.subjects = fetchSubjectsSortedByTime()
         self.tableView.reloadData()
+        self.weekView.setInitialHeader()
         self.weekView.reloadData()
     }
     

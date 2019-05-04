@@ -31,7 +31,7 @@ public class StatBarGraph: UICollectionView {
         self.register(StatBarGraphCell.self, forCellWithReuseIdentifier: cellReuseId)
         self.register(StatBarGraphHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerReuseId)
         
-        self.headerText = buildGraphHeader(stat: data.last!)
+        setInitialHeader()
         
         //Setting up the collection view
         self.isScrollEnabled = false
@@ -44,8 +44,15 @@ public class StatBarGraph: UICollectionView {
     
     public override func reloadData() {
         data = statService.getLastWeeksSessionTimes()
-        self.headerText = buildGraphHeader(stat: data.last!)
         super.reloadData()
+    }
+    
+    /**
+     Sets the initial header for the graph, on today
+     */
+    func setInitialHeader() {
+         data = statService.getLastWeeksSessionTimes()
+         self.headerText = buildGraphHeader(stat: data.last!)
     }
     
     /**
