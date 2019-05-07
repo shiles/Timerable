@@ -89,7 +89,6 @@ class StatsViewController: UIViewController {
         let table = UITableView(frame: .zero)
         table.dataSource = self
         table.delegate = self
-        table.allowsSelection = false
         table.register(TitleTimeHeaderCell.self, forHeaderFooterViewReuseIdentifier: "CustomHeader")
         return table
     }()
@@ -117,6 +116,10 @@ extension StatsViewController: UITableViewDataSource, UITableViewDelegate {
         cell.primaryText.text = subject.name
         cell.secondaryText.text = Format.timeToStringWords(seconds: statsService.getOverallSessionTime(subject: subject))
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.navigationController?.pushViewController(SessionManagementController(subjectName: subjects![indexPath.row]), animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
