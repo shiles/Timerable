@@ -46,6 +46,14 @@ class PersistanceServiceTest: XCTestCase {
         XCTAssertEqual(session?.name, name)
     }
     
+    func testFetchSessionsByName() {
+        let subject = service.saveSubject(name: "CS")
+        _ = service.saveSession(seconds: 60, subject: subject!)
+        
+        let results = service.fetchSessionByName(name: "CS")
+        XCTAssertEqual(results.count, 1)
+    }
+    
     func testFetchSessions() {
         let subject = service.saveSubject(name: "CS")
         _ = service.saveSession(seconds: 60, subject: subject!)

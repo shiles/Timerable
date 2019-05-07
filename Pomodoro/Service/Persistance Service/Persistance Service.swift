@@ -84,6 +84,16 @@ class PersistanceService {
     }
     
     /**
+     Gets a specific named subject' sessions
+     - Parameter name: The name of the subject that is wanted
+     - Returns: A list of sessions from the `subject` name provided
+     */
+    func fetchSessionByName(name: String) -> [Session] {
+        guard let subject = fetchSubject(name: name) else { return [] }
+        return fetchSessions(subject: subject)
+    }
+    
+    /**
      Gets a specific subjects sessions
      - Parameter subject: The sessions subject
      - Returns: A list of sessions from the `subject` required

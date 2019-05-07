@@ -16,7 +16,6 @@ class TimerServiceTest: XCTestCase {
     
     override func setUp() {
         timeController = TimerService(persistanceService: MockTimerPersistanceService(), defaults: MockTimerDefualts())
-        timeController.timeTickerDelegate = MockTimeTickerDeligate()
     }
     
     func testBuildTimeArray() {
@@ -71,16 +70,6 @@ class TimerServiceTest: XCTestCase {
         
         return [work, shortBreak, work, longBreak]
     }
-}
-
-class MockTimeTickerDeligate: TimeTickerDelegate {
-    func timerDecrement(timeChunk: TimeChunk) {}
-    
-    func resetTimerDisplay(timeChunk: TimeChunk) {}
-    
-    func isFinished() {}
-    
-    func chunkCompleted() {}
 }
 
 class MockTimerPersistanceService: PersistanceService {
