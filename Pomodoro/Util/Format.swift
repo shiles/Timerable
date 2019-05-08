@@ -58,4 +58,15 @@ class Format {
         return formatter.string(from: date)
     }
     
+    /**
+     Formats a date into a short description that includes Month and Date
+     - Parameter date: The date to be formatted
+     - Returns: The weekday as a string, like `Wednesday, 8th May`.
+     */
+    static func dateToShortDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, MMMM d"
+        return formatter.string(from: date)
+    }
+    
 }

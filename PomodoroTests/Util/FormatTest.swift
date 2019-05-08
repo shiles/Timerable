@@ -48,4 +48,13 @@ class FormatTest: XCTestCase {
         components.year = 2019
         XCTAssertEqual(expected, Format.dateToWeekDay(date: Calendar.current.date(from: components)!))
     }
+    
+    func testDateToShortDescription() {
+        let expected = "Wednesday, May 8"
+        var components = DateComponents()
+        components.day = 8
+        components.month = 5
+        components.year = 2019
+        XCTAssertEqual(expected, Format.dateToShortDate(date: Calendar.current.date(from: components)!))
+    }
 }
