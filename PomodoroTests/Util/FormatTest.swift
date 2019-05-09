@@ -57,4 +57,13 @@ class FormatTest: XCTestCase {
         components.year = 2019
         XCTAssertEqual(expected, Format.dateToShortDate(date: Calendar.current.date(from: components)!))
     }
+    
+    func testDateTotime() {
+        let expected = "12:00 AM"
+        var components = DateComponents()
+        components.day = 9
+        components.month = 5
+        components.year = 2019
+        XCTAssertEqual(expected, Format.dateToTime(date: Calendar.current.date(from: components)!))
+    }
 }

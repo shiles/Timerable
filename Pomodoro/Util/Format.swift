@@ -69,4 +69,15 @@ class Format {
         return formatter.string(from: date)
     }
     
+    /**
+     Formats a date into a time
+     - Parameter date: The date to be formatted
+     - Returns: The weekday as a string, like `8`.
+     */
+    static func dateToTime(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm a"
+        return formatter.string(from: date)
+    }
+    
 }
