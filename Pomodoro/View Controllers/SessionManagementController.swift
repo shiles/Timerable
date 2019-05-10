@@ -27,6 +27,9 @@ class SessionManagementController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    /**
+     Sets up the view for display
+     */
     func setupView() {
         self.navigationItem.title = subject.name
         self.headers = getUniqueDates(sessions: sessions)
@@ -42,7 +45,7 @@ class SessionManagementController: UITableViewController {
     func getUniqueDates(sessions: [Session]) -> [Date] {
         return Array(Set(sessions.map { $0.date! }.map {
             return calendar.date(from: calendar.dateComponents([.year, .month, .day], from: $0))!
-        }))
+        })).sorted { $0 > $1 }
     }
     
     /**
@@ -97,7 +100,9 @@ class SessionManagementController: UITableViewController {
         header.textLabel?.textColor = .white
         header.tintColor? = .orange
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        header.textLabel?.frame = header.frame
         header.textLabel?.textAlignment = .center
+        NSLayoutConstraint.activate([
+            header.textLabel!.centerYAnchor.constraint(equalTo: header.centerYAnchor),
+            header.textLabel!.centerXAnchor.constraint(equalTo: header.centerXAnchor)])
     }
 }
