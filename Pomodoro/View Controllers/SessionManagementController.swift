@@ -11,14 +11,13 @@ import UIKit
 
 class SessionManagementController: UITableViewController {
     private let subject: Subject!
-    private let sessions: [Session]!
-    private var headers: [Date]?
+    private var data: [Date: [Session]]!
+    private var dates: [Date]!
     private let calendar = Calendar.current
     private let reuseIdentifier = "DisplayCell"
     
     init(subjectName: Subject) {
         self.subject = subjectName
-        self.sessions = PersistanceService().fetchSessions(subject: subject)
         super.init(style: .plain)
         setupView()
     }
@@ -32,9 +31,23 @@ class SessionManagementController: UITableViewController {
      */
     func setupView() {
         self.navigationItem.title = subject.name
-        self.headers = getUniqueDates(sessions: sessions)
         
+        let sessions = PersistanceService().fetchSessions(subject: subject)
+        self.data = buildDictionary(sessions: sessions)
+        self.dates = getUniqueDates(sessions: sessions)
+    
         self.tableView.register(TimeDisplayCell.self, forCellReuseIdentifier: reuseIdentifier)
+    }
+    
+    /**
+     Builds a dictionary to seperate the sessions by the unique dates
+     - Parameter sessions: A list of sessions.
+     - Returns: A unique dictionary of date: [sessions] pairs
+     */
+    private func buildDictionary(sessions: [Session]) -> [Date: [Session]] {
+        var data = [Date: [Session]]()
+        getUniqueDates(sessions: sessions).forEach { data[$0] = filterByDate(sessions: sessions, date: $0) }
+        return data
     }
     
     /**
@@ -42,7 +55,7 @@ class SessionManagementController: UITableViewController {
      - Parameter sessions: A list of sessions.
      - Returns: A unique list of year, month, day formatted dates.
      */
-    func getUniqueDates(sessions: [Session]) -> [Date] {
+    private func getUniqueDates(sessions: [Session]) -> [Date] {
         return Array(Set(sessions.map { $0.date! }.map {
             return calendar.date(from: calendar.dateComponents([.year, .month, .day], from: $0))!
         })).sorted { $0 > $1 }
@@ -55,7 +68,7 @@ class SessionManagementController: UITableViewController {
         - date: The date you want to filter by
      - Returns: A list of sessions that occure on a specified date
      */
-    func filterByDate(sessions: [Session], date: Date) -> [Session] {
+    private func filterByDate(sessions: [Session], date: Date) -> [Session] {
         return sessions.filter { calendar.isDate($0.date!, inSameDayAs: date) }.reversed()
     }
     
@@ -72,15 +85,15 @@ class SessionManagementController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filterByDate(sessions: sessions, date: headers![section]).count
+        return data[dates[section]]!.count
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return headers!.count
+        return dates.count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return Format.dateToShortDate(date: headers![section])
+        return Format.dateToShortDate(date: dates[section])
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -89,7 +102,7 @@ class SessionManagementController: UITableViewController {
             return TimeDisplayCell()
         }
         
-        let session = filterByDate(sessions: sessions, date: headers![indexPath.section])[indexPath.row]
+        let session = data[dates[indexPath.section]]![indexPath.row]
         cell.primaryText.text = Format.dateToTime(date: self.subtractTimeFromDate(date: session.date!, seconds: Int(session.seconds)) )
         cell.secondaryText.text = Format.timeToStringWords(seconds: Int(session.seconds))
         return cell
