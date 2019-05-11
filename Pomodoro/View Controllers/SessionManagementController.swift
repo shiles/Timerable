@@ -34,6 +34,10 @@ class SessionManagementController: UITableViewController {
         self.navigationItem.title = subject.name
         self.refreshData()
         self.tableView.register(TimeDisplayCell.self, forCellReuseIdentifier: reuseIdentifier)
+        
+        //Adding edit button
+        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(self.editSubject))
+        self.navigationItem.rightBarButtonItem = editButton
     }
     
     /**
@@ -89,6 +93,61 @@ class SessionManagementController: UITableViewController {
      */
     func subtractTimeFromDate(date: Date, seconds: Int) -> Date {
         return calendar.date(byAdding: .second, value: -seconds, to: date)!
+    }
+    
+    /**
+     A helper function to determine if the subject can be added/modified
+     - Parameters:
+     - newName: The name of the subject to check if exists
+     - oldName: The old name of the subject to display in the err
+     - Returns: if the subject can be added/modified
+     */
+    private func subjectIsUnique(newName: String, oldName: String) -> Bool {
+        if persistanceService.fetchAllSubjects().contains(where: {subject in subject.name == newName}) {
+            let alert = UIAlertController(title: "Can't update \(oldName)", message: "A subject named: \(newName) already exists. Subjects must have unique names!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+            return false
+        }
+        return true
+    }
+    
+    /**
+     Brings up the alert box with editing options for the subject
+     */
+    @objc private func editSubject() {
+        let alert = UIAlertController(title: "Edit \(subject.name!)", message: "Rename or delete the selected subject.", preferredStyle: .alert)
+        alert.addTextField { textField in textField.text = self.subject.name! }
+        
+        let save = UIAlertAction(title: "Save", style: .default, handler: { (_) in
+            let newName = alert.textFields?.first?.text!
+            if self.subjectIsUnique(newName: newName!, oldName: self.subject.name!) {
+                self.subject.name = newName
+                self.navigationItem.title = newName
+                self.persistanceService.save()
+            }
+        })
+        
+        let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (_) in
+            let alert = UIAlertController(title: "Delete \(self.subject.name!)", message: "Deleting \(self.subject.name!) will be perminant and irreversable. This includes all stat tracking data. Are you sure?", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (_) in
+                self.persistanceService.remove(objectID: self.subject.objectID)
+                self.navigationController?.popViewController(animated: true)
+            })
+            
+            alert.addAction(cancel)
+            alert.addAction(delete)
+            self.present(alert, animated: true, completion: nil)
+        })
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(save)
+        alert.addAction(delete)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
