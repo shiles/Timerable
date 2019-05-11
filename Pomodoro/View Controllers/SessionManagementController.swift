@@ -11,6 +11,7 @@ import UIKit
 
 class SessionManagementController: UITableViewController {
     private let subject: Subject!
+    private let persistanceService = PersistanceService()
     private var data: [Date: [Session]]!
     private var dates: [Date]!
     private let calendar = Calendar.current
@@ -31,12 +32,18 @@ class SessionManagementController: UITableViewController {
      */
     func setupView() {
         self.navigationItem.title = subject.name
-        
-        let sessions = PersistanceService().fetchSessions(subject: subject)
+        self.refreshData()
+        self.tableView.register(TimeDisplayCell.self, forCellReuseIdentifier: reuseIdentifier)
+    }
+    
+    /**
+     Refreshes the data being displayed in the table
+     */
+    private func refreshData() {
+        let sessions = persistanceService.fetchSessions(subject: subject)
         self.data = buildDictionary(sessions: sessions)
         self.dates = getUniqueDates(sessions: sessions)
-    
-        self.tableView.register(TimeDisplayCell.self, forCellReuseIdentifier: reuseIdentifier)
+        self.tableView.reloadData()
     }
     
     /**
@@ -84,6 +91,10 @@ class SessionManagementController: UITableViewController {
         return calendar.date(byAdding: .second, value: -seconds, to: date)!
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.refreshData()
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data[dates[section]]!.count
     }
@@ -106,6 +117,19 @@ class SessionManagementController: UITableViewController {
         cell.primaryText.text = Format.dateToTime(date: self.subtractTimeFromDate(date: session.date!, seconds: Int(session.seconds)) )
         cell.secondaryText.text = Format.timeToStringWords(seconds: Int(session.seconds))
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let delete = UIContextualAction(style: .destructive, title: "Delete", handler: { (_, _, completion) in
+            self.persistanceService.remove(objectID: self.data[self.dates[indexPath.section]]![indexPath.row].objectID)
+            self.refreshData()
+            
+            completion(true)
+        })
+        delete.backgroundColor = .red
+        
+        return UISwipeActionsConfiguration(actions: [delete])
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
