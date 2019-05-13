@@ -22,6 +22,7 @@ class TimerService {
     weak var timeTickerDelegate: TimeTickerDelegate?
     private let persistanceService: PersistanceService!
     private let notificationService = NotificationService()
+    private let calendar = Calendar.current
     var session: [TimeChunk]!
     
     init(persistanceService: PersistanceService, defaults: Defaults) {
@@ -107,34 +108,30 @@ class TimerService {
      backgrounded and brought back into the forground.
      - Parameter backgrounded: The date that the app was backgrounded.
      */
-    func fastForward(date: Date?) {
+    func fastForward(dateBackgrounded: Date?) {
         guard timer.isValid else { return }
-        guard date != nil else { return }
-    
-        var timeElapsed = abs(Int(date!.timeIntervalSinceNow))
+        guard dateBackgrounded != nil else { return }
+        var timeElapsed = abs(Int(dateBackgrounded!.timeIntervalSinceNow))
+        var chunkStartedDate = calendar.date(byAdding: .second, value: (session.first!.timeLength - session.first!.timeRemaining), to: dateBackgrounded!)!
         
-        if timeElapsed >= session.reduce(0) { $0 + $1.timeRemaining } {
-            //Save the whole remaining session, stop the time and reset the session.
-            session.forEach { saveProgress(timeChunk: fastForwardChunk(timeChunk: $0)) }
-            session.forEach { addToGoal(timeChunk: $0) }
+        for _ in session {
+            if session.first!.timeRemaining < timeElapsed {
+                let chunk = session.removeFirst()
+                addToGoal(timeChunk: chunk)
+                saveProgress(timeChunk: fastForwardChunk(timeChunk: chunk), date: chunkStartedDate)
+                timeElapsed -= chunk.timeRemaining
+                chunkStartedDate = calendar.date(byAdding: .second, value: session.first?.timeLength ?? 0, to: chunkStartedDate)!
+            } else {
+                session[0].timeRemaining! -= timeElapsed
+                break
+            }
+        }
+        
+        if isSessionDone() {
             stopTimer()
             defaults.setTimerStatus(.ready)
             session = buildTimeArray()
             timeTickerDelegate?.isFinished()
-        } else {
-            //caluclate where we are and save what we remove
-            repeat {
-                let chunk = session.first!
-            
-                if chunk.timeRemaining < timeElapsed {
-                    addToGoal(timeChunk: chunk)
-                    saveProgress(timeChunk: fastForwardChunk(timeChunk: session.removeFirst()))
-                } else {
-                    session[0].timeRemaining! -= timeElapsed
-                }
-                
-                timeElapsed -= chunk.timeRemaining
-            } while timeElapsed > 0
         }
         
         timeTickerDelegate?.resetTimerDisplay(timeChunk: session.first!)
@@ -178,13 +175,15 @@ class TimerService {
     
     /**
     Saves the progess of a session to the database.
-     - Parameter timeChunk: The timechunk to save
+     - Parameters:
+     - timeChunk: The timechunk to save
+     - date: Date to save at
      */
-    private func saveProgress(timeChunk: TimeChunk) {
+    private func saveProgress(timeChunk: TimeChunk, date: Date = Date()) {
         if timeChunk.type == .work {
             guard let subject = persistanceService.fetchSubject(name: defaults.getSubjectName()) else { return }
             let time = isChunkDone() ? timeChunk.timeLength : (timeChunk.timeLength - timeChunk.timeRemaining)
-            _ = persistanceService.saveSession(seconds: time!, subject: subject)
+            _ = persistanceService.saveSession(seconds: time!, date: date, subject: subject)
         }
     }
     

@@ -80,7 +80,7 @@ class SessionManagementController: UITableViewController {
      - Returns: A list of sessions that occure on a specified date
      */
     private func filterByDate(sessions: [Session], date: Date) -> [Session] {
-        return sessions.filter { calendar.isDate($0.date!, inSameDayAs: date) }.reversed()
+        return sessions.filter { calendar.isDate($0.date!, inSameDayAs: date) }.sorted { $0.date! > $1.date! }
     }
     
     /**
