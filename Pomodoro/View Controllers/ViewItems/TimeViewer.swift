@@ -38,6 +38,10 @@ class TimeViewer: UIView {
             textStack.centerYAnchor.constraint(equalTo: self.centerYAnchor)])
         
         self.setRoundedCorners(radius: 20.0)
+        
+        //Adding accessibility features
+        self.isAccessibilityElement = true
+        self.accessibilityTraits = .none
     }
     
     /**
@@ -46,24 +50,34 @@ class TimeViewer: UIView {
      */
     func updateTimeViewer(timeChunk: TimeChunk) {
         timeDisplay.text = Format.timeToString(seconds: timeChunk.timeRemaining)
-        
-        var text: String
-        var colour: UIColor
-        switch timeChunk.type! {
-        case .work:
-            text = "WORK"
-            colour = .orange
-        case .short:
-            text = "SHORT BREAK"
-            colour = .orange
-        case .long:
-            text = "LONG BREAK"
-            colour = .orange
-        }
-        
-        sessionStatus.text = text
+        sessionStatus.text = textLabelForType(type: timeChunk.type)
         let progress: Float =  Float(timeChunk.timeLength - timeChunk.timeRemaining) / Float(timeChunk.timeLength)
-        self.timeViewerProgress.updatePercentage(percentage: CGFloat(progress), colour: colour)
+        self.timeViewerProgress.updatePercentage(percentage: CGFloat(progress), colour: .orange)
+        updateAccessibilityLabel(timeChunk: timeChunk)
+    }
+    
+    /**
+     Sets the correct label to correctly explain the time remaining for accessibility
+      - Parameter timeChunk: The `TimeChunk` to set the correct label.
+     */
+    private func updateAccessibilityLabel(timeChunk: TimeChunk) {
+        self.accessibilityLabel = String.init(format: "%@ of %@ remaining", Format.timeToStringWords(seconds: timeChunk.timeRemaining), textLabelForType(type: timeChunk.type))
+    }
+    
+    /**
+     Gets the correct title to be returned for the type of text
+     - Parameter type: The `TimeType` to a label for
+     - Returns: A string with the correct text for the type used.
+     */
+    private func textLabelForType(type: TimeTypes) -> String {
+        switch type {
+        case .work:
+            return "WORK"
+        case .short:
+            return "SHORT BREAK"
+        case .long:
+            return "LONG BREAK"
+        }
     }
     
     lazy var timeViewerProgress: TimeViewerProgress = {

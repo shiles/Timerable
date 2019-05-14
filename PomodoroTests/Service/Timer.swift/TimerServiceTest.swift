@@ -80,8 +80,8 @@ class MockTimerPersistanceService: PersistanceService {
         return subject
     }
 
-    override func saveSession(seconds: Int, subject: Subject) -> Session? {
-        return Session()
+    override func saveSession(seconds: Int, date: Date, subject: Subject) -> Session? {
+         return Session()
     }
 }
 

@@ -31,6 +31,11 @@ class FormatTest: XCTestCase {
         XCTAssertEqual(expected, Format.timeToString(seconds: 59))
     }
     
+    func testTimeToAssessibility() {
+        let expected = "1 minute"
+        XCTAssertEqual(expected, Format.timeToAccessibiltyWords(seconds: 60))
+    }
+    
     func testDateToShortWeekDay() {
         let expected = "WED"
         var components = DateComponents()
@@ -66,4 +71,5 @@ class FormatTest: XCTestCase {
         components.year = 2019
         XCTAssertEqual(expected, Format.dateToTime(date: Calendar.current.date(from: components)!))
     }
+
 }
