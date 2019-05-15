@@ -131,8 +131,8 @@ extension StatsViewController: UITableViewDataSource, UITableViewDelegate {
             assertionFailure("viewForHeaderInSection didn't return a Title Header")
             return UIView()
         }
-        headerView.primaryText.text = "Total Study Time:"
-        headerView.secondaryText.text = String(format: "%@", Format.timeToStringWords(seconds: statsService.getTotalSessionTime()))
+        
+        headerView.updateText(primaryText: "Total Study Time:", secondaryText: String(format: "%@", Format.timeToStringWords(seconds: statsService.getTotalSessionTime())))
         return headerView
     }
     

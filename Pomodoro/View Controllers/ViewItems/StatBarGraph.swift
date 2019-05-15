@@ -75,8 +75,8 @@ extension StatBarGraph: UICollectionViewDataSource, UICollectionViewDelegateFlow
             assertionFailure("Dequeue didn't return a StatBarGraphCell")
             return StatBarGraphCell(frame: .zero)
         }
-        cell.label.text = Format.dateToShortWeekDay(date: data[indexPath.row].date)
-        cell.resetBarHeight()
+        
+        cell.setDay(date: data[indexPath.row].date)
         
         guard let maxTime: Int = data.max()?.seconds, maxTime > 0 else { return cell }
         cell.setBarHeight(maxTime: maxTime, seconds: data[indexPath.row].seconds)
@@ -93,8 +93,8 @@ extension StatBarGraph: UICollectionViewDataSource, UICollectionViewDelegateFlow
              assertionFailure("DequeueSupplementaryView didn't return a StatBarGraphHeaderCell")
             return StatBarGraphHeaderCell(frame: .zero)
         }
-        header.primaryText.text = "Last 7 Days:"
-        header.secondaryText.text = self.headerText!
+        
+        header.updateText(primaryText: "Last 7 Days:", secondaryText: self.headerText!)
         return header
     }
     

@@ -32,6 +32,10 @@ class StatBarGraphCell: UICollectionViewCell {
             bar.bottomAnchor.constraint(equalTo: label.topAnchor, constant: -20),
             bar.leftAnchor.constraint(equalTo: leftAnchor, constant: 5),
             bar.rightAnchor.constraint(equalTo: rightAnchor, constant: -5)])
+        
+        //Setup accessibility
+        self.isAccessibilityElement = true
+        self.accessibilityTraits = .none
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -47,18 +51,27 @@ class StatBarGraphCell: UICollectionViewCell {
     func setBarHeight(maxTime: Int, seconds: Int) {
         let percentFill = CGFloat(seconds)/CGFloat(maxTime)
         self.barHeightConstraint?.constant = (self.frame.height - 50) * percentFill
+        self.accessibilityValue = Format.timeToAccessibiltyWords(seconds: seconds)
     }
     
     /**
      Resets the bar height to 0
      */
-    func resetBarHeight() {
+    private func resetBarHeight() {
         self.barHeightConstraint?.constant = 0
+        self.accessibilityValue = "0 mintues"
     }
     
+    func setDay(date: Date) {
+        self.accessibilityLabel = "Time studied on \(Format.dateToWeekDay(date: date))"
+        label.text = Format.dateToShortWeekDay(date: date)
+        self.resetBarHeight()
+    }
+
     override var isHighlighted: Bool {
         didSet {
             backgroundColor = isHighlighted ? UIColor.lightGray.withAlphaComponent(0.35) : .white
+            self.accessibilityTraits = isHighlighted ? .selected : .none
         }
     }
 

@@ -27,6 +27,23 @@ class TitleTimeHeaderCell: UITableViewHeaderFooterView {
         NSLayoutConstraint.activate([
             titleStack.centerYAnchor.constraint(equalTo: centerYAnchor),
             titleStack.centerXAnchor.constraint(equalTo: centerXAnchor)])
+        
+        //Setup accessibility
+        self.isAccessibilityElement = true
+        self.accessibilityTraits = .header
+    }
+    
+    /**
+     Updates the text and the accessibility labels
+     - parameters:
+     primaryText: The primary bold text
+     secondaryText: The subtitle
+     */
+    func updateText(primaryText: String, secondaryText: String) {
+        self.primaryText.text = primaryText
+        self.secondaryText.text = secondaryText
+        self.accessibilityLabel = primaryText
+        self.accessibilityValue = secondaryText
     }
     
     let primaryText: UILabel = {
