@@ -43,6 +43,10 @@ class SessionStatus: UIView {
             progressText.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 10)])
         
         self.setRoundedCorners(radius: 20.0)
+        
+        //Setup accessibility
+        self.isAccessibilityElement = true
+        self.accessibilityTraits = .header
     }
     
     /**
@@ -54,6 +58,25 @@ class SessionStatus: UIView {
     func updateValues(currentSession: Int, totalSessions: Int) {
         self.progress.setProgress(Float(currentSession)/Float(totalSessions), animated: true)
         self.progressText.text = String.init(format: "%d/%d", currentSession, totalSessions)
+        updateAccessibilityLabel(currentSession: currentSession, totalSessions: totalSessions)
+    }
+    
+    /**
+     Sets the correct label to correctly explain the time remaining for accessibility
+     - Parameters:
+     currentSession: The current number of sessions completed
+     totalSessions: The current total sessions that the session has
+     */
+    private func updateAccessibilityLabel(currentSession: Int, totalSessions: Int) {
+        var text: String
+        
+        switch titleLabel.text {
+        case "SESSION": text = "Session goal"
+        case "GOAL": text = "Daily Goal"
+        default: fatalError("Session Status Title not set correctly")
+        }
+        
+        self.accessibilityLabel = String.init(format: "%d of %d %@ completed", currentSession, totalSessions, text)
     }
     
     lazy var titleLabel: UILabel = {
