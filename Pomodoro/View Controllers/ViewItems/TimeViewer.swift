@@ -96,20 +96,28 @@ class TimeViewer: UIView {
     }()
     
     lazy var timeDisplay: UILabel = {
-        let time = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        let time = UILabel(frame: .zero)
         time.textColor = .white
         time.textAlignment = .center
-        time.font = UIFont(name: "HelveticaNeue", size: 100)
+
+        guard let customFont = UIFont(name: "HelveticaNeue", size: 100) else { fatalError("Font didn't load") }
+        time.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: customFont)
+        time.adjustsFontForContentSizeCategory = true
+        
         time.text = "25:00"
         time.translatesAutoresizingMaskIntoConstraints = false
         return time
     }()
     
     lazy var sessionStatus: UILabel = {
-        let status = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        let status = UILabel(frame: .zero)
         status.textColor = .white
         status.textAlignment = .center
-        status.font = UIFont(name: "HelveticaNeue-Light", size: 20)
+    
+        guard let customFont = UIFont(name: "HelveticaNeue-Light", size: 20) else { fatalError("Font didn't load") }
+        status.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: customFont)
+        status.adjustsFontForContentSizeCategory = true
+        
         status.text = "WORK"
         status.translatesAutoresizingMaskIntoConstraints = false
         return status

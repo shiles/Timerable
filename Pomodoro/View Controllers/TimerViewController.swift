@@ -193,6 +193,8 @@ class TimerViewController: UIViewController {
         button.addTarget(self, action: #selector(self.startStop), for: .touchUpInside)
         button.backgroundColor = .orange
         button.setRoundedCorners(radius: 10.0)
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        button.titleLabel?.adjustsFontForContentSizeCategory = true
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -204,6 +206,9 @@ class TimerViewController: UIViewController {
         button.backgroundColor = .orange
         button.setRoundedCorners(radius: 10.0)
         button.isHidden = true
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        button.titleLabel?.adjustsFontForContentSizeCategory = true
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

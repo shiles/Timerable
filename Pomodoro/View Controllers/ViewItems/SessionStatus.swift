@@ -83,6 +83,11 @@ class SessionStatus: UIView {
         let title = UILabel(frame: .zero)
         title.textColor = .white
         title.textAlignment = .center
+        
+        guard let customFont = UIFont(name: "HelveticaNeue-Light", size: 20) else { fatalError("Font didn't load") }
+        title.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: customFont)
+        title.adjustsFontForContentSizeCategory = true
+        
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()
@@ -91,7 +96,11 @@ class SessionStatus: UIView {
         let title = UILabel(frame: .zero)
         title.textColor = .white
         title.textAlignment = .center
-        title.font = UIFont(name: "HelveticaNeue", size: 30)
+        
+        guard let customFont = UIFont(name: "HelveticaNeue", size: 30) else { fatalError("Font didn't load") }
+        title.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: customFont)
+        title.adjustsFontForContentSizeCategory = true
+        
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()

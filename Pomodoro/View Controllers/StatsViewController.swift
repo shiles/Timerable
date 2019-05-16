@@ -10,7 +10,7 @@ import UIKit
 
 class StatsViewController: UIViewController {
     
-    var subjects: [Subject]!
+    var subjects: [Subject]?
     let persistanceService: PersistanceService!
     let statsService: StatsService!
     let settingsController: SettingsViewController!
@@ -103,11 +103,11 @@ class StatsViewController: UIViewController {
 extension StatsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return subjects.count
+        return subjects?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let subject = subjects[indexPath.row]
+        guard let subject = subjects?[indexPath.row] else { return UITableViewCell() }
         
         guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "TimeDisplay") as? TimeDisplayCell else {
             assertionFailure("Dequeue didn't return a TableSelectCell")
