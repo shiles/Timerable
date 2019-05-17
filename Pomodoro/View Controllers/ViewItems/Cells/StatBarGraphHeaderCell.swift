@@ -51,7 +51,11 @@ class StatBarGraphHeaderCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .white
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+       
+        let customFont = UIFont.systemFont(ofSize: 16, weight: .bold)
+        label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: customFont)
+        label.adjustsFontForContentSizeCategory = true
+        
         label.text = "Title"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -61,7 +65,11 @@ class StatBarGraphHeaderCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .white
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        
+        let customFont = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.font = UIFontMetrics(forTextStyle: .subheadline).scaledFont(for: customFont)
+        label.adjustsFontForContentSizeCategory = true
+        
         label.text = "Subtitle"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

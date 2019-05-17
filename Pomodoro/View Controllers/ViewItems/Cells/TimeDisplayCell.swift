@@ -42,6 +42,10 @@ class TimeDisplayCell: UITableViewCell {
         label.textColor = .black
         label.textAlignment = .left
         label.lineBreakMode = .byTruncatingTail
+        
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
+        
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -50,7 +54,11 @@ class TimeDisplayCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .darkGray
         label.textAlignment = .right
-        label.font = UIFont.systemFont(ofSize: UIFont.systemFontSize, weight: .light)
+    
+        let customFont = UIFont.systemFont(ofSize: UIFont.systemFontSize, weight: .light)
+        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: customFont)
+        label.adjustsFontForContentSizeCategory = true
+        
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

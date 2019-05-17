@@ -20,16 +20,16 @@ class StatBarGraphCell: UICollectionViewCell {
         addSubview(label)
         label.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         NSLayoutConstraint.activate([
-            label.leftAnchor.constraint(equalTo: leftAnchor, constant: 5),
+            label.leftAnchor.constraint(equalTo: leftAnchor),
             label.rightAnchor.constraint(equalTo: rightAnchor),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)])
+            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)])
         
         //Add bar
         addSubview(bar)
         barHeightConstraint = bar.heightAnchor.constraint(equalToConstant: 0)
         barHeightConstraint?.isActive = true
         NSLayoutConstraint.activate([
-            bar.bottomAnchor.constraint(equalTo: label.topAnchor, constant: -20),
+            bar.bottomAnchor.constraint(equalTo: label.topAnchor, constant: -25),
             bar.leftAnchor.constraint(equalTo: leftAnchor, constant: 5),
             bar.rightAnchor.constraint(equalTo: rightAnchor, constant: -5)])
         
@@ -79,7 +79,12 @@ class StatBarGraphCell: UICollectionViewCell {
         var label = UILabel(frame: .zero)
         label.textColor = .black
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 15.0)
+        
+        let customFont = UIFont.systemFont(ofSize: 15, weight: .regular)
+        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: customFont)
+        label.adjustsFontForContentSizeCategory = true
+        label.adjustsFontSizeToFitWidth = true
+        
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
