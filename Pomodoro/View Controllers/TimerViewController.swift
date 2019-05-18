@@ -134,6 +134,7 @@ class TimerViewController: UIViewController {
                     UIView.animate(withDuration: 0.20) { () -> Void in
                         self.timeControllButtons.arrangedSubviews[1].isHiddenInStackView = false
                         self.navigationItem.rightBarButtonItem?.isEnabled = true
+                        self.navigationItem.title = String.uppercased(subject.name!)()
                     }
                 }))
             }
@@ -168,6 +169,7 @@ class TimerViewController: UIViewController {
      Resets the UI when either a session is reset or the session ends
      */
     private func sessionFinished() {
+        self.navigationItem.title = "TIMER"
         defaults.setTimerStatus(.ready)
         startStopButton.setTitle("START", for: .normal)
         UIView.animate(withDuration: 0.20) { () -> Void in
