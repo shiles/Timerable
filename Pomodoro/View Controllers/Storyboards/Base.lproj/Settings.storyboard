@@ -13,7 +13,7 @@
         <scene sceneID="icS-BI-5XF">
             <objects>
                 <tableViewController storyboardIdentifier="SettingsVC" title="Settings" id="FHQ-Kx-nhI" customClass="SettingsViewController" customModule="Pomodoro" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ouv-1C-Q5t">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ouv-1C-Q5t">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -235,27 +235,26 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Vertion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hry-aZ-rBx">
-                                                    <rect key="frame" x="20" y="11.666666666666666" width="91" height="20.333333333333336"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Version" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hry-aZ-rBx">
+                                                    <rect key="frame" x="20" y="11.666666666666666" width="93" height="20.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdR-Ok-G9W">
-                                                    <rect key="frame" x="384" y="11.666666666666666" width="22" height="20.333333333333336"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdR-Ok-G9W">
+                                                    <rect key="frame" x="349" y="11.666666666666666" width="35" height="20.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="bdR-Ok-G9W" firstAttribute="baseline" secondItem="hry-aZ-rBx" secondAttribute="baseline" id="4mP-4d-z69"/>
-                                                <constraint firstItem="hry-aZ-rBx" firstAttribute="centerY" secondItem="FHb-Va-ZOX" secondAttribute="centerY" id="Co5-XV-E2o"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="hry-aZ-rBx" secondAttribute="bottom" constant="1" id="MjY-yb-oBR"/>
-                                                <constraint firstItem="hry-aZ-rBx" firstAttribute="leading" secondItem="FHb-Va-ZOX" secondAttribute="leadingMargin" id="R97-ao-7hE"/>
-                                                <constraint firstItem="bdR-Ok-G9W" firstAttribute="centerY" secondItem="FHb-Va-ZOX" secondAttribute="centerY" id="XXd-nR-XLE"/>
-                                                <constraint firstItem="bdR-Ok-G9W" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hry-aZ-rBx" secondAttribute="trailing" id="fGF-m1-j84"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="bdR-Ok-G9W" secondAttribute="trailing" constant="-12" id="hnx-0a-sxf"/>
+                                                <constraint firstItem="bdR-Ok-G9W" firstAttribute="leading" relation="lessThanOrEqual" secondItem="hry-aZ-rBx" secondAttribute="leading" constant="329" id="9Sm-Cz-bwD"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="bdR-Ok-G9W" secondAttribute="trailing" constant="10" id="Ago-OZ-zHX"/>
+                                                <constraint firstItem="hry-aZ-rBx" firstAttribute="centerY" secondItem="FHb-Va-ZOX" secondAttribute="centerY" id="cia-sZ-Cxh"/>
+                                                <constraint firstItem="hry-aZ-rBx" firstAttribute="leading" secondItem="FHb-Va-ZOX" secondAttribute="leadingMargin" id="p1f-9e-ijd"/>
+                                                <constraint firstItem="bdR-Ok-G9W" firstAttribute="centerY" secondItem="FHb-Va-ZOX" secondAttribute="centerY" id="uKI-SX-DoV"/>
+                                                <constraint firstItem="bdR-Ok-G9W" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="hry-aZ-rBx" secondAttribute="trailing" constant="271" id="vxM-a3-KAA"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -270,7 +269,7 @@
                     <navigationItem key="navigationItem" id="Zvt-ec-4nS"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="appVertion" destination="hry-aZ-rBx" id="fLy-l8-JB4"/>
+                        <outlet property="appVersion" destination="bdR-Ok-G9W" id="Ptb-sQ-w9y"/>
                         <outlet property="dailyGoalLabel" destination="7en-mO-Dvd" id="YVT-wW-GDC"/>
                         <outlet property="longLengthLabel" destination="phi-UJ-mDR" id="BtJ-nZ-iY7"/>
                         <outlet property="sessionLengthLabel" destination="EVX-bE-D1W" id="3ey-wf-oS3"/>

@@ -15,16 +15,16 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var workLengthLabel: UILabel!
     @IBOutlet weak var shortLengthLabel: UILabel!
     @IBOutlet weak var longLengthLabel: UILabel!
-    @IBOutlet weak var appVertion: UILabel!
     @IBOutlet weak var sessionLengthLabel: UILabel!
     @IBOutlet weak var dailyGoalLabel: UILabel!
+    @IBOutlet weak var appVersion: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationItem.title = "Settings"
         
         //Getting up-to-date values to display
-        appVertion.text = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
+        appVersion.text = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
         setLabelsToValues()
         //Setting table height to remove defualt warningS
         self.tableView.rowHeight = 44
@@ -139,6 +139,8 @@ class SettingsViewController: UITableViewController {
             self.resetSessionsToDefaults()
         case (2, 1):
             self.resetStatistics()
+        case(3, 0):
+            break
         default:
             fatalError()
         }
