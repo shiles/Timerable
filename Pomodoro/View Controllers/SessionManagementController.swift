@@ -195,8 +195,13 @@ class SessionManagementController: UITableViewController {
         guard let header = view as? UITableViewHeaderFooterView else { return }
         header.textLabel?.textColor = .white
         header.tintColor? = .orange
-        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         header.textLabel?.textAlignment = .center
+        
+        let customFont = UIFont.systemFont(ofSize: 16, weight: .bold)
+        header.textLabel?.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: customFont)
+        header.textLabel?.adjustsFontForContentSizeCategory = true
+        header.textLabel?.adjustsFontSizeToFitWidth = true
+        
         NSLayoutConstraint.activate([
             header.textLabel!.centerYAnchor.constraint(equalTo: header.centerYAnchor),
             header.textLabel!.centerXAnchor.constraint(equalTo: header.centerXAnchor)])
