@@ -8,14 +8,9 @@
 
 import UIKit
 
-struct CellData {
-    let minutes: Int?
-    let message: String?
-}
-
 class TimeSelectionTable: UITableViewController {
     
-    var data: [CellData]!
+    var data: [String]!
     var selected: Int!
     var saveToDefaults: (Int) -> Void 
     
@@ -40,10 +35,10 @@ class TimeSelectionTable: UITableViewController {
         - max: the maximum value that will be diokayed by the selector.
      - Returns: An array of CellData to be displayed.
      */
-    private func generateData(min: Int, max: Int) -> [CellData] {
-        var array: [CellData] = [CellData]()
+    private func generateData(min: Int, max: Int) -> [String] {
+        var array: [String] = [String]()
         for mins in min...max {
-            array.append(CellData.init(minutes: mins, message: String(format: (mins == 1 ? "%d minute" : "%d minutes"), mins)))
+            array.append(String(format: (mins == 1 ? "%d minute" : "%d minutes"), mins))
         }
         return array
     }
@@ -69,7 +64,7 @@ class TimeSelectionTable: UITableViewController {
     }
     
     override func viewDidLoad() {
-        self.tableView.register(TableSelectCell.self, forCellReuseIdentifier: "TimeSelect")
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "TimeSelect")
         self.tableView.selectRow(at: IndexPath(row: self.selected, section: 0), animated: false, scrollPosition: UITableView.ScrollPosition.middle)
     }
     
@@ -78,7 +73,7 @@ class TimeSelectionTable: UITableViewController {
     }
         
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? TableSelectCell else {
+        guard let cell = tableView.cellForRow(at: indexPath) else {
             assertionFailure("CellForRowAt didn't return a TableSelectCell")
             return
         }
@@ -91,12 +86,12 @@ class TimeSelectionTable: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "TimeSelect") as? TableSelectCell else {
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "TimeSelect") else {
             assertionFailure("Dequeue didn't return a TableSelectCell")
-            return TableSelectCell(frame: .zero)
+            return UITableViewCell(frame: .zero)
         }
-        cell.message = data[indexPath.row].message
-        cell.minutes = data[indexPath.row].minutes
+
+        cell.textLabel?.text = data[indexPath.row]
         return cell
     }
     
@@ -108,9 +103,13 @@ class TimeSelectionTable: UITableViewController {
         guard let header = view as? UITableViewHeaderFooterView else { return }
         header.textLabel?.textColor = .white
         header.tintColor? = .orange
-        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         header.textLabel?.frame = header.frame
         header.textLabel?.textAlignment = .center
+        
+        let customFont = UIFont.systemFont(ofSize: 16, weight: .bold)
+        header.textLabel?.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: customFont)
+        header.textLabel?.adjustsFontForContentSizeCategory = true
+        header.textLabel?.adjustsFontSizeToFitWidth = true
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

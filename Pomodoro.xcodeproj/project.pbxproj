@@ -43,7 +43,6 @@
 		ABBD94FF223F658000C48C08 /* StatsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBD94FE223F658000C48C08 /* StatsService.swift */; };
 		ABBD9503223F679300C48C08 /* StatsServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBD9502223F679300C48C08 /* StatsServiceTest.swift */; };
 		ABD3C3902224B67300D7F902 /* TimerServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3C38F2224B67300D7F902 /* TimerServiceTest.swift */; };
-		ABE7B58F21FF3180001D625C /* TimeSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */; };
 		ABEBC69921EF579500CFD262 /* TimeChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEBC69821EF579500CFD262 /* TimeChunk.swift */; };
 		ABEBC69D21F2009300CFD262 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEBC69C21F2009300CFD262 /* SettingsViewController.swift */; };
 		ABFA204D2250CE8A00082F0A /* pomodoro.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = AB2799BD2219CBD200D092C9 /* pomodoro.xcdatamodeld */; };
@@ -111,7 +110,6 @@
 		ABBD94FE223F658000C48C08 /* StatsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsService.swift; sourceTree = "<group>"; };
 		ABBD9502223F679300C48C08 /* StatsServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsServiceTest.swift; sourceTree = "<group>"; };
 		ABD3C38F2224B67300D7F902 /* TimerServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerServiceTest.swift; sourceTree = "<group>"; };
-		ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectCell.swift; sourceTree = "<group>"; };
 		ABEBC69821EF579500CFD262 /* TimeChunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeChunk.swift; sourceTree = "<group>"; };
 		ABEBC69C21F2009300CFD262 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ABFA9F55221C2FE700B76FAA /* SubjectManagementTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectManagementTable.swift; sourceTree = "<group>"; };
@@ -276,7 +274,6 @@
 			isa = PBXGroup;
 			children = (
 				ABAD65AD227BFEDB00678A5A /* TitleTimeHeaderCell.swift */,
-				ABE7B58E21FF3180001D625C /* TimeSelectCell.swift */,
 				AB85A8AC224360BA003EC063 /* StatBarGraphCell.swift */,
 				AB8C51EA2248A4C000B7CDA4 /* StatBarGraphHeaderCell.swift */,
 				AB7C65F4225DAC1000D63E7F /* TimeDisplayCell.swift */,
@@ -539,7 +536,6 @@
 				AB5EF90F21ECB2CE0034A276 /* TimerService.swift in Sources */,
 				AB883BA922292CCE00D0DA09 /* AudioNotificationService.swift in Sources */,
 				AB2F94C62207885E00F9F0F6 /* Defaults.swift in Sources */,
-				ABE7B58F21FF3180001D625C /* TimeSelectCell.swift in Sources */,
 				ABEBC69D21F2009300CFD262 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
