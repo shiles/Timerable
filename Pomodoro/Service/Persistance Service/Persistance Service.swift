@@ -50,7 +50,7 @@ class PersistanceService {
         - subject: The subject the session will be under
      - Returns: A subject with the `name` provided
      */
-    func saveSession(seconds: Int, date: Date, subject: Subject) -> Session? {
+    func saveSession(seconds: Seconds, date: Date, subject: Subject) -> Session? {
         guard let session = NSEntityDescription.insertNewObject(forEntityName: "Session", into: context) as? Session else { return nil}
         session.seconds = Int64(seconds)
         session.date = date

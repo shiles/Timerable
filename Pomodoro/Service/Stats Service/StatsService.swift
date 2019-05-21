@@ -26,18 +26,18 @@ class StatsService {
      - Parameter subject: The `subject` you want to know the overall time for
      - Returns: Sum of time time spend in `subject`
      */
-    func getOverallSessionTime(subject: Subject) -> Int {
+    func getOverallSessionTime(subject: Subject) -> Seconds {
         let sessions: [Session] = persistanceService.fetchSessions(subject: subject)
-        return Int(sessions.reduce(0) { $0 + $1.seconds })
+        return Seconds(sessions.reduce(0) { $0 + $1.seconds })
     }
     
     /**
      Gets the total session time for all the subjects.
      - Returns: Sum of time time spend studying
      */
-    func getTotalSessionTime() -> Int {
+    func getTotalSessionTime() -> Seconds {
         let sessions: [Session] = persistanceService.fetchAllSessions()
-        return Int(sessions.reduce(0) { $0 + $1.seconds })
+        return Seconds(sessions.reduce(0) { $0 + $1.seconds })
     }
     
     /**

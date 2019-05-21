@@ -57,7 +57,7 @@ class Defaults: UserDefaults {
      Sets the work time value in seconds.
      - Parameter value: The number of seconds to set.
      */
-    func setWorkTime(_ value: Int) {
+    func setWorkTime(_ value: Seconds) {
         defaults.set(value, forKey: DefaultKeys.work.rawValue)
     }
     
@@ -65,7 +65,7 @@ class Defaults: UserDefaults {
     Gets the work time value in seconds.
      - Returns: The `work time` in seconds
      */
-    func getWorkTime() -> Int {
+    func getWorkTime() -> Seconds {
         return defaults.integer(forKey: DefaultKeys.work.rawValue)
     }
     
@@ -73,7 +73,7 @@ class Defaults: UserDefaults {
      Sets the long break time value in seconds.
      - Parameter value: The number of seconds to set.
      */
-    func setLongTime(_ value: Int) {
+    func setLongTime(_ value: Seconds) {
         defaults.set(value, forKey: DefaultKeys.long.rawValue)
     }
     
@@ -81,7 +81,7 @@ class Defaults: UserDefaults {
      Gets the long break value in seconds.
      - Returns: The `work time` in seconds
      */
-    func getLongTime() -> Int {
+    func getLongTime() -> Seconds {
         return defaults.integer(forKey: DefaultKeys.long.rawValue)
     }
     
@@ -89,7 +89,7 @@ class Defaults: UserDefaults {
      Sets the short break time value in seconds.
      - Parameter value: The number of seconds to set.
      */
-    func setShortTime(_ value: Int) {
+    func setShortTime(_ value: Seconds) {
         defaults.set(value, forKey: DefaultKeys.short.rawValue)
     }
     
@@ -97,7 +97,7 @@ class Defaults: UserDefaults {
      Gets the short break value in seconds.
      - Returns: The `work time` in seconds
      */
-    func getShortTime() -> Int {
+    func getShortTime() -> Seconds {
         return defaults.integer(forKey: DefaultKeys.short.rawValue)
     }
     

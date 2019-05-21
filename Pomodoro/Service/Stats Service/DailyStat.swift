@@ -11,9 +11,9 @@ import Foundation
 class DailyStat: Equatable, Comparable {
     
     let date: Date!
-    let seconds: Int!
+    let seconds: Seconds!
     
-    init(date: Date, seconds: Int) {
+    init(date: Date, seconds: Seconds) {
         self.date = date
         self.seconds = seconds
     }

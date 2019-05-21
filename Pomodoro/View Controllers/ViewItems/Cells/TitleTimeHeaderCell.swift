@@ -55,7 +55,6 @@ class TitleTimeHeaderCell: UITableViewHeaderFooterView {
         label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: customFont)
         label.adjustsFontForContentSizeCategory = true
         
-        label.text = "Title"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -69,7 +68,6 @@ class TitleTimeHeaderCell: UITableViewHeaderFooterView {
         label.font = UIFontMetrics(forTextStyle: .subheadline).scaledFont(for: customFont)
         label.adjustsFontForContentSizeCategory = true
         
-        label.text = "Subtitle"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

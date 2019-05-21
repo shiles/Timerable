@@ -15,7 +15,7 @@ class Format {
      - Parameter seconds: The amount of seconds to format.
      - Returns: Formatted string to display the time with words.
     */
-    static func timeToStringWords(seconds: Int) -> String {
+    static func timeToStringWords(seconds: Seconds) -> String {
         let time = TimeInterval(exactly: seconds)
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .full
@@ -29,7 +29,7 @@ class Format {
      - Parameter seconds: The amount of seconds to format.
      - Returns: Formatted string to display the time with words.
      */
-    static func timeToAccessibiltyWords(seconds: Int) -> String {
+    static func timeToAccessibiltyWords(seconds: Seconds) -> String {
         let time = TimeInterval(exactly: seconds)
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .full
@@ -42,7 +42,7 @@ class Format {
      - Parameter seconds: The amount of seconds to format.
      - Returns: Formatted string to display the time without words.
      */
-    static func timeToString(seconds: Int) -> String {
+    static func timeToString(seconds: Seconds) -> String {
         let time = TimeInterval(exactly: seconds)
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .positional

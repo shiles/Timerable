@@ -56,7 +56,7 @@ class SessionSelectionTable: UITableViewController {
      Works out the length of the pomodoro session based on the current set defaults.
      - Returns: Returns the length of the current session in `seconds`
      */
-    private func calculateSessionLength(numberOfSessions: Int) -> Int {
+    private func calculateSessionLength(numberOfSessions: Int) -> Seconds {
         var totalSeconds = 0
         
         for session in 1...numberOfSessions {

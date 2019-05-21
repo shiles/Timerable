@@ -52,7 +52,7 @@ class TimeViewer: UIView {
         timeDisplay.text = Format.timeToString(seconds: timeChunk.timeRemaining)
         sessionStatus.text = textLabelForType(type: timeChunk.type)
         let progress: Float =  Float(timeChunk.timeLength - timeChunk.timeRemaining) / Float(timeChunk.timeLength)
-        self.timeViewerProgress.updatePercentage(percentage: CGFloat(progress), colour: .orange)
+        self.timeViewerProgress.updatePercentage(percentage: CGFloat(progress))
         updateAccessibilityLabel(timeChunk: timeChunk)
     }
     

@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias Minutes = Int
+
 class Converter {
     
     /**
@@ -15,7 +17,7 @@ class Converter {
      - Parameter seconds: An amount of *seconds* to be converted.
      - Returns: A integer
      */
-    static func secondsToMinutes(seconds: Int) -> (Int) {
+    static func secondsToMinutes(seconds: Seconds) -> Minutes {
         return seconds / 60
     }
     
@@ -24,7 +26,7 @@ class Converter {
      - Parameter seconds: An amount of *minutes* to be converted.
      - Returns: A integer
      */
-    static func minutesToSeconds(minutes: Int) -> (Int) {
+    static func minutesToSeconds(minutes: Minutes) -> Seconds {
         return minutes * 60
     }
 }

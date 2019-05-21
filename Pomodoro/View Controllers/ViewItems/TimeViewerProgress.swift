@@ -31,7 +31,7 @@ class TimeViewerProgress: UIView {
         - persentage: The percentage of the total time thats been completed
         - colour: The colour of the fill to be used
      */
-    func updatePercentage(percentage: CGFloat, colour: UIColor) {
+    func updatePercentage(percentage: CGFloat, colour: UIColor = UIColor.orange) {
         self.percentage = percentage
         self.colour = colour
         self.setNeedsDisplay()

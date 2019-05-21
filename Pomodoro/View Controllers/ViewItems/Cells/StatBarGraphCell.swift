@@ -48,7 +48,7 @@ class StatBarGraphCell: UICollectionViewCell {
      - dailyStat: The `maximum time` within the array.
      - seconds: The `seconds` for this bar.
      */
-    func setBarHeight(maxTime: Int, seconds: Int) {
+    func setBarHeight(maxTime: Seconds, seconds: Seconds) {
         let percentFill = CGFloat(seconds)/CGFloat(maxTime)
         self.barHeightConstraint?.constant = (self.frame.height - 50) * percentFill
         self.accessibilityValue = Format.timeToAccessibiltyWords(seconds: seconds)

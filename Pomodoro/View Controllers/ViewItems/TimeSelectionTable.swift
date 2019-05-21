@@ -47,7 +47,7 @@ class TimeSelectionTable: UITableViewController {
     Works out the length of the pomodoro session based on the current set defaults.
      - Returns: Returns the length of the current session in `seconds`
      */
-    private func calculateSessionLength() -> Int {
+    private func calculateSessionLength() -> Seconds {
         let defaults =  Defaults()
         var totalSeconds = 0
 

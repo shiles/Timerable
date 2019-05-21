@@ -91,7 +91,7 @@ class SessionManagementController: UITableViewController {
         - seconds: Number of seconds to remove
      - Returns: Date with seconds removed from it
      */
-    func subtractTimeFromDate(date: Date, seconds: Int) -> Date {
+    func subtractTimeFromDate(date: Date, seconds: Seconds) -> Date {
         return calendar.date(byAdding: .second, value: -seconds, to: date)!
     }
     

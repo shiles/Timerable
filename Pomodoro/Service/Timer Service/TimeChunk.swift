@@ -8,12 +8,14 @@
 
 import Foundation
 
+typealias Seconds = Int
+
 struct TimeChunk: Equatable {
     var type: TimeTypes!
-    var timeLength: Int!
-    var timeRemaining: Int!
+    var timeLength: Seconds!
+    var timeRemaining: Seconds!
     
-    init(type: TimeTypes, initialTime: Int) {
+    init(type: TimeTypes, initialTime: Seconds) {
         self.type = type
         self.timeLength = initialTime
         self.timeRemaining = initialTime

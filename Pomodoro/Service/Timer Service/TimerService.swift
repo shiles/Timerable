@@ -111,7 +111,7 @@ class TimerService {
     func fastForward(dateBackgrounded: Date?) {
         guard timer.isValid else { return }
         guard dateBackgrounded != nil else { return }
-        var timeElapsed = abs(Int(dateBackgrounded!.timeIntervalSinceNow))
+        var timeElapsed = abs(Seconds(dateBackgrounded!.timeIntervalSinceNow))
         var chunkStartedDate = calendar.date(byAdding: .second, value: (session.first!.timeLength - session.first!.timeRemaining), to: dateBackgrounded!)!
         
         for _ in session {
