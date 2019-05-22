@@ -11,7 +11,7 @@ import UIKit
 class MainTabbedViewController: UITabBarController {
     
     let persistanceService = PersistanceService()
-    let audioNotifications = AudioNotificationService()
+    let audioNotifications = LocalNotificationService()
     let timerService: TimerService!
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

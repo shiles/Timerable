@@ -12,7 +12,7 @@ import CoreData
 class TimerViewController: UIViewController {
 
     let persistanceService: PersistanceService!
-    let audioNotificationController: AudioNotificationService!
+    let localNotifications: LocalNotificationService!
     let settingsController: SettingsViewController!
     let timerService: TimerService!
     let defaults = Defaults()
@@ -21,9 +21,9 @@ class TimerViewController: UIViewController {
     var daily: SessionStatus!
     var subjects: [Subject] = []
 
-    init(persistanceService: PersistanceService, audioNotificationController: AudioNotificationService, timerService: TimerService) {
+    init(persistanceService: PersistanceService, audioNotificationController: LocalNotificationService, timerService: TimerService) {
         self.persistanceService = persistanceService
-        self.audioNotificationController = audioNotificationController
+        self.localNotifications = audioNotificationController
         self.settingsController = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "SettingsVC") as? SettingsViewController
         self.timerService = timerService
         self.session = SessionStatus(title: "SESSION", frame: .zero)
@@ -267,7 +267,8 @@ extension TimerViewController: TimeTickerDelegate, SubjectManagementDelegate {
      Handles when a chunk is completed by the notification sound
      */
     func chunkCompleted() {
-        audioNotificationController.playNotificationSound()
+        localNotifications.playNotificationSound()
+        localNotifications.playHapticFeedback()
         updateGoals()
     }
     

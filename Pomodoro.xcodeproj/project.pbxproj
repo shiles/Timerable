@@ -27,7 +27,7 @@
 		AB7C65F5225DAC1000D63E7F /* TimeDisplayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7C65F4225DAC1000D63E7F /* TimeDisplayCell.swift */; };
 		AB7EBA432250BBA3007F3817 /* pomodoro.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AB2799BD2219CBD200D092C9 /* pomodoro.xcdatamodeld */; };
 		AB85A8AD224360BA003EC063 /* StatBarGraphCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB85A8AC224360BA003EC063 /* StatBarGraphCell.swift */; };
-		AB883BA922292CCE00D0DA09 /* AudioNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB883BA822292CCE00D0DA09 /* AudioNotificationService.swift */; };
+		AB883BA922292CCE00D0DA09 /* LocalNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB883BA822292CCE00D0DA09 /* LocalNotificationService.swift */; };
 		AB883BAC22296BBB00D0DA09 /* PersistanceServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB883BAB22296BBB00D0DA09 /* PersistanceServiceTest.swift */; };
 		AB8A015421F39F6100D0F6EA /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8A015321F39F6100D0F6EA /* Converter.swift */; };
 		AB8C51EB2248A4C000B7CDA4 /* StatBarGraphHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8C51EA2248A4C000B7CDA4 /* StatBarGraphHeaderCell.swift */; };
@@ -94,7 +94,7 @@
 		AB5EF90E21ECB2CE0034A276 /* TimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerService.swift; sourceTree = "<group>"; };
 		AB7C65F4225DAC1000D63E7F /* TimeDisplayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplayCell.swift; sourceTree = "<group>"; };
 		AB85A8AC224360BA003EC063 /* StatBarGraphCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatBarGraphCell.swift; sourceTree = "<group>"; };
-		AB883BA822292CCE00D0DA09 /* AudioNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioNotificationService.swift; sourceTree = "<group>"; };
+		AB883BA822292CCE00D0DA09 /* LocalNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationService.swift; sourceTree = "<group>"; };
 		AB883BAB22296BBB00D0DA09 /* PersistanceServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceServiceTest.swift; sourceTree = "<group>"; };
 		AB8A015321F39F6100D0F6EA /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		AB8C51EA2248A4C000B7CDA4 /* StatBarGraphHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatBarGraphHeaderCell.swift; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 		AB883BA722292C5A00D0DA09 /* Notification Service */ = {
 			isa = PBXGroup;
 			children = (
-				AB883BA822292CCE00D0DA09 /* AudioNotificationService.swift */,
+				AB883BA822292CCE00D0DA09 /* LocalNotificationService.swift */,
 				AB8E203422362B550068B16A /* NotificationService.swift */,
 			);
 			path = "Notification Service";
@@ -534,7 +534,7 @@
 				AB7C65F5225DAC1000D63E7F /* TimeDisplayCell.swift in Sources */,
 				AB8F202022547C7500BC8831 /* SessionSelectionTable.swift in Sources */,
 				AB5EF90F21ECB2CE0034A276 /* TimerService.swift in Sources */,
-				AB883BA922292CCE00D0DA09 /* AudioNotificationService.swift in Sources */,
+				AB883BA922292CCE00D0DA09 /* LocalNotificationService.swift in Sources */,
 				AB2F94C62207885E00F9F0F6 /* Defaults.swift in Sources */,
 				ABEBC69D21F2009300CFD262 /* SettingsViewController.swift in Sources */,
 			);
