@@ -129,7 +129,7 @@ class SessionManagementController: UITableViewController {
         })
         
         let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (_) in
-            let alert = UIAlertController(title: "Delete \(self.subject.name!)", message: "Deleting \(self.subject.name!) will be perminant and irreversable. This includes all stat tracking data. Are you sure?", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Delete \(self.subject.name!)", message: "Are you sure you want to delete \(self.subject.name!) and all related stats?", preferredStyle: .alert)
             let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (_) in
                 self.persistanceService.remove(objectID: self.subject.objectID)
