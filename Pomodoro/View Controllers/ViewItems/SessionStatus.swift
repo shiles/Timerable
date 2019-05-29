@@ -12,8 +12,8 @@ import UIKit
 class SessionStatus: UIView {
     
     //initWithFrame to init view from code
-    init(title: String, frame: CGRect) {
-        super.init(frame: frame)
+    init(title: String) {
+        super.init(frame: .zero)
         setupView(title: title)
     }
     
@@ -71,8 +71,8 @@ class SessionStatus: UIView {
         var text: String
         
         switch titleLabel.text {
-        case "SESSION": text = "Session goal"
-        case "GOAL": text = "Daily Goal"
+        case "Session": text = "Session goal"
+        case "Goal": text = "Daily Goal"
         default: fatalError("Session Status Title not set correctly")
         }
         
@@ -84,7 +84,7 @@ class SessionStatus: UIView {
         title.textColor = .white
         title.textAlignment = .center
         
-        guard let customFont = UIFont(name: "HelveticaNeue-Light", size: 20) else { fatalError("Font didn't load") }
+        let customFont = UIFont.systemFont(ofSize: 20, weight: .regular)
         title.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: customFont)
         title.adjustsFontForContentSizeCategory = true
         
@@ -97,7 +97,7 @@ class SessionStatus: UIView {
         title.textColor = .white
         title.textAlignment = .center
         
-        guard let customFont = UIFont(name: "HelveticaNeue", size: 30) else { fatalError("Font didn't load") }
+        let customFont = UIFont.systemFont(ofSize: 30, weight: .regular)
         title.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: customFont)
         title.adjustsFontForContentSizeCategory = true
         

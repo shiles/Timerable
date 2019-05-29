@@ -113,8 +113,8 @@ class TimeViewer: UIView {
         let status = UILabel(frame: .zero)
         status.textColor = .white
         status.textAlignment = .center
-    
-        guard let customFont = UIFont(name: "HelveticaNeue-Light", size: 20) else { fatalError("Font didn't load") }
+        
+        let customFont = UIFont.systemFont(ofSize: 20, weight: .regular)
         status.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: customFont)
         status.adjustsFontForContentSizeCategory = true
         

@@ -33,7 +33,7 @@ class StatsViewController: UIViewController {
      Initially sets up the view
      */
     func setupView() {
-        self.navigationItem.title = "STATS"
+        self.navigationItem.title = "Stats"
         
         self.view.addSubview(statStack)
         NSLayoutConstraint.activate([

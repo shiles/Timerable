@@ -26,8 +26,8 @@ class TimerViewController: UIViewController {
         self.localNotifications = audioNotificationController
         self.settingsController = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "SettingsVC") as? SettingsViewController
         self.timerService = timerService
-        self.session = SessionStatus(title: "SESSION", frame: .zero)
-        self.daily = SessionStatus(title: "GOAL", frame: .zero)
+        self.session = SessionStatus(title: "Session")
+        self.daily = SessionStatus(title: "Goal")
         
         super.init(nibName: nil, bundle: nil)
         timerService.timeTickerDelegate = self
@@ -56,7 +56,7 @@ class TimerViewController: UIViewController {
      */
     func setupView() {
         self.view.backgroundColor = .white
-        self.navigationItem.title = "TIMER"
+        self.navigationItem.title = "Timer"
         
         //Adding skip button
         let skipButton = UIBarButtonItem(title: "Skip", style: .plain, target: self, action: #selector(self.skip))
@@ -129,12 +129,12 @@ class TimerViewController: UIViewController {
                     Defaults().setSubject(subject.name!)
                     self.defaults.setTimerStatus(.timing)
                     self.timerService.startTimer()
-                    self.startStopButton.setTitle("PAUSE", for: .normal)
+                    self.startStopButton.setTitle("Pause", for: .normal)
                     
                     UIView.animate(withDuration: 0.20) { () -> Void in
                         self.timeControllButtons.arrangedSubviews[1].isHiddenInStackView = false
                         self.navigationItem.rightBarButtonItem?.isEnabled = true
-                        self.navigationItem.title = String.uppercased(subject.name!)()
+                        self.navigationItem.title = subject.name!
                     }
                 }))
             }
@@ -149,11 +149,11 @@ class TimerViewController: UIViewController {
         case .timing:
             defaults.setTimerStatus(.paused)
             timerService.stopTimer()
-            startStopButton.setTitle("RESUME", for: .normal)
+            startStopButton.setTitle("Resume", for: .normal)
         case .paused:
             defaults.setTimerStatus(.timing)
             timerService.startTimer()
-            startStopButton.setTitle("PAUSE", for: .normal)
+            startStopButton.setTitle("Pause", for: .normal)
         }
     }
     
@@ -169,9 +169,9 @@ class TimerViewController: UIViewController {
      Resets the UI when either a session is reset or the session ends
      */
     private func sessionFinished() {
-        self.navigationItem.title = "TIMER"
+        self.navigationItem.title = "Timer"
         defaults.setTimerStatus(.ready)
-        startStopButton.setTitle("START", for: .normal)
+        startStopButton.setTitle("Start", for: .normal)
         UIView.animate(withDuration: 0.20) { () -> Void in
             self.timeControllButtons.arrangedSubviews[1].isHiddenInStackView = true
             self.navigationItem.rightBarButtonItem?.isEnabled = false
@@ -191,7 +191,7 @@ class TimerViewController: UIViewController {
     
     lazy var startStopButton: UIButton = {
         let button = UIButton(frame: .zero)
-        button.setTitle("START", for: .normal)
+        button.setTitle("Start", for: .normal)
         button.addTarget(self, action: #selector(self.startStop), for: .touchUpInside)
         button.backgroundColor = .orange
         button.setRoundedCorners(radius: 10.0)
@@ -203,7 +203,7 @@ class TimerViewController: UIViewController {
     
     lazy var resetButton: UIButton = {
         let button = UIButton(frame: .zero)
-        button.setTitle("RESET", for: .normal)
+        button.setTitle("Reset", for: .normal)
         button.addTarget(self, action: #selector(self.reset), for: .touchUpInside)
         button.backgroundColor = .orange
         button.setRoundedCorners(radius: 10.0)
