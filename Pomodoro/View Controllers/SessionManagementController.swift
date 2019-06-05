@@ -201,6 +201,7 @@ class SessionManagementController: UITableViewController {
         header.textLabel?.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: customFont)
         header.textLabel?.adjustsFontForContentSizeCategory = true
         header.textLabel?.adjustsFontSizeToFitWidth = true
+        header.textLabel?.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             header.textLabel!.centerYAnchor.constraint(equalTo: header.centerYAnchor),
