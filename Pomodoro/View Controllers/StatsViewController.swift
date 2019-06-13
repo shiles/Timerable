@@ -76,6 +76,11 @@ class StatsViewController: UIViewController {
         self.navigationController?.pushViewController(settingsController, animated: true)
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        weekView.reloadData()
+    }
+    
     lazy var statStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [weekView, tableView])
         stack.axis = .vertical

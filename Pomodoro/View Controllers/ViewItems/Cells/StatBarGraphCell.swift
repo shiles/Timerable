@@ -18,18 +18,19 @@ class StatBarGraphCell: UICollectionViewCell {
         
         //Add label to bottom of bar
         addSubview(label)
-        label.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        //label.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        label.textAlignment = .center
         NSLayoutConstraint.activate([
             label.leftAnchor.constraint(equalTo: leftAnchor),
             label.rightAnchor.constraint(equalTo: rightAnchor),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)])
+            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)])
         
         //Add bar
         addSubview(bar)
         barHeightConstraint = bar.heightAnchor.constraint(equalToConstant: 0)
         barHeightConstraint?.isActive = true
         NSLayoutConstraint.activate([
-            bar.bottomAnchor.constraint(equalTo: label.topAnchor, constant: -25),
+            bar.bottomAnchor.constraint(equalTo: label.topAnchor, constant: -10),
             bar.leftAnchor.constraint(equalTo: leftAnchor, constant: 5),
             bar.rightAnchor.constraint(equalTo: rightAnchor, constant: -5)])
         
@@ -50,7 +51,7 @@ class StatBarGraphCell: UICollectionViewCell {
      */
     func setBarHeight(maxTime: Seconds, seconds: Seconds) {
         let percentFill = CGFloat(seconds)/CGFloat(maxTime)
-        self.barHeightConstraint?.constant = (self.frame.height - 50) * percentFill
+        self.barHeightConstraint?.constant = (self.frame.height - 45) * percentFill
         self.accessibilityValue = Format.timeToAccessibiltyWords(seconds: seconds)
     }
     
