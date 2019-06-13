@@ -249,12 +249,11 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="bdR-Ok-G9W" firstAttribute="leading" relation="lessThanOrEqual" secondItem="hry-aZ-rBx" secondAttribute="leading" constant="329" id="9Sm-Cz-bwD"/>
+                                                <constraint firstItem="bdR-Ok-G9W" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hry-aZ-rBx" secondAttribute="leading" id="9Sm-Cz-bwD"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="bdR-Ok-G9W" secondAttribute="trailing" constant="10" id="Ago-OZ-zHX"/>
                                                 <constraint firstItem="hry-aZ-rBx" firstAttribute="centerY" secondItem="FHb-Va-ZOX" secondAttribute="centerY" id="cia-sZ-Cxh"/>
                                                 <constraint firstItem="hry-aZ-rBx" firstAttribute="leading" secondItem="FHb-Va-ZOX" secondAttribute="leadingMargin" id="p1f-9e-ijd"/>
                                                 <constraint firstItem="bdR-Ok-G9W" firstAttribute="centerY" secondItem="FHb-Va-ZOX" secondAttribute="centerY" id="uKI-SX-DoV"/>
-                                                <constraint firstItem="bdR-Ok-G9W" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="hry-aZ-rBx" secondAttribute="trailing" constant="271" id="vxM-a3-KAA"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
