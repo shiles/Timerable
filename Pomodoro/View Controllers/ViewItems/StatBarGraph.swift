@@ -24,6 +24,7 @@ public class StatBarGraph: UICollectionView {
         let flow = UICollectionViewFlowLayout()
         flow.minimumInteritemSpacing = 0
         flow.minimumLineSpacing = 0
+        flow.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         super.init(frame: .zero, collectionViewLayout: flow)
         self.dataSource = self
@@ -85,7 +86,7 @@ extension StatBarGraph: UICollectionViewDataSource, UICollectionViewDelegateFlow
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.frame.width/CGFloat(data.count), height: self.frame.height - headerHeight)
+        return CGSize(width: floor(frame.size.width/CGFloat(data.count)), height: frame.size.height - headerHeight)
     }
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
