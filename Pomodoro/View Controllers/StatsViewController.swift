@@ -13,11 +13,9 @@ class StatsViewController: UIViewController {
     var subjects: [Subject]?
     let persistanceService: PersistanceService!
     let statsService: StatsService!
-    let settingsController: SettingsViewController!
     
     init(persistanceService: PersistanceService, statsService: StatsService) {
         self.persistanceService = persistanceService
-        self.settingsController = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "SettingsVC") as? SettingsViewController
         self.statsService = statsService
         
         super.init(nibName: nil, bundle: nil)
@@ -44,10 +42,6 @@ class StatsViewController: UIViewController {
         
         //Register cells
         self.tableView.register(TimeDisplayCell.self, forCellReuseIdentifier: "TimeDisplay")
-        
-        //Adding settings button
-        let settingsButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(self.pushSettings))
-        self.navigationItem.leftBarButtonItem = settingsButton
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,13 +67,6 @@ class StatsViewController: UIViewController {
      */
     private func fetchSubjectsSortedByTime() -> [Subject] {
         return persistanceService.fetchAllSubjects().sorted { statsService.getOverallSessionTime(subject: $0) > statsService.getOverallSessionTime(subject: $1) }
-    }
-    
-    /**
-     Push into the settings controller.
-     */
-    @objc func pushSettings() {
-        self.navigationController?.pushViewController(settingsController, animated: true)
     }
     
     override func viewWillLayoutSubviews() {

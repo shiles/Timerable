@@ -22,15 +22,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Timer" id="3OQ-rY-abU">
                         <barButtonItem key="backBarButtonItem" title="Settings" id="xCB-Ag-q40"/>
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="9DB-Lq-pxB">
-                            <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Skip" id="7gg-bO-LP1"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1728" y="92"/>
+            <point key="canvasLocation" x="1720" y="-177"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="l1G-aw-yWm">
@@ -46,11 +43,12 @@
                     <connections>
                         <segue destination="zKu-JU-iis" kind="relationship" relationship="viewControllers" id="QvL-8S-Bt9"/>
                         <segue destination="KT6-LP-ktq" kind="relationship" relationship="viewControllers" id="78x-Oe-XHv"/>
+                        <segue destination="Yin-41-ys5" kind="relationship" relationship="viewControllers" id="aSa-zU-MEd"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZU-rd-klY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52.173913043478265" y="375"/>
+            <point key="canvasLocation" x="-499" y="512"/>
         </scene>
         <!--Timer-->
         <scene sceneID="0z3-nJ-6XU">
@@ -69,7 +67,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XyD-Z3-sSK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="961" y="92"/>
+            <point key="canvasLocation" x="961" y="-177"/>
         </scene>
         <!--Stats-->
         <scene sceneID="ZCk-Fa-gzi">
@@ -79,11 +77,28 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Fq-ed-RMF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="961" y="749"/>
+            <point key="canvasLocation" x="958" y="512"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="Tk7-1W-emY">
+            <objects>
+                <viewController id="Yin-41-ys5" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ofw-hP-Pir">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="jzD-IF-DH8"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="zMS-T6-daq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r5Z-X1-jKz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="958" y="1239"/>
         </scene>
     </scenes>
     <resources>
         <image name="bargraph" width="30" height="30"/>
+        <image name="settings" width="30" height="30"/>
         <image name="timer" width="30" height="30"/>
     </resources>
     <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

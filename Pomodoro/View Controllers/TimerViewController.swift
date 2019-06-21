@@ -13,7 +13,6 @@ class TimerViewController: UIViewController {
 
     let persistanceService: PersistanceService!
     let localNotifications: LocalNotificationService!
-    let settingsController: SettingsViewController!
     let timerService: TimerService!
     let defaults = Defaults()
     var timeViewer: TimeViewer!
@@ -24,7 +23,6 @@ class TimerViewController: UIViewController {
     init(persistanceService: PersistanceService, audioNotificationController: LocalNotificationService, timerService: TimerService) {
         self.persistanceService = persistanceService
         self.localNotifications = audioNotificationController
-        self.settingsController = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "SettingsVC") as? SettingsViewController
         self.timerService = timerService
         self.session = SessionStatus(title: "Session")
         self.daily = SessionStatus(title: "Goal")
@@ -62,10 +60,6 @@ class TimerViewController: UIViewController {
         let skipButton = UIBarButtonItem(title: "Skip", style: .plain, target: self, action: #selector(self.skip))
         skipButton.isEnabled = false
         self.navigationItem.rightBarButtonItem = skipButton
-        
-        //Adding settings button
-        let settingsButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(self.pushSettings))
-        self.navigationItem.leftBarButtonItem = settingsButton
         
         //Adding the time ticker
         timeViewer = TimeViewer(frame: .zero)
@@ -106,13 +100,6 @@ class TimerViewController: UIViewController {
      */
     @objc func skip() {
         timerService.skipChunk()
-    }
-    
-    /**
-     Push into the settings controller.
-     */
-    @objc func pushSettings() {
-        self.navigationController?.pushViewController(settingsController, animated: true)
     }
     
     /**
