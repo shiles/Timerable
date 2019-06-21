@@ -60,6 +60,12 @@ class StatsViewController: UIViewController {
         self.weekView.reloadData()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard let layout = weekView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        layout.invalidateLayout()
+    }
+    
     /**
      Sorts the subject by time so that the highest time will be at the top, if there are no times a
      alphabetical sort is returned.
@@ -74,6 +80,11 @@ class StatsViewController: UIViewController {
      */
     @objc func pushSettings() {
         self.navigationController?.pushViewController(settingsController, animated: true)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        weekView.reloadData()
     }
     
     lazy var statStack: UIStackView = {
