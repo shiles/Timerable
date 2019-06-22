@@ -7,10 +7,6 @@
 //
 
 import Foundation
-import UIKit
-import Intents
-import CoreSpotlight
-import MobileCoreServices
 
 class StatsService {
     let persistanceService: PersistanceService!
@@ -75,24 +71,4 @@ class StatsService {
         
         return lastWeek
     }
-    
-    /**
-     Builds a templated shortcut to open the stats pane of the tab bar
-     - Returns: NSUserActivity for opening the stats menu.
-     */
-    public static func newViewStatsShortcut() -> NSUserActivity {
-        let activity = NSUserActivity(activityType: "com.Pomodoro.view-stats")
-        activity.isEligibleForSearch = true
-        activity.isEligibleForPrediction = true
-        activity.title = "View Focus Stats"
-        activity.suggestedInvocationPhrase = "View Stats"
-        
-        let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeItem as String)
-        attributes.thumbnailData = UIImage(named: "thumbnail")?.pngData()
-        attributes.contentDescription = "View stats about your focused work sessions!"
-        activity.contentAttributeSet = attributes
-        
-        return activity
-    }
-    
 }

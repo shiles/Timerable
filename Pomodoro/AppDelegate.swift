@@ -88,6 +88,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             shortcutService?.handleAddSubject()
         case "com.Pomodoro.pause-session":
             shortcutService?.handlePauseSession()
+        case "com.Pomodoro.resume-session":
+            shortcutService?.handleResumeSession()
         default:
             return false
         }

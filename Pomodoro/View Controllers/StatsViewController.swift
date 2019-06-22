@@ -54,7 +54,7 @@ class StatsViewController: UIViewController {
         self.weekView.reloadData()
         
         //Donate shortcut to Siri
-        let activity = StatsService.newViewStatsShortcut()
+        let activity = ShortcutsService.newViewStatsShortcut()
         self.userActivity = activity
         activity.becomeCurrent()
     }

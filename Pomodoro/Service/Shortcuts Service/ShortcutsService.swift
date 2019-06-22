@@ -8,6 +8,9 @@
 
 import Foundation
 import UIKit
+import Intents
+import CoreSpotlight
+import MobileCoreServices
 
 class ShortcutsService {
     let rootView: MainTabbedViewController!
@@ -33,6 +36,15 @@ class ShortcutsService {
             getTimerViewController().startStop()
         } else {
             showAlert(title: "Pause unavalible", reason: "The timer isn't running so there isn't anything to pause.")
+        }
+    }
+    
+    func handleResumeSession() {
+        rootView?.selectedIndex = 0
+        if defaults.getTimerStatus() == .paused {
+            getTimerViewController().startStop()
+        } else {
+            showAlert(title: "Resume unavalible", reason: "The timer isn't paused so there isn't anything to resume.")
         }
     }
     
@@ -68,6 +80,63 @@ class ShortcutsService {
             fatalError("Shortcut Service unable to get TimerViewController")
         }
         return timerVC
+    }
+    
+    /**
+     Builds a templated shortcut to pause the current session if one is running
+     - Returns: NSUserActivity for pausing current session
+     */
+    public static func pauseSessionShortcut() -> NSUserActivity {
+        let activity = NSUserActivity(activityType: "com.Pomodoro.pause-session")
+        activity.isEligibleForSearch = true
+        activity.isEligibleForPrediction = true
+        activity.title = "Pause Focus Session"
+        activity.suggestedInvocationPhrase = "Pause focus session"
+        
+        let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeItem as String)
+        attributes.thumbnailData = UIImage(named: "thumbnail")?.pngData()
+        attributes.contentDescription = "Pause the current focus session"
+        activity.contentAttributeSet = attributes
+        
+        return activity
+    }
+    
+    /**
+     Builds a templated shortcut to pause the current session if one is running
+     - Returns: NSUserActivity for pausing current session
+     */
+    public static func resumeSessionShortcut() -> NSUserActivity {
+        let activity = NSUserActivity(activityType: "com.Pomodoro.resume-session")
+        activity.isEligibleForSearch = true
+        activity.isEligibleForPrediction = true
+        activity.title = "Resume Focus Session"
+        activity.suggestedInvocationPhrase = "Resume focus session"
+        
+        let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeItem as String)
+        attributes.thumbnailData = UIImage(named: "thumbnail")?.pngData()
+        attributes.contentDescription = "Resume the current focus session"
+        activity.contentAttributeSet = attributes
+        
+        return activity
+    }
+    
+    /**
+     Builds a templated shortcut to open the stats pane of the tab bar
+     - Returns: NSUserActivity for opening the stats menu.
+     */
+    public static func newViewStatsShortcut() -> NSUserActivity {
+        let activity = NSUserActivity(activityType: "com.Pomodoro.view-stats")
+        activity.isEligibleForSearch = true
+        activity.isEligibleForPrediction = true
+        activity.title = "View Focus Stats"
+        activity.suggestedInvocationPhrase = "View Stats"
+        
+        let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeItem as String)
+        attributes.thumbnailData = UIImage(named: "thumbnail")?.pngData()
+        attributes.contentDescription = "View stats about your focused work sessions!"
+        activity.contentAttributeSet = attributes
+        
+        return activity
     }
     
 }
