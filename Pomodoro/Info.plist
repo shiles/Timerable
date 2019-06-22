@@ -42,6 +42,7 @@
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>com.Pomodoro.view-stats</string>
+		<string>com.Pomodoro.add-subject</string>
 	</array>
 </dict>
 </plist>

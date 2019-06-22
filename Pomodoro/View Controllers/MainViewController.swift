@@ -11,7 +11,6 @@ import UIKit
 class MainTabbedViewController: UITabBarController {
     
     let persistanceService = PersistanceService()
-    let audioNotifications = LocalNotificationService()
     let timerService: TimerService!
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -26,7 +25,7 @@ class MainTabbedViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let timerView = TimerViewController(persistanceService: persistanceService, audioNotificationController: audioNotifications, timerService: timerService)
+        let timerView = TimerViewController(persistanceService: persistanceService, audioNotificationController: LocalNotificationService(), timerService: timerService)
         let timerViewNavController = UINavigationController(rootViewController: timerView)
         timerViewNavController.tabBarItem.title = "Timer"
         timerViewNavController.tabBarItem.image = UIImage(named: "timer")

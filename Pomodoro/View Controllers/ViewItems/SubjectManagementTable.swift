@@ -6,8 +6,11 @@
 //  Copyright © 2019 Sonnie Hiles. All rights reserved.
 //
 
-import UIKit
 import CoreData
+import UIKit
+import Intents
+import CoreSpotlight
+import MobileCoreServices
 
 protocol SubjectManagementDelegate: AnyObject {
     func reOpenActionSheet()
@@ -48,6 +51,11 @@ class SubjectManagementTable: UITableViewController {
     }
     
     @objc func addSubject() {
+        //Donate shortcut to Siri
+        let activity = self.newAddSubjectShortcut()
+        self.userActivity = activity
+        activity.becomeCurrent()
+        
         let alert = UIAlertController(title: "Add Subject", message: "Add subject to be selected for study sessions", preferredStyle: .alert)
         
         alert.addTextField { textField in
@@ -141,6 +149,21 @@ class SubjectManagementTable: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return subjects.count
+    }
+    
+    private func newAddSubjectShortcut() -> NSUserActivity {
+        let activity = NSUserActivity(activityType: "com.Pomodoro.add-subject")
+        activity.isEligibleForSearch = true
+        activity.isEligibleForPrediction = true
+        activity.title = "Add New Subject"
+        activity.suggestedInvocationPhrase = "Add new subject"
+        
+        let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeItem as String)
+        attributes.thumbnailData = UIImage(named: "thumbnail")?.pngData()
+        attributes.contentDescription = "Add a new subject to use for a focused working session!"
+        activity.contentAttributeSet = attributes
+        
+        return activity
     }
     
     override var keyCommands: [UIKeyCommand]? {

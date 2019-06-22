@@ -77,8 +77,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         
-        if userActivity.activityType == "com.Pomodoro.view-stats" {
+        switch userActivity.activityType {
+        case "com.Pomodoro.view-stats":
             main?.selectedIndex = 1
+        case "com.Pomodoro.add-subject":
+            let manager = SubjectManagementTable(persistanceService: PersistanceService(), delegate: nil)
+            guard let timerView = main?.viewControllers?.first as? UINavigationController else { return true }
+            timerView.pushViewController(manager, animated: true)
+            manager.addSubject()
+        default:
+            return true
         }
         
         return true
