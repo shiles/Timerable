@@ -25,6 +25,7 @@ class Defaults: UserDefaults {
         case subject
         case backgroundedTime
         case sessionStatus
+        case autoLockDisabled
     }
     
     let defaults = UserDefaults.standard
@@ -39,7 +40,8 @@ class Defaults: UserDefaults {
                           DefaultKeys.long.rawValue: 1800,
                           DefaultKeys.sessionLength.rawValue: 4,
                           DefaultKeys.dailyGoal.rawValue: 12,
-                          DefaultKeys.sessionStatus.rawValue: SessionState.ready.rawValue])
+                          DefaultKeys.sessionStatus.rawValue: SessionState.ready.rawValue,
+                          DefaultKeys.autoLockDisabled.rawValue: false])
     }
     
     /**
@@ -51,6 +53,7 @@ class Defaults: UserDefaults {
         setLongTime(1800)
         setNumberOfSessions(4)
         setDailyGoal(12)
+        setAutoLockDisabled(false)
     }
     
     /**
@@ -186,5 +189,21 @@ class Defaults: UserDefaults {
      */
     func getTimerStatus() -> SessionState {
         return SessionState(rawValue: defaults.double(forKey: DefaultKeys.sessionStatus.rawValue))!
+    }
+    
+    /**
+     Sets the autolock disabled toggle
+     - Parameter value: toggle
+     */
+    func setAutoLockDisabled(_ value: Bool) {
+        defaults.set(value, forKey: DefaultKeys.autoLockDisabled.rawValue)
+    }
+    
+    /**
+     Gets the autolock disabled toggle
+     - Returns: If autolock is disabled
+     */
+    func getAutoLockDisabled() -> Bool {
+        return defaults.bool(forKey: DefaultKeys.autoLockDisabled.rawValue)
     }
 }

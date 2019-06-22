@@ -22,6 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Setting defualt values for user defualts
         defaults.registerDefaults()
         self.resetState()
+        
+        if defaults.getAutoLockDisabled() {
+            UIApplication.shared.isIdleTimerDisabled = true
+        }
   
         //Building intial view
         window = UIWindow(frame: UIScreen.main.bounds)

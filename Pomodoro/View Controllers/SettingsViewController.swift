@@ -17,6 +17,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var longLengthLabel: UILabel!
     @IBOutlet weak var sessionLengthLabel: UILabel!
     @IBOutlet weak var dailyGoalLabel: UILabel!
+    @IBOutlet weak var autoLockSwitch: UISwitch!
     @IBOutlet weak var appVersion: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,6 +40,7 @@ class SettingsViewController: UITableViewController {
         longLengthLabel.text = Format.timeToStringWords(seconds: defaults.getLongTime())
         sessionLengthLabel.text = String(format: "%d work sessions", defaults.getNumberOfSessions())
         dailyGoalLabel.text = String(format: "%d work sessions", defaults.getDailyGoal())
+        autoLockSwitch.isOn = defaults.getAutoLockDisabled()
     }
 
     /**
@@ -97,6 +99,14 @@ class SettingsViewController: UITableViewController {
     }
     
     /**
+     Disables or enables autolock within the app
+     */
+    @IBAction func toggleAutoLockSwitch(_ sender: Any) {
+        defaults.setAutoLockDisabled(autoLockSwitch.isOn)
+        UIApplication.shared.isIdleTimerDisabled = autoLockSwitch.isOn
+    }
+    
+    /**
      Resets the session information back to what I deem are the results
      */
     private func resetSessionsToDefaults() {
@@ -142,6 +152,8 @@ class SettingsViewController: UITableViewController {
         case (1, 0):
             self.setDailyGoals()
         case (2, 0):
+            break
+        case (3, 0):
             self.resetSessionsToDefaults()
         case (2, 1):
             self.resetStatistics()
