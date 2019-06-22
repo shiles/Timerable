@@ -19,7 +19,7 @@ class Format {
         let time = TimeInterval(exactly: seconds)
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .full
-        formatter.allowedUnits = [.day, .hour, .minute]
+        formatter.allowedUnits = seconds < 60 ? [.second] : [.day, .hour, .minute]
         return formatter.string(from: time!) ?? ""
     }
     
