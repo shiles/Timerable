@@ -82,15 +82,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             main?.selectedIndex = 1
         case "com.Pomodoro.add-subject":
             let manager = SubjectManagementTable(persistanceService: PersistanceService(), delegate: nil)
-            guard let timerView = main?.viewControllers?.first as? UINavigationController else { return true }
+            guard let timerView = main?.viewControllers?.first as? UINavigationController else { return false }
             timerView.pushViewController(manager, animated: true)
             manager.addSubject()
+        case "com.Pomodoro.pause-session":
+            main?.selectedIndex = 0
+            guard let timerViewNav = main?.viewControllers?.first as? UINavigationController else { return false }
+            guard let timerView = timerViewNav.viewControllers.first as? TimerViewController else { return false }
+            if defaults.getTimerStatus() == .timing {
+                timerView.startStop()
+            } else {
+                showAlert(title: "Pause unavalible", reason: "The timer isn't running so there isn't anything to pause.")
+            }
         default:
             return true
         }
         
         return true
     }
+    
+    
     
     /**
      Resets the state of the app
@@ -114,7 +125,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     var persistentContainer: NSPersistentContainer = {
-
         let container = NSPersistentContainer(name: "pomodoro")
         container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {

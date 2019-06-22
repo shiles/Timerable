@@ -143,6 +143,11 @@ class TimerViewController: UIViewController {
             defaults.setTimerStatus(.paused)
             timerService.stopTimer()
             startStopButton.setTitle("Resume", for: .normal)
+            
+            //Donate shortcut to Siri
+            let activity = TimerService.pauseSessionShortcut()
+            self.userActivity = activity
+            activity.becomeCurrent()
         case .paused:
             defaults.setTimerStatus(.timing)
             timerService.startTimer()

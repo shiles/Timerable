@@ -7,6 +7,10 @@
 //
 
 import Foundation
+import UIKit
+import Intents
+import CoreSpotlight
+import MobileCoreServices
 
 protocol TimeTickerDelegate: AnyObject {
     func timerDecrement(timeChunk: TimeChunk)
@@ -208,5 +212,20 @@ class TimerService {
         var copy = timeChunk
         copy.timeRemaining = 0
         return copy
+    }
+    
+    public static func pauseSessionShortcut() -> NSUserActivity {
+        let activity = NSUserActivity(activityType: "com.Pomodoro.pause-session")
+        activity.isEligibleForSearch = true
+        activity.isEligibleForPrediction = true
+        activity.title = "Pause Focus Session"
+        activity.suggestedInvocationPhrase = "Pause focus session"
+        
+        let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeItem as String)
+        attributes.thumbnailData = UIImage(named: "thumbnail")?.pngData()
+        attributes.contentDescription = "Pause the current focus session"
+        activity.contentAttributeSet = attributes
+        
+        return activity
     }
 }
