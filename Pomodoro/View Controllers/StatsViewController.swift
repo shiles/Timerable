@@ -52,6 +52,11 @@ class StatsViewController: UIViewController {
         self.tableView.reloadData()
         self.weekView.setInitialHeader()
         self.weekView.reloadData()
+        
+        //Donate shortcut to Siri
+        let activity = StatsService.newViewStatsShortcut()
+        self.userActivity = activity
+        activity.becomeCurrent()
     }
     
     override func viewDidAppear(_ animated: Bool) {

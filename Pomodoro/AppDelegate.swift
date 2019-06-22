@@ -75,6 +75,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.resetState()
     }
     
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        
+        if userActivity.activityType == "com.Pomodoro.view-stats" {
+            main?.selectedIndex = 1
+        }
+        
+        return true
+    }
+    
     /**
      Resets the state of the app
      */
