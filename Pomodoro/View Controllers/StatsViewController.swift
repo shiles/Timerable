@@ -96,6 +96,12 @@ class StatsViewController: UIViewController {
         week.backgroundColor = .white
         return week
     }()
+    
+    override var keyCommands: [UIKeyCommand]? {
+        return [
+            UIKeyCommand(input: UIKeyCommand.inputRightArrow, modifierFlags: .command, action: #selector(tabBarRight), discoverabilityTitle: "Scroll Tab Bar Right"),
+            UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: .command, action: #selector(tabBarLeft), discoverabilityTitle: "Scroll Tab Bar Left")]
+    }
 }
 
 extension StatsViewController: UITableViewDataSource, UITableViewDelegate {

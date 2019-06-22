@@ -33,5 +33,26 @@ extension UIView {
             }
         }
     }
+}
+
+extension UIViewController {
+
+    /**
+     Scroll tab bar to the right if there is one.
+     */
+    @objc func tabBarRight() {
+        guard let tab = self.tabBarController else { return }
+        let currentIndex = tab.selectedIndex
+        tab.selectedIndex = currentIndex + 1
+    }
+    
+    /**
+     Scroll tab bar to the left if there is one.
+     */
+    @objc func tabBarLeft() {
+        guard let tab = self.tabBarController else { return }
+        let currentIndex = tab.selectedIndex
+        tab.selectedIndex = currentIndex - 1
+    }
     
 }

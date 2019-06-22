@@ -158,6 +158,10 @@ class TimerViewController: UIViewController {
         sessionFinished()
     }
     
+    @objc private func manageSubjects() {
+        self.navigationController?.pushViewController(SubjectManagementTable(persistanceService: self.persistanceService, delegate: nil), animated: true)
+    }
+    
     /**
      Resets the UI when either a session is reset or the session ends
      */
@@ -180,6 +184,25 @@ class TimerViewController: UIViewController {
         let sessionMax = defaults.getNumberOfSessions()
         let sessionCurrent = sessionMax - self.timerService.session.filter { $0.type == .work }.count
         session.updateValues(currentSession: sessionCurrent, totalSessions: sessionMax)
+    }
+    
+    override var keyCommands: [UIKeyCommand]? {
+        var usableCommands: [UIKeyCommand] = []
+        
+        if defaults.getTimerStatus() != .ready {
+            let resumePause = UIKeyCommand(input: " ", modifierFlags: [], action: #selector(startStop), discoverabilityTitle: "Resume/Pause Session")
+            let resetSession = UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(reset), discoverabilityTitle: "Reset Session")
+            let skipSession = UIKeyCommand(input: "s", modifierFlags: .command, action: #selector(skip), discoverabilityTitle: "Skip Chunk")
+            
+            usableCommands.append(contentsOf: [resumePause, resetSession, skipSession])
+        }
+        
+        usableCommands.append(UIKeyCommand(input: "m", modifierFlags: .command, action: #selector(manageSubjects), discoverabilityTitle: "Manage Subjects"))
+        
+        usableCommands.append(UIKeyCommand(input: UIKeyCommand.inputRightArrow, modifierFlags: .command, action: #selector(tabBarRight), discoverabilityTitle: "Scroll Tab Bar Right"))
+        usableCommands.append(UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: .command, action: #selector(tabBarLeft), discoverabilityTitle: "Scroll Tab Bar Left"))
+        
+        return usableCommands
     }
     
     lazy var startStopButton: UIButton = {
