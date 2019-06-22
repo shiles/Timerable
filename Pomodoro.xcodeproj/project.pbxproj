@@ -16,6 +16,7 @@
 		AB2F94C62207885E00F9F0F6 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2F94C52207885E00F9F0F6 /* Defaults.swift */; };
 		AB348E1A21F638B100A97CEA /* TimeViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB348E1921F638B100A97CEA /* TimeViewer.swift */; };
 		AB348E1C21F686A700A97CEA /* TimeViewerProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB348E1B21F686A700A97CEA /* TimeViewerProgress.swift */; };
+		AB35A48222BE9313001A91A1 /* ShortcutsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35A48122BE9313001A91A1 /* ShortcutsService.swift */; };
 		AB38C43A21EBA306003C77D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB38C43921EBA306003C77D7 /* AppDelegate.swift */; };
 		AB38C43C21EBA306003C77D7 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB38C43B21EBA306003C77D7 /* TimerViewController.swift */; };
 		AB38C43F21EBA306003C77D7 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB38C43D21EBA306003C77D7 /* Settings.storyboard */; };
@@ -79,6 +80,7 @@
 		AB2F94C52207885E00F9F0F6 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		AB348E1921F638B100A97CEA /* TimeViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewer.swift; sourceTree = "<group>"; };
 		AB348E1B21F686A700A97CEA /* TimeViewerProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewerProgress.swift; sourceTree = "<group>"; };
+		AB35A48122BE9313001A91A1 /* ShortcutsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsService.swift; sourceTree = "<group>"; };
 		AB38C43621EBA306003C77D7 /* Pomodoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pomodoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB38C43921EBA306003C77D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB38C43B21EBA306003C77D7 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,14 @@
 				AB8F201F22547C7500BC8831 /* SessionSelectionTable.swift */,
 			);
 			path = ViewItems;
+			sourceTree = "<group>";
+		};
+		AB35A48022BE92FE001A91A1 /* Shortcuts Service */ = {
+			isa = PBXGroup;
+			children = (
+				AB35A48122BE9313001A91A1 /* ShortcutsService.swift */,
+			);
+			path = "Shortcuts Service";
 			sourceTree = "<group>";
 		};
 		AB38C42D21EBA306003C77D7 = {
@@ -304,6 +314,7 @@
 		ABBD94FC223F64D500C48C08 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				AB35A48022BE92FE001A91A1 /* Shortcuts Service */,
 				ABBD94FD223F654600C48C08 /* Stats Service */,
 				AB5EF90D21ECB2AA0034A276 /* Timer Service */,
 				AB883BA722292C5A00D0DA09 /* Notification Service */,
@@ -527,6 +538,7 @@
 				AB9BA93122813FE5002D6324 /* SessionManagementController.swift in Sources */,
 				ABA8A8D6221ADA5D00847448 /* Persistance Service.swift in Sources */,
 				ABFA9F56221C2FE700B76FAA /* SubjectManagementTable.swift in Sources */,
+				AB35A48222BE9313001A91A1 /* ShortcutsService.swift in Sources */,
 				AB85A8AD224360BA003EC063 /* StatBarGraphCell.swift in Sources */,
 				AB38C43A21EBA306003C77D7 /* AppDelegate.swift in Sources */,
 				AB8A015421F39F6100D0F6EA /* Converter.swift in Sources */,

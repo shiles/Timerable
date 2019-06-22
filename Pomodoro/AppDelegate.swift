@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let defaults = Defaults()
     var main: MainTabbedViewController?
+    var shortcutService: ShortcutsService?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -39,6 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         center.requestAuthorization(options: [.alert, .sound, .badge]) { (_, _) in
             print("Notifications Granted")
         }
+        
+        //Create Shotcut handler
+        self.shortcutService = ShortcutsService(rootView: main!)
         
         return true
     }
@@ -79,29 +83,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         switch userActivity.activityType {
         case "com.Pomodoro.view-stats":
-            main?.selectedIndex = 1
+            shortcutService?.handleViewStats()
         case "com.Pomodoro.add-subject":
-            let manager = SubjectManagementTable(persistanceService: PersistanceService(), delegate: nil)
-            guard let timerView = main?.viewControllers?.first as? UINavigationController else { return false }
-            timerView.pushViewController(manager, animated: true)
-            manager.addSubject()
+            shortcutService?.handleAddSubject()
         case "com.Pomodoro.pause-session":
-            main?.selectedIndex = 0
-            guard let timerViewNav = main?.viewControllers?.first as? UINavigationController else { return false }
-            guard let timerView = timerViewNav.viewControllers.first as? TimerViewController else { return false }
-            if defaults.getTimerStatus() == .timing {
-                timerView.startStop()
-            } else {
-                showAlert(title: "Pause unavalible", reason: "The timer isn't running so there isn't anything to pause.")
-            }
+            shortcutService?.handlePauseSession()
         default:
-            return true
+            return false
         }
         
         return true
     }
-    
-    
     
     /**
      Resets the state of the app
