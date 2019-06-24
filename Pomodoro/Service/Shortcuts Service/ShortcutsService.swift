@@ -195,4 +195,22 @@ class ShortcutsService {
         return activity
     }
     
+    /**
+    Builds a templated shortcut to add a new subject.
+     - Returns: NSUserActivity for adding a new subject.
+     */
+    public static func newAddSubjectShortcut() -> NSUserActivity {
+        let activity = NSUserActivity(activityType: "com.Pomodoro.add-subject")
+        activity.isEligibleForSearch = true
+        activity.isEligibleForPrediction = true
+        activity.title = "Add New Subject"
+        activity.suggestedInvocationPhrase = "Add new subject"
+        
+        let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeItem as String)
+        attributes.thumbnailData = UIImage(named: "thumbnail")?.pngData()
+        attributes.contentDescription = "Add a new subject to use for a focused working session!"
+        activity.contentAttributeSet = attributes
+        
+        return activity
+    }
 }

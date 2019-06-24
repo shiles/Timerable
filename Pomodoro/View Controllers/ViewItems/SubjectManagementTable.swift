@@ -52,7 +52,7 @@ class SubjectManagementTable: UITableViewController {
     
     @objc func addSubject() {
         //Donate shortcut to Siri
-        let activity = self.newAddSubjectShortcut()
+        let activity = ShortcutsService.newAddSubjectShortcut()
         self.userActivity = activity
         activity.becomeCurrent()
         
@@ -149,21 +149,6 @@ class SubjectManagementTable: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return subjects.count
-    }
-    
-    private func newAddSubjectShortcut() -> NSUserActivity {
-        let activity = NSUserActivity(activityType: "com.Pomodoro.add-subject")
-        activity.isEligibleForSearch = true
-        activity.isEligibleForPrediction = true
-        activity.title = "Add New Subject"
-        activity.suggestedInvocationPhrase = "Add new subject"
-        
-        let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeItem as String)
-        attributes.thumbnailData = UIImage(named: "thumbnail")?.pngData()
-        attributes.contentDescription = "Add a new subject to use for a focused working session!"
-        activity.contentAttributeSet = attributes
-        
-        return activity
     }
     
     override var keyCommands: [UIKeyCommand]? {
