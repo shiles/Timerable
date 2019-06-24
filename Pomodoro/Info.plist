@@ -24,6 +24,7 @@
 	<true/>
 	<key>NSUserActivityTypes</key>
 	<array>
+		<string>com.Pomodoro.skip-chunk</string>
 		<string>com.Pomodoro.resume-session</string>
 		<string>com.Pomodoro.view-stats</string>
 		<string>com.Pomodoro.add-subject</string>

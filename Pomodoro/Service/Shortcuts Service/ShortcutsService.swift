@@ -39,6 +39,15 @@ class ShortcutsService {
         }
     }
     
+    func handleSkipChunk() {
+        rootView?.selectedIndex = 0
+        if defaults.getTimerStatus() != .ready {
+            getTimerViewController().skip()
+        } else {
+            showAlert(title: "Skip unavalible", reason: "There is no active focus session, so there isn't anything to skip. ")
+        }
+    }
+    
     func handleResumeSession() {
         rootView?.selectedIndex = 0
         if defaults.getTimerStatus() == .paused {
@@ -115,6 +124,25 @@ class ShortcutsService {
         let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeItem as String)
         attributes.thumbnailData = UIImage(named: "thumbnail")?.pngData()
         attributes.contentDescription = "Resume the current focus session"
+        activity.contentAttributeSet = attributes
+        
+        return activity
+    }
+    
+    /**
+     Builds a templated shortcut to pause the current session if one is running
+     - Returns: NSUserActivity for pausing current session
+     */
+    public static func skipChunkSessionShortcut() -> NSUserActivity {
+        let activity = NSUserActivity(activityType: "com.Pomodoro.skip-chunk")
+        activity.isEligibleForSearch = true
+        activity.isEligibleForPrediction = true
+        activity.title = "Skip Focus Chunk"
+        activity.suggestedInvocationPhrase = "Skip focus chunk"
+        
+        let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeItem as String)
+        attributes.thumbnailData = UIImage(named: "thumbnail")?.pngData()
+        attributes.contentDescription = "Skip the remaining time in the current focus chunk"
         activity.contentAttributeSet = attributes
         
         return activity

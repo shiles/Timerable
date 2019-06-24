@@ -100,6 +100,11 @@ class TimerViewController: UIViewController {
      */
     @objc func skip() {
         timerService.skipChunk()
+        
+        //Donate shortcut to Siri
+        let activity = ShortcutsService.skipChunkSessionShortcut()
+        self.userActivity = activity
+        activity.becomeCurrent()
     }
     
     /**

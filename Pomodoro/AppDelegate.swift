@@ -90,6 +90,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             shortcutService?.handlePauseSession()
         case "com.Pomodoro.resume-session":
             shortcutService?.handleResumeSession()
+        case "com.Pomodoro.skip-chunk":
+            shortcutService?.handleSkipChunk()
         default:
             return false
         }
