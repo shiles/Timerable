@@ -168,9 +168,14 @@ class TimerViewController: UIViewController {
     /**
      Resets the timer if the user wasnts to select another subject or end their current session
      */
-    @objc private func reset() {
+    @objc func reset() {
         timerService.resetSession()
         sessionFinished()
+        
+        //Donate shortcut to Siri
+        let activity = ShortcutsService.resetSessionShortcut()
+        self.userActivity = activity
+        activity.becomeCurrent()
     }
     
     @objc private func manageSubjects() {

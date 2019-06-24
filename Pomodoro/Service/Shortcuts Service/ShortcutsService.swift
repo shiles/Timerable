@@ -44,7 +44,16 @@ class ShortcutsService {
         if defaults.getTimerStatus() != .ready {
             getTimerViewController().skip()
         } else {
-            showAlert(title: "Skip unavalible", reason: "There is no active focus session, so there isn't anything to skip. ")
+            showAlert(title: "Skip unavalible", reason: "There is no active focus session, so there isn't anything to skip.")
+        }
+    }
+    
+    func handleResetSession() {
+        rootView?.selectedIndex = 0
+        if defaults.getTimerStatus() != .ready {
+            getTimerViewController().reset()
+        } else {
+            showAlert(title: "Reset unavalible", reason: "There is no active focus session, so there isn't anything to reset.")
         }
     }
     
@@ -130,7 +139,7 @@ class ShortcutsService {
     }
     
     /**
-     Builds a templated shortcut to pause the current session if one is running
+     Builds a templated shortcut to skip the chunk in the active session
      - Returns: NSUserActivity for pausing current session
      */
     public static func skipChunkSessionShortcut() -> NSUserActivity {
@@ -143,6 +152,25 @@ class ShortcutsService {
         let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeItem as String)
         attributes.thumbnailData = UIImage(named: "thumbnail")?.pngData()
         attributes.contentDescription = "Skip the remaining time in the current focus chunk"
+        activity.contentAttributeSet = attributes
+        
+        return activity
+    }
+    
+    /**
+     Builds a templated shortcut to reset the active session
+     - Returns: NSUserActivity for pausing current session
+     */
+    public static func resetSessionShortcut() -> NSUserActivity {
+        let activity = NSUserActivity(activityType: "com.Pomodoro.reset-session")
+        activity.isEligibleForSearch = true
+        activity.isEligibleForPrediction = true
+        activity.title = "Reset Focus Session"
+        activity.suggestedInvocationPhrase = "Reset focus session"
+        
+        let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeItem as String)
+        attributes.thumbnailData = UIImage(named: "thumbnail")?.pngData()
+        attributes.contentDescription = "Reset the current focus session"
         activity.contentAttributeSet = attributes
         
         return activity
