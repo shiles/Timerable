@@ -24,12 +24,12 @@ class TimeViewer: UIView {
     
     private func setupView() {
         //Add view below to show progress
-        self.addSubview(timeViewerProgress)
+        self.addSubview(timeViewerBar)
         NSLayoutConstraint.activate([
-            timeViewerProgress.topAnchor.constraint(equalTo: self.topAnchor),
-            timeViewerProgress.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            timeViewerProgress.leftAnchor.constraint(equalTo: self.leftAnchor),
-            timeViewerProgress.rightAnchor.constraint(equalTo: self.rightAnchor)])
+            timeViewerBar.topAnchor.constraint(equalTo: self.topAnchor),
+            timeViewerBar.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            timeViewerBar.leftAnchor.constraint(equalTo: self.leftAnchor),
+            timeViewerBar.rightAnchor.constraint(equalTo: self.rightAnchor)])
         
         //Add the text stack and center it within the UIView
         self.addSubview(textStack)
@@ -52,7 +52,7 @@ class TimeViewer: UIView {
         timeDisplay.text = Format.timeToString(seconds: timeChunk.timeRemaining)
         sessionStatus.text = textLabelForType(type: timeChunk.type)
         let progress: Float =  Float(timeChunk.timeLength - timeChunk.timeRemaining) / Float(timeChunk.timeLength)
-        self.timeViewerProgress.updatePercentage(percentage: CGFloat(progress))
+        self.timeViewerBar.setProgress(progress, animated: true)
         updateAccessibilityLabel(timeChunk: timeChunk)
     }
     
@@ -80,12 +80,13 @@ class TimeViewer: UIView {
         }
     }
     
-    lazy var timeViewerProgress: TimeViewerProgress = {
-        var prog = TimeViewerProgress()
-        prog.translatesAutoresizingMaskIntoConstraints = false
-        return prog
+    lazy var timeViewerBar: UIProgressView = {
+        let bar = UIProgressView(frame: .zero)
+        bar.progressTintColor = .orange
+        bar.translatesAutoresizingMaskIntoConstraints = false
+        return bar
     }()
-        
+    
     lazy var textStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [timeDisplay, sessionStatus])
         stack.axis = .vertical

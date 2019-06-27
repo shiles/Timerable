@@ -15,7 +15,6 @@
 		AB2A81172244B52000480726 /* DailyStatTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2A81162244B52000480726 /* DailyStatTest.swift */; };
 		AB2F94C62207885E00F9F0F6 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2F94C52207885E00F9F0F6 /* Defaults.swift */; };
 		AB348E1A21F638B100A97CEA /* TimeViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB348E1921F638B100A97CEA /* TimeViewer.swift */; };
-		AB348E1C21F686A700A97CEA /* TimeViewerProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB348E1B21F686A700A97CEA /* TimeViewerProgress.swift */; };
 		AB35A48222BE9313001A91A1 /* ShortcutsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35A48122BE9313001A91A1 /* ShortcutsService.swift */; };
 		AB376BEF22C1E5B6000776DC /* SiriViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB376BEE22C1E5B6000776DC /* SiriViewController.swift */; };
 		AB376BF122C1E705000776DC /* SiriShortcutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB376BF022C1E705000776DC /* SiriShortcutCell.swift */; };
@@ -81,7 +80,6 @@
 		AB2A81162244B52000480726 /* DailyStatTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStatTest.swift; sourceTree = "<group>"; };
 		AB2F94C52207885E00F9F0F6 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		AB348E1921F638B100A97CEA /* TimeViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewer.swift; sourceTree = "<group>"; };
-		AB348E1B21F686A700A97CEA /* TimeViewerProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewerProgress.swift; sourceTree = "<group>"; };
 		AB35A48122BE9313001A91A1 /* ShortcutsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsService.swift; sourceTree = "<group>"; };
 		AB376BEE22C1E5B6000776DC /* SiriViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriViewController.swift; sourceTree = "<group>"; };
 		AB376BF022C1E705000776DC /* SiriShortcutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriShortcutCell.swift; sourceTree = "<group>"; };
@@ -154,7 +152,6 @@
 			children = (
 				AB9FE0252249F1FB00142194 /* Cells */,
 				AB348E1921F638B100A97CEA /* TimeViewer.swift */,
-				AB348E1B21F686A700A97CEA /* TimeViewerProgress.swift */,
 				ABFFD7AC21FE9A260033199D /* TimeSelectionTable.swift */,
 				ABFA9F55221C2FE700B76FAA /* SubjectManagementTable.swift */,
 				AB57D1A122420C4B000AC6EE /* StatBarGraph.swift */,
@@ -538,7 +535,6 @@
 				AB8D28632208FFAF000C4312 /* MainViewController.swift in Sources */,
 				ABBD94FF223F658000C48C08 /* StatsService.swift in Sources */,
 				AB0151302266E66300138132 /* Extentions.swift in Sources */,
-				AB348E1C21F686A700A97CEA /* TimeViewerProgress.swift in Sources */,
 				ABB9C6572225C221007CAE6B /* StatsViewController.swift in Sources */,
 				AB38C43C21EBA306003C77D7 /* TimerViewController.swift in Sources */,
 				AB9BA93122813FE5002D6324 /* SessionManagementController.swift in Sources */,
