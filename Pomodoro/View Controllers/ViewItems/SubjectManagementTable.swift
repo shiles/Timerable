@@ -150,12 +150,4 @@ class SubjectManagementTable: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return subjects.count
     }
-    
-    override var keyCommands: [UIKeyCommand]? {
-        return [
-            UIKeyCommand(input: "n", modifierFlags: .command, action: #selector(addSubject), discoverabilityTitle: "Add New Subject"),
-            UIKeyCommand(input: UIKeyCommand.inputRightArrow, modifierFlags: .command, action: #selector(tabBarRight), discoverabilityTitle: "Scroll Tab Bar Right"),
-            UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: .command, action: #selector(tabBarLeft), discoverabilityTitle: "Scroll Tab Bar Left")]
-    }
-    
 }

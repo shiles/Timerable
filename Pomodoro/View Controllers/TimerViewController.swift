@@ -219,9 +219,6 @@ class TimerViewController: UIViewController {
         
         usableCommands.append(UIKeyCommand(input: "m", modifierFlags: .command, action: #selector(manageSubjects), discoverabilityTitle: "Manage Subjects"))
         
-        usableCommands.append(UIKeyCommand(input: UIKeyCommand.inputRightArrow, modifierFlags: .command, action: #selector(tabBarRight), discoverabilityTitle: "Scroll Tab Bar Right"))
-        usableCommands.append(UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: .command, action: #selector(tabBarLeft), discoverabilityTitle: "Scroll Tab Bar Left"))
-        
         return usableCommands
     }
     

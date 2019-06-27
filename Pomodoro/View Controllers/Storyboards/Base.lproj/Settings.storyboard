@@ -195,9 +195,9 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="HEA-bs-8if" firstAttribute="leading" secondItem="bxZ-xs-16C" secondAttribute="leadingMargin" id="LkH-Fg-qdk"/>
+                                                <constraint firstItem="HEA-bs-8if" firstAttribute="leading" secondItem="bxZ-xs-16C" secondAttribute="leadingMargin" id="BpH-YP-cCr"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="HEA-bs-8if" secondAttribute="trailing" id="Ubz-Bn-gD9"/>
                                                 <constraint firstItem="HEA-bs-8if" firstAttribute="centerY" secondItem="bxZ-xs-16C" secondAttribute="centerY" id="ey4-47-X9i"/>
-                                                <constraint firstItem="HEA-bs-8if" firstAttribute="leading" secondItem="bxZ-xs-16C" secondAttribute="leadingMargin" id="pSV-pQ-2cu"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

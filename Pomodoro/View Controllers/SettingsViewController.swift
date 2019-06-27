@@ -133,12 +133,6 @@ class SettingsViewController: UITableViewController {
         self.present(warning, animated: true, completion: nil)
     }
     
-    override var keyCommands: [UIKeyCommand]? {
-        return [
-            UIKeyCommand(input: UIKeyCommand.inputRightArrow, modifierFlags: .command, action: #selector(tabBarRight), discoverabilityTitle: "Scroll Tab Bar Right"),
-            UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: .command, action: #selector(tabBarLeft), discoverabilityTitle: "Scroll Tab Bar Left")]
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
         case (0, 0) :
@@ -157,10 +151,8 @@ class SettingsViewController: UITableViewController {
             break
         case (3, 0):
             self.resetSessionsToDefaults()
-        case (2, 1):
+        case (3, 1):
             self.resetStatistics()
-        case(3, 0):
-            break
         default:
             fatalError()
         }

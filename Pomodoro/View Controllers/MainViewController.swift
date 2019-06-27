@@ -42,4 +42,22 @@ class MainTabbedViewController: UITabBarController {
 
         viewControllers = [timerViewNavController, statViewNavController, settingsViewNavController]
     }
+    
+    override var keyCommands: [UIKeyCommand]? {
+        return [ UIKeyCommand(input: "1", modifierFlags: .command, action: #selector(toTimer), discoverabilityTitle: "Go To Timer Tab"),
+                UIKeyCommand(input: "2", modifierFlags: .command, action: #selector(toStats), discoverabilityTitle: "Go To Stats Tab"),
+                UIKeyCommand(input: "3", modifierFlags: .command, action: #selector(toSettings), discoverabilityTitle: "Go To Settings Tab")]
+    }
+    
+    @objc func toTimer() {
+        self.selectedIndex = 0
+    }
+    
+    @objc func toStats() {
+        self.selectedIndex = 1
+    }
+    
+    @objc func toSettings() {
+        self.selectedIndex = 2
+    }
 }
