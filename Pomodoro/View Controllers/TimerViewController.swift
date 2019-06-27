@@ -38,7 +38,7 @@ class TimerViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         //Update session to newest setting
         if defaults.getTimerStatus() == .ready {
             timerService.setNewSessionSettings()

@@ -152,6 +152,8 @@ class SettingsViewController: UITableViewController {
         case (1, 0):
             self.setDailyGoals()
         case (2, 0):
+            navigationController?.pushViewController(SiriViewController(), animated: true)
+        case (2, 1):
             break
         case (3, 0):
             self.resetSessionsToDefaults()

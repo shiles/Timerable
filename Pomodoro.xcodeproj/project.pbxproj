@@ -17,6 +17,8 @@
 		AB348E1A21F638B100A97CEA /* TimeViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB348E1921F638B100A97CEA /* TimeViewer.swift */; };
 		AB348E1C21F686A700A97CEA /* TimeViewerProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB348E1B21F686A700A97CEA /* TimeViewerProgress.swift */; };
 		AB35A48222BE9313001A91A1 /* ShortcutsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB35A48122BE9313001A91A1 /* ShortcutsService.swift */; };
+		AB376BEF22C1E5B6000776DC /* SiriViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB376BEE22C1E5B6000776DC /* SiriViewController.swift */; };
+		AB376BF122C1E705000776DC /* SiriShortcutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB376BF022C1E705000776DC /* SiriShortcutCell.swift */; };
 		AB38C43A21EBA306003C77D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB38C43921EBA306003C77D7 /* AppDelegate.swift */; };
 		AB38C43C21EBA306003C77D7 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB38C43B21EBA306003C77D7 /* TimerViewController.swift */; };
 		AB38C43F21EBA306003C77D7 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB38C43D21EBA306003C77D7 /* Settings.storyboard */; };
@@ -81,6 +83,8 @@
 		AB348E1921F638B100A97CEA /* TimeViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewer.swift; sourceTree = "<group>"; };
 		AB348E1B21F686A700A97CEA /* TimeViewerProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewerProgress.swift; sourceTree = "<group>"; };
 		AB35A48122BE9313001A91A1 /* ShortcutsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsService.swift; sourceTree = "<group>"; };
+		AB376BEE22C1E5B6000776DC /* SiriViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriViewController.swift; sourceTree = "<group>"; };
+		AB376BF022C1E705000776DC /* SiriShortcutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriShortcutCell.swift; sourceTree = "<group>"; };
 		AB38C43621EBA306003C77D7 /* Pomodoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pomodoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB38C43921EBA306003C77D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB38C43B21EBA306003C77D7 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
@@ -271,6 +275,7 @@
 				AB8D28622208FFAF000C4312 /* MainViewController.swift */,
 				ABB9C6562225C221007CAE6B /* StatsViewController.swift */,
 				AB9BA93022813FE5002D6324 /* SessionManagementController.swift */,
+				AB376BEE22C1E5B6000776DC /* SiriViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -290,6 +295,7 @@
 				AB85A8AC224360BA003EC063 /* StatBarGraphCell.swift */,
 				AB8C51EA2248A4C000B7CDA4 /* StatBarGraphHeaderCell.swift */,
 				AB7C65F4225DAC1000D63E7F /* TimeDisplayCell.swift */,
+				AB376BF022C1E705000776DC /* SiriShortcutCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -544,6 +550,7 @@
 				AB8A015421F39F6100D0F6EA /* Converter.swift in Sources */,
 				AB8C51EB2248A4C000B7CDA4 /* StatBarGraphHeaderCell.swift in Sources */,
 				AB348E1A21F638B100A97CEA /* TimeViewer.swift in Sources */,
+				AB376BEF22C1E5B6000776DC /* SiriViewController.swift in Sources */,
 				ABFFD7AD21FE9A260033199D /* TimeSelectionTable.swift in Sources */,
 				AB2A81152244A0BA00480726 /* DailyStat.swift in Sources */,
 				AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */,
@@ -552,6 +559,7 @@
 				AB5EF90F21ECB2CE0034A276 /* TimerService.swift in Sources */,
 				AB883BA922292CCE00D0DA09 /* LocalNotificationService.swift in Sources */,
 				AB2F94C62207885E00F9F0F6 /* Defaults.swift in Sources */,
+				AB376BF122C1E705000776DC /* SiriShortcutCell.swift in Sources */,
 				ABEBC69D21F2009300CFD262 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
