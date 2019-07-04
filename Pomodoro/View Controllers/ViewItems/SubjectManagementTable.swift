@@ -47,7 +47,9 @@ class SubjectManagementTable: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        subjectManagementDelegate?.reOpenActionSheet()
+        if self.isMovingFromParent {
+            subjectManagementDelegate?.reOpenActionSheet()
+        }
     }
     
     @objc func addSubject() {
