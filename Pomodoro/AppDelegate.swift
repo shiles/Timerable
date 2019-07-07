@@ -94,6 +94,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             shortcutService?.handleSkipChunk()
         case "com.Pomodoro.reset-session":
             shortcutService?.handleResetSession()
+        case "NewSessionIntent":
+            shortcutService?.handleStartNewSession(activity: userActivity)
         default:
             return false
         }

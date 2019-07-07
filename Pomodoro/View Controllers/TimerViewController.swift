@@ -124,16 +124,7 @@ class TimerViewController: UIViewController {
             self.subjects = persistanceService.fetchAllSubjects()
             subjects.forEach { subject in
                 actionSession.addAction(UIAlertAction(title: subject.name, style: .default, handler: { (_) in
-                    Defaults().setSubject(subject.name!)
-                    self.defaults.setTimerStatus(.timing)
-                    self.timerService.startTimer()
-                    self.startStopButton.setTitle("Pause", for: .normal)
-                    
-                    UIView.animate(withDuration: 0.20) { () -> Void in
-                        self.timeControllButtons.arrangedSubviews[1].isHiddenInStackView = false
-                        self.navigationItem.rightBarButtonItem?.isEnabled = true
-                        self.navigationItem.title = subject.name!
-                    }
+                   self.startSession(subjectName: subject.name!)
                 }))
             }
             
@@ -163,6 +154,27 @@ class TimerViewController: UIViewController {
             self.userActivity = activity
             activity.becomeCurrent()
         }
+    }
+    
+    /**
+     Starts a session and updates the UI to represent that start.
+     - parameters: subjectName: Subject name to start with
+     */
+    func startSession(subjectName: String) {
+        Defaults().setSubject(subjectName)
+        self.defaults.setTimerStatus(.timing)
+        self.timerService.startTimer()
+        self.startStopButton.setTitle("Pause", for: .normal)
+        
+        UIView.animate(withDuration: 0.20) { () -> Void in
+            self.timeControllButtons.arrangedSubviews[1].isHiddenInStackView = false
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+            self.navigationItem.title = subjectName
+        }
+        
+        let activity = ShortcutsService.newStartNewSession(subjectName: subjectName)
+        self.userActivity = activity
+        activity.becomeCurrent()
     }
     
     /**

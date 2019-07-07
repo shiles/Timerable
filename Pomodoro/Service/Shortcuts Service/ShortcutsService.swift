@@ -66,6 +66,13 @@ class ShortcutsService {
         }
     }
     
+    func handleStartNewSession(activity: NSUserActivity) {
+        rootView?.selectedIndex = 0
+        if defaults.getTimerStatus() != .ready {
+            showAlert(title: "Cannot start a new session", reason: "There is already a session in progess, please reset the session to start a new session.")
+        }
+    }
+    
     /**
     Shows an alert to warn the users of an error in saving context
     - parameters:
@@ -209,6 +216,30 @@ class ShortcutsService {
         let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeItem as String)
         attributes.thumbnailData = UIImage(named: "thumbnail")?.pngData()
         attributes.contentDescription = "Add a new subject to use for a focused working session!"
+        activity.contentAttributeSet = attributes
+        
+        return activity
+    }
+    
+    /**
+     Builds a templated shortcut to add a new subject.
+     - Parameters: subjectName: The new subject name
+     - Returns: NSUserActivity for starting new subject.
+     */
+    public static func newStartNewSession(subjectName: String) -> NSUserActivity {
+        let title = "Start New \(subjectName) Study Session"
+        
+        let activity = NSUserActivity(activityType: "com.Pomodoro.new-session")
+        activity.isEligibleForSearch = true
+        activity.isEligibleForPrediction = true
+        activity.title = title
+        activity.suggestedInvocationPhrase = title
+        activity.userInfo = ["subjectName": subjectName]
+        activity.persistentIdentifier = subjectName
+        
+        let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeItem as String)
+        attributes.thumbnailData = UIImage(named: "thumbnail")?.pngData()
+        attributes.contentDescription = "Start a new \(subjectName) session."
         activity.contentAttributeSet = attributes
         
         return activity

@@ -11,17 +11,12 @@ import UIKit
 import IntentsUI
 
 class SiriViewController: UITableViewController {
+    private let persistanceService: PersistanceService
     private let reuseIdentifier = "SiriCell"
-    private let avalibleShortcuts: [NSUserActivity] = [
-        ShortcutsService.pauseSessionShortcut(),
-        ShortcutsService.resumeSessionShortcut(),
-        ShortcutsService.skipChunkSessionShortcut(),
-        ShortcutsService.resetSessionShortcut(),
-        ShortcutsService.newAddSubjectShortcut(),
-        ShortcutsService.newViewStatsShortcut()
-    ]
+    private var avalibleShortcuts: [NSUserActivity]!
     
-    init() {
+    init(persistanceService: PersistanceService = PersistanceService()) {
+        self.persistanceService = persistanceService
         super.init(style: .plain)
         setupView()
     }
@@ -34,6 +29,22 @@ class SiriViewController: UITableViewController {
         self.tableView.register(SiriShortcutCell.self, forCellReuseIdentifier: reuseIdentifier)
         self.navigationItem.title = "Shortcuts"
         self.tableView.allowsSelection = false
+        self.avalibleShortcuts = findAvalibleShortcuts()
+    }
+    
+    private func findAvalibleShortcuts() -> [NSUserActivity] {
+        let dynamic = persistanceService.fetchAllSubjects().map { ShortcutsService.newStartNewSession(subjectName: $0.name!) }
+        let constant = [
+            ShortcutsService.pauseSessionShortcut(),
+            ShortcutsService.resumeSessionShortcut(),
+            ShortcutsService.skipChunkSessionShortcut(),
+            ShortcutsService.resetSessionShortcut(),
+            ShortcutsService.newAddSubjectShortcut(),
+            ShortcutsService.newViewStatsShortcut()
+        ]
+        
+        let avalibleShortcuts = dynamic + constant
+        return avalibleShortcuts
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
