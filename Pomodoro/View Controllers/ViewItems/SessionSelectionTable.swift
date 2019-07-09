@@ -15,7 +15,7 @@ enum CalculationType {
 }
 
 class SessionSelectionTable: UITableViewController {
-    
+    weak var delegate: UpdateSettingsLabelDelegate?
     let defaults =  Defaults()
     var data: [String]!
     var selected: Int!
@@ -26,8 +26,8 @@ class SessionSelectionTable: UITableViewController {
         self.selected = selected - 1
         self.saveToDefaults = saveToDefaults
         self.calculationType = calculationType
-        
-        super.init(nibName: nil, bundle: nil)
+
+        super.init(style: .plain)
         
         data = generateData(min: min, max: max)
         self.tableView.allowsMultipleSelection = false
@@ -95,7 +95,8 @@ class SessionSelectionTable: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
         cell.setSelected(true, animated: true)
-        self.saveToDefaults(_: indexPath.row + 1)
+        saveToDefaults(_: indexPath.row + 1)
+        delegate?.updateSettingsLabels()
         
         let header = self.tableView.headerView(forSection: indexPath.section)
         header?.textLabel?.text = getTitle()
@@ -119,6 +120,7 @@ class SessionSelectionTable: UITableViewController {
         guard let header = view as? UITableViewHeaderFooterView else { return }
         header.textLabel?.textColor = .white
         header.tintColor? = .orange
+        header.backgroundView?.backgroundColor = .orange
         header.textLabel?.frame = header.frame
         header.textLabel?.textAlignment = .center
         

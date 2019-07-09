@@ -35,12 +35,11 @@ class MainTabbedViewController: UITabBarController {
         statViewNavController.tabBarItem.title = "Stats"
         statViewNavController.tabBarItem.image = UIImage(named: "bargraph")
         
-        let settingsView = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "SettingsVC") as? SettingsViewController
-        let settingsViewNavController = UINavigationController(rootViewController: settingsView!)
-        settingsViewNavController.tabBarItem.title = "Settings"
-        settingsViewNavController.tabBarItem.image = UIImage(named: "settings")
+        let settingsView = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "SplitVC")
+        settingsView.tabBarItem.title = "Settings"
+        settingsView.tabBarItem.image = UIImage(named: "settings")
 
-        viewControllers = [timerViewNavController, statViewNavController, settingsViewNavController]
+        viewControllers = [timerViewNavController, statViewNavController, settingsView]
     }
     
     override var keyCommands: [UIKeyCommand]? {

@@ -29,6 +29,10 @@ class SettingsViewController: UITableViewController {
         setLabelsToValues()
         //Setting table height to remove defualt warningS
         self.tableView.rowHeight = 44
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            setWorkLength()
+        }
     }
     
     /**
@@ -50,8 +54,9 @@ class SettingsViewController: UITableViewController {
         let saveFn: (Int) -> Void = defaults.setWorkTime(_:)
         
         let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defaults.getWorkTime()), saveToDefaults: saveFn)
-        newTable.title = "Work Length"        
-        navigationController?.pushViewController(newTable, animated: true)
+        newTable.title = "Work Length"
+        newTable.delegate = self
+        presentDetailView(view: newTable)
     }
     
     /**
@@ -62,7 +67,8 @@ class SettingsViewController: UITableViewController {
         
         let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defaults.getShortTime()), saveToDefaults: saveFn)
         newTable.title = "Short Break Length"
-        navigationController?.pushViewController(newTable, animated: true)
+        newTable.delegate = self
+        presentDetailView(view: newTable)
     }
     
     /**
@@ -73,7 +79,8 @@ class SettingsViewController: UITableViewController {
         
         let newTable = TimeSelectionTable(min: 1, max: 60, selected: Converter.secondsToMinutes(seconds: defaults.getLongTime()), saveToDefaults: saveFn)
         newTable.title = "Long Break Length"
-        navigationController?.pushViewController(newTable, animated: true)
+        newTable.delegate = self
+        presentDetailView(view: newTable)
     }
     
     /**
@@ -84,7 +91,8 @@ class SettingsViewController: UITableViewController {
         
         let newTable = SessionSelectionTable(min: 1, max: 10, selected: defaults.getNumberOfSessions(), calculationType: .session, saveToDefaults: saveFn)
         newTable.title = "Length of Session"
-        navigationController?.pushViewController(newTable, animated: true)
+        newTable.delegate = self
+        presentDetailView(view: newTable)
     }
     
     /**
@@ -95,7 +103,8 @@ class SettingsViewController: UITableViewController {
         
         let newTable = SessionSelectionTable(min: 1, max: 30, selected: defaults.getDailyGoal(), calculationType: .daily, saveToDefaults: saveFn)
         newTable.title = "Daily Work Sessions Goal"
-        navigationController?.pushViewController(newTable, animated: true)
+        newTable.delegate = self
+        presentDetailView(view: newTable)
     }
     
     /**
@@ -133,6 +142,15 @@ class SettingsViewController: UITableViewController {
         self.present(warning, animated: true, completion: nil)
     }
     
+    /**
+     Present the view into the detailed view controller
+     - Parameters: view: UIViewController that you want to present
+     */
+    private func presentDetailView(view: UIViewController) {
+        let tableNav = UINavigationController(rootViewController: view)
+        splitViewController?.showDetailViewController(tableNav, sender: nil)
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
         case (0, 0) :
@@ -146,7 +164,7 @@ class SettingsViewController: UITableViewController {
         case (1, 0):
             self.setDailyGoals()
         case (2, 0):
-            navigationController?.pushViewController(SiriViewController(), animated: true)
+            presentDetailView(view: SiriViewController())
         case (2, 1):
             break
         case (3, 0):
@@ -158,5 +176,12 @@ class SettingsViewController: UITableViewController {
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension SettingsViewController: UpdateSettingsLabelDelegate {
+    
+    func updateSettingsLabels() {
+        setLabelsToValues()
     }
 }

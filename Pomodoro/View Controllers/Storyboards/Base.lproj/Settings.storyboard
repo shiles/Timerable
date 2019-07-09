@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7Ad-MP-haj">
     <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,6 +9,34 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="BVG-N3-KX2">
+            <objects>
+                <navigationController id="USr-BX-vu2" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LeK-Sp-vcU">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="FHQ-Kx-nhI" kind="relationship" relationship="rootViewController" id="qVZ-oF-BYP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vHI-4L-fef" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="469" y="-701"/>
+        </scene>
+        <!--SplitVC-->
+        <scene sceneID="hG3-Ct-O0h">
+            <objects>
+                <splitViewController storyboardIdentifier="SplitVC" title="SplitVC" id="7Ad-MP-haj" customClass="SplitViewViewController" customModule="Pomodoro" customModuleProvider="target" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="USr-BX-vu2" kind="relationship" relationship="masterViewController" id="ZEK-D6-08E"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vne-Tx-DhQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-450" y="-376"/>
+        </scene>
         <!--Settings-->
         <scene sceneID="icS-BI-5XF">
             <objects>
@@ -335,7 +363,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SA8-6i-CRb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1686.9565217391305" y="113.83928571428571"/>
+            <point key="canvasLocation" x="1343" y="-701"/>
         </scene>
     </scenes>
 </document>

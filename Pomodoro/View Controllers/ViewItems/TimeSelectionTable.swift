@@ -8,8 +8,12 @@
 
 import UIKit
 
+protocol UpdateSettingsLabelDelegate: AnyObject {
+    func updateSettingsLabels()
+}
+
 class TimeSelectionTable: UITableViewController {
-    
+    weak var delegate: UpdateSettingsLabelDelegate?
     var data: [String]!
     var selected: Int!
     var saveToDefaults: (Int) -> Void 
@@ -18,8 +22,8 @@ class TimeSelectionTable: UITableViewController {
         self.selected = selected - 1
         self.saveToDefaults = saveToDefaults
         
-        super.init(nibName: nil, bundle: nil)
-    
+        super.init(style: .plain)
+        
         data = generateData(min: min, max: max)
         self.tableView.allowsMultipleSelection = false
     }
@@ -78,8 +82,9 @@ class TimeSelectionTable: UITableViewController {
             return
         }
         cell.setSelected(true, animated: true)
-        self.selected = indexPath.row + 1
-        self.saveToDefaults(_: Converter.minutesToSeconds(minutes: selected))
+        selected = indexPath.row + 1
+        saveToDefaults(_: Converter.minutesToSeconds(minutes: selected))
+        delegate?.updateSettingsLabels()
        
         let header = self.tableView.headerView(forSection: indexPath.section)
         header?.textLabel?.text = String.init(format: "Total Session Time: %@", Format.timeToStringWords(seconds: calculateSessionLength()))
@@ -103,6 +108,7 @@ class TimeSelectionTable: UITableViewController {
         guard let header = view as? UITableViewHeaderFooterView else { return }
         header.textLabel?.textColor = .white
         header.tintColor? = .orange
+        header.backgroundView?.backgroundColor = .orange
         header.textLabel?.frame = header.frame
         header.textLabel?.textAlignment = .center
         
