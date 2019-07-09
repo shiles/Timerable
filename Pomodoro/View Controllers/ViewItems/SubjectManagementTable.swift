@@ -6,8 +6,11 @@
 //  Copyright © 2019 Sonnie Hiles. All rights reserved.
 //
 
-import UIKit
 import CoreData
+import UIKit
+import Intents
+import CoreSpotlight
+import MobileCoreServices
 
 protocol SubjectManagementDelegate: AnyObject {
     func reOpenActionSheet()
@@ -44,10 +47,17 @@ class SubjectManagementTable: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        subjectManagementDelegate?.reOpenActionSheet()
+        if self.isMovingFromParent {
+            subjectManagementDelegate?.reOpenActionSheet()
+        }
     }
     
     @objc func addSubject() {
+        //Donate shortcut to Siri
+        let activity = ShortcutsService.newAddSubjectShortcut()
+        self.userActivity = activity
+        activity.becomeCurrent()
+        
         let alert = UIAlertController(title: "Add Subject", message: "Add subject to be selected for study sessions", preferredStyle: .alert)
         
         alert.addTextField { textField in
@@ -142,12 +152,4 @@ class SubjectManagementTable: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return subjects.count
     }
-    
-    override var keyCommands: [UIKeyCommand]? {
-        return [
-            UIKeyCommand(input: "n", modifierFlags: .command, action: #selector(addSubject), discoverabilityTitle: "Add New Subject"),
-            UIKeyCommand(input: UIKeyCommand.inputRightArrow, modifierFlags: .command, action: #selector(tabBarRight), discoverabilityTitle: "Scroll Tab Bar Right"),
-            UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: .command, action: #selector(tabBarLeft), discoverabilityTitle: "Scroll Tab Bar Left")]
-    }
-    
 }

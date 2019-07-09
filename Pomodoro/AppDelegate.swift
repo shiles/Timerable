@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let defaults = Defaults()
     var main: MainTabbedViewController?
+    var shortcutService: ShortcutsService?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -39,6 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         center.requestAuthorization(options: [.alert, .sound, .badge]) { (_, _) in
             print("Notifications Granted")
         }
+        
+        //Create Shotcut handler
+        self.shortcutService = ShortcutsService(rootView: main!)
         
         return true
     }
@@ -75,6 +79,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.resetState()
     }
     
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        
+        switch userActivity.activityType {
+        case "com.Pomodoro.view-stats":
+            shortcutService?.handleViewStats()
+        case "com.Pomodoro.add-subject":
+            shortcutService?.handleAddSubject()
+        case "com.Pomodoro.pause-session":
+            shortcutService?.handlePauseSession()
+        case "com.Pomodoro.resume-session":
+            shortcutService?.handleResumeSession()
+        case "com.Pomodoro.skip-chunk":
+            shortcutService?.handleSkipChunk()
+        case "com.Pomodoro.reset-session":
+            shortcutService?.handleResetSession()
+        case "NewSessionIntent":
+            shortcutService?.handleStartNewSession(activity: userActivity)
+        default:
+            return false
+        }
+        
+        return true
+    }
+    
     /**
      Resets the state of the app
      */
@@ -97,7 +125,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     var persistentContainer: NSPersistentContainer = {
-
         let container = NSPersistentContainer(name: "pomodoro")
         container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {

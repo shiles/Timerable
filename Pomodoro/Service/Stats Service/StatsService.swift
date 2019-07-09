@@ -7,10 +7,8 @@
 //
 
 import Foundation
-import CoreData
 
 class StatsService {
- 
     let persistanceService: PersistanceService!
     
     init(persistanceService: PersistanceService) {

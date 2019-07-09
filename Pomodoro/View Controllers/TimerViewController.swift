@@ -38,7 +38,7 @@ class TimerViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         //Update session to newest setting
         if defaults.getTimerStatus() == .ready {
             timerService.setNewSessionSettings()
@@ -100,6 +100,11 @@ class TimerViewController: UIViewController {
      */
     @objc func skip() {
         timerService.skipChunk()
+        
+        //Donate shortcut to Siri
+        let activity = ShortcutsService.skipChunkSessionShortcut()
+        self.userActivity = activity
+        activity.becomeCurrent()
     }
     
     /**
@@ -119,16 +124,7 @@ class TimerViewController: UIViewController {
             self.subjects = persistanceService.fetchAllSubjects()
             subjects.forEach { subject in
                 actionSession.addAction(UIAlertAction(title: subject.name, style: .default, handler: { (_) in
-                    Defaults().setSubject(subject.name!)
-                    self.defaults.setTimerStatus(.timing)
-                    self.timerService.startTimer()
-                    self.startStopButton.setTitle("Pause", for: .normal)
-                    
-                    UIView.animate(withDuration: 0.20) { () -> Void in
-                        self.timeControllButtons.arrangedSubviews[1].isHiddenInStackView = false
-                        self.navigationItem.rightBarButtonItem?.isEnabled = true
-                        self.navigationItem.title = subject.name!
-                    }
+                   self.startSession(subjectName: subject.name!)
                 }))
             }
             
@@ -143,19 +139,55 @@ class TimerViewController: UIViewController {
             defaults.setTimerStatus(.paused)
             timerService.stopTimer()
             startStopButton.setTitle("Resume", for: .normal)
+            
+            //Donate shortcut to Siri
+            let activity = ShortcutsService.pauseSessionShortcut()
+            self.userActivity = activity
+            activity.becomeCurrent()
         case .paused:
             defaults.setTimerStatus(.timing)
             timerService.startTimer()
             startStopButton.setTitle("Pause", for: .normal)
+            
+            //Donate shortcut to Siri
+            let activity = ShortcutsService.resumeSessionShortcut()
+            self.userActivity = activity
+            activity.becomeCurrent()
         }
+    }
+    
+    /**
+     Starts a session and updates the UI to represent that start.
+     - parameters: subjectName: Subject name to start with
+     */
+    func startSession(subjectName: String) {
+        Defaults().setSubject(subjectName)
+        self.defaults.setTimerStatus(.timing)
+        self.timerService.startTimer()
+        self.startStopButton.setTitle("Pause", for: .normal)
+        
+        UIView.animate(withDuration: 0.20) { () -> Void in
+            self.timeControllButtons.arrangedSubviews[1].isHiddenInStackView = false
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+            self.navigationItem.title = subjectName
+        }
+        
+        let activity = ShortcutsService.newStartNewSession(subjectName: subjectName)
+        self.userActivity = activity
+        activity.becomeCurrent()
     }
     
     /**
      Resets the timer if the user wasnts to select another subject or end their current session
      */
-    @objc private func reset() {
+    @objc func reset() {
         timerService.resetSession()
         sessionFinished()
+        
+        //Donate shortcut to Siri
+        let activity = ShortcutsService.resetSessionShortcut()
+        self.userActivity = activity
+        activity.becomeCurrent()
     }
     
     @objc private func manageSubjects() {
@@ -198,9 +230,6 @@ class TimerViewController: UIViewController {
         }
         
         usableCommands.append(UIKeyCommand(input: "m", modifierFlags: .command, action: #selector(manageSubjects), discoverabilityTitle: "Manage Subjects"))
-        
-        usableCommands.append(UIKeyCommand(input: UIKeyCommand.inputRightArrow, modifierFlags: .command, action: #selector(tabBarRight), discoverabilityTitle: "Scroll Tab Bar Right"))
-        usableCommands.append(UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: .command, action: #selector(tabBarLeft), discoverabilityTitle: "Scroll Tab Bar Left"))
         
         return usableCommands
     }

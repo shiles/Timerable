@@ -11,7 +11,6 @@ import UIKit
 class MainTabbedViewController: UITabBarController {
     
     let persistanceService = PersistanceService()
-    let audioNotifications = LocalNotificationService()
     let timerService: TimerService!
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -26,7 +25,7 @@ class MainTabbedViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let timerView = TimerViewController(persistanceService: persistanceService, audioNotificationController: audioNotifications, timerService: timerService)
+        let timerView = TimerViewController(persistanceService: persistanceService, audioNotificationController: LocalNotificationService(), timerService: timerService)
         let timerViewNavController = UINavigationController(rootViewController: timerView)
         timerViewNavController.tabBarItem.title = "Timer"
         timerViewNavController.tabBarItem.image = UIImage(named: "timer")
@@ -42,5 +41,23 @@ class MainTabbedViewController: UITabBarController {
         settingsViewNavController.tabBarItem.image = UIImage(named: "settings")
 
         viewControllers = [timerViewNavController, statViewNavController, settingsViewNavController]
+    }
+    
+    override var keyCommands: [UIKeyCommand]? {
+        return [ UIKeyCommand(input: "1", modifierFlags: .command, action: #selector(toTimer), discoverabilityTitle: "Go To Timer Tab"),
+                UIKeyCommand(input: "2", modifierFlags: .command, action: #selector(toStats), discoverabilityTitle: "Go To Stats Tab"),
+                UIKeyCommand(input: "3", modifierFlags: .command, action: #selector(toSettings), discoverabilityTitle: "Go To Settings Tab")]
+    }
+    
+    @objc func toTimer() {
+        self.selectedIndex = 0
+    }
+    
+    @objc func toStats() {
+        self.selectedIndex = 1
+    }
+    
+    @objc func toSettings() {
+        self.selectedIndex = 2
     }
 }
