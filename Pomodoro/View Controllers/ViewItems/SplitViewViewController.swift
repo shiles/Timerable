@@ -14,8 +14,4 @@ class SplitViewViewController: UISplitViewController {
         super.viewDidLoad()
     }
     
-    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController, ontoPrimaryViewController primaryViewController: UIViewController) -> Bool {
-       return false
-    }
-
 }

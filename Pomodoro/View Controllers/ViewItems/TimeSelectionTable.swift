@@ -69,11 +69,11 @@ class TimeSelectionTable: UITableViewController {
     
     override func viewDidLoad() {
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "TimeSelect")
-        self.tableView.selectRow(at: IndexPath(row: self.selected, section: 0), animated: false, scrollPosition: UITableView.ScrollPosition.middle)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.tableView.reloadData()
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.selectRow(at: IndexPath(row: self.selected, section: 0), animated: false, scrollPosition: UITableView.ScrollPosition.middle)
+        self.tableView.headerView(forSection: 0)?.setNeedsDisplay()
     }
         
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

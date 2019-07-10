@@ -20,19 +20,22 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var autoLockSwitch: UISwitch!
     @IBOutlet weak var appVersion: UILabel!
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+    override func viewDidLoad() {
         self.navigationItem.title = "Settings"
         
         //Getting up-to-date values to display
         appVersion.text = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
         setLabelsToValues()
+        
         //Setting table height to remove defualt warningS
         self.tableView.rowHeight = 44
         
         if UIDevice.current.userInterfaceIdiom == .pad {
             setWorkLength()
         }
+        
+        guard let splitViewController = splitViewController else { fatalError() }
+        splitViewController.preferredDisplayMode = UISplitViewController.DisplayMode.allVisible
     }
     
     /**
@@ -183,5 +186,11 @@ extension SettingsViewController: UpdateSettingsLabelDelegate {
     
     func updateSettingsLabels() {
         setLabelsToValues()
+    }
+}
+
+extension SettingsViewController: UISplitViewControllerDelegate {
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+        return true
     }
 }

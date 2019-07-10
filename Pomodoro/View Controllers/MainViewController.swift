@@ -35,7 +35,7 @@ class MainTabbedViewController: UITabBarController {
         statViewNavController.tabBarItem.title = "Stats"
         statViewNavController.tabBarItem.image = UIImage(named: "bargraph")
         
-        let settingsView = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "SplitVC")
+        guard let settingsView = UIStoryboard(name: "Settings", bundle: nil).instantiateInitialViewController() else { return }
         settingsView.tabBarItem.title = "Settings"
         settingsView.tabBarItem.image = UIImage(named: "settings")
 
