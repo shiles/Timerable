@@ -44,6 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Create Shotcut handler
         self.shortcutService = ShortcutsService(rootView: main!)
         
+        //_ = DataSave().saveMockData()
+        
         return true
     }
 
