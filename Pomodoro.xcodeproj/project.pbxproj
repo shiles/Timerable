@@ -39,6 +39,9 @@
 		AB9329C122A0DE5E0088A50C /* DataSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9329C022A0DE5E0088A50C /* DataSave.swift */; };
 		AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */; };
 		AB9BA93122813FE5002D6324 /* SessionManagementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9BA93022813FE5002D6324 /* SessionManagementController.swift */; };
+		ABA37671230EF59400900A2B /* TitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA37670230EF59400900A2B /* TitleLabel.swift */; };
+		ABA37674230EF64300900A2B /* UIColor+Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA37673230EF64300900A2B /* UIColor+Extentions.swift */; };
+		ABA37676230EF7E000900A2B /* SubtitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA37675230EF7E000900A2B /* SubtitleLabel.swift */; };
 		ABA8A8D6221ADA5D00847448 /* Persistance Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA8A8D5221ADA5D00847448 /* Persistance Service.swift */; };
 		ABAD65AE227BFEDB00678A5A /* TitleTimeHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAD65AD227BFEDB00678A5A /* TitleTimeHeaderCell.swift */; };
 		ABB2A5E521F60552008E4D62 /* ConverterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB2A5E421F60552008E4D62 /* ConverterTest.swift */; };
@@ -110,6 +113,9 @@
 		AB9329C022A0DE5E0088A50C /* DataSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSave.swift; sourceTree = "<group>"; };
 		AB9661EF21EE0AF6003BD4E2 /* TimeTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTypes.swift; sourceTree = "<group>"; };
 		AB9BA93022813FE5002D6324 /* SessionManagementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagementController.swift; sourceTree = "<group>"; };
+		ABA37670230EF59400900A2B /* TitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLabel.swift; sourceTree = "<group>"; };
+		ABA37673230EF64300900A2B /* UIColor+Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extentions.swift"; sourceTree = "<group>"; };
+		ABA37675230EF7E000900A2B /* SubtitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleLabel.swift; sourceTree = "<group>"; };
 		ABA8A8D5221ADA5D00847448 /* Persistance Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Persistance Service.swift"; sourceTree = "<group>"; };
 		ABAD65AD227BFEDB00678A5A /* TitleTimeHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTimeHeaderCell.swift; sourceTree = "<group>"; };
 		ABB2A5E421F60552008E4D62 /* ConverterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTest.swift; sourceTree = "<group>"; };
@@ -198,6 +204,8 @@
 				AB8D28612208FE41000C4312 /* View Controllers */,
 				ABBD94FC223F64D500C48C08 /* Service */,
 				AB8A015221F39F1400D0F6EA /* Util */,
+				ABA37672230EF62F00900A2B /* Extentions */,
+				ABA3766F230EF57D00900A2B /* UIKit */,
 				AB38C43921EBA306003C77D7 /* AppDelegate.swift */,
 				AB01512F2266E66200138132 /* Extentions.swift */,
 				AB2799BD2219CBD200D092C9 /* pomodoro.xcdatamodeld */,
@@ -298,6 +306,23 @@
 				AB376BF022C1E705000776DC /* SiriShortcutCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		ABA3766F230EF57D00900A2B /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				ABA37670230EF59400900A2B /* TitleLabel.swift */,
+				ABA37675230EF7E000900A2B /* SubtitleLabel.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		ABA37672230EF62F00900A2B /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				ABA37673230EF64300900A2B /* UIColor+Extentions.swift */,
+			);
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 		ABA8A8D4221ADA1D00847448 /* Persistance Service */ = {
@@ -535,6 +560,7 @@
 				ABEBC69921EF579500CFD262 /* TimeChunk.swift in Sources */,
 				AB9329C122A0DE5E0088A50C /* DataSave.swift in Sources */,
 				AB57D1A222420C4B000AC6EE /* StatBarGraph.swift in Sources */,
+				ABA37674230EF64300900A2B /* UIColor+Extentions.swift in Sources */,
 				ABD13DCC22D4FB9F005A3AAE /* SplitViewViewController.swift in Sources */,
 				AB8D28632208FFAF000C4312 /* MainViewController.swift in Sources */,
 				ABBD94FF223F658000C48C08 /* StatsService.swift in Sources */,
@@ -545,12 +571,14 @@
 				ABA8A8D6221ADA5D00847448 /* Persistance Service.swift in Sources */,
 				ABFA9F56221C2FE700B76FAA /* SubjectManagementTable.swift in Sources */,
 				AB35A48222BE9313001A91A1 /* ShortcutsService.swift in Sources */,
+				ABA37671230EF59400900A2B /* TitleLabel.swift in Sources */,
 				AB85A8AD224360BA003EC063 /* StatBarGraphCell.swift in Sources */,
 				AB38C43A21EBA306003C77D7 /* AppDelegate.swift in Sources */,
 				AB8A015421F39F6100D0F6EA /* Converter.swift in Sources */,
 				AB8C51EB2248A4C000B7CDA4 /* StatBarGraphHeaderCell.swift in Sources */,
 				AB348E1A21F638B100A97CEA /* TimeViewer.swift in Sources */,
 				AB376BEF22C1E5B6000776DC /* SiriViewController.swift in Sources */,
+				ABA37676230EF7E000900A2B /* SubtitleLabel.swift in Sources */,
 				ABFFD7AD21FE9A260033199D /* TimeSelectionTable.swift in Sources */,
 				AB2A81152244A0BA00480726 /* DailyStat.swift in Sources */,
 				AB9661F021EE0AF6003BD4E2 /* TimeTypes.swift in Sources */,

@@ -193,8 +193,8 @@ class SessionManagementController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.textLabel?.textColor = .white
-        header.tintColor? = .orange
+        header.textLabel?.textColor = UIColor.Timerable.primaryText
+        header.tintColor? = UIColor.Timerable.primaryColour
         header.textLabel?.textAlignment = .center
         
         let customFont = UIFont.systemFont(ofSize: 16, weight: .bold)

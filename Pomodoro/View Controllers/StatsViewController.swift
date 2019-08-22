@@ -135,7 +135,7 @@ extension StatsViewController: UITableViewDataSource, UITableViewDelegate {
             return UIView()
         }
         
-        headerView.updateText(primaryText: "Total Study Time:", secondaryText: String(format: "%@", Format.timeToStringWords(seconds: statsService.getTotalSessionTime())))
+        headerView.updateText(title: "Total Study Time:", subtitle: String(format: "%@", Format.timeToStringWords(seconds: statsService.getTotalSessionTime())))
         return headerView
     }
     

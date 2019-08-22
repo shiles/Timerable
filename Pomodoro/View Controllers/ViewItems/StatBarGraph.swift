@@ -95,7 +95,7 @@ extension StatBarGraph: UICollectionViewDataSource, UICollectionViewDelegateFlow
             return StatBarGraphHeaderCell(frame: .zero)
         }
         
-        header.updateText(primaryText: "Last 7 Days:", secondaryText: self.headerText!)
+        header.updateText(title: "Last 7 Days:", subtitle: self.headerText!)
         return header
     }
     

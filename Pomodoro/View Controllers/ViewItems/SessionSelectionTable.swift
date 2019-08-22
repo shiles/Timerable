@@ -118,9 +118,9 @@ class SessionSelectionTable: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.textLabel?.textColor = .white
-        header.tintColor? = .orange
-        header.backgroundView?.backgroundColor = .orange
+        header.textLabel?.textColor = UIColor.Timerable.primaryText
+        header.tintColor? = UIColor.Timerable.primaryColour
+        header.backgroundView?.backgroundColor = UIColor.Timerable.primaryColour
         header.textLabel?.frame = header.frame
         header.textLabel?.textAlignment = .center
         
