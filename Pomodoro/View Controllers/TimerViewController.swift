@@ -10,20 +10,26 @@ import UIKit
 import CoreData
 
 class TimerViewController: UIViewController {
-
-    let persistanceService: PersistanceService!
-    let localNotifications: LocalNotificationService!
-    let timerService: TimerService!
-    let defaults = Defaults()
+    let persistanceService: PersistanceService
+    let localNotifications: LocalNotificationService
+    let timerService: TimerService
+    let defaults: Defaults
+    
     var timeViewer: TimeViewer!
     var session: SessionStatus!
     var daily: SessionStatus!
     var subjects: [Subject] = []
 
-    init(persistanceService: PersistanceService, audioNotificationController: LocalNotificationService, timerService: TimerService) {
+    init(
+        persistanceService: PersistanceService = PersistanceService(),
+        audioNotificationController: LocalNotificationService = LocalNotificationService(),
+        timerService: TimerService = TimerService(),
+        defaults: Defaults = Defaults()
+        ) {
         self.persistanceService = persistanceService
         self.localNotifications = audioNotificationController
         self.timerService = timerService
+        self.defaults = defaults
         self.session = SessionStatus(title: "Session")
         self.daily = SessionStatus(title: "Goal")
         

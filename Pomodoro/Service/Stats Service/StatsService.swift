@@ -9,16 +9,12 @@
 import Foundation
 
 class StatsService {
-    let persistanceService: PersistanceService!
+    let persistanceService: PersistanceService
     
-    init(persistanceService: PersistanceService) {
+    init(persistanceService: PersistanceService = PersistanceService()) {
         self.persistanceService = persistanceService
     }
-    
-    convenience init() {
-        self.init(persistanceService: PersistanceService())
-    }
-    
+        
     /**
      Gets all the sessions from a subject and sums the time spent on that subject
      - Parameter subject: The `subject` you want to know the overall time for

@@ -11,10 +11,13 @@ import UIKit
 class StatsViewController: UIViewController {
     
     var subjects: [Subject]?
-    let persistanceService: PersistanceService!
-    let statsService: StatsService!
+    let persistanceService: PersistanceService
+    let statsService: StatsService
     
-    init(persistanceService: PersistanceService, statsService: StatsService) {
+    init(
+        persistanceService: PersistanceService = PersistanceService(),
+        statsService: StatsService = StatsService()
+        ) {
         self.persistanceService = persistanceService
         self.statsService = statsService
         

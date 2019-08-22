@@ -16,17 +16,23 @@ protocol TimeTickerDelegate: AnyObject {
 }
 
 class TimerService {
- 
+    private let defaults: Defaults
+    private let persistanceService: PersistanceService
+    private let notificationService: NotificationService
+    
     private(set) var timer: Timer = Timer()
-    private let defaults: Defaults!
-    weak var timeTickerDelegate: TimeTickerDelegate?
-    private let persistanceService: PersistanceService!
-    private let notificationService = NotificationService()
     private let calendar = Calendar.current
+    
+    weak var timeTickerDelegate: TimeTickerDelegate?
+  
     var session: [TimeChunk]!
     
-    init(persistanceService: PersistanceService, defaults: Defaults) {
+    init(
+        persistanceService: PersistanceService = PersistanceService(),
+        notificationService: NotificationService = NotificationService(),
+        defaults: Defaults = Defaults()) {
         self.persistanceService = persistanceService
+        self.notificationService = notificationService
         self.defaults = defaults
         self.session = buildTimeArray()
     }

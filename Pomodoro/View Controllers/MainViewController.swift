@@ -10,11 +10,10 @@ import UIKit
 
 class MainTabbedViewController: UITabBarController {
     
-    let persistanceService = PersistanceService()
     let timerService: TimerService!
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        self.timerService = TimerService(persistanceService: persistanceService, defaults: Defaults())
+        self.timerService = TimerService()
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -25,12 +24,12 @@ class MainTabbedViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let timerView = TimerViewController(persistanceService: persistanceService, audioNotificationController: LocalNotificationService(), timerService: timerService)
+        let timerView = TimerViewController(timerService: timerService)
         let timerViewNavController = UINavigationController(rootViewController: timerView)
         timerViewNavController.tabBarItem.title = "Timer"
         timerViewNavController.tabBarItem.image = UIImage(named: "timer")
         
-        let statView = StatsViewController(persistanceService: persistanceService, statsService: StatsService(persistanceService: persistanceService))
+        let statView = StatsViewController()
         let statViewNavController = UINavigationController(rootViewController: statView)
         statViewNavController.tabBarItem.title = "Stats"
         statViewNavController.tabBarItem.image = UIImage(named: "bargraph")
