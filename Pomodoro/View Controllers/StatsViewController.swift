@@ -22,7 +22,6 @@ class StatsViewController: UIViewController {
         self.statsService = statsService
         
         super.init(nibName: nil, bundle: nil)
-        self.view.backgroundColor = .white
         self.setupView()
     }
     
@@ -35,6 +34,7 @@ class StatsViewController: UIViewController {
      */
     func setupView() {
         self.navigationItem.title = "Stats"
+        self.view.backgroundColor = UIColor.Timerable.backgroundColour
         
         self.view.addSubview(statStack)
         NSLayoutConstraint.activate([
@@ -101,7 +101,7 @@ class StatsViewController: UIViewController {
     
     lazy var weekView: StatBarGraph = {
         let week = StatBarGraph(statService: statsService)
-        week.backgroundColor = .white
+        week.backgroundColor = UIColor.Timerable.backgroundColour
         return week
     }()
 }
@@ -144,7 +144,8 @@ extension StatsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.backgroundView?.backgroundColor = .orange
+        header.backgroundView?.backgroundColor = UIColor.Timerable.backgroundColour
+        header.tintColor = UIColor.Timerable.primaryColour
     }
     
 }

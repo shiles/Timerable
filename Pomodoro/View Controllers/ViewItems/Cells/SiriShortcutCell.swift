@@ -45,7 +45,7 @@ class SiriShortcutCell: UITableViewCell {
     
     let titleText: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = UIColor.Timerable.darkModeText
         label.textAlignment = .left
         label.font = UIFont.preferredFont(forTextStyle: .title3)
         label.adjustsFontForContentSizeCategory = true

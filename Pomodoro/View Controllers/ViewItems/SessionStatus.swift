@@ -43,6 +43,7 @@ class SessionStatus: UIView {
             progressText.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 10)])
         
         self.setRoundedCorners(radius: 20.0)
+        self.backgroundColor = .gray
         
         //Setup accessibility
         self.isAccessibilityElement = true

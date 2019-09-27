@@ -27,13 +27,13 @@ public class StatBarGraph: UICollectionView {
         flow.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         super.init(frame: .zero, collectionViewLayout: flow)
+        self.backgroundColor = UIColor.Timerable.backgroundColour
         self.dataSource = self
         self.delegate = self
         self.register(StatBarGraphCell.self, forCellWithReuseIdentifier: cellReuseId)
         self.register(StatBarGraphHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerReuseId)
         
         setInitialHeader()
-        
         //Setting up the collection view
         self.isScrollEnabled = false
         self.allowsSelection = true

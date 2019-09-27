@@ -32,18 +32,19 @@ class TitleTimeHeaderCell: UITableViewHeaderFooterView {
     }
     
     private func setupView() {
+        self.backgroundColor = UIColor.Timerable.primaryColour
         self.addSubview(titleStack)
         NSLayoutConstraint.activate([
             titleStack.centerYAnchor.constraint(equalTo: centerYAnchor),
             titleStack.centerXAnchor.constraint(equalTo: centerXAnchor)])
-        
+                
         //Setup accessibility
         self.isAccessibilityElement = true
         self.accessibilityTraits = .header
     }
     
     lazy var titleStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [title, subtitle ])
+        let stack = UIStackView(arrangedSubviews: [title, subtitle])
         stack.axis = .vertical
         stack.alignment = .fill
         stack.distribution = .fillProportionally
