@@ -27,7 +27,7 @@ public class StatBarGraph: UICollectionView {
         flow.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         super.init(frame: .zero, collectionViewLayout: flow)
-        self.backgroundColor = UIColor.Timerable.backgroundColour
+        self.backgroundColor = .systemBackground
         self.dataSource = self
         self.delegate = self
         self.register(StatBarGraphCell.self, forCellWithReuseIdentifier: cellReuseId)

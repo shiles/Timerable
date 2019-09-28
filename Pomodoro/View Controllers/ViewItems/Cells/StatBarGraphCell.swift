@@ -13,7 +13,7 @@ class StatBarGraphCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        super.backgroundColor = UIColor.Timerable.backgroundColour
+        super.backgroundColor = .systemBackground
         
         //Add label to bottom of bar
         addSubview(label)
@@ -70,14 +70,14 @@ class StatBarGraphCell: UICollectionViewCell {
 
     override var isHighlighted: Bool {
         didSet {
-            backgroundColor = isHighlighted ? UIColor.lightGray.withAlphaComponent(0.35) : UIColor.Timerable.backgroundColour
+            backgroundColor = isHighlighted ? UIColor.lightGray.withAlphaComponent(0.35) : .systemBackground
             self.accessibilityTraits = isHighlighted ? .selected : .none
         }
     }
 
     let label: UILabel = {
         var label = UILabel(frame: .zero)
-        label.textColor = UIColor.Timerable.darkModeText
+        label.textColor = .label
         label.textAlignment = .left
         
         let customFont = UIFont.systemFont(ofSize: 15, weight: .regular)

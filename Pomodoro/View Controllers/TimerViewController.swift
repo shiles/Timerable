@@ -59,7 +59,7 @@ class TimerViewController: UIViewController {
      Initially sets up the view
      */
     func setupView() {
-        self.view.backgroundColor = UIColor.Timerable.backgroundColour
+        self.view.backgroundColor = .systemBackground
         self.navigationItem.title = "Timer"
         
         //Adding skip button

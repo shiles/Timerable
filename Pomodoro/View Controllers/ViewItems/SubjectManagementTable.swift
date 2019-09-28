@@ -90,7 +90,6 @@ class SubjectManagementTable: UITableViewController {
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             completion(true)
         })
-        delete.image = UIImage(named: "trash")
         delete.backgroundColor = .red
         
         let edit = UIContextualAction(style: .destructive, title: "Edit", handler: { (_, _, completion) in
