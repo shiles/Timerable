@@ -84,6 +84,7 @@ class TimeViewer: UIView {
     lazy var timeViewerBar: UIProgressView = {
         let bar = UIProgressView(frame: .zero)
         bar.progressTintColor = .orange
+        bar.progressViewStyle = .bar
         bar.translatesAutoresizingMaskIntoConstraints = false
         return bar
     }()
