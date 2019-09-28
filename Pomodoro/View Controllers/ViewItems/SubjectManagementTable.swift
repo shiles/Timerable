@@ -25,7 +25,7 @@ class SubjectManagementTable: UITableViewController {
     init(persistanceService: PersistanceService, delegate: SubjectManagementDelegate?) {
         self.persistanceService = persistanceService
         self.subjectManagementDelegate = delegate
-        super.init(nibName: nil, bundle: nil)
+        super.init(style: .plain)
         
         //Getting Data
         self.subjects = persistanceService.fetchAllSubjects()

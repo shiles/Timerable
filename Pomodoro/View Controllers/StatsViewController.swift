@@ -92,7 +92,7 @@ class StatsViewController: UIViewController {
     }()
     
     lazy var tableView: UITableView = {
-        let table = UITableView(frame: .zero)
+        let table = UITableView(frame: .zero, style: .plain)
         table.dataSource = self
         table.delegate = self
         table.register(TitleTimeHeaderCell.self, forHeaderFooterViewReuseIdentifier: "CustomHeader")

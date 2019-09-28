@@ -50,7 +50,6 @@ class MainTabbedViewController: UITabBarController {
     @objc func toTimer() {
         self.selectedIndex = 0
     }
-    
     @objc func toStats() {
         self.selectedIndex = 1
     }
