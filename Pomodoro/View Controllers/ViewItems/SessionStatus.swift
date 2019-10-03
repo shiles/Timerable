@@ -43,6 +43,7 @@ class SessionStatus: UIView {
             progressText.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 10)])
         
         self.setRoundedCorners(radius: 20.0)
+        self.backgroundColor = .gray
         
         //Setup accessibility
         self.isAccessibilityElement = true
@@ -105,10 +106,10 @@ class SessionStatus: UIView {
         return title
     }()
     
-    lazy var progress: UIProgressView = {
-        let progress = UIProgressView(frame: .zero)
+    lazy var progress: UIProgressView = { [unowned self] in
+        let progress = UIProgressView(frame: self.frame)
         progress.progressTintColor = .orange
-        progress.backgroundColor = UIColor.lightGray.withAlphaComponent(0.35)
+        progress.progressViewStyle = .bar
         progress.translatesAutoresizingMaskIntoConstraints = false
         return progress
     }()

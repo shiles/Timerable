@@ -25,7 +25,7 @@ class TimeDisplayCell: UITableViewCell {
      Initially sets up the view
      */
     private func setUpCell() {
-        self.backgroundColor = .white
+        self.backgroundColor = .systemBackground
         
         self.addSubview(primaryText)
         self.addSubview(secondaryText)
@@ -39,7 +39,7 @@ class TimeDisplayCell: UITableViewCell {
     
     let primaryText: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .label
         label.textAlignment = .left
         label.lineBreakMode = .byTruncatingTail
         
@@ -52,7 +52,7 @@ class TimeDisplayCell: UITableViewCell {
     
     let secondaryText: UILabel = {
         let label = UILabel()
-        label.textColor = .darkGray
+        label.textColor = .secondaryLabel
         label.textAlignment = .right
     
         let customFont = UIFont.systemFont(ofSize: UIFont.systemFontSize, weight: .light)

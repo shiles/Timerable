@@ -38,6 +38,7 @@ class TimeViewer: UIView {
             textStack.centerYAnchor.constraint(equalTo: self.centerYAnchor)])
         
         self.setRoundedCorners(radius: 20.0)
+        self.backgroundColor = .gray
         
         //Adding accessibility features
         self.isAccessibilityElement = true
@@ -83,6 +84,7 @@ class TimeViewer: UIView {
     lazy var timeViewerBar: UIProgressView = {
         let bar = UIProgressView(frame: .zero)
         bar.progressTintColor = .orange
+        bar.progressViewStyle = .bar
         bar.translatesAutoresizingMaskIntoConstraints = false
         return bar
     }()

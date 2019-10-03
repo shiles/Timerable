@@ -45,7 +45,7 @@ class SiriShortcutCell: UITableViewCell {
     
     let titleText: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .label
         label.textAlignment = .left
         label.font = UIFont.preferredFont(forTextStyle: .title3)
         label.adjustsFontForContentSizeCategory = true
@@ -66,7 +66,7 @@ class SiriShortcutCell: UITableViewCell {
     }()
     
     lazy var siriButton: INUIAddVoiceShortcutButton = { [unowned self] in
-        let button = INUIAddVoiceShortcutButton(style: .whiteOutline)
+        let button = INUIAddVoiceShortcutButton(style: .automaticOutline)
         button.delegate = self
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

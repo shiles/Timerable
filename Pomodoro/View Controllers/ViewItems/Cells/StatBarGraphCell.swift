@@ -9,16 +9,15 @@
 import UIKit
 
 class StatBarGraphCell: UICollectionViewCell {
-    
     private var barHeightConstraint: NSLayoutConstraint?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        super.backgroundColor = .white
+        super.backgroundColor = .systemBackground
         
         //Add label to bottom of bar
         addSubview(label)
-        //label.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        
         label.textAlignment = .center
         NSLayoutConstraint.activate([
             label.leftAnchor.constraint(equalTo: leftAnchor),
@@ -71,14 +70,14 @@ class StatBarGraphCell: UICollectionViewCell {
 
     override var isHighlighted: Bool {
         didSet {
-            backgroundColor = isHighlighted ? UIColor.lightGray.withAlphaComponent(0.35) : .white
+            backgroundColor = isHighlighted ? UIColor.lightGray.withAlphaComponent(0.35) : .systemBackground
             self.accessibilityTraits = isHighlighted ? .selected : .none
         }
     }
 
     let label: UILabel = {
         var label = UILabel(frame: .zero)
-        label.textColor = .black
+        label.textColor = .label
         label.textAlignment = .left
         
         let customFont = UIFont.systemFont(ofSize: 15, weight: .regular)

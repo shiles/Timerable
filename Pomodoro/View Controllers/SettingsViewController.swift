@@ -175,7 +175,7 @@ class SettingsViewController: UITableViewController {
         case (3, 1):
             self.resetStatistics()
         default:
-            fatalError()
+            break
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
