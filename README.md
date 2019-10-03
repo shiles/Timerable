@@ -6,6 +6,8 @@
 
 An iOS app written in Swift. Focusable is a productivity timer and tracker to improve the quality of your work and keep you focused. Maximise your productivity while avoiding burnout. The goal of this project is to learn how to develop an iOS application, from the design through to the deployment to the applestore.
 
+Available on the AppStore [here](https://apps.apple.com/gb/app/timerable/id1475531432)
+
 ### How does it work?
 You choose a subject you want to work under and then the timer will start for 25 minutes, and you'll work on that task. Then a 5-minute break to procrastinate. After 4 of these focused work sessions a longer break of 30 minutes to help reduce burnout and retain your focus on busy days. 
 
